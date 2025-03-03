@@ -1,7 +1,7 @@
 package com.sodamjae.adapter.persistence.shop
 
 import com.sodamjae.adapter.persistence.common.BaseEntity
-import com.sodamjae.adapter.persistence.user.UserEntity
+import com.sodamjae.adapter.persistence.user.entity.UserEntity
 import com.sodamjae.domain.shop.Shop
 import jakarta.persistence.*
 
@@ -34,7 +34,7 @@ class ShopEntity(
     @JoinColumn(name = "seller_id")
     val seller: UserEntity,
 
-) : BaseEntity() {
+    ) : BaseEntity() {
     fun toDomain(): Shop {
         return Shop.create(
             name = Shop.Name(name),

@@ -1,35 +1,41 @@
 package com.sodamjae.domain.user
 
-class User private constructor(
+import com.sodamjae.domain.user.model.UserRole
+
+class User(
     val id: Long? = null,
     val email: Email,
-    private var password: Password,
+    val provider: String? = null,
+    val providerId: String? = null,
+    val password: Password? = null,
     private var name: Name,
     private var role: UserRole,
 ) {
-    // Getters for persistence
-    fun getPassword(): Password = password
+
     fun getName(): Name = name
     fun getRole(): UserRole = role
 
     companion object {
-        fun create(email: Email, password: Password, name: Name, role: UserRole = UserRole.CUSTOMER): User {
+        fun create(email: String, provider: String, providerId: String, name: String, role: UserRole): User {
             return User(
-                email = email,
-                password = password,
-                name = name,
+                email = Email(email),
+                provider = provider,
+                providerId = providerId,
+                name = Name(name),
+                role = role
+            )
+        }
+
+        fun create(email: String, password: String, name: String, role: UserRole): User {
+            return User(
+                email = Email(email),
+                password = Password(password),
+                name = Name(name),
                 role = role
             )
         }
     }
 
-    fun updateProfile(name: Name) {
-        this.name = name
-    }
-
-    fun changePassword(newPassword: Password) {
-        this.password = newPassword
-    }
 
     fun changeRole(newRole: UserRole) {
         this.role = newRole
@@ -44,31 +50,17 @@ class User private constructor(
     }
 
     @JvmInline
-    value class Password private constructor(val value: String) {
-        companion object {
-            fun create(password: String): Password {
-                require(password.length >= 8) { "비밀번호는 8자 이상이어야 합니다" }
-                return Password(password)
-            }
-        }
-    }
-
-    @JvmInline
     value class Name(val value: String) {
         init {
             require(value.isNotBlank()) { "이름은 비어있을 수 없습니다" }
         }
     }
 
-    enum class UserRole {
-        ADMIN, SELLER, CUSTOMER;
-
-        fun hasPermission(requiredRole: UserRole): Boolean {
-            return when (this) {
-                ADMIN -> true
-                SELLER -> this == requiredRole
-                CUSTOMER -> this == requiredRole
-            }
+    @JvmInline
+    value class Password(val value: String) {
+        init {
+            require(value.isNotBlank()) { "비밀번호는 비어있을 수 없습니다" }
         }
     }
+
 } 

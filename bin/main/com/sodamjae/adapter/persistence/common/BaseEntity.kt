@@ -15,11 +15,11 @@ import java.time.LocalDateTime
 abstract class BaseEntity {
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
-    val createdAt: LocalDateTime = LocalDateTime.now()
+    var createdAt: LocalDateTime = LocalDateTime.now()
 
     @CreatedBy
     @Column(name = "created_by", nullable = false, updatable = false)
-    lateinit var createdBy: String
+    var createdBy: String = "-1"
 
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
@@ -27,5 +27,5 @@ abstract class BaseEntity {
 
     @LastModifiedBy
     @Column(name = "updated_by", nullable = false)
-    lateinit var updatedBy: String
+    var updatedBy: String = "-1"
 } 

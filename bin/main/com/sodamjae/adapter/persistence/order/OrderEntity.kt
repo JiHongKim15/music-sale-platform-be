@@ -2,7 +2,7 @@ package com.sodamjae.adapter.persistence.order
 
 import com.sodamjae.adapter.persistence.common.BaseEntity
 import com.sodamjae.adapter.persistence.product.ProductEntity
-import com.sodamjae.adapter.persistence.user.UserEntity
+import com.sodamjae.adapter.persistence.user.entity.UserEntity
 import com.sodamjae.domain.order.Order
 import com.sodamjae.domain.order.Payment
 import com.sodamjae.domain.order.Shipping
@@ -40,7 +40,7 @@ class OrderEntity(
     @Embedded
     var shipping: ShippingEmbeddable,
 
-) : BaseEntity() {
+    ) : BaseEntity() {
     fun toDomain(): Order {
         return Order.create(
             user = user.toDomain(),
