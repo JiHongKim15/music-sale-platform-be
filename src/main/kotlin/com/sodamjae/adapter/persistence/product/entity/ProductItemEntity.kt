@@ -14,20 +14,25 @@ class ProductItemEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    
+
+
+    @Column(name = "price", nullable = false)
+    val price: Long,
+
     @Column(name = "product_catalog_id", nullable = false)
     val productCatalogId: Long,
-    
+
+
     @Column(name = "seller_id", nullable = false)
     val sellerId: Long,
-    
+
     @Column(name = "store_id", nullable = false)
     val storeId: Long,
-    
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     val condition: ProductConditionEntity,
-    
+
     @Column(name = "stock_quantity", nullable = false)
     val stockQuantity: Int,
 

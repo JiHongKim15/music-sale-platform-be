@@ -3,8 +3,7 @@ package com.sodamjae.adapter.persistence.product
 import com.sodamjae.adapter.persistence.product.enum.ProductConditionEntity
 import com.sodamjae.adapter.persistence.product.mapper.ProductItemMapper
 import com.sodamjae.adapter.persistence.product.repository.ProductItemRepository
-import com.sodamjae.application.product.port.ProductItemPort
-import com.sodamjae.domain.product.ProductItem
+import com.sodamjae.application.product.port.out.ProductItemPort
 import com.sodamjae.domain.product.enum.ProductCondition
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -20,13 +19,13 @@ class ProductItemPersistenceAdapter(
     private val productItemMapper: ProductItemMapper
 ) : ProductItemPort {
 
-    override fun save(productItem: ProductItem): ProductItem {
-        val entity = productItemMapper.toEntity(productItem)
+    override fun save(productInfo: ProductInfo): ProductInfo {
+        val entity = productItemMapper.toEntity(productInfo)
         val savedEntity = productItemRepository.save(entity)
         return productItemMapper.toDomain(savedEntity)
     }
 
-    override fun findById(id: Long): ProductItem? {
+    override fun findById(id: Long): ProductInfo? {
         return productItemRepository.findById(id)
             .map { productItemMapper.toDomain(it) }
             .orElse(null)
@@ -35,22 +34,22 @@ class ProductItemPersistenceAdapter(
     override fun findByProductCatalogId(
         catalogId: Long,
         pageable: Pageable
-    ): Page<ProductItem> {
+    ): Page<ProductInfo> {
         return productItemRepository.findByProductCatalogId(catalogId, pageable)
             .map { productItemMapper.toDomain(it) }
     }
 
-    override fun findBySellerId(sellerId: Long, pageable: Pageable): Page<ProductItem> {
+    override fun findBySellerId(sellerId: Long, pageable: Pageable): Page<ProductInfo> {
         return productItemRepository.findBySellerId(sellerId, pageable)
             .map { productItemMapper.toDomain(it) }
     }
 
-    override fun findByStoreId(storeId: Long, pageable: Pageable): Page<ProductItem> {
+    override fun findByStoreId(storeId: Long, pageable: Pageable): Page<ProductInfo> {
         return productItemRepository.findByStoreId(storeId, pageable)
             .map { productItemMapper.toDomain(it) }
     }
 
-    override fun findByCondition(condition: ProductCondition, pageable: Pageable): Page<ProductItem> {
+    override fun findByCondition(condition: ProductCondition, pageable: Pageable): Page<ProductInfo> {
         val entityCondition = ProductConditionEntity.valueOf(condition.name)
         return productItemRepository.findByCondition(entityCondition, pageable)
             .map { productItemMapper.toDomain(it) }
@@ -62,7 +61,7 @@ class ProductItemPersistenceAdapter(
         condition: ProductCondition?,
         inStock: Boolean?,
         pageable: Pageable
-    ): Page<ProductItem> {
+    ): Page<ProductInfo> {
         val entityCondition = condition?.let {
             ProductConditionEntity.valueOf(it.name)
         }
