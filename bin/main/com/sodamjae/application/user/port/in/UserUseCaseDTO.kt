@@ -1,7 +1,7 @@
 package com.sodamjae.application.user.port.`in`
 
 import com.sodamjae.domain.user.User
-import com.sodamjae.domain.user.model.UserRole
+import com.sodamjae.domain.user.enum.UserRole
 
 data class CreateUserByEmailInput(
 

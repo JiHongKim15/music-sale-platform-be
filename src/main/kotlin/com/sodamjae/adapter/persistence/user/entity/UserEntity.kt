@@ -2,7 +2,7 @@ package com.sodamjae.adapter.persistence.user.entity
 
 import com.sodamjae.adapter.persistence.common.BaseEntity
 import com.sodamjae.domain.user.User
-import com.sodamjae.domain.user.model.UserRole
+import com.sodamjae.domain.user.enum.UserRole
 import jakarta.persistence.*
 
 @Entity

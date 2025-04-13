@@ -3,7 +3,7 @@ package com.sodamjae.adapter.web.user
 import com.sodamjae.application.user.port.`in`.CreateUserByEmailInput
 import com.sodamjae.application.user.port.`in`.CreateUserByProviderInput
 import com.sodamjae.domain.user.User
-import com.sodamjae.domain.user.model.UserRole
+import com.sodamjae.domain.user.enum.UserRole
 
 data class CreateUserByEmailRequest(
     val email: String,

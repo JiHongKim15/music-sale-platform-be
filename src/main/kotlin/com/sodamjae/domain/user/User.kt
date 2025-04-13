@@ -1,6 +1,6 @@
 package com.sodamjae.domain.user
 
-import com.sodamjae.domain.user.model.UserRole
+import com.sodamjae.domain.user.enum.UserRole
 
 class User(
     val id: Long? = null,

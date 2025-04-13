@@ -1,6 +1,6 @@
 package com.sodamjae.config
 
-import com.sodamjae.domain.user.model.UserRole
+import com.sodamjae.domain.user.enum.UserRole
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -37,7 +37,13 @@ class SecurityConfig {
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests { authorize ->
                 authorize
-                    .requestMatchers("/api/auth/**", "/h2-console/**", "/swagger-ui/**", "/v3/api-docs/**", "/api/users/**").permitAll()
+                    .requestMatchers(
+                        "/api/auth/**",
+                        "/h2-console/**",
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/api/users/**"
+                    ).permitAll()
                     .requestMatchers("/api/admin/**").hasAuthority(UserRole.ADMIN.name)
                     .requestMatchers("/api/seller/**").hasAnyAuthority(UserRole.ADMIN.name, UserRole.SELLER.name)
                     .anyRequest().authenticated()
