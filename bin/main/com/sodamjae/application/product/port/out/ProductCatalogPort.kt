@@ -1,4 +1,4 @@
-package com.sodamjae.application.product.port
+package com.sodamjae.application.product.port.out
 
 import com.sodamjae.domain.product.ProductCatalog
 import org.springframework.data.domain.Page

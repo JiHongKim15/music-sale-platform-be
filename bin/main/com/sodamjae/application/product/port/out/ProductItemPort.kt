@@ -1,6 +1,5 @@
-package com.sodamjae.application.product.port
+package com.sodamjae.application.product.port.out
 
-import com.sodamjae.domain.product.ProductItem
 import com.sodamjae.domain.product.enum.ProductCondition
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -14,12 +13,12 @@ interface ProductItemPort {
     /**
      * 아이템 저장
      */
-    fun save(productItem: ProductItem): ProductItem
+    fun save(productInfo: ProductInfo): ProductInfo
 
     /**
      * ID로 아이템 조회
      */
-    fun findById(id: Long): ProductItem?
+    fun findById(id: Long): ProductInfo?
 
     /**
      * 카탈로그 ID로 아이템 조회
@@ -27,22 +26,22 @@ interface ProductItemPort {
     fun findByProductCatalogId(
         catalogId: Long,
         pageable: Pageable
-    ): Page<ProductItem>
+    ): Page<ProductInfo>
 
     /**
      * 판매자 ID로 아이템 조회
      */
-    fun findBySellerId(sellerId: Long, pageable: Pageable): Page<ProductItem>
+    fun findBySellerId(sellerId: Long, pageable: Pageable): Page<ProductInfo>
 
     /**
      * 상점 ID로 아이템 조회
      */
-    fun findByStoreId(storeId: Long, pageable: Pageable): Page<ProductItem>
+    fun findByStoreId(storeId: Long, pageable: Pageable): Page<ProductInfo>
 
     /**
      * 상태(NEW/USED)로 아이템 조회
      */
-    fun findByCondition(condition: ProductCondition, pageable: Pageable): Page<ProductItem>
+    fun findByCondition(condition: ProductCondition, pageable: Pageable): Page<ProductInfo>
 
     /**
      * 다양한 조건으로 아이템 검색
@@ -53,7 +52,7 @@ interface ProductItemPort {
         condition: ProductCondition?,
         inStock: Boolean?,
         pageable: Pageable
-    ): Page<ProductItem>
+    ): Page<ProductInfo>
 
     /**
      * 아이템 삭제

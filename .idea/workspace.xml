@@ -5,21 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c0a0b21-f0b8-4939-a866-0072b9f8de56" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/web/product/ProductController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/web/product/ProductDTO.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/application/product/port/in/ProductUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/application/product/service/ProductService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.12.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.12.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/persistence/product/ProductCatalogPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/persistence/product/ProductCatalogPersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/persistence/product/ProductItemMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/persistence/product/ProductItemMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/persistence/product/ProductItemPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/persistence/product/ProductItemPersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/persistence/product/entity/ProductItemEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/persistence/product/entity/ProductItemEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/persistence/product/mapper/ProductItemMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/adapter/persistence/product/mapper/ProductItemMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/application/product/port/ProductCatalogPort.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/application/product/port/out/ProductCatalogPort.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/application/product/port/ProductItemPort.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/application/product/port/out/ProductItemPort.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/application/product/port/ProductPort.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/domain/product/Product.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/domain/product/Product.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/sodamjae/domain/product/ProductItem.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/sodamjae/adapter/persistence/product/ProductCatalogPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/com/sodamjae/adapter/persistence/product/ProductCatalogPersistenceAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/sodamjae/adapter/persistence/product/ProductItemMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/com/sodamjae/adapter/persistence/product/ProductItemMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/sodamjae/adapter/persistence/product/ProductItemPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/com/sodamjae/adapter/persistence/product/ProductItemPersistenceAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/sodamjae/adapter/persistence/product/entity/ProductItemEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/com/sodamjae/adapter/persistence/product/entity/ProductItemEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/sodamjae/adapter/persistence/product/mapper/ProductItemMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/com/sodamjae/adapter/persistence/product/mapper/ProductItemMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/sodamjae/application/product/port/ProductCatalogPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/sodamjae/application/product/port/ProductItemPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/sodamjae/application/product/port/ProductPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/sodamjae/domain/product/Product.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/com/sodamjae/domain/product/Product.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/sodamjae/domain/product/ProductItem.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,7 +286,7 @@
       <workItem from="1740933195625" duration="20428000" />
       <workItem from="1742517430158" duration="2433000" />
       <workItem from="1743952545513" duration="2004000" />
-      <workItem from="1744555204858" duration="2057000" />
+      <workItem from="1744555204858" duration="9254000" />
     </task>
     <servers />
   </component>

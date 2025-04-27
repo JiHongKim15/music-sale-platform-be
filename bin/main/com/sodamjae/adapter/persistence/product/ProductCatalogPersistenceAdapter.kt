@@ -2,7 +2,7 @@ package com.sodamjae.adapter.persistence.product
 
 import com.sodamjae.adapter.persistence.product.mapper.ProductCatalogMapper
 import com.sodamjae.adapter.persistence.product.repository.ProductCatalogRepository
-import com.sodamjae.application.product.port.ProductCatalogPort
+import com.sodamjae.application.product.port.out.ProductCatalogPort
 import com.sodamjae.domain.product.ProductCatalog
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
