@@ -1,6 +1,6 @@
-package com.sodamjae.application.user.port.out
+package com.music.sale.application.user.port.out
 
-import com.sodamjae.domain.user.User
+import com.music.sale.domain.user.User
 
 
 interface UserPort {

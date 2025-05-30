@@ -1,7 +1,7 @@
-package com.sodamjae.application.user.port.`in`
+package com.music.sale.application.user.port.`in`
 
-import com.sodamjae.domain.user.User
-import com.sodamjae.domain.user.enum.UserRole
+import com.music.sale.domain.user.User
+import com.music.sale.domain.user.enum.UserRole
 
 data class CreateUserByEmailInput(
 

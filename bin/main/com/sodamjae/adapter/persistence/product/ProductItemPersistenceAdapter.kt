@@ -1,10 +1,10 @@
-package com.sodamjae.adapter.persistence.product
+package com.music.sale.adapter.persistence.product
 
-import com.sodamjae.adapter.persistence.product.enum.ProductConditionEntity
-import com.sodamjae.adapter.persistence.product.mapper.ProductItemMapper
-import com.sodamjae.adapter.persistence.product.repository.ProductItemRepository
-import com.sodamjae.application.product.port.out.ProductItemPort
-import com.sodamjae.domain.product.enum.ProductCondition
+import com.music.sale.adapter.persistence.product.enum.ProductConditionEntity
+import com.music.sale.adapter.persistence.product.mapper.ProductItemMapper
+import com.music.sale.adapter.persistence.product.repository.ProductItemRepository
+import com.music.sale.application.product.port.out.ProductItemPort
+import com.music.sale.domain.product.enum.ProductCondition
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component

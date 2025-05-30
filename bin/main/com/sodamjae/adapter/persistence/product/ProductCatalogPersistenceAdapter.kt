@@ -1,9 +1,9 @@
-package com.sodamjae.adapter.persistence.product
+package com.music.sale.adapter.persistence.product
 
-import com.sodamjae.adapter.persistence.product.mapper.ProductCatalogMapper
-import com.sodamjae.adapter.persistence.product.repository.ProductCatalogRepository
-import com.sodamjae.application.product.port.out.ProductCatalogPort
-import com.sodamjae.domain.product.ProductCatalog
+import com.music.sale.adapter.persistence.product.mapper.ProductCatalogMapper
+import com.music.sale.adapter.persistence.product.repository.ProductCatalogRepository
+import com.music.sale.application.product.port.out.ProductCatalogPort
+import com.music.sale.domain.product.ProductCatalog
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component

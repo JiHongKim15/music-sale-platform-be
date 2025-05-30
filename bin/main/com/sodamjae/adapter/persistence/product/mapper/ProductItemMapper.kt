@@ -1,8 +1,8 @@
-package com.sodamjae.adapter.persistence.product.mapper
+package com.music.sale.adapter.persistence.product.mapper
 
-import com.sodamjae.adapter.persistence.product.entity.ProductItemEntity
-import com.sodamjae.adapter.persistence.product.enum.ProductConditionEntity
-import com.sodamjae.domain.product.enum.ProductCondition
+import com.music.sale.adapter.persistence.product.entity.ProductItemEntity
+import com.music.sale.adapter.persistence.product.enum.ProductConditionEntity
+import com.music.sale.domain.product.enum.ProductCondition
 import org.springframework.stereotype.Component
 
 /**

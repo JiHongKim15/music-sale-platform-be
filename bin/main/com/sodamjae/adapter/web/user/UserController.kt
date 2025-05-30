@@ -1,6 +1,6 @@
-package com.sodamjae.adapter.web.user
+package com.music.sale.adapter.web.user
 
-import com.sodamjae.application.user.port.`in`.UserUseCase
+import com.music.sale.application.user.port.`in`.UserUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 

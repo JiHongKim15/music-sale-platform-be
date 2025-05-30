@@ -1,6 +1,6 @@
-package com.sodamjae.adapter.web.product
+package com.music.sale.adapter.web.product
 
-import com.sodamjae.application.product.port.`in`.ProductUseCase
+import com.music.sale.application.product.port.`in`.ProductUseCase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 

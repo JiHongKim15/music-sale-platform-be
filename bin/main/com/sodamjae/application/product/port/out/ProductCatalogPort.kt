@@ -1,6 +1,6 @@
-package com.sodamjae.application.product.port.out
+package com.music.sale.application.product.port.out
 
-import com.sodamjae.domain.product.ProductCatalog
+import com.music.sale.domain.product.ProductCatalog
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 

@@ -1,11 +1,11 @@
-package com.sodamjae.adapter.persistence.order
+package com.music.sale.adapter.persistence.order
 
-import com.sodamjae.adapter.persistence.common.BaseEntity
-import com.sodamjae.adapter.persistence.product.ProductEntity
-import com.sodamjae.adapter.persistence.user.entity.UserEntity
-import com.sodamjae.domain.order.Order
-import com.sodamjae.domain.order.Payment
-import com.sodamjae.domain.order.Shipping
+import com.music.sale.adapter.persistence.common.BaseEntity
+import com.music.sale.adapter.persistence.product.ProductEntity
+import com.music.sale.adapter.persistence.user.entity.UserEntity
+import com.music.sale.domain.order.Order
+import com.music.sale.domain.order.Payment
+import com.music.sale.domain.order.Shipping
 import jakarta.persistence.*
 import java.math.BigDecimal
 

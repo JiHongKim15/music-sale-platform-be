@@ -1,9 +1,9 @@
-package com.sodamjae.adapter.web.user
+package com.music.sale.adapter.web.user
 
-import com.sodamjae.application.user.port.`in`.CreateUserByEmailInput
-import com.sodamjae.application.user.port.`in`.CreateUserByProviderInput
-import com.sodamjae.domain.user.User
-import com.sodamjae.domain.user.enum.UserRole
+import com.music.sale.application.user.port.`in`.CreateUserByEmailInput
+import com.music.sale.application.user.port.`in`.CreateUserByProviderInput
+import com.music.sale.domain.user.User
+import com.music.sale.domain.user.enum.UserRole
 
 data class CreateUserByEmailRequest(
     val email: String,

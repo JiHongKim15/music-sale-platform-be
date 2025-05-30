@@ -1,4 +1,4 @@
-package com.sodamjae.adapter.persistence.product.enum
+package com.music.sale.adapter.persistence.product.enum
 
 /**
  * 제품 상태(컨디션) 엔티티 enum

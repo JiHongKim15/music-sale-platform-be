@@ -1,7 +1,7 @@
-package com.sodamjae.domain.product
+package com.music.sale.domain.product
 
-import com.sodamjae.domain.product.enum.ProductCondition
-import com.sodamjae.domain.product.enum.ProductStatus
+import com.music.sale.domain.product.enum.ProductCondition
+import com.music.sale.domain.product.enum.ProductStatus
 
 /**
  * 통합된 상품 도메인 모델

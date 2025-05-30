@@ -1,4 +1,4 @@
-package com.sodamjae.application.product.port.`in`
+package com.music.sale.application.product.port.`in`
 
 interface ProductUseCase {
     fun getProducts(pageable: Pageable): Page<ProductUseCaseDTO>

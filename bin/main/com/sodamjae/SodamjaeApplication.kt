@@ -1,11 +1,11 @@
-package com.sodamjae
+package com.music.sale
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class SodamjaeApplication
+class music.saleApplication
 
 fun main(args: Array<String>) {
-    runApplication<SodamjaeApplication>(*args)
+    runApplication<music.saleApplication>(*args)
 } 

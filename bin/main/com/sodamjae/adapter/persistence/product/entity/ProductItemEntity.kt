@@ -1,7 +1,7 @@
-package com.sodamjae.adapter.persistence.product.entity
+package com.music.sale.adapter.persistence.product.entity
 
-import com.sodamjae.adapter.persistence.common.BaseEntity
-import com.sodamjae.adapter.persistence.product.enum.ProductConditionEntity
+import com.music.sale.adapter.persistence.common.BaseEntity
+import com.music.sale.adapter.persistence.product.enum.ProductConditionEntity
 import jakarta.persistence.*
 
 /**

@@ -1,13 +1,13 @@
 spring:
   application:
-    name: sodamjae
+    name: music.sale
   
   # 임베디드 H2 데이터베이스 사용 설정
   datasource:
     url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     username: root
-    password: 
+    password:
   
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect

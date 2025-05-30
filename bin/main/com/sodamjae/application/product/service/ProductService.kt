@@ -1,4 +1,4 @@
-package com.sodamjae.application.product.service
+package com.music.sale.application.product.service
 
 import org.springframework.stereotype.Service
 

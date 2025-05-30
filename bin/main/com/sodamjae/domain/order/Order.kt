@@ -1,7 +1,7 @@
-package com.sodamjae.domain.order
+package com.music.sale.domain.order
 
-import com.sodamjae.domain.product.Product
-import com.sodamjae.domain.user.User
+import com.music.sale.domain.product.Product
+import com.music.sale.domain.user.User
 import java.math.BigDecimal
 
 class Order private constructor(

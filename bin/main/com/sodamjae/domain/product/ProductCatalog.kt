@@ -1,4 +1,4 @@
-package com.sodamjae.domain.product
+package com.music.sale.domain.product
 
 /**
  * 제품 카탈로그 도메인 모델
