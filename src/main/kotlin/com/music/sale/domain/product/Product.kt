@@ -1,0 +1,26 @@
+package com.music.sale.domain.product
+
+import com.music.sale.domain.category.Category
+import com.music.sale.domain.product.enum.ProductCondition
+import com.music.sale.domain.product.enum.ProductConditionGrade
+import com.music.sale.domain.store.model.Store
+import com.music.sale.domain.user.User
+
+/**
+ * 통합된 제품 도메인 모델
+ * 제품의 모든 속성과 비즈니스 로직을 포함
+ */
+class Product(
+    val id: Long,
+    val name: String,
+    val category: Category,
+    val price: Int,
+    val seller: User,
+    val store: Store?,
+    val condition: ProductCondition,
+    val conditionGrade: ProductConditionGrade?,
+    val stockQuantity: Int,
+    val attributes: Map<String, Any>,
+    private val customName: String? = null,
+    private val customAttributes: Map<String, Any>? = null
+)
