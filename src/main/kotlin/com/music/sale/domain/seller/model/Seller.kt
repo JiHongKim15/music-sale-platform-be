@@ -1,5 +1,6 @@
 package com.music.sale.domain.seller.model
 
+import com.music.sale.domain.user.User
 import java.time.LocalDateTime
 
 /**
@@ -7,7 +8,7 @@ import java.time.LocalDateTime
  */
 class Seller(
     val id: Long? = null,
-    val userId: Long,
+    val user: User,
     val companyName: CompanyName,
     val businessNumber: BusinessNumber,
     val contactEmail: ContactEmail,

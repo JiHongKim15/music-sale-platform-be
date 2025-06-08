@@ -32,7 +32,7 @@ class UserEntity(
             role = role
         )
     }
-
+    
     companion object {
         fun fromDomain(user: User): UserEntity {
             return UserEntity(
@@ -42,5 +42,16 @@ class UserEntity(
                 role = user.getRole() ?: UserRole.USER
             )
         }
+
+        fun empty(): UserEntity {
+            return UserEntity(
+                id = 0L,
+                email = "",
+                name = "",
+                role = UserRole.USER
+            )
+        }
     }
+
+
 } 

@@ -1,6 +1,7 @@
 package com.music.sale.adapter.persistence.seller.entity
 
 import com.music.sale.adapter.persistence.common.BaseEntity
+import com.music.sale.adapter.persistence.user.entity.UserEntity
 import com.music.sale.domain.seller.model.Seller
 import jakarta.persistence.*
 
@@ -12,7 +13,8 @@ class SellerEntity(
     val id: Long? = null,
 
     @Column(nullable = false)
-    val userId: Long,
+    @ManyToOne(fetch = FetchType.LAZY)
+    val user: UserEntity,
 
     @Column(nullable = false)
     val companyName: String,
@@ -40,7 +42,7 @@ class SellerEntity(
     fun toDomain(): Seller {
         return Seller(
             id = id,
-            userId = userId,
+            user = user.toDomain(),
             companyName = Seller.CompanyName(companyName),
             businessNumber = Seller.BusinessNumber(businessNumber),
             contactEmail = Seller.ContactEmail(contactEmail),
@@ -56,7 +58,7 @@ class SellerEntity(
         fun fromDomain(seller: Seller): SellerEntity {
             return SellerEntity(
                 id = seller.id,
-                userId = seller.userId,
+                user = UserEntity.fromDomain(seller.user),
                 companyName = seller.companyName.value,
                 businessNumber = seller.businessNumber.value,
                 contactEmail = seller.contactEmail.value,
@@ -65,11 +67,10 @@ class SellerEntity(
             )
         }
 
-        // ID만으로 엔티티 생성
         fun fromId(id: Long): SellerEntity {
             return SellerEntity(
                 id = id,
-                userId = 0L,
+                user = UserEntity.empty(),
                 companyName = "Default Company",
                 businessNumber = "0000000000",
                 contactEmail = "default@example.com",

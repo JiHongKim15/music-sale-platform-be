@@ -3,11 +3,10 @@ package com.music.sale.adapter.persistence.order
 import com.music.sale.domain.order.Order
 import com.music.sale.domain.order.Payment
 import com.music.sale.domain.order.Shipping
-import com.music.sale.domain.user.User
 import com.music.sale.domain.product.Product
+import com.music.sale.domain.user.User
 import jakarta.persistence.*
 import java.math.BigDecimal
-import java.time.LocalDateTime
 
 @Entity
 @Table(name = "orders")
@@ -43,7 +42,7 @@ class OrderEntity(
             return OrderEntity(
                 id = order.id ?: 0L,
                 userId = order.user.id ?: 0L,
-                productId = order.product.id ?: 0L,
+                productId = order.product.id,
                 quantity = order.quantity.value,
                 totalAmount = order.totalAmount.value,
                 orderStatus = order.orderStatus,
@@ -81,6 +80,7 @@ class OrderEntity(
                 condition = com.music.sale.domain.product.enum.ProductCondition.NEW,
                 conditionGrade = null,
                 stockQuantity = 0,
+                status = com.music.sale.domain.product.enum.ProductStatus.SOLD,
                 attributes = emptyMap()
             ),
             quantity = quantity,

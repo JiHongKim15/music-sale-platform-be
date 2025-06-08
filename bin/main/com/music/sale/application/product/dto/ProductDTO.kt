@@ -1,46 +1,64 @@
 package com.music.sale.application.product.dto
 
+import com.music.sale.adapter.web.product.request.SearchProductKeywordType
 import com.music.sale.domain.product.enum.ProductCondition
 import com.music.sale.domain.product.enum.ProductConditionGrade
+import com.music.sale.domain.product.enum.ProductStatus
 import com.music.sale.domain.store.model.Store
 import com.music.sale.domain.user.User
+import lombok.NoArgsConstructor
+import javax.xml.catalog.Catalog
 
-// UseCase의 출력을 나타내는 DTO
 data class ProductOutput(
     val id: Long,
     val name: String,
-    val category: String,
+    val catalog: Catalog,
     val price: Int,
     val seller: User,
     val store: Store,
     val condition: ProductCondition,
     val conditionGrade: ProductConditionGrade,
     val stockQuantity: Int,
+    val status: ProductStatus,
     val attributes: Map<String, Any>
 )
 
-// 상품 생성 입력 DTO
 data class CreateProductInput(
     val name: String,
-    val description: String,
-    val price: Long,
-    val stock: Int
+    val catalogId: Long,
+    val price: Int,
+    val sellerId: Long,
+    val storeId: Long,
+    val condition: ProductCondition,
+    val conditionGrade: ProductConditionGrade,
+    val stockQuantity: Int,
+    val status: ProductStatus,
+    val attributes: Map<String, Any>
 )
 
-// 상품 수정 입력 DTO
 data class UpdateProductInput(
     val id: Long,
-    val name: String,
-    val description: String,
-    val price: Long,
-    val stock: Int
+    val name: String? = null,
+    val catalogId: Long? = null,
+    val price: Int? = null,
+    val sellerId: Long? = null,
+    val storeId: Long? = null,
+    val condition: ProductCondition? = null,
+    val conditionGrade: ProductConditionGrade? = null,
+    val stockQuantity: Int? = null,
+    val status: ProductStatus? = null,
+    val attributes: Map<String, Any>? = null
 )
 
-// 상품 검색 입력 DTO
+@NoArgsConstructor
 data class SearchProductInput(
-    val productType: String? = null,
     val keyword: String? = null,
-    val sellerId: Long? = null,
+    val keywordType: SearchProductKeywordType? = null,
+    val categoryId: Long? = null,
+    val location: String? = null,
     val condition: ProductCondition? = null,
-    val inStock: Boolean? = null
+    val conditionGrade: ProductConditionGrade? = null,
+    val minPrice: Int? = null,
+    val maxPrice: Int? = null,
+    val status: ProductStatus? = null
 ) 

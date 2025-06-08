@@ -5,12 +5,13 @@ import com.music.sale.domain.product.enum.ProductCondition
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface ProductItemRepository : JpaRepository<ProductItemEntity, Long> {
+interface ProductItemRepository : JpaRepository<ProductItemEntity, Long>, JpaSpecificationExecutor<ProductItemEntity> {
 
     // 카탈로그 ID로 아이템 검색
     fun findByCatalog_Id(catalogId: Long, pageable: Pageable): Page<ProductItemEntity>
@@ -44,4 +45,5 @@ interface ProductItemRepository : JpaRepository<ProductItemEntity, Long> {
         @Param("inStock") inStock: Boolean?,
         pageable: Pageable
     ): Page<ProductItemEntity>
+
 } 

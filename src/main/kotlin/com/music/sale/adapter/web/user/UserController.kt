@@ -1,27 +1,27 @@
 package com.music.sale.adapter.web.user
 
 import com.music.sale.adapter.web.common.ApiResponse
-import com.music.sale.adapter.web.common.ResponseCode
+import com.music.sale.adapter.web.user.mapper.UserWebMapper
 import com.music.sale.adapter.web.user.reqeust.CreateUserByEmailRequest
 import com.music.sale.adapter.web.user.reqeust.CreateUserByProviderRequest
 import com.music.sale.adapter.web.user.response.UserResponse
-import com.music.sale.application.user.mapper.UserMapper
-import com.music.sale.application.user.port.`in`.UserUseCase
+import com.music.sale.application.user.port.`in`.CategoryUseCase
+import com.music.sale.common.ResponseCode
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/users")
 class UserController(
-    private val userUseCase: UserUseCase,
-    private val userMapper: UserMapper
+    private val useCase: CategoryUseCase,
+    private val userWebMapper: UserWebMapper
 ) {
     @PostMapping("/email")
     fun createUserByEmail(@RequestBody request: CreateUserByEmailRequest): ResponseEntity<ApiResponse<UserResponse>> {
-        val user = userUseCase.createUserByEmail(request.toUserUseCase())
+        val user = useCase.createUserByEmail(userWebMapper.toCreateUserByEmailInput(request))
         return ResponseEntity.ok(
             ApiResponse.success(
-                data = UserResponse.from(user),
+                data = userWebMapper.toUserResponse(user),
                 code = ResponseCode.USER_CREATED.code
             )
         )
@@ -29,10 +29,10 @@ class UserController(
 
     @PostMapping("/provider")
     fun createUserByProvider(@RequestBody request: CreateUserByProviderRequest): ResponseEntity<ApiResponse<UserResponse>> {
-        val user = userUseCase.createUserByProvider(request.toUserUseCase())
+        val user = useCase.createUserByProvider(userWebMapper.toCreateUserByProviderInput(request))
         return ResponseEntity.ok(
             ApiResponse.success(
-                data = UserResponse.from(user),
+                data = userWebMapper.toUserResponse(user),
                 code = ResponseCode.USER_CREATED.code
             )
         )
@@ -40,11 +40,11 @@ class UserController(
 
     @GetMapping("/{id}")
     fun getUser(@PathVariable id: Long): ResponseEntity<ApiResponse<UserResponse>> {
-        val user = userUseCase.getUser(id)
+        val user = useCase.getUser(id)
         return user?.let {
             ResponseEntity.ok(
                 ApiResponse.success(
-                    data = UserResponse.from(it)
+                    data = userWebMapper.toUserResponse(it)
                 )
             )
         } ?: ResponseEntity.ok(

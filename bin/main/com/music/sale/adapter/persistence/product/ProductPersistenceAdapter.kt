@@ -1,12 +1,14 @@
 package com.music.sale.adapter.persistence.product
 
-import com.music.sale.adapter.persistence.product.entity.ProductItemEntity
+import com.music.sale.adapter.persistence.product.dto.SaveProductCondition
+import com.music.sale.adapter.persistence.product.dto.SearchProductCondition
+import com.music.sale.adapter.persistence.product.mapper.ProductPersistenceMapper
 import com.music.sale.adapter.persistence.product.repository.ProductCatalogRepository
+import com.music.sale.adapter.persistence.product.repository.ProductItemQueryDslRepository
 import com.music.sale.adapter.persistence.product.repository.ProductItemRepository
 import com.music.sale.application.product.port.out.ProductPort
 import com.music.sale.common.Pageable
 import com.music.sale.domain.product.Product
-import com.music.sale.domain.product.enum.ProductCondition
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
@@ -17,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional
 @Transactional
 class ProductPersistenceAdapter(
     private val productCatalogRepository: ProductCatalogRepository,
-    private val productItemRepository: ProductItemRepository
+    private val productItemRepository: ProductItemRepository,
+    private val productItemQueryDslRepository: ProductItemQueryDslRepository,
+    private val mapper: ProductPersistenceMapper,
 ) : ProductPort {
     override fun findAll(pageable: Pageable): Page<Product> {
         val springPageable = PageRequest.of(
@@ -28,15 +32,11 @@ class ProductPersistenceAdapter(
                 pageable.sort
             )
         )
-        return productItemRepository.findAll(springPageable).map { it.toDomain() }
+        return productItemRepository.findAll(springPageable).map { mapper.toDomain(it) }
     }
 
     override fun searchProducts(
-        category: String?,
-        keyword: String?,
-        sellerId: Long?,
-        condition: ProductCondition?,
-        inStock: Boolean?,
+        searchCriteria: SearchProductCondition,
         pageable: Pageable
     ): Page<Product> {
         val springPageable = PageRequest.of(
@@ -47,22 +47,23 @@ class ProductPersistenceAdapter(
                 pageable.sort
             )
         )
-        // category는 실제 Category 객체로 변환이 필요하지만, 임시로 무시
-        return productItemRepository.findAll(springPageable).map { it.toDomain() }
+
+        return productItemQueryDslRepository.searchProducts(searchCriteria, springPageable)
+            .map { mapper.toDomain(it) }
     }
 
-    override fun save(product: Product): Product {
-        val entity = ProductItemEntity.fromDomain(product)
-        val savedEntity = productItemRepository.save(entity)
-        return savedEntity.toDomain()
+    override fun save(product: SaveProductCondition): Product {
+        
+        val savedEntity = productItemRepository.save(mapper.toEntity(product))
+        return mapper.toDomain(savedEntity)
     }
 
     override fun findById(id: Long): Product? {
-        return productItemRepository.findById(id).map { it.toDomain() }.orElse(null)
+        return productItemRepository.findById(id).map { mapper.toDomain(it) }.orElse(null)
     }
 
     override fun delete(product: Product) {
-        val entity = ProductItemEntity.fromDomain(product)
+        val entity = mapper.toEntity(product)
         productItemRepository.delete(entity)
     }
 }

@@ -1,15 +1,13 @@
 package com.music.sale.adapter.persistence.product.entity
 
-import com.music.sale.adapter.persistence.category.entity.CategoryEntity
 import com.music.sale.adapter.persistence.common.BaseEntity
 import com.music.sale.adapter.persistence.common.JsonConverter
 import com.music.sale.adapter.persistence.seller.entity.SellerEntity
 import com.music.sale.adapter.persistence.store.entity.StoreEntity
-import com.music.sale.domain.product.Product
 import com.music.sale.domain.product.enum.ProductCondition
 import com.music.sale.domain.product.enum.ProductConditionGrade
+import com.music.sale.domain.product.enum.ProductStatus
 import jakarta.persistence.*
-import org.hibernate.annotations.Type
 
 /**
  * 제품 아이템 JPA 엔티티
@@ -19,11 +17,7 @@ import org.hibernate.annotations.Type
 @Table(name = "product_item")
 class ProductItemEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", nullable = false)
-    val category: CategoryEntity,
+    val id: Long,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "catalog_id", nullable = false)
@@ -51,6 +45,10 @@ class ProductItemEntity(
     @Column(name = "stock_quantity", nullable = false)
     val stockQuantity: Int,
 
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    val status: ProductStatus,
+
     @Column(name = "custom_name")
     val customName: String? = null,
 
@@ -59,35 +57,7 @@ class ProductItemEntity(
     val customAttributes: Map<String, Any>? = null
 
 ) : BaseEntity() {
-    fun toDomain(): Product {
-        return Product.create(
-            name = catalog.name,
-            category = category.toDomain(),
-            price = price,
-            sellerId = seller.id ?: 0L,
-            storeId = store.id,
-            condition = condition,
-            conditionGrade = conditionGrade,
-            stockQuantity = stockQuantity,
-            attributes = customAttributes ?: emptyMap()
-        )
-    }
+    //ID 없어도 엔티티 생성 가능
+    //ID 빼고 나머지 입력 받을 수 있음
 
-    companion object {
-        fun fromDomain(product: Product): ProductItemEntity {
-            return ProductItemEntity(
-                id = product.id,
-                category = CategoryEntity.fromDomain(product.category),
-                catalog = ProductCatalogEntity.fromDomain(product),
-                seller = SellerEntity.fromId(product.seller.id ?: 0L),
-                store = StoreEntity.fromId(product.store?.id ?: 0L),
-                price = product.price,
-                condition = product.condition,
-                conditionGrade = product.conditionGrade,
-                stockQuantity = product.stockQuantity,
-                customName = null,
-                customAttributes = product.attributes
-            )
-        }
-    }
 }
