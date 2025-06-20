@@ -40,7 +40,7 @@ public class QProductItemEntity extends EntityPathBase<ProductItemEntity> {
 
     public final NumberPath<Integer> price = createNumber("price", Integer.class);
 
-    public final com.music.sale.adapter.persistence.seller.entity.QSellerEntity seller;
+    public final com.music.sale.adapter.persistence.user.entity.QUserEntity seller;
 
     public final NumberPath<Integer> stockQuantity = createNumber("stockQuantity", Integer.class);
 
@@ -71,7 +71,7 @@ public class QProductItemEntity extends EntityPathBase<ProductItemEntity> {
     public QProductItemEntity(Class<? extends ProductItemEntity> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.catalog = inits.isInitialized("catalog") ? new QProductCatalogEntity(forProperty("catalog"), inits.get("catalog")) : null;
-        this.seller = inits.isInitialized("seller") ? new com.music.sale.adapter.persistence.seller.entity.QSellerEntity(forProperty("seller"), inits.get("seller")) : null;
+        this.seller = inits.isInitialized("seller") ? new com.music.sale.adapter.persistence.user.entity.QUserEntity(forProperty("seller")) : null;
         this.store = inits.isInitialized("store") ? new com.music.sale.adapter.persistence.store.entity.QStoreEntity(forProperty("store")) : null;
     }
 

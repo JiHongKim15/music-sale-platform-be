@@ -1,6 +1,6 @@
 package com.music.sale.adapter.persistence.product
 
-import com.music.sale.adapter.persistence.product.dto.SaveProductCondition
+import com.music.sale.adapter.persistence.product.dto.SaveProductItemCondition
 import com.music.sale.adapter.persistence.product.dto.SearchProductCondition
 import com.music.sale.adapter.persistence.product.mapper.ProductPersistenceMapper
 import com.music.sale.adapter.persistence.product.repository.ProductCatalogRepository
@@ -8,6 +8,7 @@ import com.music.sale.adapter.persistence.product.repository.ProductItemQueryDsl
 import com.music.sale.adapter.persistence.product.repository.ProductItemRepository
 import com.music.sale.application.product.port.out.ProductPort
 import com.music.sale.common.Pageable
+import com.music.sale.common.SortDirection
 import com.music.sale.domain.product.Product
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
@@ -18,43 +19,58 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 @Transactional
 class ProductPersistenceAdapter(
-    private val productCatalogRepository: ProductCatalogRepository,
-    private val productItemRepository: ProductItemRepository,
-    private val productItemQueryDslRepository: ProductItemQueryDslRepository,
-    private val mapper: ProductPersistenceMapper,
+        private val productCatalogRepository: ProductCatalogRepository,
+        private val productItemRepository: ProductItemRepository,
+        private val productItemQueryDslRepository: ProductItemQueryDslRepository,
+        private val mapper: ProductPersistenceMapper,
 ) : ProductPort {
+
+    @Transactional(readOnly = true)
     override fun findAll(pageable: Pageable): Page<Product> {
-        val springPageable = PageRequest.of(
-            pageable.pageNumber,
-            pageable.pageSize,
-            Sort.by(
-                Sort.Direction.valueOf(pageable.sortDirection.name),
-                pageable.sort
-            )
-        )
+        val sortDirection = pageable.sortDirection ?: SortDirection.DESC
+        val sortProperty = pageable.sort ?: "createdAt"
+        val springPageable =
+                PageRequest.of(
+                        pageable.pageNumber,
+                        pageable.pageSize,
+                        Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty)
+                )
         return productItemRepository.findAll(springPageable).map { mapper.toDomain(it) }
     }
 
+    @Transactional(readOnly = true)
     override fun searchProducts(
-        searchCriteria: SearchProductCondition,
-        pageable: Pageable
+            searchCondition: SearchProductCondition,
+            pageable: Pageable
     ): Page<Product> {
-        val springPageable = PageRequest.of(
-            pageable.pageNumber,
-            pageable.pageSize,
-            Sort.by(
-                Sort.Direction.valueOf(pageable.sortDirection.name),
-                pageable.sort
-            )
-        )
+        val sortDirection = pageable.sortDirection ?: SortDirection.DESC
+        val sortProperty = pageable.sort ?: "createdAt"
+        val springPageable =
+                PageRequest.of(
+                        pageable.pageNumber,
+                        pageable.pageSize,
+                        Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty)
+                )
 
-        return productItemQueryDslRepository.searchProducts(searchCriteria, springPageable)
-            .map { mapper.toDomain(it) }
+        return productItemQueryDslRepository.searchProducts(searchCondition, springPageable).map {
+            mapper.toDomain(it)
+        }
     }
 
-    override fun save(product: SaveProductCondition): Product {
-        
-        val savedEntity = productItemRepository.save(mapper.toEntity(product))
+    override fun save(productCondition: SaveProductItemCondition): Product {
+        val catalogId = productCondition.catalogId
+        val productCatalogEntity = productCatalogRepository.getReferenceById(catalogId)
+
+        val productItemEntity = mapper.toEntity(productCondition, productCatalogEntity)
+
+        val savedEntity = productItemRepository.save(productItemEntity)
+        return mapper.toDomain(savedEntity)
+    }
+
+    override fun update(product: Product): Product {
+        val catalogEntity = productCatalogRepository.getReferenceById(product.catalogId)
+        val entity = mapper.toEntity(product, catalogEntity)
+        val savedEntity = productItemRepository.save(entity)
         return mapper.toDomain(savedEntity)
     }
 
@@ -62,8 +78,7 @@ class ProductPersistenceAdapter(
         return productItemRepository.findById(id).map { mapper.toDomain(it) }.orElse(null)
     }
 
-    override fun delete(product: Product) {
-        val entity = mapper.toEntity(product)
-        productItemRepository.delete(entity)
+    override fun deleteById(id: Long) {
+        productItemRepository.deleteById(id)
     }
 }

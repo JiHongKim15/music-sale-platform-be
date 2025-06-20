@@ -1,9 +1,9 @@
 package com.music.sale.adapter.web.product.mapper
 
 import com.music.sale.adapter.web.product.request.CreateProductRequest
-import com.music.sale.adapter.web.product.request.SearchProductKeywordType
 import com.music.sale.adapter.web.product.request.SearchProductRequest
 import com.music.sale.adapter.web.product.request.UpdateProductRequest
+import com.music.sale.adapter.web.product.request.SearchProductKeywordType
 import com.music.sale.application.product.dto.CreateProductInput
 import com.music.sale.application.product.dto.SearchProductInput
 import com.music.sale.application.product.dto.UpdateProductInput

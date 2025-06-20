@@ -4,7 +4,7 @@ import com.music.sale.adapter.persistence.user.entity.AuthUserEntity
 import com.music.sale.adapter.persistence.user.entity.UserEntity
 import com.music.sale.adapter.persistence.user.repository.AuthUserRepository
 import com.music.sale.adapter.persistence.user.repository.UserRepository
-import com.music.sale.application.user.port.out.CategoryPort
+import com.music.sale.application.user.port.out.UserPort
 import com.music.sale.domain.user.User
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
 class UserPersistenceAdapter(
     private val userRepository: UserRepository,
     private val authUserRepository: AuthUserRepository
-) : CategoryPort {
+) : UserPort {
 
     @Transactional
     override fun saveProvider(user: User, provider: String, providerId: String): User {

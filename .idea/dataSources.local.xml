@@ -64,5 +64,10 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="music_sale_db" uuid="14b87799-8e23-4688-94c6-6f2677ea2526">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="H2" />
+      <user-name>root</user-name>
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

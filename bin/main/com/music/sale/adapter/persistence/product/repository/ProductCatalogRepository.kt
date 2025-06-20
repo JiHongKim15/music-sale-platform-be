@@ -10,17 +10,9 @@ import org.springframework.stereotype.Repository
 interface ProductCatalogRepository : JpaRepository<ProductCatalogEntity, Long> {
 
     // 제품 타입으로 검색
-    fun findByProductTypeId(productTypeId: Long, pageable: Pageable): Page<ProductCatalogEntity>
+    fun findByCategoryId(categoryId: Long, pageable: Pageable): Page<ProductCatalogEntity>
 
     // 이름으로 검색(부분 일치)
     fun findByNameContaining(name: String, pageable: Pageable): Page<ProductCatalogEntity>
-
-    // 여러 조건으로 검색
-    fun searchProducts(
-        category: String?,
-        keyword: String?,
-        attribute: String?
-    ): Page<ProductCatalogEntity>
-
 
 } 

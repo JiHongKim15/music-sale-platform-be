@@ -1,27 +1,32 @@
 package com.music.sale.application.product.dto
 
 import com.music.sale.adapter.web.product.request.SearchProductKeywordType
+import com.music.sale.domain.category.Category
 import com.music.sale.domain.product.enum.ProductCondition
 import com.music.sale.domain.product.enum.ProductConditionGrade
 import com.music.sale.domain.product.enum.ProductStatus
 import com.music.sale.domain.store.model.Store
 import com.music.sale.domain.user.User
 import lombok.NoArgsConstructor
-import javax.xml.catalog.Catalog
 
 data class ProductOutput(
     val id: Long,
     val name: String,
-    val catalog: Catalog,
+    val catalog: ProductCatalog,
     val price: Int,
-    val seller: User,
-    val store: Store,
+    val seller: User?,
+    val store: Store?,
     val condition: ProductCondition,
-    val conditionGrade: ProductConditionGrade,
+    val conditionGrade: ProductConditionGrade?,
     val stockQuantity: Int,
     val status: ProductStatus,
-    val attributes: Map<String, Any>
-)
+    val attributes: Map<String, Any>?,
+) {
+    data class ProductCatalog(
+        val id: Long,
+        val category: Category,
+    )
+}
 
 data class CreateProductInput(
     val name: String,

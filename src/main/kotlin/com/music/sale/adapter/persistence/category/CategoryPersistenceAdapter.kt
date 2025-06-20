@@ -18,4 +18,23 @@ class CategoryPersistenceAdapter(
         return mapper.toDomain(repository.findById(id).get())
     }
 
+    override fun findAll(): List<Category> {
+        return repository.findAll().map { mapper.toDomain(it) }
+    }
+
+    override fun findById(id: Long): Category? {
+        return repository.findById(id).map { mapper.toDomain(it) }.orElse(null)
+    }
+
+    override fun save(category: Category): Category {
+        val entity = mapper.toEntity(category)
+        val savedEntity = repository.save(entity)
+        return mapper.toDomain(savedEntity)
+    }
+
+    override fun getReferenceById(id: Long): Category {
+        val entity = repository.getReferenceById(id)
+        return mapper.toDomain(entity)
+    }
+
 }

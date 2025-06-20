@@ -5,7 +5,7 @@ import com.music.sale.domain.user.enum.UserRole
 
 // UseCase의 출력을 나타내는 DTO
 data class UserOutput(
-    val id: Long?,
+    val id: Long,
     val email: String,
     val name: String,
     val role: UserRole

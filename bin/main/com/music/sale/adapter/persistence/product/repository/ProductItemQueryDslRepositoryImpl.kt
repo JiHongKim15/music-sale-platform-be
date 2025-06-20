@@ -5,8 +5,8 @@ import com.music.sale.adapter.persistence.product.dto.SearchProductCondition
 import com.music.sale.adapter.persistence.product.entity.ProductItemEntity
 import com.music.sale.adapter.persistence.product.entity.QProductCatalogEntity
 import com.music.sale.adapter.persistence.product.entity.QProductItemEntity
-import com.music.sale.adapter.persistence.seller.entity.QSellerEntity
 import com.music.sale.adapter.persistence.store.entity.QStoreEntity
+import com.music.sale.adapter.persistence.user.entity.QUserEntity
 import com.music.sale.adapter.web.product.request.SearchProductKeywordType
 import com.music.sale.adapter.web.product.request.SearchProductKeywordType.*
 import com.music.sale.domain.product.enum.ProductCondition
@@ -31,7 +31,7 @@ class ProductItemQueryDslRepositoryImpl(
         val productItem = QProductItemEntity.productItemEntity
         val catalog = QProductCatalogEntity.productCatalogEntity
         val category = QCategoryEntity.categoryEntity
-        val seller = QSellerEntity.sellerEntity
+        val seller = QUserEntity.userEntity
         val store = QStoreEntity.storeEntity
 
         val query = queryFactory
@@ -70,13 +70,13 @@ class ProductItemQueryDslRepositoryImpl(
         return when (keywordType) {
             null -> productItem.customName.contains(keyword)
                 .or(catalog.name.contains(keyword))
-                .or(productItem.seller.user.name.contains(keyword))
+                .or(productItem.seller.name.contains(keyword))
                 .or(productItem.store.name.contains(keyword))
                 .or(productItem.catalog.attributes.containsValue(keyword))
                 .or(productItem.customAttributes.containsValue(keyword))
 
             PRODUCT_NAME -> catalog.name.contains(keyword)
-            SELLER_NAME -> productItem.seller.user.name.contains(keyword)
+            SELLER_NAME -> productItem.seller.name.contains(keyword)
             STORE_NAME -> productItem.store.name.contains(keyword)
             ATTRIBUTE -> productItem.catalog.attributes.containsValue(keyword)
                 .or(productItem.customAttributes.containsValue(keyword))

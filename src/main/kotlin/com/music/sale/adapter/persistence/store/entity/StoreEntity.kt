@@ -1,11 +1,10 @@
 package com.music.sale.adapter.persistence.store.entity
 
 import com.music.sale.adapter.persistence.common.BaseEntity
-import com.music.sale.domain.store.model.Store
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "stores")
+@Table(name = "store")
 class StoreEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,63 +53,4 @@ class StoreEntity(
         PENDING, ACTIVE, SUSPENDED, CLOSED
     }
 
-    fun toDomain(): Store {
-        return Store(
-            id = id,
-            name = name,
-            description = description,
-            address = Store.Address(
-                zipcode = zipcode,
-                baseAddress = baseAddress,
-                detailAddress = detailAddress ?: "",
-                latitude = latitude,
-                longitude = longitude
-            ),
-            contactNumber = contactNumber,
-            businessNumber = businessNumber,
-            imageUrl = imageUrl,
-            status = Store.StoreStatus.valueOf(status.name),
-            sellerId = sellerId,
-            createdAt = createdAt.toString(),
-            updatedAt = updatedAt.toString()
-        )
-    }
-
-    companion object {
-        fun fromDomain(store: Store): StoreEntity {
-            return StoreEntity(
-                id = store.id ?: 0L,
-                name = store.name,
-                description = store.description,
-                zipcode = store.address.zipcode,
-                baseAddress = store.address.baseAddress,
-                detailAddress = store.address.detailAddress,
-                latitude = store.address.latitude,
-                longitude = store.address.longitude,
-                contactNumber = store.contactNumber,
-                businessNumber = store.businessNumber,
-                imageUrl = store.imageUrl,
-                status = StoreStatus.valueOf(store.status.name),
-                sellerId = store.sellerId
-            )
-        }
-
-        fun fromId(id: Long): StoreEntity {
-            return StoreEntity(
-                id = id,
-                name = "Default Store",
-                description = "Default Store Description",
-                zipcode = "00000",
-                baseAddress = "Default Address",
-                detailAddress = null,
-                latitude = null,
-                longitude = null,
-                contactNumber = "0000000000",
-                businessNumber = "0000000000",
-                imageUrl = null,
-                status = StoreStatus.PENDING,
-                sellerId = 0L
-            )
-        }
-    }
 } 

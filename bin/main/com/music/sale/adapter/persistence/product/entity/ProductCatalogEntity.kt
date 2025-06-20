@@ -26,8 +26,4 @@ class ProductCatalogEntity(
     @Column(name = "attributes", nullable = false, columnDefinition = "JSON")
     @Convert(converter = JsonConverter::class)
     val attributes: Map<String, Any>? = null
-) : BaseEntity() {
-    //ID만 가진 빈 객체 생성
-    constructor(id: Long?) : this(id, "", CategoryEntity(), null)
-
-}
+) : BaseEntity()

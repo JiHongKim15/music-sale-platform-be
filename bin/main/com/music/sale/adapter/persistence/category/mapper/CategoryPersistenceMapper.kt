@@ -13,7 +13,8 @@ class CategoryPersistenceMapper {
             type = entity.type,
             parent = entity.parent?.let { toDomain(it) },
             path = entity.path,
-            depth = entity.depth
+            depth = entity.depth,
+            isActive = entity.isActive
         )
     }
 
@@ -24,7 +25,8 @@ class CategoryPersistenceMapper {
             type = category.type,
             parent = category.parent?.let { toEntity(it) },
             path = category.path,
-            depth = category.depth
+            depth = category.depth,
+            isActive = category.isActive
         )
     }
 } 

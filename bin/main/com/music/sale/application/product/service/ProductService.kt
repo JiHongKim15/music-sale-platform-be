@@ -1,5 +1,6 @@
 package com.music.sale.application.product.service
 
+import com.music.sale.application.category.port.out.CategoryPort
 import com.music.sale.application.category.service.CategoryService
 import com.music.sale.application.product.dto.CreateProductInput
 import com.music.sale.application.product.dto.ProductOutput
@@ -8,6 +9,8 @@ import com.music.sale.application.product.dto.UpdateProductInput
 import com.music.sale.application.product.mapper.ProductMapper
 import com.music.sale.application.product.port.`in`.ProductUseCase
 import com.music.sale.application.product.port.out.ProductPort
+import com.music.sale.application.seller.port.out.SellerPort
+import com.music.sale.application.store.port.out.StorePort
 import com.music.sale.common.Pageable
 import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service
@@ -18,7 +21,11 @@ import org.springframework.transaction.annotation.Transactional
 class ProductService(
     private val port: ProductPort,
     private val mapper: ProductMapper,
-    private val categoryService: CategoryService
+    private val categoryService: CategoryService,
+
+    private val categoryPort: CategoryPort,
+    private val sellerPort: SellerPort,
+    private val storePort: StorePort
 ) : ProductUseCase {
     /**
      * 상품 관련 비즈니스 로직을 처리하는 서비스 클래스
@@ -35,7 +42,7 @@ class ProductService(
         pageable: Pageable
     ): Page<ProductOutput> {
         return port.searchProducts(
-            searchCriteria = mapper.toSearchProductCondition(input),
+            searchCondition = mapper.toSearchProductCondition(input),
             pageable = pageable
         ).map {
             mapper.toOutput(it)
@@ -43,21 +50,42 @@ class ProductService(
     }
 
     override fun createProduct(input: CreateProductInput): ProductOutput {
-        categoryService.getCategoryById(input.catalogId)
-        return mapper.toOutput(port.save(mapper.toSaveProductCondition(input)))
+        val seller = sellerPort.findSellerById(input.sellerId)
+        val store = storePort.findStoreById(input.storeId)
+        val saveCondition = mapper.toSaveProductCondition(input, seller, store)
+
+        val savedProduct = port.save(saveCondition)
+
+        return mapper.toOutput(savedProduct)
     }
 
     override fun updateProduct(input: UpdateProductInput): ProductOutput {
-        val product = port.findById(input.id) ?: throw IllegalArgumentException("Product not found")
-        input.catalogId?.let { categoryService.getCategoryById(it) }
-            ?: throw IllegalArgumentException("Category not found")
+        val product = port.findById(input.id)
+            ?: throw IllegalArgumentException("Product not found")
 
-        return mapper.toOutput(port.save(mapper.toSaveProductCondition(product, input)))
+        val categoryId = input.catalogId
+            ?: throw IllegalArgumentException("catalogId is required")
+
+        val category = categoryService.getCategoryById(categoryId)
+
+        val updatedProduct = product.copy(
+            catalogId = input.catalogId,
+            name = input.name ?: product.name(),
+            category = category,
+            price = input.price ?: product.price,
+            condition = input.condition ?: product.condition,
+            conditionGrade = input.conditionGrade ?: product.conditionGrade,
+            stockQuantity = input.stockQuantity ?: product.stockQuantity,
+            status = input.status ?: product.status,
+            attributes = input.attributes ?: product.attributes()
+        )
+
+        return mapper.toOutput(port.update(updatedProduct))
     }
 
     override fun deleteProduct(id: Long): ProductOutput {
         val product = port.findById(id) ?: throw IllegalArgumentException("Product not found")
-        port.delete(product)
+        port.deleteById(id)
         return mapper.toOutput(product)
     }
 

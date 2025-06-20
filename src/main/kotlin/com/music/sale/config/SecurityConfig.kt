@@ -37,16 +37,7 @@ class SecurityConfig {
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
             .authorizeHttpRequests { authorize ->
                 authorize
-                    .requestMatchers(
-                        "/api/auth/**",
-                        "/h2-console/**",
-                        "/swagger-ui/**",
-                        "/v3/api-docs/**",
-                        "/api/users/**"
-                    ).permitAll()
-                    .requestMatchers("/api/admin/**").hasAuthority(UserRole.ADMIN.name)
-                    .requestMatchers("/api/seller/**").hasAnyAuthority(UserRole.ADMIN.name, UserRole.SELLER.name)
-                    .anyRequest().authenticated()
+                    .requestMatchers("/**").permitAll()
             }
             .headers { headers ->
                 headers.frameOptions { it.disable() }

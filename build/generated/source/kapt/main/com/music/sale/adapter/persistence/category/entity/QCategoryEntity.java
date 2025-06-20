@@ -34,6 +34,8 @@ public class QCategoryEntity extends EntityPathBase<CategoryEntity> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final BooleanPath isActive = createBoolean("isActive");
+
     public final StringPath name = createString("name");
 
     public final QCategoryEntity parent;

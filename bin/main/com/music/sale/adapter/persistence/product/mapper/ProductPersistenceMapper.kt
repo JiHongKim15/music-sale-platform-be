@@ -1,11 +1,12 @@
 package com.music.sale.adapter.persistence.product.mapper
 
 import com.music.sale.adapter.persistence.category.mapper.CategoryPersistenceMapper
-import com.music.sale.adapter.persistence.product.dto.SaveProductCondition
+import com.music.sale.adapter.persistence.product.dto.SaveProductItemCondition
 import com.music.sale.adapter.persistence.product.entity.ProductCatalogEntity
 import com.music.sale.adapter.persistence.product.entity.ProductItemEntity
-import com.music.sale.adapter.persistence.seller.entity.SellerEntity
-import com.music.sale.adapter.persistence.store.entity.StoreEntity
+import com.music.sale.adapter.persistence.store.mapper.StorePersistenceMapper
+import com.music.sale.adapter.persistence.user.UserPersistenceAdapter
+import com.music.sale.adapter.persistence.user.mapper.UserPersistenceMapper
 import com.music.sale.domain.product.Product
 import org.springframework.stereotype.Component
 
@@ -14,60 +15,71 @@ import org.springframework.stereotype.Component
  */
 @Component
 class ProductPersistenceMapper(
-    private val categoryMapper: CategoryPersistenceMapper
+    private val categoryMapper: CategoryPersistenceMapper,
+    private val userPersistenceMapper: UserPersistenceMapper,
+    private val storePersistenceMapper: StorePersistenceMapper,
+    private val userPersistenceAdapter: UserPersistenceAdapter
 ) {
     fun toDomain(entity: ProductItemEntity): Product {
-        return Product.create(
-            name = entity.catalog.name,
+        val seller = entity.seller?.let { userPersistenceMapper.toDomain(it) }
+        val store = entity.store?.let { storePersistenceMapper.toDomain(it) }
+
+        return Product(
+            id = entity.id ?: 0L,
+            catalogId = entity.catalog.id ?: 0L,
             category = categoryMapper.toDomain(entity.catalog.category),
+            seller = seller,
+            store = store,
             price = entity.price,
-            sellerId = entity.seller.id ?: 0L,
-            storeId = entity.store.id,
             condition = entity.condition,
             conditionGrade = entity.conditionGrade,
             stockQuantity = entity.stockQuantity,
             status = entity.status,
-            attributes = entity.customAttributes ?: emptyMap()
+            name = entity.customName ?: entity.catalog.name,
+            attributes = entity.customAttributes ?: entity.catalog.attributes
         )
     }
 
-    fun toEntity(product: Product): ProductItemEntity {
+    fun toEntity(saveCondition: SaveProductItemCondition, catalogEntity: ProductCatalogEntity): ProductItemEntity {
+        val sellerEntity = saveCondition.seller?.let { userPersistenceMapper.toEntity(it) }
+        val storeEntity = saveCondition.store?.let { storePersistenceMapper.toEntity(it) }
+
+        return ProductItemEntity(
+            id = null,
+            catalog = catalogEntity,
+            seller = sellerEntity,
+            store = storeEntity,
+            price = saveCondition.price,
+            condition = saveCondition.condition,
+            conditionGrade = saveCondition.conditionGrade,
+            stockQuantity = saveCondition.stockQuantity,
+            status = saveCondition.status,
+            customName = saveCondition.name,
+            customAttributes = saveCondition.attributes
+        )
+    }
+
+    fun toEntity(product: Product, catalogEntity: ProductCatalogEntity): ProductItemEntity {
+        val sellerEntity = product.seller?.let { userPersistenceMapper.toEntity(it) }
+        val storeEntity = product.store?.let { storePersistenceMapper.toEntity(it) }
+
         return ProductItemEntity(
             id = product.id,
-            catalog = this.toCatalogEntity(product),
-            seller = SellerEntity.fromId(product.seller.id ?: 0L),
-            store = StoreEntity.fromId(product.store?.id ?: 0L),
+            catalog = catalogEntity,
+            seller = sellerEntity,
+            store = storeEntity,
             price = product.price,
             condition = product.condition,
             conditionGrade = product.conditionGrade,
             stockQuantity = product.stockQuantity,
             status = product.status,
-            customName = null,
-            customAttributes = product.attributes()
+            customName = product.isCustomName().let {
+                if (it) product.name() else null
+            },
+            customAttributes = product.isCustomAttributes().let {
+                if (it) product.attributes() else null
+            }
         )
     }
 
-    fun toEntity(product: SaveProductCondition): ProductItemEntity {
-        return ProductItemEntity(
-            catalog = ProductCatalogEntity(id = product.catalogId),
-            seller = SellerEntity(id = product.sellerId),        // seller도 같은 방식으로
-            store = StoreEntity(id = product.storeId),          // store도 같은 방식으로
-            price = product.price,
-            condition = product.condition,
-            conditionGrade = product.conditionGrade,
-            stockQuantity = product.stockQuantity,
-            status = product.status,
-            customName = product.name,
-            customAttributes = product.attributes
-        )
-    }
-
-    fun toCatalogEntity(product: Product): ProductCatalogEntity {
-        return ProductCatalogEntity(
-            id = null,
-            name = product.name(),
-            category = categoryMapper.toEntity(product.category),
-            attributes = product.attributes()
-        )
-    }
 }

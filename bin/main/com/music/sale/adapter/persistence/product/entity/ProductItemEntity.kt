@@ -2,8 +2,8 @@ package com.music.sale.adapter.persistence.product.entity
 
 import com.music.sale.adapter.persistence.common.BaseEntity
 import com.music.sale.adapter.persistence.common.JsonConverter
-import com.music.sale.adapter.persistence.seller.entity.SellerEntity
 import com.music.sale.adapter.persistence.store.entity.StoreEntity
+import com.music.sale.adapter.persistence.user.entity.UserEntity
 import com.music.sale.domain.product.enum.ProductCondition
 import com.music.sale.domain.product.enum.ProductConditionGrade
 import com.music.sale.domain.product.enum.ProductStatus
@@ -17,19 +17,19 @@ import jakarta.persistence.*
 @Table(name = "product_item")
 class ProductItemEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "catalog_id", nullable = false)
     val catalog: ProductCatalogEntity,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller_id", nullable = false)
-    val seller: SellerEntity,
+    @JoinColumn(name = "seller_id")
+    val seller: UserEntity? = null,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id", nullable = false)
-    val store: StoreEntity,
+    @JoinColumn(name = "store_id")
+    val store: StoreEntity? = null,
 
     @Column(nullable = false)
     val price: Int,
@@ -56,8 +56,4 @@ class ProductItemEntity(
     @Convert(converter = JsonConverter::class)
     val customAttributes: Map<String, Any>? = null
 
-) : BaseEntity() {
-    //ID 없어도 엔티티 생성 가능
-    //ID 빼고 나머지 입력 받을 수 있음
-
-}
+) : BaseEntity()
