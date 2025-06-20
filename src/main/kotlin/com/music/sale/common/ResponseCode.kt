@@ -1,8 +1,9 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.common
 
 enum class ResponseCode(
     val code: String,
-    val message: String
+    val message: String,
 ) {
     // 공통 응답 코드
     SUCCESS("SUCCESS", "성공적으로 처리되었습니다."),
@@ -24,5 +25,5 @@ enum class ResponseCode(
     USER_ALREADY_EXISTS("USER_ALREADY_EXISTS", "이미 존재하는 사용자입니다."),
     USER_INVALID_EMAIL("USER_INVALID_EMAIL", "유효하지 않은 이메일 형식입니다."),
     USER_INVALID_PASSWORD("USER_INVALID_PASSWORD", "유효하지 않은 비밀번호 형식입니다."),
-    USER_INVALID_PROVIDER("USER_INVALID_PROVIDER", "유효하지 않은 소셜 로그인 제공자입니다.")
-} 
+    USER_INVALID_PROVIDER("USER_INVALID_PROVIDER", "유효하지 않은 소셜 로그인 제공자입니다."),
+}

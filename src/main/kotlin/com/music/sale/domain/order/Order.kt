@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.domain.order
 
 import com.music.sale.domain.product.Product
@@ -12,10 +13,14 @@ class Order private constructor(
     val totalAmount: Money,
     val orderStatus: OrderStatus,
     val payment: Payment,
-    val shipping: Shipping
+    val shipping: Shipping,
 ) {
     enum class OrderStatus {
-        PENDING, PAID, SHIPPED, DELIVERED, CANCELLED
+        PENDING,
+        PAID,
+        SHIPPED,
+        DELIVERED,
+        CANCELLED,
     }
 
     @JvmInline
@@ -38,7 +43,7 @@ class Order private constructor(
             product: Product,
             quantity: Int,
             payment: Payment,
-            shipping: Shipping
+            shipping: Shipping,
         ): Order {
             return Order(
                 id = null,
@@ -48,7 +53,7 @@ class Order private constructor(
                 totalAmount = Money(product.price.toBigDecimal().multiply(quantity.toBigDecimal())),
                 orderStatus = OrderStatus.PENDING,
                 payment = payment,
-                shipping = shipping
+                shipping = shipping,
             )
         }
     }

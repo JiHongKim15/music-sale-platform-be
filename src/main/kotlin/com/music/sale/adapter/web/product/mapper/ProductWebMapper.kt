@@ -1,9 +1,10 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.adapter.web.product.mapper
 
 import com.music.sale.adapter.web.product.request.CreateProductRequest
+import com.music.sale.adapter.web.product.request.SearchProductKeywordType
 import com.music.sale.adapter.web.product.request.SearchProductRequest
 import com.music.sale.adapter.web.product.request.UpdateProductRequest
-import com.music.sale.adapter.web.product.request.SearchProductKeywordType
 import com.music.sale.application.product.dto.CreateProductInput
 import com.music.sale.application.product.dto.SearchProductInput
 import com.music.sale.application.product.dto.UpdateProductInput
@@ -24,11 +25,14 @@ class ProductWebMapper {
             conditionGrade = request.conditionGrade,
             stockQuantity = request.stockQuantity,
             status = request.status,
-            attributes = request.attributes
+            attributes = request.attributes,
         )
     }
 
-    fun toUpdateProductInput(id: Long, request: UpdateProductRequest): UpdateProductInput {
+    fun toUpdateProductInput(
+        id: Long,
+        request: UpdateProductRequest,
+    ): UpdateProductInput {
         return UpdateProductInput(
             id = id,
             name = request.name,
@@ -40,7 +44,7 @@ class ProductWebMapper {
             conditionGrade = request.conditionGrade,
             stockQuantity = request.stockQuantity,
             status = request.status,
-            attributes = request.attributes
+            attributes = request.attributes,
         )
     }
 
@@ -54,8 +58,7 @@ class ProductWebMapper {
             conditionGrade = request.conditionGrade?.let { ProductConditionGrade.valueOf(it.name) },
             minPrice = request.minPrice,
             maxPrice = request.maxPrice,
-            status = request.status
+            status = request.status,
         )
     }
-
-} 
+}

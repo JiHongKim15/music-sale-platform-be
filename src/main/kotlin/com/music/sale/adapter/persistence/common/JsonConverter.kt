@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.adapter.persistence.common
 
 import com.fasterxml.jackson.core.type.TypeReference
@@ -18,4 +19,4 @@ class JsonConverter : AttributeConverter<Map<String, Any>, String> {
             objectMapper.readValue(it, object : TypeReference<Map<String, Any>>() {})
         }
     }
-} 
+}

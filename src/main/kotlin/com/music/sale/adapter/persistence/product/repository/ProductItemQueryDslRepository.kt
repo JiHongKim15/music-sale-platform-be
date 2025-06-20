@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.adapter.persistence.product.repository
 
 import com.music.sale.adapter.persistence.product.dto.SearchProductCondition
@@ -8,6 +9,6 @@ import org.springframework.data.domain.Pageable
 interface ProductItemQueryDslRepository {
     fun searchProducts(
         searchCriteria: SearchProductCondition,
-        pageable: Pageable
+        pageable: Pageable,
     ): Page<ProductItemEntity>
-} 
+}

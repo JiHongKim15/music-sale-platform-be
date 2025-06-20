@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.adapter.persistence.product.mapper
 
 import com.music.sale.adapter.persistence.category.mapper.CategoryPersistenceMapper
@@ -18,7 +19,7 @@ class ProductPersistenceMapper(
     private val categoryMapper: CategoryPersistenceMapper,
     private val userPersistenceMapper: UserPersistenceMapper,
     private val storePersistenceMapper: StorePersistenceMapper,
-    private val userPersistenceAdapter: UserPersistenceAdapter
+    private val userPersistenceAdapter: UserPersistenceAdapter,
 ) {
     fun toDomain(entity: ProductItemEntity): Product {
         val seller = entity.seller?.let { userPersistenceMapper.toDomain(it) }
@@ -36,11 +37,14 @@ class ProductPersistenceMapper(
             stockQuantity = entity.stockQuantity,
             status = entity.status,
             name = entity.customName ?: entity.catalog.name,
-            attributes = entity.customAttributes ?: entity.catalog.attributes
+            attributes = entity.customAttributes ?: entity.catalog.attributes,
         )
     }
 
-    fun toEntity(saveCondition: SaveProductItemCondition, catalogEntity: ProductCatalogEntity): ProductItemEntity {
+    fun toEntity(
+        saveCondition: SaveProductItemCondition,
+        catalogEntity: ProductCatalogEntity,
+    ): ProductItemEntity {
         val sellerEntity = saveCondition.seller?.let { userPersistenceMapper.toEntity(it) }
         val storeEntity = saveCondition.store?.let { storePersistenceMapper.toEntity(it) }
 
@@ -55,11 +59,14 @@ class ProductPersistenceMapper(
             stockQuantity = saveCondition.stockQuantity,
             status = saveCondition.status,
             customName = saveCondition.name,
-            customAttributes = saveCondition.attributes
+            customAttributes = saveCondition.attributes,
         )
     }
 
-    fun toEntity(product: Product, catalogEntity: ProductCatalogEntity): ProductItemEntity {
+    fun toEntity(
+        product: Product,
+        catalogEntity: ProductCatalogEntity,
+    ): ProductItemEntity {
         val sellerEntity = product.seller?.let { userPersistenceMapper.toEntity(it) }
         val storeEntity = product.store?.let { storePersistenceMapper.toEntity(it) }
 
@@ -73,13 +80,14 @@ class ProductPersistenceMapper(
             conditionGrade = product.conditionGrade,
             stockQuantity = product.stockQuantity,
             status = product.status,
-            customName = product.isCustomName().let {
-                if (it) product.name() else null
-            },
-            customAttributes = product.isCustomAttributes().let {
-                if (it) product.attributes() else null
-            }
+            customName =
+                product.isCustomName().let {
+                    if (it) product.name() else null
+                },
+            customAttributes =
+                product.isCustomAttributes().let {
+                    if (it) product.attributes() else null
+                },
         )
     }
-
 }

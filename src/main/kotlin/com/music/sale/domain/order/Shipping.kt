@@ -1,16 +1,19 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.domain.order
 
 class Shipping private constructor(
     val address: Address,
     val method: ShippingMethod,
-    var trackingNumber: TrackingNumber? = null
+    var trackingNumber: TrackingNumber? = null,
 ) {
     fun updateTrackingNumber(trackingNumber: TrackingNumber) {
         this.trackingNumber = trackingNumber
     }
 
     enum class ShippingMethod {
-        GENERAL, EXPRESS, PICKUP
+        GENERAL,
+        EXPRESS,
+        PICKUP,
     }
 
     @JvmInline
@@ -30,12 +33,12 @@ class Shipping private constructor(
     companion object {
         fun create(
             address: Address,
-            method: ShippingMethod
+            method: ShippingMethod,
         ): Shipping {
             return Shipping(
                 address = address,
-                method = method
+                method = method,
             )
         }
     }
-} 
+}

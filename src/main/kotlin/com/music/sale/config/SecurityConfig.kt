@@ -1,6 +1,6 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.config
 
-import com.music.sale.domain.user.enum.UserRole
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -14,7 +14,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 @Configuration
 @EnableWebSecurity
 class SecurityConfig {
-
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
         val configuration = CorsConfiguration()
@@ -45,4 +44,4 @@ class SecurityConfig {
 
         return http.build()
     }
-} 
+}

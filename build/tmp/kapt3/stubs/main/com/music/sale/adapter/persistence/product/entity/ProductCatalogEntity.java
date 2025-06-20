@@ -1,8 +1,7 @@
 package com.music.sale.adapter.persistence.product.entity;
 
 /**
- * 제품 카탈로그 JPA 엔티티
- * 제품의 기본 정보와 특성을 저장
+ * 제품 카탈로그 JPA 엔티티 제품의 기본 정보와 특성을 저장
  */
 @jakarta.persistence.Entity()
 @jakarta.persistence.Table(name = "product_catalog")

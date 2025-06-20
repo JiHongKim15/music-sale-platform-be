@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.adapter.persistence.category.mapper
 
 import com.music.sale.adapter.persistence.category.entity.CategoryEntity
@@ -14,7 +15,7 @@ class CategoryPersistenceMapper {
             parent = entity.parent?.let { toDomain(it) },
             path = entity.path,
             depth = entity.depth,
-            isActive = entity.isActive
+            isActive = entity.isActive,
         )
     }
 
@@ -26,7 +27,7 @@ class CategoryPersistenceMapper {
             parent = category.parent?.let { toEntity(it) },
             path = category.path,
             depth = category.depth,
-            isActive = category.isActive
+            isActive = category.isActive,
         )
     }
-} 
+}

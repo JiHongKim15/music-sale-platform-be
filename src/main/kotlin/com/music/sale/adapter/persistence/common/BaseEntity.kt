@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.adapter.persistence.common
 
 import jakarta.persistence.Column
@@ -28,4 +29,4 @@ abstract class BaseEntity {
     @LastModifiedBy
     @Column(name = "updated_by", nullable = false)
     var updatedBy: String = "-1"
-} 
+}

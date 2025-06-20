@@ -69,7 +69,7 @@ tasks.withType<Test> {
 
 spotless {
     kotlin {
-        target("src/**/*.kt")
+        target("src/**/*.kt", "src/**/*.kts")
         ktlint()
     }
 }

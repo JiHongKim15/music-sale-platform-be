@@ -22,7 +22,7 @@ public abstract interface StoreRepository extends org.springframework.data.jpa.r
     java.lang.String address, @org.jetbrains.annotations.NotNull()
     org.springframework.data.domain.Pageable pageable);
     
-    @org.springframework.data.jpa.repository.Query(value = "\n        SELECT s FROM StoreEntity s\n        WHERE (6371 * acos(cos(radians(:latitude)) * cos(radians(s.latitude)) * \n               cos(radians(s.longitude) - radians(:longitude)) + \n               sin(radians(:latitude)) * sin(radians(s.latitude)))) <= :distance\n        AND s.status = com.music.sale.adapter.persistence.store.entity.StoreEntity.StoreStatus.ACTIVE\n    ")
+    @org.springframework.data.jpa.repository.Query(value = "\n        SELECT s FROM StoreEntity s\n        WHERE (6371 * acos(cos(radians(:latitude)) * cos(radians(s.latitude)) *\n               cos(radians(s.longitude) - radians(:longitude)) +\n               sin(radians(:latitude)) * sin(radians(s.latitude)))) <= :distance\n        AND s.status = com.music.sale.adapter.persistence.store.entity.StoreEntity.StoreStatus.ACTIVE\n    ")
     @org.jetbrains.annotations.NotNull()
     public abstract org.springframework.data.domain.Page<com.music.sale.adapter.persistence.store.entity.StoreEntity> findStoresWithinDistance(@org.springframework.data.repository.query.Param(value = "latitude")
     double latitude, @org.springframework.data.repository.query.Param(value = "longitude")
@@ -30,7 +30,7 @@ public abstract interface StoreRepository extends org.springframework.data.jpa.r
     double distanceInKm, @org.jetbrains.annotations.NotNull()
     org.springframework.data.domain.Pageable pageable);
     
-    @org.springframework.data.jpa.repository.Query(value = "\n        SELECT s FROM StoreEntity s\n        WHERE (:keyword IS NULL OR \n               s.name LIKE %:keyword% OR \n               s.description LIKE %:keyword% OR \n               s.baseAddress LIKE %:keyword%)\n        AND s.status = com.music.sale.adapter.persistence.store.entity.StoreEntity.StoreStatus.ACTIVE\n    ")
+    @org.springframework.data.jpa.repository.Query(value = "\n        SELECT s FROM StoreEntity s\n        WHERE (:keyword IS NULL OR\n               s.name LIKE %:keyword% OR\n               s.description LIKE %:keyword% OR\n               s.baseAddress LIKE %:keyword%)\n        AND s.status = com.music.sale.adapter.persistence.store.entity.StoreEntity.StoreStatus.ACTIVE\n    ")
     @org.jetbrains.annotations.NotNull()
     public abstract org.springframework.data.domain.Page<com.music.sale.adapter.persistence.store.entity.StoreEntity> searchStores(@org.springframework.data.repository.query.Param(value = "keyword")
     @org.jetbrains.annotations.Nullable()

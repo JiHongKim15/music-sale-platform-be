@@ -1,8 +1,7 @@
 package com.music.sale.adapter.persistence.product.entity;
 
 /**
- * 제품 아이템 JPA 엔티티
- * 실제 판매되는 상품 인스턴스를 표현
+ * 제품 아이템 JPA 엔티티 실제 판매되는 상품 인스턴스를 표현
  */
 @jakarta.persistence.Entity()
 @jakarta.persistence.Table(name = "product_item")

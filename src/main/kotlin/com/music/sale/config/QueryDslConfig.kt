@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.config
 
 import com.querydsl.jpa.impl.JPAQueryFactory
@@ -7,10 +8,10 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class QueryDslConfig(
-    private val entityManager: EntityManager
+    private val entityManager: EntityManager,
 ) {
     @Bean
     fun jpaQueryFactory(): JPAQueryFactory {
         return JPAQueryFactory(entityManager)
     }
-} 
+}

@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.adapter.persistence.category.repository
 
 import com.music.sale.adapter.persistence.category.entity.CategoryEntity
@@ -9,22 +10,31 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface CategoryRepository : JpaRepository<CategoryEntity, Long> {
-    
     fun findByType(type: CategoryType): List<CategoryEntity>
-    
+
     fun findByTypeAndIsActiveTrue(type: CategoryType): List<CategoryEntity>
-    
+
     fun findByParentId(parentId: Long): List<CategoryEntity>
-    
+
     fun findByPathStartingWith(path: String): List<CategoryEntity>
-    
+
     @Query("SELECT c FROM CategoryEntity c WHERE c.type = :type AND c.depth = 0")
-    fun findRootCategoriesByType(@Param("type") type: CategoryType): List<CategoryEntity>
-    
+    fun findRootCategoriesByType(
+        @Param("type") type: CategoryType,
+    ): List<CategoryEntity>
+
     @Query("SELECT c FROM CategoryEntity c WHERE c.type = :type AND c.isActive = true AND c.depth = 0")
-    fun findActiveRootCategoriesByType(@Param("type") type: CategoryType): List<CategoryEntity>
-    
-    fun existsByNameAndType(name: String, type: CategoryType): Boolean
-    
-    fun findByNameAndType(name: String, type: CategoryType): CategoryEntity?
-} 
+    fun findActiveRootCategoriesByType(
+        @Param("type") type: CategoryType,
+    ): List<CategoryEntity>
+
+    fun existsByNameAndType(
+        name: String,
+        type: CategoryType,
+    ): Boolean
+
+    fun findByNameAndType(
+        name: String,
+        type: CategoryType,
+    ): CategoryEntity?
+}

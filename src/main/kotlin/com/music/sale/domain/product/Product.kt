@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.domain.product
 
 import com.music.sale.domain.category.Category
@@ -13,13 +14,11 @@ import com.music.sale.domain.user.User
  */
 data class Product(
     val id: Long,
-
-    //카탈로그 속성
+    // 카탈로그 속성
     val catalogId: Long,
     private val name: String,
     val category: Category,
     private val attributes: Map<String, Any>? = null,
-
     val price: Int,
     val seller: User?,
     val store: Store?,
@@ -28,9 +27,8 @@ data class Product(
     val stockQuantity: Int,
     val status: ProductStatus,
     private val customName: String? = null,
-    private val customAttributes: Map<String, Any>? = null
+    private val customAttributes: Map<String, Any>? = null,
 ) {
-
     fun name(): String {
         return customName ?: name
     }

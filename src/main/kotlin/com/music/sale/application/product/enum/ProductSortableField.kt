@@ -1,8 +1,8 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.application.product.enum
 
 enum class ProductSortableField(val fieldName: String) {
     ID("id"),
-    CREATED_AT("createdAt"),
     PRICE("price"),
     NAME("name"),
     CATALOG("catalog"),
@@ -14,5 +14,5 @@ enum class ProductSortableField(val fieldName: String) {
     STATUS("status"),
     ATTRIBUTES("attributes"),
     CREATED_AT("createdAt"),
-    UPDATED_AT("updatedAt")
+    UPDATED_AT("updatedAt"),
 }

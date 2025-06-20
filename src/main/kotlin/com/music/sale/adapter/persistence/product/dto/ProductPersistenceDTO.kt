@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.adapter.persistence.product.dto
 
 import com.music.sale.adapter.web.product.request.SearchProductKeywordType
@@ -6,7 +7,6 @@ import com.music.sale.domain.product.enum.ProductConditionGrade
 import com.music.sale.domain.product.enum.ProductStatus
 import com.music.sale.domain.store.model.Store
 import com.music.sale.domain.user.User
-
 
 data class SearchProductCondition(
     val keyword: String? = null,
@@ -17,7 +17,7 @@ data class SearchProductCondition(
     val conditionGrade: ProductConditionGrade? = null,
     val minPrice: Int? = null,
     val maxPrice: Int? = null,
-    val status: ProductStatus? = null
+    val status: ProductStatus? = null,
 )
 
 data class SaveProductItemCondition(
@@ -31,5 +31,5 @@ data class SaveProductItemCondition(
     val stockQuantity: Int,
     val status: ProductStatus,
     val name: String? = null,
-    val attributes: Map<String, Any>
+    val attributes: Map<String, Any>,
 )

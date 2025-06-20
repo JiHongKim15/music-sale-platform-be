@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.application.user.mapper
 
 import com.music.sale.application.user.dto.UserOutput
@@ -11,8 +12,8 @@ class UserMapper {
         return UserOutput(
             id = user.id ?: 0L,
             email = user.email?.value ?: "",
-            name = user.getName()?.value ?: "",
-            role = user.getRole() ?: UserRole.USER
+            name = user.name?.value ?: "",
+            role = user.role ?: UserRole.USER,
         )
     }
-} 
+}

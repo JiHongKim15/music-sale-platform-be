@@ -1,0 +1,11 @@
+# top-most EditorConfig file
+root = true
+
+# All files
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Kotlin files
+[*.{kt,kts}]
+ktlint_standard_no-wildcard-imports = disabled 

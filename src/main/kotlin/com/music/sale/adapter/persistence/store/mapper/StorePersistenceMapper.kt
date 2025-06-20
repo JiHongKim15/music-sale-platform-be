@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.adapter.persistence.store.mapper
 
 import com.music.sale.adapter.persistence.store.entity.StoreEntity

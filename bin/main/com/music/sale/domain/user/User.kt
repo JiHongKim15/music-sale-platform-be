@@ -1,38 +1,45 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.domain.user
 
 import com.music.sale.domain.user.enum.UserRole
 
-class User(
+data class User(
     val id: Long? = null,
     val email: Email? = null,
     val provider: String? = null,
     val providerId: String? = null,
     val password: Password? = null,
-    private var name: Name? = null,
-    private var role: UserRole? = null,
+    var name: Name? = null,
+    var role: UserRole? = null,
 ) {
-    constructor(id: Long) : this(id = id, email = null, provider = null, providerId = null, password = null, name = null, role = null)
-
-    fun getName(): Name? = name
-    fun getRole(): UserRole? = role
-
     companion object {
-        fun create(email: String, provider: String, providerId: String, name: String, role: UserRole): User {
+        fun create(
+            email: String,
+            provider: String,
+            providerId: String,
+            name: String,
+            role: UserRole,
+        ): User {
             return User(
                 email = Email(email),
                 provider = provider,
                 providerId = providerId,
                 name = Name(name),
-                role = role
+                role = role,
             )
         }
 
-        fun create(email: String, password: String, name: String, role: UserRole): User {
+        fun create(
+            email: String,
+            password: String,
+            name: String,
+            role: UserRole,
+        ): User {
             return User(
                 email = Email(email),
                 password = Password(password),
                 name = Name(name),
-                role = role
+                role = role,
             )
         }
     }
@@ -62,4 +69,4 @@ class User(
             require(value.isNotBlank()) { "비밀번호는 비어있을 수 없습니다" }
         }
     }
-} 
+}

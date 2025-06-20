@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.domain.shipping.model
 
 import java.math.BigDecimal
@@ -16,7 +17,7 @@ class ShippingPolicy(
     val isDefault: Boolean,
     val canPickup: Boolean,
     val internationalShipping: Boolean,
-    val restrictedAreas: List<String>
+    val restrictedAreas: List<String>,
 ) {
     companion object {
         fun create(
@@ -29,7 +30,7 @@ class ShippingPolicy(
             isDefault: Boolean = false,
             canPickup: Boolean = false,
             internationalShipping: Boolean = false,
-            restrictedAreas: List<String> = emptyList()
+            restrictedAreas: List<String> = emptyList(),
         ): ShippingPolicy {
             return ShippingPolicy(
                 id = null,
@@ -41,7 +42,7 @@ class ShippingPolicy(
                 isDefault = isDefault,
                 canPickup = canPickup,
                 internationalShipping = internationalShipping,
-                restrictedAreas = restrictedAreas
+                restrictedAreas = restrictedAreas,
             )
         }
 
@@ -56,7 +57,7 @@ class ShippingPolicy(
             isDefault: Boolean,
             canPickup: Boolean,
             internationalShipping: Boolean,
-            restrictedAreas: List<String>
+            restrictedAreas: List<String>,
         ): ShippingPolicy {
             return ShippingPolicy(
                 id = id,
@@ -68,7 +69,7 @@ class ShippingPolicy(
                 isDefault = isDefault,
                 canPickup = canPickup,
                 internationalShipping = internationalShipping,
-                restrictedAreas = restrictedAreas
+                restrictedAreas = restrictedAreas,
             )
         }
     }
@@ -95,7 +96,7 @@ class ShippingPolicy(
             require(max >= min) { "최대 배송일은 최소 배송일 이상이어야 합니다." }
         }
 
-        override fun toString(): String = if (min == max) "${min}일" else "${min}-${max}일"
+        override fun toString(): String = if (min == max) "${min}일" else "$min-${max}일"
     }
 
     // 비즈니스 로직
@@ -110,4 +111,4 @@ class ShippingPolicy(
     fun canShipTo(area: String): Boolean {
         return !restrictedAreas.contains(area)
     }
-} 
+}

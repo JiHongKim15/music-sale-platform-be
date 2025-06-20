@@ -1,20 +1,16 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.domain.category
 
-/**
- * 카테고리 타입을 정의하는 enum
- */
+/** 카테고리 타입을 정의하는 enum */
 enum class CategoryType {
-    PRODUCT,    // 제품 카테고리
-    STORE,      // 상점 카테고리
-    BOARD,      // 게시판 카테고리
-    SEARCH,     // 검색 카테고리
-    STATISTICS  // 통계 카테고리
+    PRODUCT, // 제품 카테고리
+    STORE, // 상점 카테고리
+    BOARD, // 게시판 카테고리
+    SEARCH, // 검색 카테고리
+    STATISTICS, // 통계 카테고리
 }
 
-/**
- * 카테고리 도메인 모델
- * 계층 구조를 가진 카테고리를 표현
- */
+/** 카테고리 도메인 모델 계층 구조를 가진 카테고리를 표현 */
 class Category(
     val id: Long,
     val name: String,
@@ -22,7 +18,7 @@ class Category(
     var parent: Category?,
     var path: String,
     var depth: Int,
-    var isActive: Boolean = true
+    var isActive: Boolean = true,
 ) {
     private val children = mutableListOf<Category>()
 
@@ -44,7 +40,7 @@ class Category(
         require(newParent != this) { "자기 자신을 부모로 지정할 수 없습니다" }
         require(newParent?.isDescendantOf(this) != true) { "자식 카테고리를 부모로 지정할 수 없습니다" }
         require(newParent?.type == this.type) { "이동할 카테고리는 동일한 타입이어야 합니다" }
-        
+
         parent?.removeChild(this)
         newParent?.addChild(this)
         parent = newParent
@@ -52,11 +48,12 @@ class Category(
     }
 
     private fun updatePath() {
-        path = if (parent == null) {
-            "/$id"
-        } else {
-            "${parent?.path}/$id"
-        }
+        path =
+            if (parent == null) {
+                "/$id"
+            } else {
+                "${parent?.path}/$id"
+            }
         depth = path.count { it == '/' } - 1
     }
 
@@ -78,15 +75,19 @@ class Category(
     }
 
     companion object {
-        fun createRoot(name: String, type: CategoryType): Category {
+        fun createRoot(
+            name: String,
+            type: CategoryType,
+        ): Category {
             return Category(
-                id = 0L, // ID는 영속성 계층에서 할당
+                // ID는 영속성 계층에서 할당
+                id = 0L,
                 name = name,
                 type = type,
                 parent = null,
                 path = "",
-                depth = 0
+                depth = 0,
             )
         }
     }
-} 
+}

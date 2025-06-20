@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.application.product.dto
 
 import com.music.sale.adapter.web.product.request.SearchProductKeywordType
@@ -38,7 +39,7 @@ data class CreateProductInput(
     val conditionGrade: ProductConditionGrade,
     val stockQuantity: Int,
     val status: ProductStatus,
-    val attributes: Map<String, Any>
+    val attributes: Map<String, Any>,
 )
 
 data class UpdateProductInput(
@@ -52,7 +53,7 @@ data class UpdateProductInput(
     val conditionGrade: ProductConditionGrade? = null,
     val stockQuantity: Int? = null,
     val status: ProductStatus? = null,
-    val attributes: Map<String, Any>? = null
+    val attributes: Map<String, Any>? = null,
 )
 
 @NoArgsConstructor
@@ -65,5 +66,5 @@ data class SearchProductInput(
     val conditionGrade: ProductConditionGrade? = null,
     val minPrice: Int? = null,
     val maxPrice: Int? = null,
-    val status: ProductStatus? = null
-) 
+    val status: ProductStatus? = null,
+)

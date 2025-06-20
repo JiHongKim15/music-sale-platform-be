@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.application.user.dto
 
 import com.music.sale.domain.user.User
@@ -8,7 +9,7 @@ data class UserOutput(
     val id: Long,
     val email: String,
     val name: String,
-    val role: UserRole
+    val role: UserRole,
 )
 
 // 이메일 회원가입 입력 DTO
@@ -16,14 +17,14 @@ data class CreateUserByEmailInput(
     val email: String,
     val password: String,
     val name: String,
-    val role: UserRole
+    val role: UserRole,
 ) {
     fun toDomain(): User {
         return User.create(
             email = email,
             password = password,
             name = name,
-            role = role
+            role = role,
         )
     }
 }
@@ -34,7 +35,7 @@ data class CreateUserByProviderInput(
     val provider: String,
     val providerId: String,
     val name: String,
-    val role: UserRole
+    val role: UserRole,
 ) {
     fun toDomain(): User {
         return User.create(
@@ -42,7 +43,7 @@ data class CreateUserByProviderInput(
             provider = provider,
             providerId = providerId,
             name = name,
-            role = role
+            role = role,
         )
     }
-} 
+}

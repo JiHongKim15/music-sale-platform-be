@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.adapter.web.user.mapper
 
 import com.music.sale.adapter.web.user.reqeust.CreateUserByEmailRequest
@@ -10,14 +11,12 @@ import org.springframework.stereotype.Component
 
 @Component
 class UserWebMapper {
-
-
     fun toCreateUserByEmailInput(request: CreateUserByEmailRequest): CreateUserByEmailInput {
         return CreateUserByEmailInput(
             email = request.email,
             password = request.password,
             name = request.name,
-            role = request.role
+            role = request.role,
         )
     }
 
@@ -27,7 +26,7 @@ class UserWebMapper {
             provider = request.provider,
             providerId = request.providerId,
             name = request.name,
-            role = request.role
+            role = request.role,
         )
     }
 
@@ -36,7 +35,7 @@ class UserWebMapper {
             id = output.id,
             email = output.email,
             name = output.name,
-            role = output.role.toString()
+            role = output.role.toString(),
         )
     }
-} 
+}

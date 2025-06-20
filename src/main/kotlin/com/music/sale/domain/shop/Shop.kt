@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.domain.shop
 
 import com.music.sale.domain.user.User
@@ -10,14 +11,19 @@ class Shop private constructor(
     private var phoneNumber: PhoneNumber,
     private var businessHours: BusinessHours,
     private var isShippingAvailable: Boolean,
-    val seller: User
+    val seller: User,
 ) {
     // Getters for persistence
     fun getName(): Name = name
+
     fun getDescription(): Description = description
+
     fun getAddress(): Address = address
+
     fun getPhoneNumber(): PhoneNumber = phoneNumber
+
     fun getBusinessHours(): BusinessHours = businessHours
+
     fun isShippingAvailable(): Boolean = isShippingAvailable
 
     companion object {
@@ -28,7 +34,7 @@ class Shop private constructor(
             phoneNumber: PhoneNumber,
             businessHours: BusinessHours,
             isShippingAvailable: Boolean,
-            seller: User
+            seller: User,
         ): Shop {
             return Shop(
                 id = null,
@@ -38,7 +44,7 @@ class Shop private constructor(
                 phoneNumber = phoneNumber,
                 businessHours = businessHours,
                 isShippingAvailable = isShippingAvailable,
-                seller = seller
+                seller = seller,
             )
         }
     }
@@ -49,7 +55,7 @@ class Shop private constructor(
         address: Address,
         phoneNumber: PhoneNumber,
         businessHours: BusinessHours,
-        isShippingAvailable: Boolean
+        isShippingAvailable: Boolean,
     ) {
         this.name = name
         this.description = description
@@ -93,4 +99,4 @@ class Shop private constructor(
 
     @JvmInline
     value class BusinessHours(val value: String)
-} 
+}

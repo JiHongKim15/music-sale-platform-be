@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.domain.seller
 
 import com.music.sale.domain.user.User
@@ -15,7 +16,7 @@ data class Seller(
     val contactPhone: ContactPhone,
     val status: SellerStatus,
     val createdAt: LocalDateTime? = null,
-    val updatedAt: LocalDateTime? = null
+    val updatedAt: LocalDateTime? = null,
 ) {
     // Value Objects
     data class CompanyName(val value: String) {
@@ -48,10 +49,10 @@ data class Seller(
 
     // 판매자 상태 enum
     enum class SellerStatus {
-        PENDING,   // 승인 대기 중
-        APPROVED,  // 승인됨
-        REJECTED,  // 거부됨
-        SUSPENDED  // 일시 정지됨
+        PENDING, // 승인 대기 중
+        APPROVED, // 승인됨
+        REJECTED, // 거부됨
+        SUSPENDED, // 일시 정지됨
     }
 
     // 중복 JVM 시그니처 방지: getCompanyName, getBusinessNumber, getContactEmail, getContactPhone, getStatus 메서드 삭제

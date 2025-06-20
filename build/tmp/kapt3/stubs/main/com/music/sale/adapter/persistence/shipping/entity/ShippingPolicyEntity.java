@@ -1,8 +1,7 @@
 package com.music.sale.adapter.persistence.shipping.entity;
 
 /**
- * 배송 정책 JPA 엔티티
- * 여러 상품이 공유할 수 있는 배송 정책 정보를 관리
+ * 배송 정책 JPA 엔티티 여러 상품이 공유할 수 있는 배송 정책 정보를 관리
  */
 @jakarta.persistence.Entity()
 @jakarta.persistence.Table(name = "shipping_policies")

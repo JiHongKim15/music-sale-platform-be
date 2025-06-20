@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.application.product.mapper
 
 import com.music.sale.adapter.persistence.product.dto.SaveProductItemCondition
@@ -15,11 +16,12 @@ class ProductMapper {
     fun toOutput(product: Product): ProductOutput {
         return ProductOutput(
             id = product.id,
-            catalog = ProductOutput.ProductCatalog(
-                id = product.catalogId,
-                category = product.category,
-            ),
-            name = product.name(), // Product 객체의 name() 메소드를 사용하여 최종 이름 가져오기
+            catalog =
+                ProductOutput.ProductCatalog(
+                    id = product.catalogId,
+                    category = product.category,
+                ),
+            name = product.name(),
             price = product.price,
             seller = product.seller,
             store = product.store,
@@ -27,7 +29,7 @@ class ProductMapper {
             conditionGrade = product.conditionGrade,
             stockQuantity = product.stockQuantity,
             status = product.status,
-            attributes = product.attributes(), // Product 객체의 attributes() 메소드를 사용하여 최종 속성 가져오기
+            attributes = product.attributes(),
         )
     }
 
@@ -41,11 +43,15 @@ class ProductMapper {
             conditionGrade = input.conditionGrade,
             minPrice = input.minPrice,
             maxPrice = input.maxPrice,
-            status = input.status
+            status = input.status,
         )
     }
 
-    fun toSaveProductCondition(input: CreateProductInput, seller: User, store: Store): SaveProductItemCondition {
+    fun toSaveProductCondition(
+        input: CreateProductInput,
+        seller: User?,
+        store: Store?,
+    ): SaveProductItemCondition {
         return SaveProductItemCondition(
             name = input.name,
             catalogId = input.catalogId,
@@ -56,8 +62,7 @@ class ProductMapper {
             conditionGrade = input.conditionGrade,
             stockQuantity = input.stockQuantity,
             status = input.status,
-            attributes = input.attributes
+            attributes = input.attributes,
         )
     }
-
 }

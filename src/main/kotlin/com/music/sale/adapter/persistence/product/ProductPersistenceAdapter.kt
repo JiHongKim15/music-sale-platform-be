@@ -1,3 +1,4 @@
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.adapter.persistence.product
 
 import com.music.sale.adapter.persistence.product.dto.SaveProductItemCondition
@@ -6,7 +7,7 @@ import com.music.sale.adapter.persistence.product.mapper.ProductPersistenceMappe
 import com.music.sale.adapter.persistence.product.repository.ProductCatalogRepository
 import com.music.sale.adapter.persistence.product.repository.ProductItemQueryDslRepository
 import com.music.sale.adapter.persistence.product.repository.ProductItemRepository
-import com.music.sale.application.product.port.out.ProductPort
+import com.music.sale.application.product.port.outport.ProductPort
 import com.music.sale.common.Pageable
 import com.music.sale.common.SortDirection
 import com.music.sale.domain.product.Product
@@ -19,38 +20,37 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 @Transactional
 class ProductPersistenceAdapter(
-        private val productCatalogRepository: ProductCatalogRepository,
-        private val productItemRepository: ProductItemRepository,
-        private val productItemQueryDslRepository: ProductItemQueryDslRepository,
-        private val mapper: ProductPersistenceMapper,
+    private val productCatalogRepository: ProductCatalogRepository,
+    private val productItemRepository: ProductItemRepository,
+    private val productItemQueryDslRepository: ProductItemQueryDslRepository,
+    private val mapper: ProductPersistenceMapper,
 ) : ProductPort {
-
     @Transactional(readOnly = true)
     override fun findAll(pageable: Pageable): Page<Product> {
         val sortDirection = pageable.sortDirection ?: SortDirection.DESC
         val sortProperty = pageable.sort ?: "createdAt"
         val springPageable =
-                PageRequest.of(
-                        pageable.pageNumber,
-                        pageable.pageSize,
-                        Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty)
-                )
+            PageRequest.of(
+                pageable.pageNumber,
+                pageable.pageSize,
+                Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty),
+            )
         return productItemRepository.findAll(springPageable).map { mapper.toDomain(it) }
     }
 
     @Transactional(readOnly = true)
     override fun searchProducts(
-            searchCondition: SearchProductCondition,
-            pageable: Pageable
+        searchCondition: SearchProductCondition,
+        pageable: Pageable,
     ): Page<Product> {
         val sortDirection = pageable.sortDirection ?: SortDirection.DESC
         val sortProperty = pageable.sort ?: "createdAt"
         val springPageable =
-                PageRequest.of(
-                        pageable.pageNumber,
-                        pageable.pageSize,
-                        Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty)
-                )
+            PageRequest.of(
+                pageable.pageNumber,
+                pageable.pageSize,
+                Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty),
+            )
 
         return productItemQueryDslRepository.searchProducts(searchCondition, springPageable).map {
             mapper.toDomain(it)
