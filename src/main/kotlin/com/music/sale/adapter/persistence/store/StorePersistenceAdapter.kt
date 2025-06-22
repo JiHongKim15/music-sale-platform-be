@@ -12,8 +12,7 @@ class StorePersistenceAdapter(
     private val mapper: StorePersistenceMapper,
 ) : StorePort {
     override fun findById(id: Long): Store? {
-        storeRepository.findById(id).let {}
-        return null
+        return storeRepository.findById(id).map { mapper.toDomain(it) }.orElse(null)
     }
 
     override fun save(store: Store): Store {
