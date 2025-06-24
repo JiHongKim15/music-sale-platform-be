@@ -19,12 +19,12 @@ import jakarta.persistence.Table
 @Entity
 @Table(name = "product_catalog")
 class ProductCatalogEntity(
-        @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long? = null,
-        @Column(nullable = false) val name: String,
-        @ManyToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "category_id", nullable = false)
-        val category: CategoryEntity,
-        @Column(name = "attributes", nullable = false, columnDefinition = "JSON")
-        @Convert(converter = JsonConverter::class)
-        val attributes: Map<String, Any>? = null,
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long? = null,
+    @Column(nullable = false) val name: String,
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    val category: CategoryEntity,
+    @Column(name = "attributes", nullable = false, columnDefinition = "JSON")
+    @Convert(converter = JsonConverter::class)
+    val attributes: Map<String, Any>? = null,
 ) : BaseEntity()

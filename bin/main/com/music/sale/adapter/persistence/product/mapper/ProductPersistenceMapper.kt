@@ -22,15 +22,12 @@ class ProductPersistenceMapper(
     private val userPersistenceAdapter: UserPersistenceAdapter,
 ) {
     fun toDomain(entity: ProductItemEntity): Product {
-        val seller = entity.seller?.let { userPersistenceMapper.toDomain(it) }
-        val store = entity.store?.let { storePersistenceMapper.toDomain(it) }
-
         return Product(
             id = entity.id ?: 0L,
             catalogId = entity.catalog.id ?: 0L,
             category = categoryMapper.toDomain(entity.catalog.category),
-            seller = seller,
-            store = store,
+            seller = null, // 임시로 null 처리
+            store = null,  // 임시로 null 처리
             price = entity.price,
             condition = entity.condition,
             conditionGrade = entity.conditionGrade,
