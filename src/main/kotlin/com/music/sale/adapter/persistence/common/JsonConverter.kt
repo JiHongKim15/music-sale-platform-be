@@ -24,7 +24,7 @@ class JsonConverter : AttributeConverter<Map<String, Any>, String> {
             if (dbData.isNullOrBlank()) {
                 return emptyMap()
             }
-            
+
             objectMapper.readValue(dbData, object : TypeReference<HashMap<String, Any>>() {})
         } catch (e: Exception) {
             println("Error deserializing JSON: ${e.message}, data: $dbData")

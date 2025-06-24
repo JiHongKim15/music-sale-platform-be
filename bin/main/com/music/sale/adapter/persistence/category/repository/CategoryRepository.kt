@@ -16,6 +16,8 @@ interface CategoryRepository : JpaRepository<CategoryEntity, Long> {
 
     fun findByParentId(parentId: Long): List<CategoryEntity>
 
+    fun findByParentIsNull(): List<CategoryEntity>
+
     fun findByPathStartingWith(path: String): List<CategoryEntity>
 
     @Query("SELECT c FROM CategoryEntity c WHERE c.type = :type AND c.depth = 0")

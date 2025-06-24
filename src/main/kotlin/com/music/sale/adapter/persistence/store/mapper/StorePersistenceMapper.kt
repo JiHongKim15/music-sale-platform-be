@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 class StorePersistenceMapper {
     fun toDomain(entity: StoreEntity): Store {
         return Store(
-            id = entity.id
+            id = entity.id,
         )
     }
 
@@ -27,7 +27,7 @@ class StorePersistenceMapper {
             businessNumber = "000-00-00000",
             imageUrl = null,
             status = StoreEntity.StoreStatus.ACTIVE,
-            sellerId = 1L
+            sellerId = 1L,
         )
     }
 }
