@@ -37,21 +37,21 @@ data class UpdateProductRequest(
 
 data class SearchProductRequest(
     // "펜더", "텔레캐스터"
-    val keyword: String?,
-    val keywordType: SearchProductKeywordType?,
+    val keyword: String? = null,
+    val keywordType: SearchProductKeywordType? = null,
     // ProductCategory.GUITAR
-    val categoryId: Long,
+    val categoryId: Long? = null,
     // "서울"
-    val location: String?,
+    val location: String? = null,
     // true: 새 제품, false: 중고
-    val condition: ProductCondition?,
+    val condition: ProductCondition? = null,
     // S, A, B
-    val conditionGrade: ProductConditionGrade?,
+    val conditionGrade: ProductConditionGrade? = null,
     // 최소 가격 필터
-    val minPrice: Int?,
+    val minPrice: Int? = null,
     // 최대 가격 필터
-    val maxPrice: Int?,
-    val status: ProductStatus?,
+    val maxPrice: Int? = null,
+    val status: ProductStatus? = null,
     val pageNumber: Int = 1,
     val pageSize: Int = 10,
     val sort: ProductSortableField? = ProductSortableField.CREATED_AT,

@@ -51,11 +51,11 @@ class ProductWebMapper {
     fun toSearchCondition(request: SearchProductRequest): SearchProductInput {
         return SearchProductInput(
             keyword = request.keyword,
-            keywordType = request.keywordType?.let { SearchProductKeywordType.valueOf(it.name) },
+            keywordType = request.keywordType,
             categoryId = request.categoryId,
             location = request.location,
-            condition = request.condition?.let { ProductCondition.valueOf(it.name) },
-            conditionGrade = request.conditionGrade?.let { ProductConditionGrade.valueOf(it.name) },
+            condition = request.condition,
+            conditionGrade = request.conditionGrade,
             minPrice = request.minPrice,
             maxPrice = request.maxPrice,
             status = request.status,
