@@ -8,9 +8,4 @@ import org.springframework.stereotype.Repository
 @Repository
 interface AuthUserRepository : JpaRepository<AuthUserEntity, Long> {
     fun findByUserId(userId: Long): AuthUserEntity?
-
-    fun findByProviderAndProviderId(
-        provider: String,
-        providerId: String,
-    ): AuthUserEntity?
 }

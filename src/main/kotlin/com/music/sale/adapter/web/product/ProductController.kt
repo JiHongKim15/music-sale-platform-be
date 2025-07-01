@@ -25,6 +25,19 @@ class ProductController(private val useCase: ProductUseCase, private val mapper:
         )
     }
 
+    @GetMapping("/{id}")
+    fun getProduct(
+        @PathVariable id: Long,
+    ): ResponseEntity<ApiResponse<ProductOutput>> {
+        val product =
+            useCase.getProductById(id)
+                ?: return ResponseEntity.notFound().build()
+
+        return ResponseEntity.ok(
+            ApiResponse.success(data = product),
+        )
+    }
+
     @GetMapping("/search")
     fun searchProducts(
         @ModelAttribute request: SearchProductRequest,

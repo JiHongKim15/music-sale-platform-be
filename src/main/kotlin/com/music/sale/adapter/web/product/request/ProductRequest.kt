@@ -57,13 +57,15 @@ data class SearchProductRequest(
     val sort: ProductSortableField? = ProductSortableField.CREATED_AT,
     val sortDirection: SortDirection? = SortDirection.DESC,
 ) {
-    fun toPageable(): Pageable =
-        DefaultPageable(
-            pageNumber = pageNumber,
+    fun toPageable(): Pageable {
+        // 1-based를 0-based로 변환
+        return DefaultPageable(
+            pageNumber = pageNumber - 1,
             pageSize = pageSize,
             sort = sort?.fieldName,
             sortDirection = sortDirection,
         )
+    }
 }
 
 data class GetProductRequest(
@@ -72,13 +74,15 @@ data class GetProductRequest(
     val sort: ProductSortableField? = ProductSortableField.CREATED_AT,
     val sortDirection: SortDirection? = SortDirection.DESC,
 ) {
-    fun toPageable(): Pageable =
-        DefaultPageable(
-            pageNumber = pageNumber,
+    fun toPageable(): Pageable {
+        // 1-based를 0-based로 변환
+        return DefaultPageable(
+            pageNumber = pageNumber - 1,
             pageSize = pageSize,
             sort = sort?.fieldName,
             sortDirection = sortDirection,
         )
+    }
 }
 
 enum class SearchProductKeywordType {

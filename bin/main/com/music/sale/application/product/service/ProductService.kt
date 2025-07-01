@@ -9,7 +9,7 @@ import com.music.sale.application.product.dto.UpdateProductInput
 import com.music.sale.application.product.mapper.ProductMapper
 import com.music.sale.application.product.port.inport.ProductUseCase
 import com.music.sale.application.product.port.outport.ProductPort
-import com.music.sale.application.seller.port.outport.SellerPort
+import com.music.sale.application.user.port.outport.UserPort
 import com.music.sale.common.Pageable
 import com.music.sale.domain.store.model.Store
 import org.springframework.data.domain.Page
@@ -22,11 +22,15 @@ class ProductService(
     private val port: ProductPort,
     private val mapper: ProductMapper,
     private val categoryService: CategoryService,
-    private val sellerPort: SellerPort,
+    private val userPort: UserPort,
 ) : ProductUseCase {
     /** 상품 관련 비즈니스 로직을 처리하는 서비스 클래스 ProductPort를 통해 영속성 계층과 상호작용 */
     override fun getProducts(pageable: Pageable): Page<ProductOutput> {
         return port.findAll(pageable).map { mapper.toOutput(it) }
+    }
+
+    override fun getProductById(id: Long): ProductOutput? {
+        return port.findById(id)?.let { mapper.toOutput(it) }
     }
 
     override fun searchProducts(
@@ -41,10 +45,14 @@ class ProductService(
     }
 
     override fun createProduct(input: CreateProductInput): ProductOutput {
-        val seller = sellerPort.findById(input.sellerId)
-        val store = Store(input.storeId) // TODO
-        val saveCondition = mapper.toSaveProductCondition(input, seller, store)
+        val seller =
+            userPort.findById(input.sellerId)
+                ?: throw IllegalArgumentException("Seller not found with id: ${input.sellerId}")
 
+        // TODO: Store 정보도 실제로 조회해야 함
+        val store = Store(input.storeId)
+
+        val saveCondition = mapper.toSaveProductCondition(input, seller, store)
         val savedProduct = port.save(saveCondition)
 
         return mapper.toOutput(savedProduct)

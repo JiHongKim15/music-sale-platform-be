@@ -29,9 +29,10 @@ class ProductPersistenceAdapter(
     override fun findAll(pageable: Pageable): Page<Product> {
         val sortDirection = pageable.sortDirection ?: SortDirection.DESC
         val sortProperty = pageable.sort ?: "createdAt"
+        val pageNumber = if (pageable.pageNumber < 0) 0 else pageable.pageNumber
         val springPageable =
             PageRequest.of(
-                pageable.pageNumber,
+                pageNumber,
                 pageable.pageSize,
                 Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty),
             )
@@ -45,9 +46,10 @@ class ProductPersistenceAdapter(
     ): Page<Product> {
         val sortDirection = pageable.sortDirection ?: SortDirection.DESC
         val sortProperty = pageable.sort ?: "createdAt"
+        val pageNumber = if (pageable.pageNumber < 0) 0 else pageable.pageNumber
         val springPageable =
             PageRequest.of(
-                pageable.pageNumber,
+                pageNumber,
                 pageable.pageSize,
                 Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty),
             )

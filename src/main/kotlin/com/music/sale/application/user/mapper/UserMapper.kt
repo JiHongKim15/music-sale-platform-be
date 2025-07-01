@@ -13,7 +13,37 @@ class UserMapper {
             id = user.id ?: 0L,
             email = user.email?.value ?: "",
             name = user.name?.value ?: "",
+            nickname = user.nickname?.value ?: "",
             role = user.role ?: UserRole.USER,
+            phoneNumber = user.phoneNumber,
+            phoneVerified = user.phoneVerified,
+            birthDate = user.birthDate,
+            gender = when (user.gender?.uppercase()) {
+                "MALE" -> com.music.sale.adapter.persistence.user.entity.Gender.MALE
+                "FEMALE" -> com.music.sale.adapter.persistence.user.entity.Gender.FEMALE
+                "OTHER" -> com.music.sale.adapter.persistence.user.entity.Gender.OTHER
+                else -> null
+            },
+            zipcode = user.zipcode,
+            baseAddress = user.baseAddress,
+            detailAddress = user.detailAddress,
+            profileImageUrl = user.profileImageUrl,
+            bio = user.bio,
+            userType = user.userType,
+            preferredPriceRangeMin = user.preferredPriceRangeMin,
+            preferredPriceRangeMax = user.preferredPriceRangeMax,
+            totalPurchases = user.totalPurchases,
+            totalSales = user.totalSales,
+            rating = user.rating,
+            reviewCount = user.reviewCount,
+            isActive = true,
+            isVerified = user.phoneVerified,
+            lastLoginAt = user.lastLoginAt,
+            marketingAgreed = user.marketingAgreed,
+            socialConnections = null,
+            interestedCategories = null,
+            createdAt = user.createdAt,
+            updatedAt = user.updatedAt,
         )
     }
 }

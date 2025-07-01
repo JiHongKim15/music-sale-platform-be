@@ -8,6 +8,7 @@ import com.music.sale.adapter.persistence.product.entity.ProductItemEntity
 import com.music.sale.adapter.persistence.store.mapper.StorePersistenceMapper
 import com.music.sale.adapter.persistence.user.UserPersistenceAdapter
 import com.music.sale.adapter.persistence.user.mapper.UserPersistenceMapper
+import com.music.sale.application.product.dto.ProductOutput
 import com.music.sale.domain.product.Product
 import org.springframework.stereotype.Component
 
@@ -36,6 +37,25 @@ class ProductPersistenceMapper(
             stockQuantity = entity.stockQuantity,
             status = entity.status,
             name = entity.customName ?: entity.catalog.name,
+            attributes = entity.customAttributes ?: entity.catalog.attributes,
+        )
+    }
+
+    fun toOutput(entity: ProductItemEntity): ProductOutput {
+        return ProductOutput(
+            id = entity.id ?: 0L,
+            name = entity.customName ?: entity.catalog.name,
+            catalog = ProductOutput.ProductCatalog(
+                id = entity.catalog.id ?: 0L,
+                category = categoryMapper.toDomain(entity.catalog.category)
+            ),
+            price = entity.price,
+            seller = null, // 임시로 null 처리
+            store = null, // 임시로 null 처리
+            condition = entity.condition,
+            conditionGrade = entity.conditionGrade,
+            stockQuantity = entity.stockQuantity,
+            status = entity.status,
             attributes = entity.customAttributes ?: entity.catalog.attributes,
         )
     }

@@ -1,3 +1,5 @@
+package com.music.sale.adapter.persistence.store
+
 import com.music.sale.adapter.persistence.store.mapper.StorePersistenceMapper
 import com.music.sale.adapter.persistence.store.repository.StoreRepository
 import com.music.sale.application.store.port.outport.StorePort

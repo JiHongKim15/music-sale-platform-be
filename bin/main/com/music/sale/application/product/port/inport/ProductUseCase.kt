@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page
 interface ProductUseCase {
     fun getProducts(pageable: Pageable): Page<ProductOutput>
 
+    fun getProductById(id: Long): ProductOutput?
+
     fun searchProducts(
         input: SearchProductInput,
         pageable: Pageable,
