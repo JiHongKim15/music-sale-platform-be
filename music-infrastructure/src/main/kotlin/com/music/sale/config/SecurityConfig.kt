@@ -52,28 +52,7 @@ open class SecurityConfig(
         http
                 .csrf { it.disable() }
                 .cors { it.configurationSource(corsConfigurationSource()) }
-                .authorizeHttpRequests {
-                    it.requestMatchers(
-                                    "/api/v1/auth/**",
-                                    "/product/**",
-                                    "/products/**",
-                                    "/category/**",
-                                    "/categories/**",
-                                    "/v2/api-docs",
-                                    "/v3/api-docs",
-                                    "/v3/api-docs/**",
-                                    "/swagger-resources",
-                                    "/swagger-resources/**",
-                                    "/configuration/ui",
-                                    "/configuration/security",
-                                    "/swagger-ui/**",
-                                    "/webjars/**",
-                                    "/swagger-ui.html",
-                                    "/ws/**",
-                            )
-                            .permitAll()
-                    it.anyRequest().authenticated()
-                }
+                .authorizeHttpRequests { it.anyRequest().permitAll() }
                 .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
                 .authenticationProvider(authProvider)
                 .addFilterBefore(
