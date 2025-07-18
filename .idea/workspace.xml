@@ -6,210 +6,285 @@
   <component name="ChangeListManager">
     <list default="true" id="4c0a0b21-f0b8-4939-a866-0072b9f8de56" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/8.12.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12.1/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.12.1/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12.1/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.12.1/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12.1/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.12.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.12.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.12.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.12.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.12.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.12.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5.corrupted.20250608-053127.reason.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5.corrupted.20250608-053127.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/AgentAdmin.asenLg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/AgentAdmin.asenLg/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/AgentAdmin.asenLg/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/AgentAdmin.asenLg/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_agent_admin._v-duQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_agent_admin._v-duQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_agent_admin._v-duQ/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_agent_admin._v-duQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_agent_admin._v-duQ/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_agent_admin._v-duQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_mail_agent.9OazjQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_mail_agent.9OazjQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_mail_agent.9OazjQ/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_mail_agent.9OazjQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_mail_agent.9OazjQ/schema/pg_catalog.0S1ZNQ.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/ai_mail_agent.9OazjQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/aiagent.3Y_www.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/aiagent.3Y_www/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/aiagent.3Y_www/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/postgres.edMnLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/postgres.edMnLQ/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/postgres.edMnLQ/schema/pg_catalog.0S1ZNQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/206afe55-8213-402c-b4ca-55dbbde7c3c5/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/591bc902-a8aa-41ad-b46a-e564aa83c88b.corrupted.20250608-053127.reason.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/591bc902-a8aa-41ad-b46a-e564aa83c88b.corrupted.20250608-053127.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/591bc902-a8aa-41ad-b46a-e564aa83c88b/storage_v2/_src_/schema/ai_agent.LvRjtg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/591bc902-a8aa-41ad-b46a-e564aa83c88b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/591bc902-a8aa-41ad-b46a-e564aa83c88b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bf53644b-dcb9-4224-9769-293ab11a8def.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bf53644b-dcb9-4224-9769-293ab11a8def/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bf53644b-dcb9-4224-9769-293ab11a8def/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bf53644b-dcb9-4224-9769-293ab11a8def/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bf53644b-dcb9-4224-9769-293ab11a8def/storage_v2/_src_/schema/sodamjae.2oUpSg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bf53644b-dcb9-4224-9769-293ab11a8def/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/easycode.ignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/easycode/codebase-v2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_blame.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/stylesheetLinters/stylelint.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/store/StorePersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/store/StorePersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/user/mapper/UserPersistenceMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/user/mapper/UserPersistenceMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/StorePersistenceAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/StorePersistenceAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/adapter/persistence/product/ProductPersistenceAdapter$findById$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/adapter/persistence/product/ProductPersistenceAdapter$findById$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/adapter/persistence/product/ProductPersistenceAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/adapter/persistence/product/ProductPersistenceAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/adapter/persistence/user/UserPersistenceAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/adapter/persistence/user/UserPersistenceAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/adapter/web/product/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/adapter/web/product/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/domain/shipping/model/ShippingPolicy$Companion.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/domain/shipping/model/ShippingPolicy$Companion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/domain/shipping/model/ShippingPolicy$DeliveryDays.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/domain/shipping/model/ShippingPolicy$DeliveryDays.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/domain/shipping/model/ShippingPolicy$Fee.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/domain/shipping/model/ShippingPolicy$Fee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/domain/shipping/model/ShippingPolicy$PolicyName.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/domain/shipping/model/ShippingPolicy$PolicyName.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/domain/shipping/model/ShippingPolicy.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/kotlin/main/com/music/sale/domain/shipping/model/ShippingPolicy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin 2/classpath-snapshot/shrunk-classpath-snapshot.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin 2/local-state/build-history.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/java-sources-proto-map.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/java-sources-proto-map.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/java-sources-proto-map.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.s" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.s" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/lookups.tab_i" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileTestKotlin/local-state/build-history.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin 2/classpath-snapshot/shrunk-classpath-snapshot.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin 2/local-state/build-history.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.s" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.s" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/subtypes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/jvm/kotlin/supertypes.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/counters.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/counters.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/lookups.tab" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/lookups.tab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/lookups.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/caches-jvm/lookups/lookups.tab_i" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.keystream.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab.values.at" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/inputs/source-to-output.tab_i.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.keystream.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab.values.at" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-attributes.tab_i.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.keystream.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab.values.at" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/class-fq-name-to-source.tab_i.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.keystream.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab.values.at" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/internal-name-to-source.tab_i.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.keystream.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab.values.at" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/proto.tab_i.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.keystream.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab.values.at" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/jvm/kotlin/source-to-classes.tab_i.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/counters.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.keystream.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab.values.at" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/file-to-id.tab_i.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.keystream.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab.values.at" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/id-to-file.tab_i.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/lookups.tab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/lookups.tab.keystream.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/lookups.tab.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/lookups.tab.values.at" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/lookups.tab_i" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/caches-jvm/lookups/lookups.tab_i.len" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/cacheable/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/classpath-snapshot/shrunk-classpath-snapshot.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/kaptGenerateStubsTestKotlin/local-state/build-history.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/music-0.0.1-SNAPSHOT-plain.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/libs/music-0.0.1-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/spotless/spotlessKotlin/src/main/kotlin/com/music/sale/adapter/persistence/user/UserPersistenceAdapter.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/bootJar/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/incApCache/main/apt-cache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/incApCache/main/apt-cache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/incApCache/main/java-cache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/incApCache/main/java-cache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/incApCache/test/ap-classpath-entries.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/incApCache/test/apt-cache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/incApCache/test/classpath-entries.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/incApCache/test/classpath-structure.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/incApCache/test/java-cache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/incrementalData/main/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/incrementalData/main/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/incrementalData/test/META-INF/music_test.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/StorePersistenceAdapter.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/StorePersistenceAdapter.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/product/ProductPersistenceAdapter.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/product/ProductPersistenceAdapter.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/product/entity/ProductCatalogEntity.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/product/entity/ProductCatalogEntity.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/user/UserPersistenceAdapter.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/user/UserPersistenceAdapter.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/user/entity/UserEntity.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/user/entity/UserEntity.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/user/mapper/UserPersistenceMapper.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/persistence/user/mapper/UserPersistenceMapper.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/web/product/ProductController.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/adapter/web/product/ProductController.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/application/product/service/ProductService.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/application/product/service/ProductService.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/application/user/service/UserService.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/application/user/service/UserService.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/domain/shipping/model/ShippingPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/domain/shipping/model/ShippingPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/domain/shipping/model/ShippingPolicy.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/domain/shipping/model/ShippingPolicy.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/domain/user/User.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/kapt3/stubs/main/com/music/sale/domain/user/User.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/kapt3/stubs/test/error/NonExistentClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/ProductPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/ProductPersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/entity/ProductCatalogEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/entity/ProductCatalogEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/seller/SellerPersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/store/StorePersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/store/StorePersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/mapper/UserPersistenceMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/mapper/UserPersistenceMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/shipping/model/ShippingPolicy.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/shipping/model/ShippingPolicy.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/MusicSaleApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/category/CategoryPersistenceAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/category/entity/CategoryEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/category/mapper/CategoryPersistenceMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/category/repository/CategoryRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/common/BaseEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/common/JsonConverter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/order/OrderEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/product/ProductPersistenceAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/product/dto/ProductPersistenceDTO.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/product/entity/ProductCatalogEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/product/entity/ProductItemEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/product/mapper/ProductPersistenceMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/product/repository/ProductCatalogRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/product/repository/ProductItemQueryDslRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/product/repository/ProductItemQueryDslRepositoryImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/product/repository/ProductItemRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/shipping/entity/ShippingPolicyEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/shipping/repository/ShippingPolicyRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/store/StorePersistenceAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/store/entity/StoreEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/store/mapper/StorePersistenceMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/store/repository/StoreRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/user/UserPersistenceAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/user/entity/AuthUserEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/user/entity/UserEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/user/mapper/UserPersistenceMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/user/repository/AuthUserRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/persistence/user/repository/UserRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/web/common/ApiResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/web/product/ProductController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/web/product/mapper/ProductWebMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/web/product/request/ProductRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/web/user/UserController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/web/user/mapper/UserWebMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/web/user/reqeust/UserRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/adapter/web/user/response/UserResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/category/mapper/CategoryMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/category/port/inport/CategoryUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/category/port/outport/CategoryPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/category/service/CategoryService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/product/dto/ProductDTO.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/product/enum/ProductSortableField.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/product/mapper/ProductMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/product/port/inport/ProductUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/product/port/outport/ProductPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/product/service/ProductService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/store/port/outport/StorePort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/user/dto/UserUseCaseDTO.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/user/mapper/UserMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/user/port/inport/UserUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/user/port/outport/UserPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/application/user/service/UserService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/common/DefaultPageable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/common/Pageable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/common/ResponseCode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/common/SortDirection.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/config/JpaAuditingConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/config/QueryDslConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/config/SecurityConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/config/SwaggerConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/category/Category.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/order/Order.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/order/Payment.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/order/Shipping.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/product/Product.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/product/enum/ProductCondition.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/product/enum/ProductStatus.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/search/SearchCriteria.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/shipping/model/ShippingInfo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/shipping/model/ShippingPolicy.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/shop/Shop.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/store/model/Store.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/user/User.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/user/UserDomainService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main/com/music/sale/domain/user/enum/UserRole.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/MusicSaleApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/cart/CartPersistenceAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/cart/entity/CartEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/cart/mapper/CartPersistenceMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/cart/repository/CartRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/category/CategoryPersistenceAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/category/entity/CategoryEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/category/mapper/CategoryPersistenceMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/category/repository/CategoryRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/common/BaseEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/common/JsonConverter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/order/OrderEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/ProductPersistenceAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/dto/ProductPersistenceDTO.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/entity/ProductCatalogEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/entity/ProductItemEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/mapper/ProductPersistenceMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/repository/ProductCatalogRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/repository/ProductItemQueryDslRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/repository/ProductItemQueryDslRepositoryImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/repository/ProductItemQueryDslRepositoryImpl.kt.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/product/repository/ProductItemRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/shipping/entity/ShippingPolicyEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/shipping/repository/ShippingPolicyRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/shop/ShopEntity.kt.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/store/StorePersistenceAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/store/entity/StoreEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/store/mapper/StorePersistenceMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/store/repository/StoreRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/UserPersistenceAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/entity/AuthUserEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/entity/PhoneVerificationEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/entity/UserEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/entity/UserSocialConnectionEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/mapper/UserPersistenceMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/repository/AuthUserRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/repository/PhoneVerificationRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/repository/UserRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user/repository/UserSocialConnectionRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/viewcount/ProductViewCountPersistenceAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/viewcount/entity/ProductViewCountEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/viewcount/mapper/ProductViewCountPersistenceMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/viewcount/repository/ProductViewCountRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/wishlist/WishlistPersistenceAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/wishlist/entity/WishlistEntity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/wishlist/mapper/WishlistPersistenceMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/wishlist/repository/WishlistRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/auth/AuthController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/auth/request/AuthRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/auth/response/AuthResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/cart/CartController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/cart/request/CartRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/category/CategoryController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/category/mapper/CategoryWebMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/category/response/CategoryResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/common/ApiResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/product/ProductController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/product/mapper/ProductWebMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/product/request/ProductRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/seller/SellerController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/user/UserController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/user/mapper/UserWebMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/user/reqeust/CreateUserByPhoneRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/user/reqeust/UserRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/user/response/UserResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/viewcount/ProductViewCountController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/wishlist/WishlistController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/wishlist/mapper/WishlistWebMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/wishlist/request/WishlistRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/web/wishlist/response/WishlistResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/auth/service/AuthService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/auth/service/JwtService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/cart/dto/CartOutput.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/cart/port/inport/CartUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/cart/port/outport/CartPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/cart/service/CartService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/category/mapper/CategoryMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/category/port/inport/CategoryUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/category/port/outport/CategoryPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/category/service/CategoryService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/product/dto/ProductDTO.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/product/enum/ProductSortableField.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/product/mapper/ProductMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/product/port/inport/ProductUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/product/port/outport/ProductPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/product/service/ProductService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/store/port/outport/StorePort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/user/dto/UserUseCaseDTO.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/user/mapper/UserMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/user/port/inport/UserUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/user/port/outport/UserPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/user/service/SellerVerificationService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/user/service/UserService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/viewcount/dto/ProductViewCountOutput.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/viewcount/port/inport/ProductViewCountUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/viewcount/port/outport/ProductViewCountPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/viewcount/service/ProductViewCountService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/wishlist/dto/WishlistOutput.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/wishlist/mapper/WishlistMapper.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/wishlist/port/inport/WishlistUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/wishlist/port/outport/WishlistPort.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application/wishlist/service/WishlistService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/common/DefaultPageable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/common/Pageable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/common/ResponseCode.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/common/SortDirection.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/config/JpaAuditingConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/config/JwtAuthenticationFilter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/config/JwtConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/config/QueryDslConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/config/SecurityConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/config/SwaggerConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/config/WebSocketConfig.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/config/oauth2/CustomOAuth2UserService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/config/oauth2/OAuth2AuthenticationSuccessHandler.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/cart/Cart.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/category/Category.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/order/Order.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/order/Payment.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/order/Shipping.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/order/enum/OrderStatus.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/product/Product.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/product/enum/ProductCondition.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/product/enum/ProductStatus.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/search/SearchCriteria.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/shipping/model/ShippingInfo.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/shipping/model/ShippingPolicy.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/shop/Shop.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/store/model/Store.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/user/User.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/user/UserDomainService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/user/enum/UserRole.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/viewcount/ProductViewCount.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/music/sale/domain/wishlist/Wishlist.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/import.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/import.sql.bak" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -445,6 +520,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="music.music-application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="music.music-application" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="music-sale-platform-be.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.DemoApplication" />
@@ -453,7 +539,7 @@
       </method>
     </configuration>
     <configuration name="MusicSaleApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="music.main" />
+      <module name="music.music-api.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.music.sale.MusicSaleApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -540,6 +626,20 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.security:spring-security-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-websocket" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.validation:jakarta.validation-api" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
+    <option featureType="dependencySupport" implementationName="java:io.projectreactor:reactor-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-messaging" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
+    <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
