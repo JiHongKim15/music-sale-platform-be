@@ -8,17 +8,17 @@ import org.springframework.stereotype.Repository
 @Repository
 interface WishlistRepository : JpaRepository<WishlistEntity, Long> {
     fun findByUserId(
-            userId: Long,
-            pageable: Pageable,
+        userId: Long,
+        pageable: Pageable,
     ): org.springframework.data.domain.Page<WishlistEntity>
 
     fun findByUserIdAndProductId(
-            userId: Long,
-            productId: Long,
+        userId: Long,
+        productId: Long,
     ): WishlistEntity?
 
     fun existsByUserIdAndProductId(
-            userId: Long,
-            productId: Long,
+        userId: Long,
+        productId: Long,
     ): Boolean
 }
