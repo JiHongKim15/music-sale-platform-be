@@ -1,36 +1,38 @@
 plugins {
     kotlin("plugin.allopen") version "1.9.25"
-    id("org.springframework.boot") version "3.3.1"
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-security")
+    // Spring Core (비즈니스 로직에 필요한 것만)
+    implementation("org.springframework:spring-context")
+    implementation("org.springframework:spring-tx")
+    
+    // Spring Data JPA (Page 인터페이스 사용)
+    implementation("org.springframework.data:spring-data-commons")
+    
+    // Spring Security (PasswordEncoder 사용)
+    implementation("org.springframework.security:spring-security-crypto")
+    
+    // Spring Messaging (WebSocket 메시징)
+    implementation("org.springframework:spring-messaging")
+    
+    // Validation
     implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-websocket")
-    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
-    implementation("org.springframework.boot:spring-boot-starter-mail")
-    implementation("org.springframework.boot:spring-boot-starter-data-redis")
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-
+    
+    // Jackson (DTO 직렬화/역직렬화)
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    
+    // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
-
-    // JWT
-    implementation("org.springframework.security:spring-security-jwt:1.1.1.RELEASE")
-
-    // QueryDSL
-    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
-    annotationProcessor("com.querydsl:querydsl-apt:5.0.0:jakarta")
-    annotationProcessor("jakarta.persistence:jakarta.persistence-api:3.1.0")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:3.3.1")
-    annotationProcessor("org.springframework.boot:spring-boot-starter-security")
-    annotationProcessor("org.springframework.boot:spring-boot-starter-websocket")
-
+    
+    // JWT (인증 서비스에서 사용)
+    implementation("io.jsonwebtoken:jjwt-api:0.12.5")
+    implementation("io.jsonwebtoken:jjwt-impl:0.12.5")
+    implementation("io.jsonwebtoken:jjwt-jackson:0.12.5")
+    
+    // Lombok
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 }
@@ -38,26 +40,8 @@ dependencies {
 kotlin {
     jvmToolchain(21)
     compilerOptions {
-        freeCompilerArgs.addAll("-Xjsr35strict")
+        freeCompilerArgs.addAll("-Xjsr305=strict")
     }
-}
-
-allOpen {
-    annotation("jakarta.persistence.Entity")
-    annotation("jakarta.persistence.MappedSuperclass")
-    annotation("jakarta.persistence.Embeddable")
 }
 
 sourceSets["main"].java.srcDirs("src/main/kotlin")
-
-configurations.all {
-    resolutionStrategy.eachDependency {
-        if (requested.group == "io.jsonwebtoken") {
-            useVersion("0.12.5")
-        }
-    }
-}
-
-tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
-    mainClass.set("com.music.sale.MusicSaleApplicationKt")
-}
