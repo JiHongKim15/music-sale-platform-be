@@ -18,17 +18,17 @@ import com.music.sale.persistence.user.repository.AuthUserRepository
 import com.music.sale.persistence.user.repository.PhoneVerificationRepository
 import com.music.sale.persistence.user.repository.UserRepository
 import com.music.sale.persistence.user.repository.UserSocialConnectionRepository
+import org.springframework.stereotype.Repository
 import java.time.LocalDate
 import java.time.LocalDateTime
-import org.springframework.stereotype.Repository
 
 @Repository
 open class UserPersistenceAdapter(
-        private val userRepository: UserRepository,
-        private val authUserRepository: AuthUserRepository,
-        private val userSocialConnectionRepository: UserSocialConnectionRepository,
-        private val phoneVerificationRepository: PhoneVerificationRepository,
-        private val mapper: UserPersistenceMapper,
+    private val userRepository: UserRepository,
+    private val authUserRepository: AuthUserRepository,
+    private val userSocialConnectionRepository: UserSocialConnectionRepository,
+    private val phoneVerificationRepository: PhoneVerificationRepository,
+    private val mapper: UserPersistenceMapper,
 ) : UserPort {
     override fun save(user: User): User {
         val userEntity = mapper.toEntity(user)
@@ -58,9 +58,9 @@ open class UserPersistenceAdapter(
 
     override fun getUserById(userId: Long): UserOutput {
         val userEntity =
-                userRepository.findById(userId).orElseThrow {
-                    IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
-                }
+            userRepository.findById(userId).orElseThrow {
+                IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
+            }
 
         val socialConnections = getSocialConnections(userId)
         return mapper.toUserOutput(userEntity, socialConnections)
@@ -73,135 +73,135 @@ open class UserPersistenceAdapter(
     }
 
     override fun createAuthUser(
-            userId: Long,
-            password: String,
+        userId: Long,
+        password: String,
     ) {
         val userEntity =
-                userRepository.findById(userId).orElseThrow {
-                    IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
-                }
+            userRepository.findById(userId).orElseThrow {
+                IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
+            }
 
         val authUserEntity =
-                AuthUserEntity(
-                        user = userEntity,
-                        passwordHash = password,
-                )
+            AuthUserEntity(
+                user = userEntity,
+                passwordHash = password,
+            )
         authUserRepository.save(authUserEntity)
     }
 
     override fun createSocialConnection(
-            userId: Long,
-            provider: SocialProvider,
-            providerId: String,
-            providerEmail: String?,
-            providerName: String?,
-            providerProfileImage: String?,
-            accessToken: String?,
-            refreshToken: String?,
-            tokenExpiresAt: LocalDateTime?,
+        userId: Long,
+        provider: SocialProvider,
+        providerId: String,
+        providerEmail: String?,
+        providerName: String?,
+        providerProfileImage: String?,
+        accessToken: String?,
+        refreshToken: String?,
+        tokenExpiresAt: LocalDateTime?,
     ) {
         val userEntity =
-                userRepository.findById(userId).orElseThrow {
-                    IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
-                }
+            userRepository.findById(userId).orElseThrow {
+                IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
+            }
 
         val socialConnectionEntity =
-                UserSocialConnectionEntity(
-                        user = userEntity,
-                        provider = provider,
-                        providerId = providerId,
-                        providerEmail = providerEmail,
-                        providerName = providerName,
-                        providerProfileImage = providerProfileImage,
-                        accessToken = accessToken,
-                        refreshToken = refreshToken,
-                        tokenExpiresAt = tokenExpiresAt,
-                        connectedAt = LocalDateTime.now(),
-                        lastUsedAt = LocalDateTime.now(),
-                        isActive = true,
-                )
+            UserSocialConnectionEntity(
+                user = userEntity,
+                provider = provider,
+                providerId = providerId,
+                providerEmail = providerEmail,
+                providerName = providerName,
+                providerProfileImage = providerProfileImage,
+                accessToken = accessToken,
+                refreshToken = refreshToken,
+                tokenExpiresAt = tokenExpiresAt,
+                connectedAt = LocalDateTime.now(),
+                lastUsedAt = LocalDateTime.now(),
+                isActive = true,
+            )
         userSocialConnectionRepository.save(socialConnectionEntity)
     }
 
     override fun existsSocialConnection(
-            userId: Long,
-            provider: SocialProvider,
+        userId: Long,
+        provider: SocialProvider,
     ): Boolean {
         return userSocialConnectionRepository.existsByUserIdAndProvider(userId, provider)
     }
 
     override fun deleteSocialConnection(
-            userId: Long,
-            provider: SocialProvider,
+        userId: Long,
+        provider: SocialProvider,
     ) {
         userSocialConnectionRepository.deleteByUserIdAndProvider(userId, provider)
     }
 
     override fun createPhoneVerification(
-            phoneNumber: String,
-            verificationCode: String,
-            verificationType: VerificationType,
-            expiresAt: LocalDateTime,
+        phoneNumber: String,
+        verificationCode: String,
+        verificationType: VerificationType,
+        expiresAt: LocalDateTime,
     ) {
         val phoneVerificationEntity =
-                PhoneVerificationEntity(
-                        phoneNumber = phoneNumber,
-                        verificationCode = verificationCode,
-                        verificationType = verificationType,
-                        expiresAt = expiresAt,
-                        attemptCount = 0,
-                        isUsed = false,
-                )
+            PhoneVerificationEntity(
+                phoneNumber = phoneNumber,
+                verificationCode = verificationCode,
+                verificationType = verificationType,
+                expiresAt = expiresAt,
+                attemptCount = 0,
+                isUsed = false,
+            )
         phoneVerificationRepository.save(phoneVerificationEntity)
     }
 
     override fun getPhoneVerification(
-            phoneNumber: String,
-            verificationType: VerificationType,
+        phoneNumber: String,
+        verificationType: VerificationType,
     ): PhoneVerificationOutput? {
         return phoneVerificationRepository.findByPhoneNumberAndVerificationType(
-                        phoneNumber,
-                        verificationType,
-                )
-                ?.let { mapper.toPhoneVerificationOutput(it) }
+            phoneNumber,
+            verificationType,
+        )
+            ?.let { mapper.toPhoneVerificationOutput(it) }
     }
 
     override fun deletePhoneVerification(
-            phoneNumber: String,
-            verificationType: VerificationType,
+        phoneNumber: String,
+        verificationType: VerificationType,
     ) {
         phoneVerificationRepository.deleteByPhoneNumberAndVerificationType(
-                phoneNumber,
-                verificationType,
+            phoneNumber,
+            verificationType,
         )
     }
 
     override fun markPhoneVerificationAsUsed(
-            phoneNumber: String,
-            verificationType: VerificationType,
+        phoneNumber: String,
+        verificationType: VerificationType,
     ) {
         phoneVerificationRepository.findByPhoneNumberAndVerificationType(
-                        phoneNumber,
-                        verificationType,
-                )
-                ?.let { entity ->
-                    entity.isUsed = true
-                    phoneVerificationRepository.save(entity)
-                }
+            phoneNumber,
+            verificationType,
+        )
+            ?.let { entity ->
+                entity.isUsed = true
+                phoneVerificationRepository.save(entity)
+            }
     }
 
     override fun getUserIdByPhone(phoneNumber: String): Long {
         val userEntity =
-                userRepository.findByPhoneNumber(phoneNumber)
-                        ?: throw IllegalArgumentException(
-                                "해당 전화번호로 등록된 사용자를 찾을 수 없습니다: $phoneNumber",
-                        )
+            userRepository.findByPhoneNumber(phoneNumber)
+                ?: throw IllegalArgumentException(
+                    "해당 전화번호로 등록된 사용자를 찾을 수 없습니다: $phoneNumber",
+                )
         return userEntity.id!!
     }
 
     override fun verifyUserPhone(
-            userId: Long,
-            phoneNumber: String,
+        userId: Long,
+        phoneNumber: String,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.phoneVerified = true
@@ -211,8 +211,8 @@ open class UserPersistenceAdapter(
 
     // User Profile Update Methods
     override fun updateUserName(
-            userId: Long,
-            name: String,
+        userId: Long,
+        name: String,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.name = name
@@ -221,8 +221,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserNickname(
-            userId: Long,
-            nickname: String,
+        userId: Long,
+        nickname: String,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.nickname = nickname
@@ -231,8 +231,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserPhoneNumber(
-            userId: Long,
-            phoneNumber: String,
+        userId: Long,
+        phoneNumber: String,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.phoneNumber = phoneNumber
@@ -241,8 +241,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserBirthDate(
-            userId: Long,
-            birthDate: LocalDate,
+        userId: Long,
+        birthDate: LocalDate,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.birthDate = birthDate
@@ -251,8 +251,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserGender(
-            userId: Long,
-            gender: String,
+        userId: Long,
+        gender: String,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.gender = Gender.valueOf(gender.uppercase())
@@ -261,8 +261,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserZipcode(
-            userId: Long,
-            zipcode: String,
+        userId: Long,
+        zipcode: String,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.zipcode = zipcode
@@ -271,8 +271,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserBaseAddress(
-            userId: Long,
-            baseAddress: String,
+        userId: Long,
+        baseAddress: String,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.baseAddress = baseAddress
@@ -281,8 +281,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserDetailAddress(
-            userId: Long,
-            detailAddress: String,
+        userId: Long,
+        detailAddress: String,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.detailAddress = detailAddress
@@ -291,8 +291,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserProfileImageUrl(
-            userId: Long,
-            profileImageUrl: String,
+        userId: Long,
+        profileImageUrl: String,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.profileImageUrl = profileImageUrl
@@ -301,8 +301,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserBio(
-            userId: Long,
-            bio: String,
+        userId: Long,
+        bio: String,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.bio = bio
@@ -311,8 +311,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserType(
-            userId: Long,
-            userType: String,
+        userId: Long,
+        userType: String,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.userType = UserType.valueOf(userType.uppercase())
@@ -321,8 +321,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserPreferredPriceRangeMin(
-            userId: Long,
-            minPrice: Int,
+        userId: Long,
+        minPrice: Int,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.preferredPriceRangeMin = minPrice
@@ -331,8 +331,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserPreferredPriceRangeMax(
-            userId: Long,
-            maxPrice: Int,
+        userId: Long,
+        maxPrice: Int,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.preferredPriceRangeMax = maxPrice
@@ -341,8 +341,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun updateUserMarketingAgreed(
-            userId: Long,
-            marketingAgreed: Boolean,
+        userId: Long,
+        marketingAgreed: Boolean,
     ) {
         userRepository.findById(userId).ifPresent { entity ->
             entity.marketingAgreed = marketingAgreed
@@ -355,8 +355,8 @@ open class UserPersistenceAdapter(
     }
 
     override fun setInterestedCategories(
-            userId: Long,
-            categoryIds: List<Long>,
+        userId: Long,
+        categoryIds: List<Long>,
     ) {
         // TODO: 관심 카테고리 설정 구현
     }
@@ -367,51 +367,51 @@ open class UserPersistenceAdapter(
     }
 
     override fun findByProviderAndProviderId(
-            provider: SocialProvider,
-            providerId: String,
+        provider: SocialProvider,
+        providerId: String,
     ): User? {
         return userRepository
-                .findByProviderAndProviderId(provider, providerId)
-                ?.let(mapper::toDomain)
+            .findByProviderAndProviderId(provider, providerId)
+            ?.let(mapper::toDomain)
     }
 
     // Legacy methods for backward compatibility
     override fun saveEmail(
-            user: User,
-            password: String,
+        user: User,
+        password: String,
     ): User {
         val userEntity = mapper.toEntity(user)
         val savedUserEntity = userRepository.save(userEntity)
 
         val authUserEntity =
-                AuthUserEntity(
-                        user = savedUserEntity,
-                        passwordHash = password,
-                )
+            AuthUserEntity(
+                user = savedUserEntity,
+                passwordHash = password,
+            )
         authUserRepository.save(authUserEntity)
         return mapper.toDomain(savedUserEntity)
     }
 
     override fun savePhone(
-            user: User,
-            password: String,
+        user: User,
+        password: String,
     ): User {
         val userEntity = mapper.toEntity(user)
         val savedUserEntity = userRepository.save(userEntity)
 
         val authUserEntity =
-                AuthUserEntity(
-                        user = savedUserEntity,
-                        passwordHash = password,
-                )
+            AuthUserEntity(
+                user = savedUserEntity,
+                passwordHash = password,
+            )
         authUserRepository.save(authUserEntity)
         return mapper.toDomain(savedUserEntity)
     }
 
     override fun saveProvider(
-            user: User,
-            provider: String,
-            providerId: String,
+        user: User,
+        provider: String,
+        providerId: String,
     ): User {
         val userEntity = mapper.toEntity(user)
         val savedUserEntity = userRepository.save(userEntity)

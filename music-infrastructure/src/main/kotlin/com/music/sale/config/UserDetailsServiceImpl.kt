@@ -10,16 +10,15 @@ import org.springframework.stereotype.Service
 
 @Service
 open class UserDetailsServiceImpl(private val userRepository: UserRepository) : UserDetailsService {
-
     override fun loadUserByUsername(username: String): UserDetails {
         val user =
-                userRepository.findByEmail(username)
-                        ?: throw UsernameNotFoundException("User not found with email: $username")
+            userRepository.findByEmail(username)
+                ?: throw UsernameNotFoundException("User not found with email: $username")
 
         return User.builder()
-                .username(user.email)
-                .password("") // 실제로는 인증 테이블에서 가져와야 함
-                .authorities(listOf(SimpleGrantedAuthority("ROLE_${user.role}")))
-                .build()
+            .username(user.email)
+            .password("") // 실제로는 인증 테이블에서 가져와야 함
+            .authorities(listOf(SimpleGrantedAuthority("ROLE_${user.role}")))
+            .build()
     }
 }

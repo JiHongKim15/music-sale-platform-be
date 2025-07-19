@@ -12,20 +12,20 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional
 open class WishlistService(
-        private val wishlistPort: WishlistPort,
-        private val mapper: WishlistMapper,
+    private val wishlistPort: WishlistPort,
+    private val mapper: WishlistMapper,
 ) : WishlistUseCase {
     @Transactional(readOnly = true)
     override fun getUserWishlist(
-            userId: Long,
-            pageable: Pageable,
+        userId: Long,
+        pageable: Pageable,
     ): Page<com.music.sale.application.wishlist.dto.WishlistOutput> {
         return wishlistPort.findByUserId(userId, pageable)
     }
 
     override fun addToWishlist(
-            userId: Long,
-            productId: Long,
+        userId: Long,
+        productId: Long,
     ): com.music.sale.application.wishlist.dto.WishlistOutput {
         // 이미 찜 목록에 있는지 확인
         if (wishlistPort.existsByUserIdAndProductId(userId, productId)) {
@@ -36,8 +36,8 @@ open class WishlistService(
     }
 
     override fun removeFromWishlist(
-            userId: Long,
-            productId: Long,
+        userId: Long,
+        productId: Long,
     ) {
         // 찜 목록에 있는지 확인
         if (!wishlistPort.existsByUserIdAndProductId(userId, productId)) {
@@ -49,8 +49,8 @@ open class WishlistService(
 
     @Transactional(readOnly = true)
     override fun isProductInWishlist(
-            userId: Long,
-            productId: Long,
+        userId: Long,
+        productId: Long,
     ): Boolean {
         return wishlistPort.existsByUserIdAndProductId(userId, productId)
     }

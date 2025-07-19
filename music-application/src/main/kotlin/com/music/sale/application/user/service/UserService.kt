@@ -7,17 +7,17 @@ import com.music.sale.application.user.port.outport.UserPort
 import com.music.sale.domain.user.User
 import com.music.sale.domain.user.enum.SocialProvider
 import com.music.sale.domain.user.enum.VerificationType
-import java.time.LocalDateTime
-import java.util.*
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDateTime
+import java.util.*
 
 @Service
 @Transactional
 open class UserService(
-        private val userPort: UserPort,
-        private val passwordEncoder: PasswordEncoder,
+    private val userPort: UserPort,
+    private val passwordEncoder: PasswordEncoder,
 ) : UserUseCase {
     override fun createUserByEmail(input: CreateUserByEmailInput): UserOutput {
         // 이메일 중복 확인
@@ -72,34 +72,34 @@ open class UserService(
 
         // User 도메인 생성
         val user =
-                User.create(
-                        email = input.email,
-                        provider = input.provider.name,
-                        providerId = input.providerId,
-                        name = input.name,
-                        nickname = input.nickname,
-                        role = input.role,
-                        phoneNumber = input.phoneNumber,
-                        birthDate = input.birthDate,
-                        gender = input.gender?.name,
-                        zipcode = input.zipcode,
-                        baseAddress = input.baseAddress,
-                        detailAddress = input.detailAddress,
-                        userType = input.userType,
-                        marketingAgreed = input.marketingAgreed,
-                )
+            User.create(
+                email = input.email,
+                provider = input.provider.name,
+                providerId = input.providerId,
+                name = input.name,
+                nickname = input.nickname,
+                role = input.role,
+                phoneNumber = input.phoneNumber,
+                birthDate = input.birthDate,
+                gender = input.gender?.name,
+                zipcode = input.zipcode,
+                baseAddress = input.baseAddress,
+                detailAddress = input.detailAddress,
+                userType = input.userType,
+                marketingAgreed = input.marketingAgreed,
+            )
 
         // 저장
         val savedUser = userPort.save(user)
 
         // 소셜 연동 정보 생성
         userPort.createSocialConnection(
-                userId = savedUser.id!!,
-                provider = input.provider,
-                providerId = input.providerId,
-                providerEmail = input.providerEmail,
-                providerName = input.providerName,
-                providerProfileImage = input.providerProfileImage,
+            userId = savedUser.id!!,
+            provider = input.provider,
+            providerId = input.providerId,
+            providerEmail = input.providerEmail,
+            providerName = input.providerName,
+            providerProfileImage = input.providerProfileImage,
         )
 
         return userPort.getUserById(savedUser.id!!)
@@ -110,8 +110,8 @@ open class UserService(
     }
 
     override fun updateUserProfile(
-            userId: Long,
-            input: UpdateUserProfileInput,
+        userId: Long,
+        input: UpdateUserProfileInput,
     ): UserProfileUpdateResult {
         val user = userPort.getUserById(userId)
         val updatedFields = mutableListOf<String>()
@@ -191,9 +191,9 @@ open class UserService(
         }
 
         return UserProfileUpdateResult(
-                success = true,
-                message = "프로필이 성공적으로 업데이트되었습니다.",
-                updatedFields = updatedFields,
+            success = true,
+            message = "프로필이 성공적으로 업데이트되었습니다.",
+            updatedFields = updatedFields,
         )
     }
 
@@ -202,8 +202,8 @@ open class UserService(
     }
 
     override fun sendPhoneVerificationCode(
-            phoneNumber: String,
-            verificationType: VerificationType,
+        phoneNumber: String,
+        verificationType: VerificationType,
     ): PhoneVerificationOutput {
         // 인증 코드 생성 (6자리 숫자)
         val verificationCode = String.format("%06d", Random().nextInt(1000000))
@@ -214,133 +214,133 @@ open class UserService(
 
         // 새로운 인증 정보 저장
         userPort.createPhoneVerification(
-                phoneNumber = phoneNumber,
-                verificationCode = verificationCode,
-                verificationType = verificationType,
-                expiresAt = expiresAt,
+            phoneNumber = phoneNumber,
+            verificationCode = verificationCode,
+            verificationType = verificationType,
+            expiresAt = expiresAt,
         )
 
         // TODO: 실제 SMS 발송 로직 구현
         println("SMS 발송: $phoneNumber -> 인증코드: $verificationCode")
 
         return PhoneVerificationOutput(
-                phoneNumber = phoneNumber,
-                verificationCode = verificationCode,
-                verificationType = verificationType,
-                expiresAt = expiresAt,
-                attemptCount = 0,
-                isUsed = false,
+            phoneNumber = phoneNumber,
+            verificationCode = verificationCode,
+            verificationType = verificationType,
+            expiresAt = expiresAt,
+            attemptCount = 0,
+            isUsed = false,
         )
     }
 
     override fun verifyPhoneCode(
-            phoneNumber: String,
-            verificationCode: String,
-            verificationType: VerificationType,
+        phoneNumber: String,
+        verificationCode: String,
+        verificationType: VerificationType,
     ): PhoneVerificationResult {
         val verification =
-                userPort.getPhoneVerification(phoneNumber, verificationType)
-                        ?: return PhoneVerificationResult(
-                                success = false,
-                                message = "인증 정보를 찾을 수 없습니다.",
-                                verifiedAt = null,
-                        )
+            userPort.getPhoneVerification(phoneNumber, verificationType)
+                ?: return PhoneVerificationResult(
+                    success = false,
+                    message = "인증 정보를 찾을 수 없습니다.",
+                    verifiedAt = null,
+                )
 
         if (verification.isUsed) {
             return PhoneVerificationResult(
-                    success = false,
-                    message = "이미 사용된 인증 코드입니다.",
-                    verifiedAt = null,
+                success = false,
+                message = "이미 사용된 인증 코드입니다.",
+                verifiedAt = null,
             )
         }
 
         if (verification.expiresAt.isBefore(LocalDateTime.now())) {
             return PhoneVerificationResult(
-                    success = false,
-                    message = "만료된 인증 코드입니다.",
-                    verifiedAt = null,
+                success = false,
+                message = "만료된 인증 코드입니다.",
+                verifiedAt = null,
             )
         }
 
         if (verification.verificationCode != verificationCode) {
             return PhoneVerificationResult(
-                    success = false,
-                    message = "잘못된 인증 코드입니다.",
-                    verifiedAt = null,
+                success = false,
+                message = "잘못된 인증 코드입니다.",
+                verifiedAt = null,
             )
         }
 
         // 인증 성공 처리
         userPort.markPhoneVerificationAsUsed(phoneNumber, verificationType)
         userPort.verifyUserPhone(
-                userId = userPort.getUserIdByPhone(phoneNumber),
-                phoneNumber = phoneNumber,
+            userId = userPort.getUserIdByPhone(phoneNumber),
+            phoneNumber = phoneNumber,
         )
 
         return PhoneVerificationResult(
-                success = true,
-                message = "휴대폰 인증이 완료되었습니다.",
-                verifiedAt = LocalDateTime.now(),
+            success = true,
+            message = "휴대폰 인증이 완료되었습니다.",
+            verifiedAt = LocalDateTime.now(),
         )
     }
 
     override fun connectSocialAccount(
-            userId: Long,
-            input: ConnectSocialAccountInput,
+        userId: Long,
+        input: ConnectSocialAccountInput,
     ): SocialConnectionResult {
         // 이미 연동된 소셜 계정인지 확인
         if (userPort.existsSocialConnection(userId, input.provider)) {
             return SocialConnectionResult(
-                    success = false,
-                    message = "이미 연동된 소셜 계정입니다.",
-                    provider = input.provider,
-                    connectedAt = null,
+                success = false,
+                message = "이미 연동된 소셜 계정입니다.",
+                provider = input.provider,
+                connectedAt = null,
             )
         }
 
         // 소셜 연동 정보 생성
         userPort.createSocialConnection(
-                userId = userId,
-                provider = input.provider,
-                providerId = input.providerId,
-                providerEmail = input.providerEmail,
-                providerName = input.providerName,
-                providerProfileImage = input.providerProfileImage,
-                accessToken = input.accessToken,
-                refreshToken = input.refreshToken,
-                tokenExpiresAt = input.tokenExpiresAt,
+            userId = userId,
+            provider = input.provider,
+            providerId = input.providerId,
+            providerEmail = input.providerEmail,
+            providerName = input.providerName,
+            providerProfileImage = input.providerProfileImage,
+            accessToken = input.accessToken,
+            refreshToken = input.refreshToken,
+            tokenExpiresAt = input.tokenExpiresAt,
         )
 
         return SocialConnectionResult(
-                success = true,
-                message = "소셜 계정이 성공적으로 연동되었습니다.",
-                provider = input.provider,
-                connectedAt = LocalDateTime.now(),
+            success = true,
+            message = "소셜 계정이 성공적으로 연동되었습니다.",
+            provider = input.provider,
+            connectedAt = LocalDateTime.now(),
         )
     }
 
     override fun disconnectSocialAccount(
-            userId: Long,
-            provider: String,
+        userId: Long,
+        provider: String,
     ): SocialConnectionResult {
         val socialProvider = SocialProvider.valueOf(provider.uppercase())
 
         if (!userPort.existsSocialConnection(userId, socialProvider)) {
             return SocialConnectionResult(
-                    success = false,
-                    message = "연동된 소셜 계정을 찾을 수 없습니다.",
-                    provider = socialProvider,
-                    connectedAt = null,
+                success = false,
+                message = "연동된 소셜 계정을 찾을 수 없습니다.",
+                provider = socialProvider,
+                connectedAt = null,
             )
         }
 
         userPort.deleteSocialConnection(userId, socialProvider)
 
         return SocialConnectionResult(
-                success = true,
-                message = "소셜 계정 연동이 해제되었습니다.",
-                provider = socialProvider,
-                connectedAt = null,
+            success = true,
+            message = "소셜 계정 연동이 해제되었습니다.",
+            provider = socialProvider,
+            connectedAt = null,
         )
     }
 
@@ -348,40 +348,40 @@ open class UserService(
         val user = userPort.getUserById(userId)
 
         return UserStatsOutput(
-                userId = userId,
-                totalPurchases = user.totalPurchases,
-                totalSales = user.totalSales,
-                rating = user.rating,
-                reviewCount = user.reviewCount,
-                lastLoginAt = user.lastLoginAt,
-                joinDate = user.createdAt,
+            userId = userId,
+            totalPurchases = user.totalPurchases,
+            totalSales = user.totalSales,
+            rating = user.rating,
+            reviewCount = user.reviewCount,
+            lastLoginAt = user.lastLoginAt,
+            joinDate = user.createdAt,
         )
     }
 
     override fun setupTwoFactorAuth(userId: Long): TwoFactorSetupOutput {
         // TODO: 2단계 인증 구현
         return TwoFactorSetupOutput(
-                enabled = false,
-                secret = null,
-                qrCodeUrl = null,
-                backupCodes = null,
+            enabled = false,
+            secret = null,
+            qrCodeUrl = null,
+            backupCodes = null,
         )
     }
 
     override fun verifyTwoFactorAuth(
-            userId: Long,
-            code: String,
+        userId: Long,
+        code: String,
     ): TwoFactorVerificationResult {
         // TODO: 2단계 인증 구현
         return TwoFactorVerificationResult(
-                success = false,
-                message = "2단계 인증이 아직 구현되지 않았습니다.",
+            success = false,
+            message = "2단계 인증이 아직 구현되지 않았습니다.",
         )
     }
 
     override fun setInterestedCategories(
-            userId: Long,
-            categoryIds: List<Long>,
+        userId: Long,
+        categoryIds: List<Long>,
     ) {
         userPort.setInterestedCategories(userId, categoryIds)
     }
