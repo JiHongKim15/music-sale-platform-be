@@ -1,5 +1,5 @@
 plugins {
-    kotlin("plugin.allopen") version "1.9.25"
+    kotlin("plugin.jpa") version "1.9.25"
 }
 
 dependencies {
@@ -47,12 +47,6 @@ kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict")
     }
-}
-
-allOpen {
-    annotation("jakarta.persistence.Entity")
-    annotation("jakarta.persistence.MappedSuperclass")
-    annotation("jakarta.persistence.Embeddable")
 }
 
 sourceSets["main"].java.srcDirs("src/main/kotlin")

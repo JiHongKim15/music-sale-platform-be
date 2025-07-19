@@ -1,3 +1,7 @@
-rootProject.name = "music"
+rootProject.name = "music-sale-platform-be"
 
-include("music-api", "music-application", "music-infrastructure")
+include(
+    "music-api",
+    "music-application",
+    "music-infrastructure",
+) 

@@ -15,6 +15,7 @@ class ProductCatalogEntity(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
     val category: CategoryEntity,
+    val brand: String? = null,
     @Column(name = "attributes", nullable = false, columnDefinition = "JSON")
     @Convert(converter = JsonConverter::class)
     val attributes: Map<String, Any>? = null,
