@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional
 open class SellerVerificationService(
-        private val userPort: UserPort,
+    private val userPort: UserPort,
 ) {
     fun getUserById(userId: Long): User {
         return userPort.findById(userId)
-                ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
+            ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
     }
 }

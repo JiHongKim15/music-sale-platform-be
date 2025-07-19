@@ -9,9 +9,8 @@ import org.springframework.stereotype.Component
 
 @Component
 open class ProductViewCountPersistenceAdapter(
-        private val repository: ProductViewCountRepository,
+    private val repository: ProductViewCountRepository,
 ) : ProductViewCountPort {
-
     override fun findByProductId(productId: Long): ProductViewCountOutput? {
         return repository.findByProductId(productId)?.toOutput()
     }

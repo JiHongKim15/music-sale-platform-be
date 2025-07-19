@@ -21,7 +21,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 @Configuration
 @EnableWebSecurity
 open class SecurityConfig(
-        private val jwtAuthenticationFilter: JwtAuthenticationFilter,
+    private val jwtAuthenticationFilter: JwtAuthenticationFilter,
 ) {
     @Bean
     open fun passwordEncoder(): PasswordEncoder {
@@ -30,8 +30,8 @@ open class SecurityConfig(
 
     @Bean
     open fun authenticationProvider(
-            userDetailsService: UserDetailsService,
-            passwordEncoder: PasswordEncoder
+        userDetailsService: UserDetailsService,
+        passwordEncoder: PasswordEncoder,
     ): AuthenticationProvider {
         val authProvider = DaoAuthenticationProvider()
         authProvider.setUserDetailsService(userDetailsService)
@@ -46,19 +46,19 @@ open class SecurityConfig(
 
     @Bean
     open fun securityFilterChain(
-            http: HttpSecurity,
-            authProvider: AuthenticationProvider
+        http: HttpSecurity,
+        authProvider: AuthenticationProvider,
     ): SecurityFilterChain {
         http
-                .csrf { it.disable() }
-                .cors { it.configurationSource(corsConfigurationSource()) }
-                .authorizeHttpRequests { it.anyRequest().permitAll() }
-                .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
-                .authenticationProvider(authProvider)
-                .addFilterBefore(
-                        jwtAuthenticationFilter,
-                        UsernamePasswordAuthenticationFilter::class.java
-                )
+            .csrf { it.disable() }
+            .cors { it.configurationSource(corsConfigurationSource()) }
+            .authorizeHttpRequests { it.anyRequest().permitAll() }
+            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
+            .authenticationProvider(authProvider)
+            .addFilterBefore(
+                jwtAuthenticationFilter,
+                UsernamePasswordAuthenticationFilter::class.java,
+            )
 
         return http.build()
     }

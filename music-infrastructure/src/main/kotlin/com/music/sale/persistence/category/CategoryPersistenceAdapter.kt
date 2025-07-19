@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository
 
 @Repository
 open class CategoryPersistenceAdapter(
-        private val categoryRepository: CategoryRepository,
-        private val mapper: CategoryPersistenceMapper,
+    private val categoryRepository: CategoryRepository,
+    private val mapper: CategoryPersistenceMapper,
 ) : CategoryPort {
     override fun getCategoryById(id: Long): Category {
         return mapper.toDomain(categoryRepository.findById(id).get())

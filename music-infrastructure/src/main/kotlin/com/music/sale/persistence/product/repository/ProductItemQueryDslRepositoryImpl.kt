@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository
 
 @Repository
 open class ProductItemQueryDslRepositoryImpl(
-        private val queryFactory: JPAQueryFactory,
+    private val queryFactory: JPAQueryFactory,
 ) : ProductItemQueryDslRepository {
     override fun searchProducts(
-            searchCriteria: SearchProductCondition,
-            pageable: Pageable,
+        searchCriteria: SearchProductCondition,
+        pageable: Pageable,
     ): Page<ProductItemEntity> {
         // 임시로 빈 페이지 반환
         return PageImpl(emptyList(), pageable, 0)

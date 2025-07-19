@@ -15,30 +15,30 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional
 open class CartService(
-        private val cartPort: CartPort,
-        private val userPort: UserPort,
-        private val productPort: ProductPort,
+    private val cartPort: CartPort,
+    private val userPort: UserPort,
+    private val productPort: ProductPort,
 ) : CartUseCase {
     @Transactional(readOnly = true)
     override fun getUserCart(
-            userId: Long,
-            pageable: Pageable,
+        userId: Long,
+        pageable: Pageable,
     ): Page<CartOutput> {
         return cartPort.findByUserId(userId, pageable)
     }
 
     override fun addToCart(
-            userId: Long,
-            productId: Long,
-            quantity: Int,
+        userId: Long,
+        productId: Long,
+        quantity: Int,
     ): CartOutput {
         val user =
-                userPort.findById(userId)
-                        ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
+            userPort.findById(userId)
+                ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
 
         val product =
-                productPort.findById(productId)
-                        ?: throw IllegalArgumentException("상품을 찾을 수 없습니다: $productId")
+            productPort.findById(productId)
+                ?: throw IllegalArgumentException("상품을 찾을 수 없습니다: $productId")
 
         // 이미 장바구니에 있는지 확인
         val existingCart = cartPort.findByUserIdAndProductId(userId, productId)
@@ -55,40 +55,40 @@ open class CartService(
     }
 
     override fun updateCartQuantity(
-            userId: Long,
-            productId: Long,
-            quantity: Int,
+        userId: Long,
+        productId: Long,
+        quantity: Int,
     ): CartOutput {
         val existingCart =
-                cartPort.findByUserIdAndProductId(userId, productId)
-                        ?: throw IllegalArgumentException("장바구니에서 해당 상품을 찾을 수 없습니다")
+            cartPort.findByUserIdAndProductId(userId, productId)
+                ?: throw IllegalArgumentException("장바구니에서 해당 상품을 찾을 수 없습니다")
 
         val user =
-                userPort.findById(userId)
-                        ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
+            userPort.findById(userId)
+                ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
 
         val product =
-                productPort.findById(productId)
-                        ?: throw IllegalArgumentException("상품을 찾을 수 없습니다: $productId")
+            productPort.findById(productId)
+                ?: throw IllegalArgumentException("상품을 찾을 수 없습니다: $productId")
 
         // 도메인 모델로 변환 후 수량 업데이트
         val cart =
-                Cart(
-                        id = existingCart.id,
-                        user = user,
-                        product = product,
-                        quantity = existingCart.quantity,
-                        createdAt = existingCart.createdAt,
-                        updatedAt = existingCart.updatedAt,
-                )
+            Cart(
+                id = existingCart.id,
+                user = user,
+                product = product,
+                quantity = existingCart.quantity,
+                createdAt = existingCart.createdAt,
+                updatedAt = existingCart.updatedAt,
+            )
 
         val updatedCart = cart.updateQuantity(quantity)
         return cartPort.save(updatedCart)
     }
 
     override fun removeFromCart(
-            userId: Long,
-            productId: Long,
+        userId: Long,
+        productId: Long,
     ) {
         if (!cartPort.existsByUserIdAndProductId(userId, productId)) {
             throw IllegalArgumentException("장바구니에서 해당 상품을 찾을 수 없습니다")

@@ -16,25 +16,25 @@ interface StoreRepository : JpaRepository<StoreEntity, Long> {
 
     // 상점 상태별 조회
     fun findByStatus(
-            status: StoreEntity.StoreStatus,
-            pageable: Pageable,
+        status: StoreEntity.StoreStatus,
+        pageable: Pageable,
     ): Page<StoreEntity>
 
     // 상점명 검색 (부분 일치)
     fun findByNameContaining(
-            name: String,
-            pageable: Pageable,
+        name: String,
+        pageable: Pageable,
     ): Page<StoreEntity>
 
     // 주소로 상점 검색 (부분 일치)
     fun findByBaseAddressContaining(
-            address: String,
-            pageable: Pageable,
+        address: String,
+        pageable: Pageable,
     ): Page<StoreEntity>
 
     // 위치 기반 상점 검색 (반경 내 상점 찾기)
     @Query(
-            """
+        """
         SELECT s FROM StoreEntity s
         WHERE (6371 * acos(cos(radians(:latitude)) * cos(radians(s.latitude)) *
                cos(radians(s.longitude) - radians(:longitude)) +
@@ -43,15 +43,15 @@ interface StoreRepository : JpaRepository<StoreEntity, Long> {
     """,
     )
     fun findStoresWithinDistance(
-            @Param("latitude") latitude: Double,
-            @Param("longitude") longitude: Double,
-            @Param("distance") distanceInKm: Double,
-            pageable: Pageable,
+        @Param("latitude") latitude: Double,
+        @Param("longitude") longitude: Double,
+        @Param("distance") distanceInKm: Double,
+        pageable: Pageable,
     ): Page<StoreEntity>
 
     // 다양한 조건으로 상점 검색
     @Query(
-            """
+        """
         SELECT s FROM StoreEntity s
         WHERE (:keyword IS NULL OR
                s.name LIKE %:keyword% OR
@@ -61,7 +61,7 @@ interface StoreRepository : JpaRepository<StoreEntity, Long> {
     """,
     )
     fun searchStores(
-            @Param("keyword") keyword: String?,
-            pageable: Pageable,
+        @Param("keyword") keyword: String?,
+        pageable: Pageable,
     ): Page<StoreEntity>
 }

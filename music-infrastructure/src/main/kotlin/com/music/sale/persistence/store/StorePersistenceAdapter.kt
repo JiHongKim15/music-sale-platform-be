@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 @Transactional
 open class StorePersistenceAdapter(
-        private val storeRepository: StoreRepository,
-        private val mapper: StorePersistenceMapper,
+    private val storeRepository: StoreRepository,
+    private val mapper: StorePersistenceMapper,
 ) : StorePort {
     override fun findById(id: Long): Store {
         return storeRepository.findById(id).map { mapper.toDomain(it) }.orElse(null)
