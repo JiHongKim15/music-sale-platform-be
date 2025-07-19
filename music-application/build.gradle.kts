@@ -28,9 +28,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     
     // JWT (인증 서비스에서 사용)
-    implementation("io.jsonwebtoken:jjwt-api:0.12.5")
-    implementation("io.jsonwebtoken:jjwt-impl:0.12.5")
-    implementation("io.jsonwebtoken:jjwt-jackson:0.12.5")
+    implementation("org.springframework.security:spring-security-jwt:1.1.1.RELEASE")
     
     // Lombok
     compileOnly("org.projectlombok:lombok:1.18.30")
