@@ -1,36 +1,39 @@
 server:
-  port: 8081
+  port: 8080
 
 spring:
   application:
     name: music.sale
   
-  # 임베디드 H2 데이터베이스 사용 설정
+  # MySQL 데이터베이스 사용 설정
   datasource:
-    url: jdbc:h2:mem:music_sale_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/music_sale_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&rewriteBatchedStatements=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password:
+    password: password
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      connection-test-query: SELECT 1
   
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: create-drop
     show-sql: true
     defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
   
   sql:
     init:
-      mode: always
+      mode: never
       data-locations: classpath:import.sql
-    defer-datasource-initialization: true
-  
-  h2:
-    console:
-      enabled: true # H2 콘솔 활성화 (웹 브라우저에서 /h2-console 경로로 접근 가능)
-      path: /h2-console
-      settings:
-        web-allow-others: true
+    defer-datasource-initialization: false
 
   security:
     oauth2:

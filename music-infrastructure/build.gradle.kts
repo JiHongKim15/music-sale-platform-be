@@ -25,7 +25,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // Database
-    runtimeOnly("com.mysql:mysql-connector-j")
+    runtimeOnly("com.mysql:mysql-connector-j:8.4.0")
     runtimeOnly("com.h2database:h2")
 
     // QueryDSL

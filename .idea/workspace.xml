@@ -5,11 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c0a0b21-f0b8-4939-a866-0072b9f8de56" name="변경" comment="fix: 무언가 오류 수정..">
+      <change afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/ProductImage.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductImageEntity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/main/import.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/product/mapper/ProductMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/product/mapper/ProductMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/product/service/ProductService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/product/service/ProductService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/Product.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/Product.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-infrastructure/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/ProductPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/ProductPersistenceAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductCatalogEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductCatalogEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductItemEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductItemEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/mapper/ProductPersistenceMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/mapper/ProductPersistenceMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/wishlist/entity/WishlistEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/wishlist/entity/WishlistEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/resources/import.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,9 +58,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
         <option value="Kotlin Enum" />
         <option value="package-info" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -133,7 +144,7 @@
     "node.js.selected.package.stylelint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "프로젝트",
+    "project.structure.last.edited": "모듈",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "rearrange.code.on.save": "true",
@@ -144,8 +155,9 @@
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
-      "mysql",
-      "postgresql"
+      "postgresql",
+      "h2",
+      "mysql"
     ]
   }
 }]]></component>
@@ -169,6 +181,7 @@
       <recent name="com.sodamjae.application.product.port.out" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.music.sale.persistence.product.entity" />
       <recent name="com.music.sale.adapter.persistence.user" />
       <recent name="com.music.sale.adapter.persistence.category" />
       <recent name="com.music.sale.adapter.persistence.product.repository" />
@@ -338,7 +351,7 @@
       <workItem from="1750409755997" duration="2120000" />
       <workItem from="1750411896764" duration="16694000" />
       <workItem from="1750598160757" duration="1465000" />
-      <workItem from="1752940560576" duration="1837000" />
+      <workItem from="1752940560576" duration="10319000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <option name="closed" value="true" />
@@ -356,7 +369,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752934606802</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix: 무언가 오류 수정..">
+      <option name="closed" value="true" />
+      <created>1752943428680</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1752943428680</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

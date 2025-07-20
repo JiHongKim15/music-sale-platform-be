@@ -26,7 +26,7 @@ subprojects {
     }
 
     dependencies {
-        implementation(platform("org.springframework.boot:spring-boot-dependencies:3.3.1"))
+        implementation(platform("org.springframework.boot:spring-boot-dependencies:3.1.18"))
         // Common dependencies for all subprojects if any
     }
 }
