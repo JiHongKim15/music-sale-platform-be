@@ -20,10 +20,10 @@ import org.springframework.transaction.annotation.Transactional
 @Component
 @Transactional
 open class ProductPersistenceAdapter(
-        private val productCatalogRepository: ProductCatalogRepository,
-        private val productItemRepository: ProductItemRepository,
-        private val productItemQueryDslRepository: ProductItemQueryDslRepository,
-        private val mapper: ProductPersistenceMapper,
+    private val productCatalogRepository: ProductCatalogRepository,
+    private val productItemRepository: ProductItemRepository,
+    private val productItemQueryDslRepository: ProductItemQueryDslRepository,
+    private val mapper: ProductPersistenceMapper,
 ) : ProductPort {
     @Transactional(readOnly = true)
     override fun findAll(pageable: Pageable): Page<Product> {
@@ -31,28 +31,28 @@ open class ProductPersistenceAdapter(
         val sortProperty = pageable.sort ?: "createdAt"
         val pageNumber = if (pageable.pageNumber < 0) 0 else pageable.pageNumber
         val springPageable =
-                PageRequest.of(
-                        pageNumber,
-                        pageable.pageSize,
-                        Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty),
-                )
+            PageRequest.of(
+                pageNumber,
+                pageable.pageSize,
+                Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty),
+            )
         return productItemRepository.findAll(springPageable).map { mapper.toDomain(it) }
     }
 
     @Transactional(readOnly = true)
     override fun searchProducts(
-            searchCondition: SearchProductCondition,
-            pageable: Pageable,
+        searchCondition: SearchProductCondition,
+        pageable: Pageable,
     ): Page<Product> {
         val sortDirection = pageable.sortDirection ?: SortDirection.DESC
         val sortProperty = pageable.sort ?: "createdAt"
         val pageNumber = if (pageable.pageNumber < 0) 0 else pageable.pageNumber
         val springPageable =
-                PageRequest.of(
-                        pageNumber,
-                        pageable.pageSize,
-                        Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty),
-                )
+            PageRequest.of(
+                pageNumber,
+                pageable.pageSize,
+                Sort.by(Sort.Direction.valueOf(sortDirection.name), sortProperty),
+            )
 
         return productItemQueryDslRepository.searchProducts(searchCondition, springPageable).map {
             mapper.toDomain(it)
@@ -62,9 +62,9 @@ open class ProductPersistenceAdapter(
     override fun save(productCondition: SaveProductItemCondition): Product {
         val catalogId = productCondition.catalogId
         val productCatalogEntity =
-                productCatalogRepository.findById(catalogId).orElseThrow {
-                    IllegalArgumentException("Product catalog not found with id: $catalogId")
-                }
+            productCatalogRepository.findById(catalogId).orElseThrow {
+                IllegalArgumentException("Product catalog not found with id: $catalogId")
+            }
 
         val productItemEntity = mapper.toEntity(productCondition, productCatalogEntity)
 
@@ -74,11 +74,11 @@ open class ProductPersistenceAdapter(
 
     override fun update(product: Product): Product {
         val catalogEntity =
-                productCatalogRepository.findById(product.catalog.id).orElseThrow {
-                    IllegalArgumentException(
-                            "Product catalog not found with id: ${product.catalog.id}",
-                    )
-                }
+            productCatalogRepository.findById(product.catalog.id).orElseThrow {
+                IllegalArgumentException(
+                    "Product catalog not found with id: ${product.catalog.id}",
+                )
+            }
         val entity = mapper.toEntity(product, catalogEntity)
         val savedEntity = productItemRepository.save(entity)
         return mapper.toDomain(savedEntity)

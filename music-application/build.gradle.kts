@@ -1,5 +1,15 @@
 plugins {
+    id("org.springframework.boot") version "3.3.1"
+    id("io.spring.dependency-management")
     kotlin("plugin.allopen") version "1.9.25"
+}
+
+tasks.getByName("bootJar") {
+    enabled = false
+}
+
+tasks.getByName("jar") {
+    enabled = true
 }
 
 dependencies {

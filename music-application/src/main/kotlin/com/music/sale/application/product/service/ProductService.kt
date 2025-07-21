@@ -19,10 +19,10 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional
 open class ProductService(
-        private val port: ProductPort,
-        private val mapper: ProductMapper,
-        private val categoryService: CategoryService,
-        private val userPort: UserPort,
+    private val port: ProductPort,
+    private val mapper: ProductMapper,
+    private val categoryService: CategoryService,
+    private val userPort: UserPort,
 ) : ProductUseCase {
     /** 상품 관련 비즈니스 로직을 처리하는 서비스 클래스 ProductPort를 통해 영속성 계층과 상호작용 */
     override fun getProducts(pageable: Pageable): Page<ProductOutput> {
@@ -34,22 +34,22 @@ open class ProductService(
     }
 
     override fun searchProducts(
-            input: SearchProductInput,
-            pageable: Pageable,
+        input: SearchProductInput,
+        pageable: Pageable,
     ): Page<ProductOutput> {
         return port.searchProducts(
-                        searchCondition = mapper.toSearchProductCondition(input),
-                        pageable = pageable,
-                )
-                .map { mapper.toOutput(it) }
+            searchCondition = mapper.toSearchProductCondition(input),
+            pageable = pageable,
+        )
+            .map { mapper.toOutput(it) }
     }
 
     override fun createProduct(input: CreateProductInput): ProductOutput {
         val seller =
-                userPort.findById(input.sellerId)
-                        ?: throw IllegalArgumentException(
-                                "Seller not found with id: ${input.sellerId}",
-                        )
+            userPort.findById(input.sellerId)
+                ?: throw IllegalArgumentException(
+                    "Seller not found with id: ${input.sellerId}",
+                )
 
         // TODO: Store 정보도 실제로 조회해야 함
         val store = Store(input.storeId)
@@ -68,15 +68,15 @@ open class ProductService(
         val category = categoryService.getCategoryById(categoryId)
 
         val updatedProduct =
-                product.copy(
-                        price = input.price ?: product.price,
-                        condition = input.condition ?: product.condition,
-                        conditionGrade = input.conditionGrade ?: product.conditionGrade,
-                        stockQuantity = input.stockQuantity ?: product.stockQuantity,
-                        status = input.status ?: product.status,
-                        customName = input.name ?: product.customName,
-                        customAttributes = input.attributes ?: product.customAttributes,
-                )
+            product.copy(
+                price = input.price ?: product.price,
+                condition = input.condition ?: product.condition,
+                conditionGrade = input.conditionGrade ?: product.conditionGrade,
+                stockQuantity = input.stockQuantity ?: product.stockQuantity,
+                status = input.status ?: product.status,
+                customName = input.name ?: product.customName,
+                customAttributes = input.attributes ?: product.customAttributes,
+            )
 
         return mapper.toOutput(port.update(updatedProduct))
     }

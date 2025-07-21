@@ -5,22 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c0a0b21-f0b8-4939-a866-0072b9f8de56" name="변경" comment="fix: 무언가 오류 수정..">
-      <change afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/ProductImage.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductImageEntity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-application/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/product/mapper/ProductMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/product/mapper/ProductMapper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/product/service/ProductService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/product/service/ProductService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/Product.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/Product.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/ProductCatalog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/ProductCatalog.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/ProductImage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/ProductImage.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-infrastructure/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/ProductPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/ProductPersistenceAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductCatalogEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductCatalogEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductImageEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductImageEntity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductItemEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductItemEntity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/mapper/ProductPersistenceMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/mapper/ProductPersistenceMapper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/wishlist/entity/WishlistEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/wishlist/entity/WishlistEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/resources/import.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/resources/import.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +42,38 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/music-api">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="music-sale-platform-be" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="music-sale-platform-be" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="music-sale-platform-be" type="f1a62948:ProjectNode" />
+                <item name="music-api" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="music-sale-platform-be" type="f1a62948:ProjectNode" />
+                <item name="music-api" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="music-sale-platform-be" type="f1a62948:ProjectNode" />
+                <item name="music-api" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -112,6 +139,7 @@
     "Gradle.music-sale-platform-be [build].executor": "Run",
     "Gradle.music-sale-platform-be [clean].executor": "Run",
     "Gradle.music-sale-platform-be 빌드.executor": "Run",
+    "Gradle.music-sale-platform-be:music-api [build].executor": "Run",
     "Kotlin.DemoApplicationKt.executor": "Run",
     "Kotlin.MusicSaleApplicationKt.executor": "Run",
     "Repository.Attach.Annotations": "false",
@@ -136,7 +164,7 @@
     "com.codeium.enabled": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/teri/Desktop/project/music-sale-platform-be/src/main/kotlin/com/music/sale/adapter/persistence/user",
+    "last_opened_file_path": "/Users/jihong.kim/Desktop/project/music-sale-platform-be",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.stylelint": "true",
     "node.js.detected.package.tslint": "true",
@@ -145,8 +173,8 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "모듈",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "rearrange.code.on.save": "true",
     "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -198,7 +226,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MusicSaleApplication (2)">
+  <component name="RunManager" selected="Spring Boot.MusicSaleApplication (1)">
     <configuration name="music-sale-platform-be [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -233,6 +261,28 @@
         <option name="taskNames">
           <list>
             <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="music-sale-platform-be:music-api [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/music-api" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -295,34 +345,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MusicSaleApplicationKt" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="music.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.music.sale.MusicSaleApplicationKt" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.music.sale.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.MusicSaleApplication (2)" />
+        <item itemvalue="Gradle.music-sale-platform-be:music-api [build]" />
         <item itemvalue="Gradle.music-sale-platform-be [build]" />
-        <item itemvalue="Kotlin.MusicSaleApplicationKt" />
         <item itemvalue="Gradle.music-sale-platform-be [clean]" />
-        <item itemvalue="Spring Boot.MusicSaleApplicationKt" />
+        <item itemvalue="Spring Boot.MusicSaleApplication (2)" />
+        <item itemvalue="Kotlin.MusicSaleApplicationKt" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
-        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.218" />
       </set>
     </attachedChunks>
   </component>
@@ -352,6 +389,7 @@
       <workItem from="1750411896764" duration="16694000" />
       <workItem from="1750598160757" duration="1465000" />
       <workItem from="1752940560576" duration="10319000" />
+      <workItem from="1753075739647" duration="8071000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <option name="closed" value="true" />

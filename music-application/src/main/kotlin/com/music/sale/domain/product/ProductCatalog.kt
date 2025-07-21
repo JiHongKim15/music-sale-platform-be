@@ -11,5 +11,5 @@ data class ProductCatalog(
     val name: String,
     val category: Category,
     val brand: String? = null,
-    val attributes: Map<String, Any>? = null
+    val attributes: Map<String, Any>? = null,
 )

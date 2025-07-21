@@ -1,5 +1,15 @@
 plugins {
+    id("org.springframework.boot") version "3.3.1"
+    id("io.spring.dependency-management")
     kotlin("plugin.jpa") version "1.9.25"
+}
+
+tasks.getByName("bootJar") {
+    enabled = false
+}
+
+tasks.getByName("jar") {
+    enabled = true
 }
 
 dependencies {
@@ -32,8 +42,6 @@ dependencies {
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     annotationProcessor("com.querydsl:querydsl-apt:5.0.0:jakarta")
     annotationProcessor("jakarta.persistence:jakarta.persistence-api:3.1.0")
-    annotationProcessor("org.springframework.boot:spring-boot-starter-security")
-    annotationProcessor("org.springframework.boot:spring-boot-starter-websocket")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 
     // Test

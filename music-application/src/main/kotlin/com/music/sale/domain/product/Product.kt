@@ -12,8 +12,10 @@ import com.music.sale.domain.user.User
  * 제품 카탈로그 정보와 아이템별 속성, 그리고 고유 이미지를 포함
  */
 data class Product(
-    val id: Long, // ProductItem의 ID
-    val catalog: ProductCatalog, // ProductCatalog 도메인 객체 참조
+    // ProductItem의 ID
+    val id: Long,
+    // ProductCatalog 도메인 객체 참조
+    val catalog: ProductCatalog,
     val price: Int,
     val seller: User?,
     val store: Store?,
@@ -23,7 +25,8 @@ data class Product(
     val status: ProductStatus,
     val customName: String? = null,
     val customAttributes: Map<String, Any>? = null,
-    val images: MutableList<ProductImage> = mutableListOf() // 이미지는 Product 인스턴스에 직접 속함
+    // 이미지는 Product 인스턴스에 직접 속함
+    val images: MutableList<ProductImage> = mutableListOf(),
 ) {
     // 커스터마이징되지 않았다면 카탈로그의 이름과 속성을 사용
     fun name(): String {
