@@ -25,6 +25,10 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-impl:0.12.5")
     implementation("io.jsonwebtoken:jjwt-jackson:0.12.5")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+    
+    // Redis 설정
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.session:spring-session-data-redis")
 
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 

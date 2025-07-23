@@ -25,3 +25,23 @@ spring:
 jwt:
   secret: ${JWT_SECRET:your-super-secret-jwt-key-here-make-it-long-and-secure}
   expiration: ${JWT_EXPIRATION_MS:86400000}
+
+# Redis 설정
+spring:
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:}
+    database: ${REDIS_DATABASE:0}
+    timeout: 2000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1ms
+  session:
+    store-type: redis
+    redis:
+      namespace: music-sale:session
+      flush-mode: on_save
