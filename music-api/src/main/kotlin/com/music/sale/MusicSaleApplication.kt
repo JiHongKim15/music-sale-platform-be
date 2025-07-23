@@ -12,4 +12,3 @@ open class MusicSaleApplication
 fun main(args: Array<String>) {
     runApplication<MusicSaleApplication>(*args)
 }
-

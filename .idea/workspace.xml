@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c0a0b21-f0b8-4939-a866-0072b9f8de56" name="변경" comment="fix: 무언가 오류 수정.." />
+    <list default="true" id="4c0a0b21-f0b8-4939-a866-0072b9f8de56" name="변경" comment="fix: 무언가 오류 수정..">
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-api/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/MusicSaleApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/MusicSaleApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/redis/RedisBusinessController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/redis/RedisTestController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-api/src/main/resources/import.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/redis/RedisService.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/redis/RedisRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/config/RedisConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/config/RedisConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductItemEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductItemEntity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/redis/RedisRepositoryImpl.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/user/UserPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/user/UserPersistenceAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/viewcount/ProductViewCountPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/viewcount/ProductViewCountPersistenceAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/wishlist/WishlistPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/wishlist/WishlistPersistenceAdapter.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -196,7 +214,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.music-sale-platform-be [build]">
+  <component name="RunManager" selected="Spring Boot.MusicSaleApplication (1)">
     <configuration name="music-sale-platform-be [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -359,7 +377,7 @@
       <workItem from="1750411896764" duration="16694000" />
       <workItem from="1750598160757" duration="1465000" />
       <workItem from="1752940560576" duration="10319000" />
-      <workItem from="1753075739647" duration="37883000" />
+      <workItem from="1753075739647" duration="43943000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <option name="closed" value="true" />

@@ -3,29 +3,33 @@ package com.music.sale.config
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.data.redis.connection.RedisConnectionFactory
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer
 import org.springframework.data.redis.serializer.StringRedisSerializer
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession
 
+/**
+ * Redis 연결 설정
+ * 인프라스트럭처 계층에서 Redis 연결 및 템플릿 설정
+ */
 @Configuration
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 3600) // 1시간 세션 유지
-class RedisConfig {
+open class RedisConfig {
+    @Bean
+    open fun redisConnectionFactory(): RedisConnectionFactory {
+        return LettuceConnectionFactory("localhost", 6379)
+    }
 
     @Bean
-    fun redisTemplate(connectionFactory: RedisConnectionFactory): RedisTemplate<String, Any> {
+    open fun redisTemplate(redisConnectionFactory: RedisConnectionFactory): RedisTemplate<String, Any> {
         val template = RedisTemplate<String, Any>()
-        template.connectionFactory = connectionFactory
-        
-        // Key 직렬화 설정
+        template.setConnectionFactory(redisConnectionFactory)
+
+        // 키/값 직렬화 설정
         template.keySerializer = StringRedisSerializer()
-        template.hashKeySerializer = StringRedisSerializer()
-        
-        // Value 직렬화 설정
         template.valueSerializer = GenericJackson2JsonRedisSerializer()
+        template.hashKeySerializer = StringRedisSerializer()
         template.hashValueSerializer = GenericJackson2JsonRedisSerializer()
-        
-        template.afterPropertiesSet()
+
         return template
     }
 } 

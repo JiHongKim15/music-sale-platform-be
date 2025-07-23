@@ -425,9 +425,9 @@ open class UserPersistenceAdapter(
     // UserDetailsService 구현
     override fun loadUserByUsername(username: String): UserDetails {
         val user = findByEmail(username) ?: throw UsernameNotFoundException("사용자를 찾을 수 없습니다: $username")
-        
+
         val authorities = listOf(SimpleGrantedAuthority(user.role?.name ?: "USER"))
-        
+
         return org.springframework.security.core.userdetails.User.builder()
             .username(user.id?.toString() ?: "")
             .password("") // JWT 인증을 사용하므로 비밀번호는 빈 문자열

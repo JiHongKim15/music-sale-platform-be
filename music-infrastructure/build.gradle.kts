@@ -39,6 +39,10 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j:8.4.0")
     runtimeOnly("com.h2database:h2")
 
+    // Redis
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    implementation("org.springframework.session:spring-session-data-redis")
+
     // QueryDSL
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     annotationProcessor("com.querydsl:querydsl-apt:5.0.0:jakarta")

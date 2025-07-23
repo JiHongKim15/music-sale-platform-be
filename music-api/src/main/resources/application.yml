@@ -21,13 +21,26 @@ spring:
       max-lifetime: 1800000
       connection-test-query: SELECT 1
 
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  # 테이블 자동 생성
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+    defer-datasource-initialization: false  # import.sql 비활성화
+    sql:
+      init:
+        mode: never  # import.sql 완전 비활성화
+
 # JWT 설정
 jwt:
   secret: ${JWT_SECRET:your-super-secret-jwt-key-here-make-it-long-and-secure}
   expiration: ${JWT_EXPIRATION_MS:86400000}
 
-# Redis 설정
-spring:
+  # Redis 설정
   redis:
     host: ${REDIS_HOST:localhost}
     port: ${REDIS_PORT:6379}

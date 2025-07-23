@@ -25,7 +25,7 @@ class ProductItemEntity(
     @JoinColumn(name = "store_id", foreignKey = ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     val store: StoreEntity? = null,
     @Column(nullable = false) val price: Int,
-    @Enumerated(EnumType.STRING) @Column(nullable = false) val condition: ProductCondition,
+    @Enumerated(EnumType.STRING) @Column(name = "`condition`", nullable = false) val condition: ProductCondition,
     @Enumerated(EnumType.STRING)
     @Column(name = "condition_grade")
     val conditionGrade: ProductConditionGrade? = null,
