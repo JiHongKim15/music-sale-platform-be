@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c0a0b21-f0b8-4939-a866-0072b9f8de56" name="변경" comment="fix: 무언가 오류 수정..">
-      <change beforePath="$PROJECT_DIR$/music-api/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="4c0a0b21-f0b8-4939-a866-0072b9f8de56" name="변경" comment="fix: 무언가 오류 수정.." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -362,7 +359,7 @@
       <workItem from="1750411896764" duration="16694000" />
       <workItem from="1750598160757" duration="1465000" />
       <workItem from="1752940560576" duration="10319000" />
-      <workItem from="1753075739647" duration="37575000" />
+      <workItem from="1753075739647" duration="37883000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <option name="closed" value="true" />

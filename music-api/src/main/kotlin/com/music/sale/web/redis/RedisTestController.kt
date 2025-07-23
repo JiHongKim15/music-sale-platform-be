@@ -1,7 +1,7 @@
 package com.music.sale.web.redis
 
 import com.music.sale.common.ApiResponse
-import com.music.sale.service.RedisService
+import com.music.sale.application.redis.RedisService
 import org.springframework.web.bind.annotation.*
 import java.time.Duration
 
