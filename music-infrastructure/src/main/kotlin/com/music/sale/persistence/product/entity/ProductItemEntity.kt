@@ -16,13 +16,13 @@ import jakarta.persistence.*
 class ProductItemEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long? = null,
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "catalog_id", nullable = false)
+    @JoinColumn(name = "catalog_id", nullable = false, foreignKey = ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     val catalog: ProductCatalogEntity,
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller_id")
+    @JoinColumn(name = "seller_id", foreignKey = ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     val seller: UserEntity? = null,
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id")
+    @JoinColumn(name = "store_id", foreignKey = ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
     val store: StoreEntity? = null,
     @Column(nullable = false) val price: Int,
     @Enumerated(EnumType.STRING) @Column(nullable = false) val condition: ProductCondition,

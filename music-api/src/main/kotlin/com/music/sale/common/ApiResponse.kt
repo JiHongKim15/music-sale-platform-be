@@ -1,5 +1,5 @@
 // Copyright (C) 2024 Your Name or Company
-package com.music.sale.web.common
+package com.music.sale.common
 
 data class ApiResponse<T>(
     val success: Boolean,

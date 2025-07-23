@@ -1,7 +1,7 @@
 package com.music.sale.web.user
 
 import com.music.sale.application.user.port.inport.UserUseCase
-import com.music.sale.web.common.ApiResponse
+import com.music.sale.common.ApiResponse
 import com.music.sale.web.user.mapper.UserWebMapper
 import com.music.sale.web.user.request.*
 import com.music.sale.web.user.response.*
@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/user")
 @Tag(name = "User", description = "사용자 관리 API")
 class UserController(
     private val userUseCase: UserUseCase,

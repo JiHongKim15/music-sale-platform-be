@@ -2,8 +2,8 @@ package com.music.sale.web.product
 
 import com.music.sale.application.product.dto.ProductOutput
 import com.music.sale.application.product.port.inport.ProductUseCase
+import com.music.sale.common.ApiResponse
 import com.music.sale.common.ResponseCode
-import com.music.sale.web.common.ApiResponse
 import com.music.sale.web.product.mapper.ProductWebMapper
 import com.music.sale.web.product.request.CreateProductRequest
 import com.music.sale.web.product.request.GetProductRequest
@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/v1/product")
 class ProductController(private val useCase: ProductUseCase, private val mapper: ProductWebMapper) {
     @GetMapping
     fun getProducts(

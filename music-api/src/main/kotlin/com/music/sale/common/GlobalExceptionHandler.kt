@@ -1,4 +1,4 @@
-package com.music.sale.web.common
+package com.music.sale.common
 
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

@@ -6,8 +6,9 @@ import com.music.sale.domain.viewcount.ProductViewCount
 import com.music.sale.persistence.viewcount.entity.ProductViewCountEntity
 import com.music.sale.persistence.viewcount.repository.ProductViewCountRepository
 import org.springframework.stereotype.Component
+import org.springframework.stereotype.Repository
 
-@Component
+@Repository
 open class ProductViewCountPersistenceAdapter(
     private val repository: ProductViewCountRepository,
 ) : ProductViewCountPort {

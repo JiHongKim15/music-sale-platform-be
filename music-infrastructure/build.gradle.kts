@@ -14,6 +14,7 @@ tasks.getByName("jar") {
 
 dependencies {
     implementation(project(":music-application"))
+    implementation(project(":music-domain"))
 
     // Spring Data JPA
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")

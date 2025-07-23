@@ -8,10 +8,10 @@ import com.music.sale.persistence.cart.mapper.CartMapper
 import com.music.sale.persistence.cart.repository.CartRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Repository
 
-@Component
-class CartPersistenceAdapter(
+@Repository
+open class CartPersistenceAdapter(
     private val cartRepository: CartRepository,
     private val cartMapper: CartMapper,
 ) : CartPort {

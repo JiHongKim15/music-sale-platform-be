@@ -13,6 +13,8 @@ tasks.getByName("jar") {
 }
 
 dependencies {
+    implementation(project(":music-domain"))
+
     // Spring Core (비즈니스 로직에 필요한 것만)
     implementation("org.springframework:spring-context")
     implementation("org.springframework:spring-tx")

@@ -18,6 +18,10 @@ import com.music.sale.persistence.user.repository.AuthUserRepository
 import com.music.sale.persistence.user.repository.PhoneVerificationRepository
 import com.music.sale.persistence.user.repository.UserRepository
 import com.music.sale.persistence.user.repository.UserSocialConnectionRepository
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Repository
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -29,7 +33,7 @@ open class UserPersistenceAdapter(
     private val userSocialConnectionRepository: UserSocialConnectionRepository,
     private val phoneVerificationRepository: PhoneVerificationRepository,
     private val mapper: UserPersistenceMapper,
-) : UserPort {
+) : UserPort, UserDetailsService {
     override fun save(user: User): User {
         val userEntity = mapper.toEntity(user)
         val savedUser = userRepository.save(userEntity)
@@ -416,5 +420,22 @@ open class UserPersistenceAdapter(
         val userEntity = mapper.toEntity(user)
         val savedUserEntity = userRepository.save(userEntity)
         return mapper.toDomain(savedUserEntity)
+    }
+
+    // UserDetailsService 구현
+    override fun loadUserByUsername(username: String): UserDetails {
+        val user = findByEmail(username) ?: throw UsernameNotFoundException("사용자를 찾을 수 없습니다: $username")
+        
+        val authorities = listOf(SimpleGrantedAuthority(user.role?.name ?: "USER"))
+        
+        return org.springframework.security.core.userdetails.User.builder()
+            .username(user.id?.toString() ?: "")
+            .password("") // JWT 인증을 사용하므로 비밀번호는 빈 문자열
+            .authorities(authorities)
+            .accountExpired(false)
+            .accountLocked(false)
+            .credentialsExpired(false)
+            .disabled(false)
+            .build()
     }
 }

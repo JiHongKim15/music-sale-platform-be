@@ -8,6 +8,10 @@ dependencies {
     implementation(project(":music-application"))
     implementation(project(":music-infrastructure"))
 
+    // 실행 시점에 필요한 DB 드라이버를 명시적으로 추가
+    runtimeOnly("com.mysql:mysql-connector-j")
+    implementation(project(":music-domain"))
+
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

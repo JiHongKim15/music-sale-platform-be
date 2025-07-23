@@ -4,10 +4,10 @@ import com.music.sale.application.store.port.outport.StorePort
 import com.music.sale.domain.store.Store
 import com.music.sale.persistence.store.mapper.StorePersistenceMapper
 import com.music.sale.persistence.store.repository.StoreRepository
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 
-@Component
+@Repository
 @Transactional
 open class StorePersistenceAdapter(
     private val storeRepository: StoreRepository,

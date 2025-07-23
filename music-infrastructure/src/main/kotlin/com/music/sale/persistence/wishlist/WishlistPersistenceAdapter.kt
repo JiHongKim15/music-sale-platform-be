@@ -9,8 +9,9 @@ import com.music.sale.persistence.wishlist.repository.WishlistRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Component
+import org.springframework.stereotype.Repository
 
-@Component
+@Repository
 open class WishlistPersistenceAdapter(
     private val repository: WishlistRepository,
 ) : WishlistPort {
