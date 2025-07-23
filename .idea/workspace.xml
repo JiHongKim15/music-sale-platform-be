@@ -5,55 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4c0a0b21-f0b8-4939-a866-0072b9f8de56" name="변경" comment="fix: 무언가 오류 수정..">
-      <change afterPath="$PROJECT_DIR$/music-domain/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/common/SortDirection.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-api/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/MusicSaleApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/MusicSaleApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/config/UserDetailsServiceImpl.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/config/oauth2/CustomOAuth2UserService.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/common/ApiResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/common/ApiResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/common/GlobalExceptionHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/common/GlobalExceptionHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/product/ProductController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/product/ProductController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/user/UserController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/user/UserController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/music-api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/cart/Cart.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/cart/Cart.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/category/Category.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/category/Category.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/order/Order.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/order/Order.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/order/Payment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/order/Payment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/order/Shipping.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/order/Shipping.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/order/enum/OrderStatus.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/order/enum/OrderStatus.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/Product.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/product/Product.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/ProductCatalog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/product/ProductCatalog.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/ProductImage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/product/ProductImage.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/enum/ProductCondition.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/product/enum/ProductCondition.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/enum/ProductStatus.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/product/enum/ProductStatus.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/product/enum/SearchProductKeywordType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/product/enum/SearchProductKeywordType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/search/SearchCriteria.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/search/SearchCriteria.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/shipping/ShippingInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/shipping/ShippingInfo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/shipping/ShippingPolicy.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/shipping/ShippingPolicy.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/shop/Shop.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/shop/Shop.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/store/Store.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/store/Store.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/user/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/user/User.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/user/enum/Gender.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/user/enum/Gender.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/user/enum/SocialProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/user/enum/SocialProvider.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/user/enum/UserRole.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/user/enum/UserRole.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/user/enum/UserType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/user/enum/UserType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/user/enum/VerificationType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/user/enum/VerificationType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/viewcount/ProductViewCount.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/viewcount/ProductViewCount.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/domain/wishlist/Wishlist.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/wishlist/Wishlist.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-infrastructure/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/cart/CartPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/cart/CartPersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/ProductPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/ProductPersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductItemEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/product/entity/ProductItemEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/store/StorePersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/store/StorePersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/user/UserPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/user/UserPersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/viewcount/ProductViewCountPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/viewcount/ProductViewCountPersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/wishlist/WishlistPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/wishlist/WishlistPersistenceAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/init/01-init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/init/01-init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-api/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/resources/import.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +39,17 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="music-sale-platform-be" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="music-sale-platform-be" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="music-sale-platform-be" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -163,7 +130,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.DemoApplication.executor": "Run",
     "Spring Boot.MarketApplication.executor": "Run",
-    "Spring Boot.MusicSaleApplication (1).executor": "Debug",
+    "Spring Boot.MusicSaleApplication (1).executor": "Run",
     "Spring Boot.MusicSaleApplication (2).executor": "Run",
     "Spring Boot.MusicSaleApplication.executor": "Run",
     "Spring Boot.MusicSaleApplicationKt.executor": "Run",
@@ -235,7 +202,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.MusicSaleApplication (1)">
+  <component name="RunManager" selected="Gradle.music-sale-platform-be [build]">
     <configuration name="music-sale-platform-be [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -356,9 +323,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.music-sale-platform-be:music-api [build]" />
         <item itemvalue="Gradle.music-sale-platform-be [build]" />
         <item itemvalue="Gradle.music-sale-platform-be [clean]" />
+        <item itemvalue="Gradle.music-sale-platform-be:music-api [build]" />
         <item itemvalue="Spring Boot.MusicSaleApplication (2)" />
         <item itemvalue="Kotlin.MusicSaleApplicationKt" />
       </list>
@@ -398,7 +365,7 @@
       <workItem from="1750411896764" duration="16694000" />
       <workItem from="1750598160757" duration="1465000" />
       <workItem from="1752940560576" duration="10319000" />
-      <workItem from="1753075739647" duration="33884000" />
+      <workItem from="1753075739647" duration="37456000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <option name="closed" value="true" />

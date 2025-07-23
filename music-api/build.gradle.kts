@@ -54,3 +54,48 @@ sourceSets["main"].java.srcDirs(
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
     mainClass.set("com.music.sale.MusicSaleApplicationKt")
 }
+
+// 환경별 실행 태스크
+tasks.register("local") {
+    group = "application"
+    description = "로컬 환경으로 애플리케이션 실행"
+    dependsOn("bootRun")
+    doFirst {
+        tasks.bootRun {
+            args("--spring.profiles.active=local")
+        }
+    }
+}
+
+tasks.register("dev") {
+    group = "application"
+    description = "개발 환경으로 애플리케이션 실행"
+    dependsOn("bootRun")
+    doFirst {
+        tasks.bootRun {
+            args("--spring.profiles.active=dev")
+        }
+    }
+}
+
+tasks.register("prod") {
+    group = "application"
+    description = "운영 환경으로 애플리케이션 실행"
+    dependsOn("bootRun")
+    doFirst {
+        tasks.bootRun {
+            args("--spring.profiles.active=prod")
+        }
+    }
+}
+
+tasks.register("testEnv") {
+    group = "application"
+    description = "테스트 환경으로 애플리케이션 실행"
+    dependsOn("bootRun")
+    doFirst {
+        tasks.bootRun {
+            args("--spring.profiles.active=test")
+        }
+    }
+}

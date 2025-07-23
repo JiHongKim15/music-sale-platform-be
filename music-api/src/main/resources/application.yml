@@ -1,16 +1,18 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
 
 spring:
+  profiles:
+    active: local # 기본 프로파일 설정
   application:
     name: music.sale
   
   # MySQL 데이터베이스 사용 설정
   datasource:
-    url: jdbc:mysql://localhost:3306/music_sale_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&rewriteBatchedStatements=true
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:music_sale}?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul&createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&rewriteBatchedStatements=true
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: password
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
     hikari:
       maximum-pool-size: 5
       minimum-idle: 2
@@ -18,57 +20,8 @@ spring:
       idle-timeout: 600000
       max-lifetime: 1800000
       connection-test-query: SELECT 1
-  
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQLDialect
-  
-  sql:
-    init:
-      mode: always
-      data-locations: classpath:import.sql
-    defer-datasource-initialization: false
-
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: TODO_GOOGLE_CLIENT_ID
-            client-secret: TODO_GOOGLE_CLIENT_SECRET
-            scope: profile, email
-          naver:
-            client-id: TODO_NAVER_CLIENT_ID
-            client-secret: TODO_NAVER_CLIENT_SECRET
-            client-name: Naver
-            authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            scope: name, email
-          kakao:
-            client-id: TODO_KAKAO_CLIENT_ID
-            client-secret: TODO_KAKAO_CLIENT_SECRET
-            client-name: Kakao
-            authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-            scope: profile_nickname, account_email
-        provider:
-          naver:
-            authorization-uri: https://nid.naver.com/oauth2.0/authorize
-            token-uri: https://nid.naver.com/oauth2.0/token
-            user-info-uri: https://openapi.naver.com/v1/nid/me
-            user-name-attribute: response
-          kakao:
-            authorization-uri: https://kauth.kakao.com/oauth/authorize
-            token-uri: https://kauth.kakao.com/oauth/token
-            user-info-uri: https://kapi.kakao.com/v2/user/me
-            user-name-attribute: id
 
 # JWT 설정
 jwt:
-  secret: your-super-secret-jwt-key-here-make-it-long-enough-for-security-at-least-256-bits
-  expiration: 86400000 # 24시간 (밀리초)
+  secret: ${JWT_SECRET:your-super-secret-jwt-key-here-make-it-long-and-secure}
+  expiration: ${JWT_EXPIRATION_MS:86400000}

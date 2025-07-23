@@ -1,15 +1,6 @@
 -- Initial data import file
 -- 악기 판매 플랫폼 초기 데이터
 
--- 기존 데이터 삭제 (초기화) - 외래키 제약조건을 고려한 순서
-DELETE FROM product_item;
-DELETE FROM product_catalog;
-DELETE FROM store;
-DELETE FROM auth_users;
-DELETE FROM users;
-DELETE FROM category WHERE parent_id IS NOT NULL;
-DELETE FROM category WHERE parent_id IS NULL;
-
 -- ========================================
 -- 카테고리 데이터 (악기 분류)
 -- ========================================
