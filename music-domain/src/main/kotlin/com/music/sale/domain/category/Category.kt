@@ -13,7 +13,7 @@ enum class CategoryType {
 /** 카테고리 도메인 모델 계층 구조를 가진 카테고리를 표현 */
 class Category(
     val id: Long,
-    val name: String,
+    var name: String,
     val type: CategoryType,
     var parent: Category?,
     var path: String,

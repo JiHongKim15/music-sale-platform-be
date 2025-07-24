@@ -65,8 +65,6 @@ open class ProductService(
 
         val categoryId = input.catalogId ?: throw IllegalArgumentException("catalogId is required")
 
-        val category = categoryService.getCategoryById(categoryId)
-
         val updatedProduct =
             product.copy(
                 price = input.price ?: product.price,

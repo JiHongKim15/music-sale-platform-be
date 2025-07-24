@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c0a0b21-f0b8-4939-a866-0072b9f8de56" name="변경" comment="fix: 무언가 오류 수정..">
+    <list default="true" id="4c0a0b21-f0b8-4939-a866-0072b9f8de56" name="변경" comment="fix: import 파일 제거">
+      <change afterPath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/category/CategoryController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/category/mapper/CategoryWebMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/category/request/CategoryRequest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/product/request/SearchProductRequest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/music-api/src/main/resources/import.sql.disabled" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/product/ProductController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web/product/ProductController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/category/port/outport/CategoryPort.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/category/port/outport/CategoryPort.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/category/service/CategoryService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/category/service/CategoryService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/product/service/ProductService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-application/src/main/kotlin/com/music/sale/application/product/service/ProductService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/category/Category.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-domain/src/main/kotlin/com/music/sale/domain/category/Category.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/category/CategoryPersistenceAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/music-infrastructure/src/main/kotlin/com/music/sale/persistence/category/CategoryPersistenceAdapter.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,23 +41,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="music-sale-platform-be" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="music-sale-platform-be" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="music-sale-platform-be" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -137,7 +130,7 @@
     "com.codeium.enabled": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/jihong.kim/Desktop/project/music-sale-platform-be",
+    "last_opened_file_path": "/Users/jihong.kim/Desktop/project/music-sale-platform-be/music-api/src/main/kotlin/com/music/sale/web",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.stylelint": "true",
     "node.js.detected.package.tslint": "true",
@@ -164,11 +157,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/music-api/src/main/kotlin/com/music/sale/web" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/user" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/com/music/sale/application" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/store" />
-      <recent name="$PROJECT_DIR$/src/main/kotlin/com/music/sale/adapter/persistence/seller" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/kotlin/com/music/sale" />
@@ -362,7 +355,7 @@
       <workItem from="1750411896764" duration="16694000" />
       <workItem from="1750598160757" duration="1465000" />
       <workItem from="1752940560576" duration="10319000" />
-      <workItem from="1753075739647" duration="57494000" />
+      <workItem from="1753075739647" duration="63802000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <option name="closed" value="true" />
@@ -388,7 +381,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752943428680</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix: import 파일 제거">
+      <option name="closed" value="true" />
+      <created>1753338433042</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1753338433042</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -412,7 +413,8 @@
     <MESSAGE value="fix" />
     <MESSAGE value="spotlessApply" />
     <MESSAGE value="fix: 무언가 오류 수정.." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: 무언가 오류 수정.." />
+    <MESSAGE value="fix: import 파일 제거" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: import 파일 제거" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

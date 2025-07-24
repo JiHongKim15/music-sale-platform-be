@@ -21,7 +21,5 @@ interface CategoryPort {
 
     fun save(category: Category): Category
 
-    fun getReferenceById(id: Long): Category
-
     fun delete(id: Long)
 }

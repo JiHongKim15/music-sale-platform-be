@@ -4,7 +4,7 @@ import com.music.sale.application.product.dto.ProductOutput
 import com.music.sale.application.product.port.inport.ProductUseCase
 import com.music.sale.common.ApiResponse
 import com.music.sale.common.ResponseCode
-import com.music.sale.web.product.mapper.ProductWebMapper
+import com.music.sale.web.product.mapper.ProductRequestMapper
 import com.music.sale.web.product.request.CreateProductRequest
 import com.music.sale.web.product.request.GetProductRequest
 import com.music.sale.web.product.request.SearchProductRequest
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1/product")
-class ProductController(private val useCase: ProductUseCase, private val mapper: ProductWebMapper) {
+class ProductController(private val useCase: ProductUseCase, private val mapper: ProductRequestMapper) {
     @GetMapping
     fun getProducts(
         @ModelAttribute pageRequest: GetProductRequest,

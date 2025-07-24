@@ -5,46 +5,42 @@ import com.music.sale.domain.category.Category
 import com.music.sale.domain.category.CategoryType
 import com.music.sale.persistence.category.mapper.CategoryPersistenceMapper
 import com.music.sale.persistence.category.repository.CategoryRepository
-import org.springframework.stereotype.Repository
+import org.springframework.stereotype.Component
 
-@Repository
-open class CategoryPersistenceAdapter(
+@Component
+class CategoryPersistenceAdapter(
     private val categoryRepository: CategoryRepository,
-    private val mapper: CategoryPersistenceMapper,
+    private val categoryMapper: CategoryPersistenceMapper,
 ) : CategoryPort {
     override fun getCategoryById(id: Long): Category {
-        return mapper.toDomain(categoryRepository.findById(id).get())
+        return categoryRepository.findById(id).orElseThrow { NoSuchElementException("Category not found with id: $id") }
+            .let { categoryMapper.toDomain(it) }
     }
 
     override fun findAll(): List<Category> {
-        return categoryRepository.findAll().map { mapper.toDomain(it) }
+        return categoryRepository.findAll().map { categoryMapper.toDomain(it) }
     }
 
-    override fun findById(id: Long): Category {
-        return categoryRepository.findById(id).map { mapper.toDomain(it) }.orElse(null)
+    override fun findById(id: Long): Category? {
+        return categoryRepository.findById(id).map { categoryMapper.toDomain(it) }.orElse(null)
     }
 
     override fun findByType(type: CategoryType): List<Category> {
-        return categoryRepository.findByType(type).map { mapper.toDomain(it) }
+        return categoryRepository.findByType(type).map { categoryMapper.toDomain(it) }
     }
 
     override fun findRootCategories(): List<Category> {
-        return categoryRepository.findByParentIsNull().map { mapper.toDomain(it) }
+        return categoryRepository.findByParentIsNull().map { categoryMapper.toDomain(it) }
     }
 
     override fun findByParentId(parentId: Long): List<Category> {
-        return categoryRepository.findByParentId(parentId).map { mapper.toDomain(it) }
+        return categoryRepository.findByParentId(parentId).map { categoryMapper.toDomain(it) }
     }
 
     override fun save(category: Category): Category {
-        val entity = mapper.toEntity(category)
+        val entity = categoryMapper.toEntity(category)
         val savedEntity = categoryRepository.save(entity)
-        return mapper.toDomain(savedEntity)
-    }
-
-    override fun getReferenceById(id: Long): Category {
-        val entity = categoryRepository.getReferenceById(id)
-        return mapper.toDomain(entity)
+        return categoryMapper.toDomain(savedEntity)
     }
 
     override fun delete(id: Long) {
