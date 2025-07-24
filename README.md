@@ -58,24 +58,175 @@ music-sale-platform-be/
 
 ## 🚀 실행 방법
 
-### 1. 데이터베이스 시작
+### 1. 환경변수 설정
+
+```bash
+# .env.example을 .env로 복사
+cp .env.example .env
+
+# .env 파일에서 필요한 설정 수정
+# 특히 DB_PASSWORD를 실제 MySQL 비밀번호로 변경
+```
+
+### 2. 데이터베이스 시작
 
 ```bash
 docker-compose up -d mysql
 ```
 
-### 2. 애플리케이션 실행
+### 3. Redis 시작 (선택사항)
 
 ```bash
+docker-compose up -d redis
+```
+
+### 4. 애플리케이션 실행
+
+```bash
+# 로컬 환경으로 실행
+./gradlew local
+
+# 또는 직접 실행
 ./gradlew :music-api:bootRun
 ```
 
-### 3. 애플리케이션 접속
+### 5. 애플리케이션 접속
 
 - **URL**: http://localhost:8080
 - **Health Check**: http://localhost:8080/actuator/health
+- **Swagger UI**: http://localhost:8080/swagger-ui/index.html
 
 ## 🔧 개발 환경 설정
+
+### 환경변수 설정
+
+프로젝트는 환경변수를 통해 모든 설정을 관리합니다. 개발 시작 전에 다음 단계를 따라주세요:
+
+#### 1. 환경변수 파일 생성
+
+```bash
+# .env.example을 .env로 복사
+cp .env.example .env
+```
+
+#### 2. 필수 환경변수 설정
+
+`.env` 파일에서 다음 환경변수들을 설정해주세요:
+
+**기본 설정**
+```bash
+# Spring Profile 설정
+SPRING_PROFILES_ACTIVE=local
+
+# Server 설정
+SERVER_PORT=8080
+INCLUDE_STACKTRACE=never
+```
+
+**데이터베이스 설정**
+```bash
+# Database 설정
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=music_sale
+DB_USERNAME=root
+DB_PASSWORD=password  # 실제 MySQL 비밀번호로 변경
+DB_MAX_POOL_SIZE=5
+DB_MIN_IDLE=2
+DB_CONNECTION_TIMEOUT=30000
+DB_IDLE_TIMEOUT=600000
+DB_MAX_LIFETIME=1800000
+```
+
+**JPA 설정 (환경별)**
+```bash
+# 로컬 개발 환경
+JPA_DDL_AUTO=create-drop  # 테이블 재생성
+JPA_SHOW_SQL=true         # SQL 로그 출력
+JPA_FORMAT_SQL=true       # SQL 포맷팅
+JPA_USE_SQL_COMMENTS=true # SQL 주석 출력
+JPA_DEFER_DATASOURCE_INIT=false
+JPA_SQL_INIT_MODE=never   # import.sql 비활성화
+
+# 개발 서버 환경
+JPA_DDL_AUTO=update       # 테이블 구조 업데이트
+JPA_SHOW_SQL=false        # SQL 로그 비활성화
+JPA_FORMAT_SQL=false      # SQL 포맷팅 비활성화
+JPA_USE_SQL_COMMENTS=false # SQL 주석 비활성화
+JPA_DEFER_DATASOURCE_INIT=true
+JPA_SQL_INIT_MODE=always  # import.sql 활성화
+
+# 운영 서버 환경
+JPA_DDL_AUTO=validate     # 테이블 구조 검증만
+JPA_SHOW_SQL=false        # SQL 로그 비활성화
+JPA_FORMAT_SQL=false      # SQL 포맷팅 비활성화
+JPA_USE_SQL_COMMENTS=false # SQL 주석 비활성화
+JPA_DEFER_DATASOURCE_INIT=false
+JPA_SQL_INIT_MODE=never   # import.sql 비활성화
+```
+
+**JWT 설정**
+```bash
+# JWT 설정
+JWT_SECRET=your-super-secret-jwt-key-here-make-it-long-and-secure
+JWT_EXPIRATION_MS=86400000  # 24시간
+```
+
+**Redis 설정**
+```bash
+# Redis 설정
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=           # Redis 비밀번호 (없으면 빈 값)
+REDIS_DATABASE=0
+REDIS_TIMEOUT=2000ms
+REDIS_MAX_ACTIVE=8
+REDIS_MAX_IDLE=8
+REDIS_MIN_IDLE=0
+REDIS_MAX_WAIT=-1ms
+```
+
+**OAuth2 설정 (소셜 로그인)**
+```bash
+# Google OAuth2
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# Naver OAuth2
+NAVER_CLIENT_ID=your-naver-client-id
+NAVER_CLIENT_SECRET=your-naver-client-secret
+NAVER_AUTH_URI=https://nid.naver.com/oauth2.0/authorize
+NAVER_TOKEN_URI=https://nid.naver.com/oauth2.0/token
+NAVER_USER_INFO_URI=https://openapi.naver.com/v1/nid/me
+
+# Kakao OAuth2
+KAKAO_CLIENT_ID=your-kakao-client-id
+KAKAO_CLIENT_SECRET=your-kakao-client-secret
+KAKAO_AUTH_URI=https://kauth.kakao.com/oauth/authorize
+KAKAO_TOKEN_URI=https://kauth.kakao.com/oauth/token
+KAKAO_USER_INFO_URI=https://kapi.kakao.com/v2/user/me
+```
+
+#### 3. 환경별 설정 가이드
+
+**로컬 개발 환경**
+- `SPRING_PROFILES_ACTIVE=local`
+- `JPA_DDL_AUTO=create-drop`
+- `JPA_SHOW_SQL=true`
+- `JPA_SQL_INIT_MODE=never`
+
+**개발 서버 환경**
+- `SPRING_PROFILES_ACTIVE=dev`
+- `JPA_DDL_AUTO=update`
+- `JPA_SHOW_SQL=false`
+- `JPA_SQL_INIT_MODE=always`
+
+**운영 서버 환경**
+- `SPRING_PROFILES_ACTIVE=prod`
+- `JPA_DDL_AUTO=validate`
+- `JPA_SHOW_SQL=false`
+- `JPA_SQL_INIT_MODE=never`
+- `INCLUDE_STACKTRACE=never`
 
 ### 빌드
 
@@ -127,6 +278,39 @@ SHOW TABLES;
 
 ## 🛠️ 문제 해결
 
+### 환경변수 관련 문제
+
+#### 애플리케이션이 환경변수를 읽지 못하는 경우
+
+1. **`.env` 파일 존재 확인**
+   ```bash
+   ls -la .env
+   ```
+
+2. **환경변수 파일 복사**
+   ```bash
+   cp .env.example .env
+   ```
+
+3. **환경변수 값 확인**
+   ```bash
+   cat .env
+   ```
+
+#### 데이터베이스 연결 오류
+
+1. **환경변수 확인**
+   ```bash
+   # .env 파일에서 DB 설정 확인
+   cat .env | grep DB_
+   ```
+
+2. **MySQL 비밀번호 확인**
+   ```bash
+   # Docker Compose의 MySQL 비밀번호와 .env의 DB_PASSWORD가 일치하는지 확인
+   docker-compose exec mysql mysql -u root -p
+   ```
+
 ### MySQL 연결 오류
 
 만약 MySQL 연결 오류가 발생한다면:
@@ -150,6 +334,24 @@ SHOW TABLES;
 4. **권한 재설정**
    ```bash
    docker exec mysql-music-sale mysql -u root -ppassword -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'password'; FLUSH PRIVILEGES;"
+   ```
+
+### Redis 연결 오류
+
+1. **Redis 컨테이너 상태 확인**
+   ```bash
+   docker-compose ps redis
+   ```
+
+2. **Redis 연결 테스트**
+   ```bash
+   docker exec redis-music-sale redis-cli ping
+   ```
+
+3. **환경변수 확인**
+   ```bash
+   # .env 파일에서 Redis 설정 확인
+   cat .env | grep REDIS_
    ```
 
 ### 포트 충돌
