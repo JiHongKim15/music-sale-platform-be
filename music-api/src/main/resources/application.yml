@@ -41,7 +41,6 @@ spring:
   # Redis 설정
   redis:
     host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
     password: ${REDIS_PASSWORD:}
     database: ${REDIS_DATABASE:0}
     timeout: ${REDIS_TIMEOUT:2000ms}
@@ -64,6 +63,9 @@ spring:
       time-to-live: ${CACHE_TTL:600000}  # 10분
       cache-null-values: ${CACHE_NULL_VALUES:false}
       key-prefix: ${CACHE_KEY_PREFIX:music-sale:}
+  data:
+    redis:
+      port: ${REDIS_PORT:6379}
 
 # JWT 설정
 jwt:
