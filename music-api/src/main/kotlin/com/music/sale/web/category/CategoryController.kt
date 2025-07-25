@@ -13,9 +13,10 @@ class CategoryController(
     private val categoryUseCase: CategoryUseCase,
     private val categoryWebMapper: CategoryWebMapper,
 ) {
-
     @GetMapping("/{id}")
-    fun getCategoryById(@PathVariable id: Long): ResponseEntity<CategoryResponse> {
+    fun getCategoryById(
+        @PathVariable id: Long,
+    ): ResponseEntity<CategoryResponse> {
         val category = categoryUseCase.getCategoryById(id)
         return ResponseEntity.ok(categoryWebMapper.toResponse(category))
     }
@@ -27,7 +28,9 @@ class CategoryController(
     }
 
     @GetMapping("/type")
-    fun getCategoriesByType(@RequestParam type: CategoryType): ResponseEntity<List<CategoryResponse>> {
+    fun getCategoriesByType(
+        @RequestParam type: CategoryType,
+    ): ResponseEntity<List<CategoryResponse>> {
         val categories = categoryUseCase.getCategoriesByType(type)
         return ResponseEntity.ok(categories.map { categoryWebMapper.toResponse(it) })
     }
@@ -39,7 +42,9 @@ class CategoryController(
     }
 
     @GetMapping("/parent/{parentId}")
-    fun getCategoriesByParentId(@PathVariable parentId: Long): ResponseEntity<List<CategoryResponse>> {
+    fun getCategoriesByParentId(
+        @PathVariable parentId: Long,
+    ): ResponseEntity<List<CategoryResponse>> {
         val categories = categoryUseCase.getCategoriesByParentId(parentId)
         return ResponseEntity.ok(categories.map { categoryWebMapper.toResponse(it) })
     }

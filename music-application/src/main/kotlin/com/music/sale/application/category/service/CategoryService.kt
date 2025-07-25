@@ -31,6 +31,4 @@ open class CategoryService(
     override fun getCategoriesByParentId(parentId: Long): List<Category> {
         return categoryPort.findByParentId(parentId)
     }
-
-
 }

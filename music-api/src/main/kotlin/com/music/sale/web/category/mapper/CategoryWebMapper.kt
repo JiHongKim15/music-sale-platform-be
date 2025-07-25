@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class CategoryWebMapper {
-
     fun toCommand(request: CreateCategoryRequest): CategoryCreationCommand {
         return CategoryCreationCommand(
             name = request.name,
@@ -16,7 +15,6 @@ class CategoryWebMapper {
             parentId = request.parentId,
         )
     }
-
 
     fun toResponse(category: Category): CategoryResponse {
         return CategoryResponse(

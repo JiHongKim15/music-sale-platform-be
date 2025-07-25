@@ -4,7 +4,7 @@ package com.music.sale.application.cart.service
 import com.music.sale.application.cart.dto.CartOutput
 import com.music.sale.application.cart.port.inport.CartUseCase
 import com.music.sale.application.cart.port.outport.CartPort
-import com.music.sale.application.product.port.outport.ProductPort
+import com.music.sale.application.product.port.outport.ProductQueryPort
 import com.music.sale.application.user.port.outport.UserPort
 import com.music.sale.common.Pageable
 import com.music.sale.domain.cart.Cart
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional
 open class CartService(
     private val cartPort: CartPort,
     private val userPort: UserPort,
-    private val productPort: ProductPort,
+    private val productQueryPort: ProductQueryPort,
 ) : CartUseCase {
     @Transactional(readOnly = true)
     override fun getUserCart(
@@ -37,7 +37,7 @@ open class CartService(
                 ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
 
         val product =
-            productPort.findById(productId)
+            productQueryPort.findById(productId)
                 ?: throw IllegalArgumentException("상품을 찾을 수 없습니다: $productId")
 
         // 이미 장바구니에 있는지 확인
@@ -68,7 +68,7 @@ open class CartService(
                 ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
 
         val product =
-            productPort.findById(productId)
+            productQueryPort.findById(productId)
                 ?: throw IllegalArgumentException("상품을 찾을 수 없습니다: $productId")
 
         // 도메인 모델로 변환 후 수량 업데이트

@@ -4,7 +4,9 @@ package com.music.sale.persistence.product.mapper
 import com.music.sale.application.product.dto.ProductOutput
 import com.music.sale.application.product.dto.SaveProductItemCondition
 import com.music.sale.domain.product.Product
+import com.music.sale.persistence.category.entity.CategoryEntity
 import com.music.sale.persistence.category.mapper.CategoryPersistenceMapper
+import com.music.sale.persistence.product.dto.ProductCatalogQueryResult
 import com.music.sale.persistence.product.entity.ProductCatalogEntity
 import com.music.sale.persistence.product.entity.ProductItemEntity
 import com.music.sale.persistence.store.mapper.StorePersistenceMapper
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Component
 
 /** 제품 아이템 도메인 모델과 엔티티 간의 변환을 담당하는 매퍼 클래스 */
 @Component
-class ProductPersistenceMapper(
+class ProductCommandPersistenceMapper(
     private val categoryMapper: CategoryPersistenceMapper,
     private val userPersistenceMapper: UserPersistenceMapper,
     private val storePersistenceMapper: StorePersistenceMapper,
@@ -94,6 +96,47 @@ class ProductPersistenceMapper(
     }
 
     fun toEntity(
+        saveCondition: SaveProductItemCondition,
+        catalogQueryResult: ProductCatalogQueryResult,
+    ): ProductItemEntity {
+        val sellerEntity = saveCondition.seller?.let { userPersistenceMapper.toEntity(it) }
+        val storeEntity = saveCondition.store?.let { storePersistenceMapper.toEntity(it) }
+
+        // QueryResult에서 필요한 정보만 사용하여 Entity 생성
+        return ProductItemEntity(
+            id = null,
+            catalog =
+                ProductCatalogEntity(
+                    id = catalogQueryResult.id,
+                    name = catalogQueryResult.name,
+                    category =
+                        CategoryEntity(
+                            id = catalogQueryResult.categoryId,
+                            name = catalogQueryResult.categoryName,
+                            type = catalogQueryResult.categoryType,
+                            // 부모 카테고리 정보가 필요하면 추가 쿼리 필요
+                            parent = null,
+                            path = catalogQueryResult.categoryPath,
+                            depth = catalogQueryResult.categoryDepth,
+                            // 기본값
+                            isActive = true,
+                        ),
+                    brand = null,
+                    attributes = null,
+                ),
+            seller = sellerEntity,
+            store = storeEntity,
+            price = saveCondition.price,
+            condition = saveCondition.condition,
+            conditionGrade = saveCondition.conditionGrade,
+            stockQuantity = saveCondition.stockQuantity,
+            status = saveCondition.status,
+            customName = saveCondition.name,
+            customAttributes = saveCondition.attributes,
+        )
+    }
+
+    fun toEntity(
         product: Product,
         catalogEntity: ProductCatalogEntity,
     ): ProductItemEntity {
@@ -103,6 +146,47 @@ class ProductPersistenceMapper(
         return ProductItemEntity(
             id = product.id,
             catalog = catalogEntity,
+            seller = sellerEntity,
+            store = storeEntity,
+            price = product.price,
+            condition = product.condition,
+            conditionGrade = product.conditionGrade,
+            stockQuantity = product.stockQuantity,
+            status = product.status,
+            customName = if (product.isCustomName()) product.name() else null,
+            customAttributes = if (product.isCustomAttributes()) product.attributes() else null,
+        )
+    }
+
+    fun toEntity(
+        product: Product,
+        catalogQueryResult: ProductCatalogQueryResult,
+    ): ProductItemEntity {
+        val sellerEntity = product.seller?.let { userPersistenceMapper.toEntity(it) }
+        val storeEntity = product.store?.let { storePersistenceMapper.toEntity(it) }
+
+        // QueryResult에서 필요한 정보만 사용하여 Entity 생성
+        return ProductItemEntity(
+            id = product.id,
+            catalog =
+                ProductCatalogEntity(
+                    id = catalogQueryResult.id,
+                    name = catalogQueryResult.name,
+                    category =
+                        CategoryEntity(
+                            id = catalogQueryResult.categoryId,
+                            name = catalogQueryResult.categoryName,
+                            type = catalogQueryResult.categoryType,
+                            // 부모 카테고리 정보가 필요하면 추가 쿼리 필요
+                            parent = null,
+                            path = catalogQueryResult.categoryPath,
+                            depth = catalogQueryResult.categoryDepth,
+                            // 기본값
+                            isActive = true,
+                        ),
+                    brand = null,
+                    attributes = null,
+                ),
             seller = sellerEntity,
             store = storeEntity,
             price = product.price,

@@ -49,6 +49,11 @@ dependencies {
     annotationProcessor("jakarta.persistence:jakarta.persistence-api:3.1.0")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 
+    // jOOQ
+    implementation("org.jooq:jooq:3.20.1")
+    implementation("org.jooq:jooq-meta:3.20.1")
+    implementation("org.jooq:jooq-codegen:3.20.1")
+
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
