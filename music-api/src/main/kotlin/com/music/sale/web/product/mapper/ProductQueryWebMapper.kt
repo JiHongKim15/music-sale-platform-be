@@ -5,7 +5,7 @@ import com.music.sale.web.product.request.SearchProductRequest
 import org.springframework.stereotype.Component
 
 @Component
-class ProductQueryMapper {
+class ProductQueryWebMapper {
     /**
      * Request DTO → Search Condition 변환
      * 검색 조건을 내부 검색 로직에 맞는 형태로 변환

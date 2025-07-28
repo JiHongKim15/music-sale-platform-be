@@ -6,7 +6,7 @@ import com.music.sale.persistence.category.entity.CategoryEntity
 import org.springframework.stereotype.Component
 
 @Component
-class CategoryPersistenceMapper {
+class CategoryQueryPersistenceMapper {
     fun toDomain(entity: CategoryEntity): Category {
         return Category(
             id = entity.id ?: 0L,

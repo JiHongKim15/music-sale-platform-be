@@ -4,17 +4,17 @@ import com.music.sale.application.product.dto.ProductOutput
 import com.music.sale.application.product.port.inport.ProductCommandUseCase
 import com.music.sale.common.ApiResponse
 import com.music.sale.common.ResponseCode
-import com.music.sale.web.product.mapper.ProductCommandMapper
+import com.music.sale.web.product.mapper.ProductCommandWebMapper
 import com.music.sale.web.product.request.CreateProductRequest
 import com.music.sale.web.product.request.UpdateProductRequest
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/v1/product")
+@RequestMapping("/api/v1/products")
 class ProductCommandController(
     private val commandUseCase: ProductCommandUseCase,
-    private val mapper: ProductCommandMapper,
+    private val mapper: ProductCommandWebMapper,
 ) {
     @PostMapping
     fun createProduct(

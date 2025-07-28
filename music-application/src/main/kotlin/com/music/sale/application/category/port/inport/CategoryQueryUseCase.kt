@@ -4,7 +4,7 @@ package com.music.sale.application.category.port.inport
 import com.music.sale.domain.category.Category
 import com.music.sale.domain.category.CategoryType
 
-interface CategoryUseCase {
+interface CategoryQueryUseCase {
     fun getCategoryById(id: Long): Category
 
     fun getAllCategories(): List<Category>

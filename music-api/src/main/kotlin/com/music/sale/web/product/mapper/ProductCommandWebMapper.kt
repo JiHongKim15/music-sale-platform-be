@@ -7,7 +7,7 @@ import com.music.sale.web.product.request.UpdateProductRequest
 import org.springframework.stereotype.Component
 
 @Component
-class ProductCommandMapper {
+class ProductCommandWebMapper {
     /**
      * Request DTO → Domain Entity 변환
      * 외부 입력을 내부 비즈니스 로직 수행을 위한 도메인 모델로 변환

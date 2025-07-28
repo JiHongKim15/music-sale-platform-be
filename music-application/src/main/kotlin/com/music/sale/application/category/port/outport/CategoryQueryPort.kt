@@ -6,7 +6,7 @@ import com.music.sale.domain.category.CategoryType
 import org.springframework.stereotype.Component
 
 @Component
-interface CategoryPort {
+interface CategoryQueryPort {
     fun getCategoryById(id: Long): Category
 
     fun findAll(): List<Category>

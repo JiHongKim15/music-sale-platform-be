@@ -1,7 +1,7 @@
 package com.music.sale.application.category.service
 
-import com.music.sale.application.category.port.inport.CategoryUseCase
-import com.music.sale.application.category.port.outport.CategoryPort
+import com.music.sale.application.category.port.inport.CategoryQueryUseCase
+import com.music.sale.application.category.port.outport.CategoryQueryPort
 import com.music.sale.domain.category.Category
 import com.music.sale.domain.category.CategoryType
 import org.springframework.stereotype.Service
@@ -9,26 +9,26 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 @Transactional
-open class CategoryService(
-    private val categoryPort: CategoryPort,
-) : CategoryUseCase {
+open class CategoryQueryQueryService(
+    private val categoryQueryPort: CategoryQueryPort,
+) : CategoryQueryUseCase {
     override fun getCategoryById(id: Long): Category {
-        return categoryPort.getCategoryById(id)
+        return categoryQueryPort.getCategoryById(id)
     }
 
     override fun getAllCategories(): List<Category> {
-        return categoryPort.findAll()
+        return categoryQueryPort.findAll()
     }
 
     override fun getCategoriesByType(type: CategoryType): List<Category> {
-        return categoryPort.findByType(type)
+        return categoryQueryPort.findByType(type)
     }
 
     override fun getRootCategories(): List<Category> {
-        return categoryPort.findRootCategories()
+        return categoryQueryPort.findRootCategories()
     }
 
     override fun getCategoriesByParentId(parentId: Long): List<Category> {
-        return categoryPort.findByParentId(parentId)
+        return categoryQueryPort.findByParentId(parentId)
     }
 }

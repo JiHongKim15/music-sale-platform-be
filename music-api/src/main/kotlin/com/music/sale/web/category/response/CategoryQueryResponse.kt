@@ -3,7 +3,7 @@ package com.music.sale.web.category.response
 import com.music.sale.domain.category.Category
 import com.music.sale.domain.category.CategoryType
 
-data class CategoryResponse(
+data class CategoryQueryResponse(
     val id: Long,
     val name: String,
     val type: CategoryType,

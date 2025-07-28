@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CategoryRepository : JpaRepository<CategoryEntity, Long> {
+interface CategoryQueryJpaRepository : JpaRepository<CategoryEntity, Long> {
     fun findByType(type: CategoryType): List<CategoryEntity>
 
     fun findByTypeAndIsActiveTrue(type: CategoryType): List<CategoryEntity>

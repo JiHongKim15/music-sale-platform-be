@@ -5,7 +5,7 @@ import com.music.sale.application.product.dto.ProductOutput
 import com.music.sale.application.product.dto.SaveProductItemCondition
 import com.music.sale.domain.product.Product
 import com.music.sale.persistence.category.entity.CategoryEntity
-import com.music.sale.persistence.category.mapper.CategoryPersistenceMapper
+import com.music.sale.persistence.category.mapper.CategoryQueryPersistenceMapper
 import com.music.sale.persistence.product.dto.ProductCatalogQueryResult
 import com.music.sale.persistence.product.entity.ProductCatalogEntity
 import com.music.sale.persistence.product.entity.ProductItemEntity
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component
 /** 제품 아이템 도메인 모델과 엔티티 간의 변환을 담당하는 매퍼 클래스 */
 @Component
 class ProductCommandPersistenceMapper(
-    private val categoryMapper: CategoryPersistenceMapper,
+    private val categoryMapper: CategoryQueryPersistenceMapper,
     private val userPersistenceMapper: UserPersistenceMapper,
     private val storePersistenceMapper: StorePersistenceMapper,
     private val userPersistenceAdapter: UserPersistenceAdapter,
