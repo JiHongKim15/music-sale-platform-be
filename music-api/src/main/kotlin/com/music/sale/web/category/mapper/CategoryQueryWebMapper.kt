@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class CategoryQueryWebMapper {
-
     fun toResponse(category: Category): CategoryQueryResponse {
         return CategoryQueryResponse(
             id = category.id,

@@ -13,7 +13,6 @@ class CategoryQueryPersistenceAdapter(
     private val categoryQueryJpaRepository: CategoryQueryJpaRepository,
     private val categoryMapper: CategoryQueryPersistenceMapper,
 ) : CategoryQueryPort {
-
     private val log = LoggerFactory.getLogger(javaClass)
 
     override fun getCategoryById(id: Long): Category {
@@ -30,16 +29,17 @@ class CategoryQueryPersistenceAdapter(
             return emptyList()
         }
 
-        val domains = entities.map { entity ->
-            try {
-                val domain = categoryMapper.toDomain(entity)
-                log.debug("findAll: Mapped entity ID {} to domain.", entity.id)
-                domain
-            } catch (e: Exception) {
-                log.error("findAll: Error mapping entity ID {} to domain: {}", entity.id, e.message, e)
-                null
-            }
-        }.filterNotNull()
+        val domains =
+            entities.map { entity ->
+                try {
+                    val domain = categoryMapper.toDomain(entity)
+                    log.debug("findAll: Mapped entity ID {} to domain.", entity.id)
+                    domain
+                } catch (e: Exception) {
+                    log.error("findAll: Error mapping entity ID {} to domain: {}", entity.id, e.message, e)
+                    null
+                }
+            }.filterNotNull()
 
         log.debug("findAll: Mapped {} Category domains.", domains.size)
         return domains
