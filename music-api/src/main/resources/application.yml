@@ -26,8 +26,8 @@ spring:
   # JPA 설정 - 환경별로 다른 설정
   jpa:
     hibernate:
-      ddl-auto: ${JPA_DDL_AUTO:create}  # local: create, dev: update, prod: validate
-    show-sql: ${JPA_SHOW_SQL:false}  # local: true, dev/prod: false
+      ddl-auto: ${JPA_DDL_AUTO:update}  # local: create, dev: update, prod: validate
+    show-sql: ${JPA_SHOW_SQL:true}  # local: true, dev/prod: false
     properties:
       hibernate:
         format_sql: ${JPA_FORMAT_SQL:true}  # local: true, dev/prod: false

@@ -1,6 +1,6 @@
 package com.music.sale.application.product.service
 
-import com.music.sale.application.category.service.CategoryQueryQueryService
+import com.music.sale.application.category.service.CategoryQueryService
 import com.music.sale.application.product.dto.CreateProductInput
 import com.music.sale.application.product.dto.ProductOutput
 import com.music.sale.application.product.dto.UpdateProductInput
@@ -19,7 +19,7 @@ open class ProductCommandService(
     private val commandPort: ProductCommandPort,
     private val queryPort: ProductQueryPort,
     private val mapper: ProductMapper,
-    private val categoryQueryService: CategoryQueryQueryService,
+    private val categoryQueryService: CategoryQueryService,
     private val userPort: UserPort,
 ) : ProductCommandUseCase {
     override fun createProduct(input: CreateProductInput): ProductOutput {

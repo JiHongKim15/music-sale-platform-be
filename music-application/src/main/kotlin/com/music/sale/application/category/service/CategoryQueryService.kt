@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-@Transactional
-open class CategoryQueryQueryService(
+@Transactional(readOnly = true)
+open class CategoryQueryService(
     private val categoryQueryPort: CategoryQueryPort,
 ) : CategoryQueryUseCase {
     override fun getCategoryById(id: Long): Category {
