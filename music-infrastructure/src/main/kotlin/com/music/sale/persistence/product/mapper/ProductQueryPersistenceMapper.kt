@@ -15,31 +15,35 @@ class ProductQueryPersistenceMapper {
             id = queryResult.id,
             catalog =
                 ProductCatalog(
-                    id = queryResult.catalog.id,
-                    name = queryResult.catalog.name,
+                    id = queryResult.catalogId,
+                    name = queryResult.catalogName,
                     category =
                         Category(
-                            id = queryResult.catalog.category.id!!,
-                            name = queryResult.catalog.category.name,
-                            type = queryResult.catalog.category.type,
+                            id = queryResult.categoryId,
+                            name = queryResult.categoryName,
+                            type = queryResult.categoryType,
                             // 부모 카테고리 정보가 필요하면 추가 쿼리 필요
                             parent = null,
-                            path = queryResult.catalog.category.path,
-                            depth = queryResult.catalog.category.depth,
+                            path = queryResult.categoryPath,
+                            depth = queryResult.categoryDepth,
                         ),
-                    brand = queryResult.catalog.brand,
-                    attributes = queryResult.catalog.attribute?.mapValues { it.value as Any },
                 ),
             price = queryResult.price,
-            seller = queryResult.seller,
-            store = queryResult.store,
+            seller =
+                User(
+                    id = queryResult.sellerId,
+                    name = User.Name(queryResult.sellerName),
+                ),
+            store =
+                Store(
+                    id = queryResult.storeId,
+                ),
             condition = queryResult.condition,
             conditionGrade = queryResult.conditionGrade,
             stockQuantity = queryResult.stockQuantity,
             status = queryResult.status,
-            customName = queryResult.name, // TODO: customName 필드가 없으므로 name 사용
-            customAttributes = queryResult.attributes,
-            images = queryResult.images?.toMutableList() ?: mutableListOf(),
+            customName = queryResult.customName,
+            customAttributes = queryResult.customAttributes,
         )
     }
 } 
