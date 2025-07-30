@@ -2,14 +2,64 @@
 
 음악 판매 플랫폼의 백엔드 애플리케이션입니다.
 
+## 🎵 주요 기능
+
+### 🔐 사용자 관리
+- 이메일/전화번호 회원가입 및 로그인
+- 소셜 로그인 (Google, Naver, Kakao)
+- JWT 기반 인증/인가
+- 사용자 역할 관리 (Admin, Seller, User)
+
+### 🎼 상품 관리
+- 음악 상품 등록/수정/삭제
+- 상품 카테고리 분류
+- 상품 이미지 관리
+- 상품 검색 및 필터링
+- 조회수 추적
+
+### 🛒 주문 및 장바구니
+- 장바구니 담기/제거
+- 위시리스트 관리
+- 주문 처리 및 결제
+- 배송 정보 관리
+
+### 🏪 스토어 관리
+- 판매자 스토어 생성/관리
+- 스토어별 상품 관리
+- 판매자 인증 시스템
+
 ## 🚀 기술 스택
 
-- **Language**: Kotlin
+### Core
+- **Language**: Kotlin 1.9.25
 - **Framework**: Spring Boot 3.3.1
-- **Database**: MySQL 8.0 (Docker)
-- **ORM**: Hibernate/JPA
-- **Build Tool**: Gradle
+- **JVM**: Java 21
+- **Build Tool**: Gradle with Kotlin DSL
 - **Architecture**: Hexagonal Architecture (Clean Architecture)
+
+### Database & Persistence
+- **Database**: MySQL 8.0 (Docker)
+- **Cache**: Redis 7 (Docker)
+- **ORM**: Hibernate/JPA
+- **Query Builder**: QueryDSL
+- **Migration**: Flyway (via JPA DDL)
+
+### Security & Authentication
+- **Security**: Spring Security
+- **Authentication**: JWT (JSON Web Token)
+- **OAuth2**: Google, Naver, Kakao 소셜 로그인
+
+### Web & API
+- **Web Framework**: Spring Web MVC
+- **Validation**: Spring Boot Validation
+- **API Documentation**: SpringDoc OpenAPI 3 (Swagger)
+- **Real-time Communication**: WebSocket
+
+### Development & Operations
+- **Code Style**: Spotless + Ktlint
+- **Configuration**: Environment Variables (.env)
+- **Containerization**: Docker & Docker Compose
+- **Monitoring**: Spring Boot Actuator
 
 ## 📋 사전 요구사항
 
@@ -39,21 +89,82 @@ docker exec -it mysql-music-sale mysql -u root -ppassword
 
 - **Host**: localhost:3306
 - **Database**: music_sale_db
-- **Username**: root
-- **Password**: password
-- **Additional User**: music_user / music_password
+- **Root User**: root / password
+- **Application User**: music_user / music_password
+
+### Redis 정보
+
+- **Host**: localhost:6379
+- **Database**: 0 (기본값)
+- **Password**: 없음
 
 ## 🏗️ 프로젝트 구조
 
 ```
 music-sale-platform-be/
-├── music-api/                 # 웹 API 모듈
-├── music-application/         # 애플리케이션 서비스 모듈
-├── music-infrastructure/      # 인프라스트럭처 모듈
+├── music-api/                 # 웹 API 모듈 (Presentation Layer)
+├── music-application/         # 애플리케이션 서비스 모듈 (Application Layer)
+├── music-domain/              # 도메인 모듈 (Domain Layer)
+├── music-infrastructure/      # 인프라스트럭처 모듈 (Infrastructure Layer)
 ├── docker-compose.yml         # Docker Compose 설정
 └── mysql/                     # MySQL 초기화 스크립트
     └── init/
         └── 01-init.sql
+```
+
+### 모듈별 상세 구조
+
+#### 🌐 music-api (Presentation Layer)
+```
+music-api/
+├── config/                    # 보안, JWT, OAuth2, WebSocket 설정
+├── web/                       # 웹 컨트롤러
+│   ├── category/              # 카테고리 관련 API
+│   ├── product/               # 상품 관련 API
+│   └── user/                  # 사용자 관련 API
+└── common/                    # 공통 응답, 예외 처리
+```
+
+#### 🔧 music-application (Application Layer)
+```
+music-application/
+└── application/
+    ├── auth/                  # 인증/인가 서비스
+    ├── cart/                  # 장바구니 서비스
+    ├── category/              # 카테고리 서비스
+    ├── product/               # 상품 서비스
+    ├── user/                  # 사용자 서비스
+    ├── viewcount/             # 조회수 서비스
+    └── wishlist/              # 위시리스트 서비스
+```
+
+#### 💎 music-domain (Domain Layer)
+```
+music-domain/
+└── domain/
+    ├── cart/                  # 장바구니 도메인
+    ├── category/              # 카테고리 도메인
+    ├── order/                 # 주문 도메인
+    ├── product/               # 상품 도메인
+    ├── shipping/              # 배송 도메인
+    ├── shop/                  # 상점 도메인
+    ├── store/                 # 스토어 도메인
+    ├── user/                  # 사용자 도메인
+    ├── viewcount/             # 조회수 도메인
+    └── wishlist/              # 위시리스트 도메인
+```
+
+#### 🏗️ music-infrastructure (Infrastructure Layer)
+```
+music-infrastructure/
+├── config/                    # JPA, Redis, QueryDSL 설정
+└── persistence/               # 데이터 영속성
+    ├── cart/                  # 장바구니 저장소
+    ├── category/              # 카테고리 저장소
+    ├── product/               # 상품 저장소
+    ├── user/                  # 사용자 저장소
+    ├── viewcount/             # 조회수 저장소
+    └── wishlist/              # 위시리스트 저장소
 ```
 
 ## 🚀 실행 방법
@@ -83,8 +194,11 @@ docker-compose up -d redis
 ### 4. 애플리케이션 실행
 
 ```bash
-# 로컬 환경으로 실행
-./gradlew local
+# 환경별 실행 (권장)
+./gradlew local      # 로컬 개발 환경
+./gradlew dev        # 개발 서버 환경
+./gradlew prod       # 운영 서버 환경
+./gradlew testEnv    # 테스트 환경
 
 # 또는 직접 실행
 ./gradlew :music-api:bootRun
@@ -114,6 +228,7 @@ cp .env.example .env
 `.env` 파일에서 다음 환경변수들을 설정해주세요:
 
 **기본 설정**
+
 ```bash
 # Spring Profile 설정
 SPRING_PROFILES_ACTIVE=local
@@ -124,11 +239,12 @@ INCLUDE_STACKTRACE=never
 ```
 
 **데이터베이스 설정**
+
 ```bash
 # Database 설정
 DB_HOST=localhost
 DB_PORT=3306
-DB_NAME=music_sale
+DB_NAME=music_sale_db
 DB_USERNAME=root
 DB_PASSWORD=password  # 실제 MySQL 비밀번호로 변경
 DB_MAX_POOL_SIZE=5
@@ -139,6 +255,7 @@ DB_MAX_LIFETIME=1800000
 ```
 
 **JPA 설정 (환경별)**
+
 ```bash
 # 로컬 개발 환경
 JPA_DDL_AUTO=create-drop  # 테이블 재생성
@@ -166,6 +283,7 @@ JPA_SQL_INIT_MODE=never   # import.sql 비활성화
 ```
 
 **JWT 설정**
+
 ```bash
 # JWT 설정
 JWT_SECRET=your-super-secret-jwt-key-here-make-it-long-and-secure
@@ -173,6 +291,7 @@ JWT_EXPIRATION_MS=86400000  # 24시간
 ```
 
 **Redis 설정**
+
 ```bash
 # Redis 설정
 REDIS_HOST=localhost
@@ -187,6 +306,7 @@ REDIS_MAX_WAIT=-1ms
 ```
 
 **OAuth2 설정 (소셜 로그인)**
+
 ```bash
 # Google OAuth2
 GOOGLE_CLIENT_ID=your-google-client-id
@@ -210,18 +330,21 @@ KAKAO_USER_INFO_URI=https://kapi.kakao.com/v2/user/me
 #### 3. 환경별 설정 가이드
 
 **로컬 개발 환경**
+
 - `SPRING_PROFILES_ACTIVE=local`
 - `JPA_DDL_AUTO=create-drop`
 - `JPA_SHOW_SQL=true`
 - `JPA_SQL_INIT_MODE=never`
 
 **개발 서버 환경**
+
 - `SPRING_PROFILES_ACTIVE=dev`
 - `JPA_DDL_AUTO=update`
 - `JPA_SHOW_SQL=false`
 - `JPA_SQL_INIT_MODE=always`
 
 **운영 서버 환경**
+
 - `SPRING_PROFILES_ACTIVE=prod`
 - `JPA_DDL_AUTO=validate`
 - `JPA_SHOW_SQL=false`
@@ -253,14 +376,29 @@ KAKAO_USER_INFO_URI=https://kapi.kakao.com/v2/user/me
 ### 컨테이너 관리
 
 ```bash
-# 컨테이너 시작
+# 모든 서비스 시작
 docker-compose up -d
+
+# 특정 서비스만 시작
+docker-compose up -d mysql
+docker-compose up -d redis
+
+# 컨테이너 상태 확인
+docker-compose ps
+
+# 로그 확인
+docker-compose logs mysql
+docker-compose logs redis
 
 # 컨테이너 중지
 docker-compose down
 
 # 컨테이너 재시작
 docker-compose restart mysql
+docker-compose restart redis
+
+# 데이터 볼륨까지 삭제 (주의!)
+docker-compose down -v
 ```
 
 ### 데이터베이스 접속
@@ -289,7 +427,7 @@ SHOW TABLES;
 
 2. **환경변수 파일 복사**
    ```bash
-   cp .env.example .env
+   cp .env.example .env.local
    ```
 
 3. **환경변수 값 확인**
@@ -371,7 +509,7 @@ ports:
 
 애플리케이션 실행 후 다음 URL에서 API 문서를 확인할 수 있습니다:
 
-- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **Swagger UI**: http://localhost:8080/swagger-ui/index.html
 - **OpenAPI JSON**: http://localhost:8080/v3/api-docs
 
 ## 🤝 기여하기
@@ -434,8 +572,8 @@ Resolves: #123
 일관성 있고 예측 가능한 API를 위해 다음 규칙을 준수합니다.
 
 - **엔드포인트**: `/api/{version}/{resource}` 형식을 따릅니다.
-  - 버전은 현재 `v1`을 사용합니다.
-  - 리소스(Resource)는 복수형(plural)을 사용합니다. (예: `users`, `products`)
+    - 버전은 현재 `v1`을 사용합니다.
+    - 리소스(Resource)는 복수형(plural)을 사용합니다. (예: `users`, `products`)
 - **명명 규칙**: 모든 JSON 요청/응답 필드는 `camelCase`를 사용합니다.
 - **표준 응답 형식**: 모든 API 응답은 다음 구조를 따릅니다. (`ApiResponse.kt` 참고)
   ```json
@@ -460,24 +598,59 @@ Resolves: #123
 
 이 프로젝트는 헥사고날 아키텍처를 따르며, 각 모듈의 역할과 의존성 규칙은 다음과 같습니다.
 
-- **`music-application` (도메인 계층)**
-  - **역할**: 순수한 비즈니스 로직과 도메인 모델을 포함합니다. 프레임워크나 외부 기술에 대한 의존성이 없어야 합니다.
-  - **규칙**: `domain` 객체, `service` 인터페이스(Port), `usecase`를 정의합니다.
-  - **절대 금지**: `music-api`, `music-infrastructure` 모듈에 대해 알지 못하며, 의존해서는 안 됩니다.
+#### 🎯 의존성 방향
+```
+┌─────────────────┐
+│   music-api     │ (Presentation Layer)
+│   (어댑터-입력)    │
+└─────────────────┘
+          ↓ depends on
+┌─────────────────┐
+│ music-application│ (Application Layer)
+│   (유스케이스)     │
+└─────────────────┘
+          ↓ depends on
+┌─────────────────┐
+│  music-domain   │ (Domain Layer)
+│   (도메인 로직)    │
+└─────────────────┘
+          ↑ depends on
+┌─────────────────┐
+│music-infrastructure│ (Infrastructure Layer)
+│   (어댑터-출력)    │
+└─────────────────┘
+```
 
-- **`music-api` (어댑터 - 입력)**
-  - **역할**: 외부(클라이언트)의 요청을 받아 `application` 계층의 유스케이스를 호출하고, 그 결과를 HTTP 응답으로 변환합니다.
-  - **규칙**: `Controller`, `Request/Response DTO`, `WebMapper` 등을 포함합니다.
-  - **의존성**: `music-application` 모듈에만 의존합니다.
+#### 📋 모듈별 역할과 규칙
 
-- **`music-infrastructure` (어댑터 - 출력)**
-  - **역할**: `application` 계층의 포트(인터페이스)를 구현하며, 실제 외부 시스템(DB, 외부 API 등)과의 연동을 책임집니다.
-  - **규칙**: `JPA Entity`, `Repository 구현체`, `PersistenceAdapter` 등을 포함합니다.
-  - **의존성**: `music-application` 모듈에만 의존합니다.
+- **💎 `music-domain` (도메인 계층)**
+    - **역할**: 순수한 비즈니스 로직과 도메인 모델을 포함합니다. 프레임워크나 외부 기술에 대한 의존성이 없어야 합니다.
+    - **포함**: 도메인 엔티티, 값 객체, 도메인 서비스, 도메인 이벤트, 열거형 등
+    - **절대 금지**: 다른 모듈에 대한 의존성을 가져서는 안 됩니다. 순수한 Kotlin/Java 코드만 포함해야 합니다.
 
-**의존성 방향: `api` -> `application` <- `infrastructure`**
+- **🔧 `music-application` (애플리케이션 계층)**
+    - **역할**: 도메인 객체를 조합하여 유스케이스를 구현합니다. 포트(인터페이스)를 정의하여 외부 의존성을 추상화합니다.
+    - **포함**: 애플리케이션 서비스, 포트 인터페이스(inport/outport), DTO, 매퍼
+    - **의존성**: `music-domain` 모듈에만 의존합니다.
+    - **절대 금지**: `music-api`, `music-infrastructure` 모듈을 알아서는 안 됩니다.
 
-> **가장 중요한 규칙: `application` 계층은 외부 세계(api, infrastructure)를 전혀 몰라야 합니다. 이것이 헥사고날 아키텍처의 핵심입니다.**
+- **🌐 `music-api` (어댑터 - 입력)**
+    - **역할**: 외부(클라이언트)의 요청을 받아 `application` 계층의 유스케이스를 호출하고, 그 결과를 HTTP 응답으로 변환합니다.
+    - **포함**: 컨트롤러, Request/Response DTO, 웹 매퍼, 보안 설정, 예외 처리
+    - **의존성**: `music-application`, `music-domain`, `music-infrastructure` 모듈에 의존합니다.
+
+- **🏗️ `music-infrastructure` (어댑터 - 출력)**
+    - **역할**: `application` 계층의 포트(인터페이스)를 구현하며, 실제 외부 시스템(DB, 외부 API 등)과의 연동을 책임집니다.
+    - **포함**: JPA 엔티티, 리포지토리 구현체, 퍼시스턴스 어댑터, 외부 API 클라이언트
+    - **의존성**: `music-application`, `music-domain` 모듈에만 의존합니다.
+
+#### 🎯 핵심 원칙
+
+> **⚠️ 가장 중요한 규칙: `music-domain`과 `music-application` 계층은 외부 세계(api, infrastructure)를 전혀 몰라야 합니다. 이것이 헥사고날 아키텍처의 핵심입니다.**
+
+- **의존성 역전**: 고수준 모듈(domain, application)이 저수준 모듈(infrastructure)에 의존하지 않습니다.
+- **포트와 어댑터**: 외부 의존성은 포트(인터페이스)를 통해 추상화하고, 어댑터에서 구현합니다.
+- **단일 책임**: 각 모듈은 명확하고 단일한 책임을 가집니다.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
