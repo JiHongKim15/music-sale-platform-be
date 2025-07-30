@@ -21,7 +21,7 @@ class ProductQueryController(
         @ModelAttribute pageRequest: GetProductRequest,
     ): ResponseEntity<ApiResponse<Page<ProductOutput>>> {
         return ResponseEntity.ok(
-            ApiResponse.success(data = queryUseCase.getProducts(pageRequest.toPageable())),
+            ApiResponse.success(data = queryUseCase.getProducts(pageRequest.toPageRequest())),
         )
     }
 

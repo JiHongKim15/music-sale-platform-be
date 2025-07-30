@@ -2,6 +2,7 @@
 package com.music.sale.application.product.dto
 
 import com.music.sale.domain.category.Category
+import com.music.sale.domain.product.ProductImage
 import com.music.sale.domain.product.enum.ProductCondition
 import com.music.sale.domain.product.enum.ProductConditionGrade
 import com.music.sale.domain.product.enum.ProductStatus
@@ -22,12 +23,16 @@ data class ProductOutput(
     val stockQuantity: Int,
     val status: ProductStatus,
     val attributes: Map<String, Any>?,
-) {
-    data class ProductCatalog(
-        val id: Long,
-        val category: Category,
-    )
-}
+    val images: List<ProductImage>?
+)
+
+data class ProductCatalog(
+    val id: Long,
+    val name: String,
+    val categories: List<Category>,
+    val brand: String,
+    val attribute: Map<String, String>,
+)
 
 data class CreateProductInput(
     val name: String,

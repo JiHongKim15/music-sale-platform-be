@@ -5,8 +5,8 @@ import com.music.sale.application.product.dto.SearchProductInput
 import com.music.sale.application.product.mapper.ProductMapper
 import com.music.sale.application.product.port.inport.ProductQueryUseCase
 import com.music.sale.application.product.port.outport.ProductQueryPort
-import com.music.sale.common.Pageable
 import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -16,7 +16,7 @@ open class ProductQueryService(
     private val queryPort: ProductQueryPort,
     private val mapper: ProductMapper,
 ) : ProductQueryUseCase {
-    override fun getProducts(pageable: Pageable): Page<ProductOutput> {
+    override fun getProducts(pageable: PageRequest): Page<ProductOutput> {
         return queryPort.findAll(pageable).map { mapper.toOutput(it) }
     }
 
@@ -26,7 +26,7 @@ open class ProductQueryService(
 
     override fun searchProducts(
         input: SearchProductInput,
-        pageable: Pageable,
+        pageable: PageRequest,
     ): Page<ProductOutput> {
         return queryPort.searchProducts(
             searchCondition = mapper.toSearchProductCondition(input),
