@@ -13,9 +13,12 @@ class ProductMapper {
         return ProductOutput(
             id = product.id,
             catalog =
-                ProductOutput.ProductCatalog(
+                ProductCatalog(
                     id = product.catalog.id,
-                    category = product.catalog.category,
+                    name = product.catalog.name,
+                    categories = listOf(product.catalog.category),
+                    brand = product.catalog.brand ?: "",
+                    attribute = product.catalog.attributes?.mapValues { it.value.toString() } ?: emptyMap(),
                 ),
             name = product.name(),
             price = product.price,
@@ -26,6 +29,7 @@ class ProductMapper {
             stockQuantity = product.stockQuantity,
             status = product.status,
             attributes = product.attributes(),
+            images = product.images.toList(),
         )
     }
 

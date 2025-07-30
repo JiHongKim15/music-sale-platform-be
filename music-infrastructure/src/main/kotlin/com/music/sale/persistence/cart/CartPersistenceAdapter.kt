@@ -2,6 +2,7 @@ package com.music.sale.persistence.cart
 
 import com.music.sale.application.cart.dto.CartOutput
 import com.music.sale.application.cart.port.outport.CartPort
+import com.music.sale.application.product.dto.ProductCatalog
 import com.music.sale.common.Pageable
 import com.music.sale.domain.cart.Cart
 import com.music.sale.persistence.cart.mapper.CartMapper
@@ -32,9 +33,10 @@ open class CartPersistenceAdapter(
                             name = "Product",
                             catalog =
                                 com.music.sale.application.product.dto
-                                    .ProductOutput.ProductCatalog(
+                                    .ProductCatalog(
                                         id = 1L,
-                                        category =
+                                        name = "Product",
+                                        categories = listOf(
                                             com.music.sale.domain.category
                                                 .Category(
                                                     id = 1L,
@@ -50,7 +52,10 @@ open class CartPersistenceAdapter(
                                                     parent = null,
                                                     path = "/1",
                                                     depth = 0,
-                                                ),
+                                                )
+                                        ),
+                                        brand = "",
+                                        attribute = emptyMap(),
                                     ),
                             // 임시 가격
                             price = cart.quantity * 1000,
@@ -65,6 +70,7 @@ open class CartPersistenceAdapter(
                                 com.music.sale.domain.product.enum.ProductStatus
                                     .SELLING,
                             attributes = null,
+                            images = emptyList(),
                         ),
                     quantity = cart.quantity,
                     // 임시 가격
@@ -89,10 +95,10 @@ open class CartPersistenceAdapter(
                     id = savedEntity.productId,
                     name = "Product",
                     catalog =
-                        com.music.sale.application.product.dto.ProductOutput
-                            .ProductCatalog(
+                        ProductCatalog(
                                 id = 1L,
-                                category =
+                                name = "Product",
+                                categories = listOf(
                                     com.music.sale.domain.category
                                         .Category(
                                             id = 1L,
@@ -107,7 +113,10 @@ open class CartPersistenceAdapter(
                                             parent = null,
                                             path = "/1",
                                             depth = 0,
-                                        ),
+                                        )
+                                ),
+                                brand = "",
+                                attribute = emptyMap(),
                             ),
                     // 임시 가격
                     price = savedEntity.quantity * 1000,
@@ -118,6 +127,7 @@ open class CartPersistenceAdapter(
                     stockQuantity = savedEntity.quantity,
                     status = com.music.sale.domain.product.enum.ProductStatus.SELLING,
                     attributes = null,
+                    images = emptyList(),
                 ),
             quantity = savedEntity.quantity,
             // 임시 가격

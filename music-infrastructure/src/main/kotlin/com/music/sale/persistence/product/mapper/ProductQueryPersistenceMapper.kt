@@ -15,35 +15,31 @@ class ProductQueryPersistenceMapper {
             id = queryResult.id,
             catalog =
                 ProductCatalog(
-                    id = queryResult.catalogId,
-                    name = queryResult.catalogName,
+                    id = queryResult.catalog.id,
+                    name = queryResult.catalog.name,
                     category =
                         Category(
-                            id = queryResult.categoryId,
-                            name = queryResult.categoryName,
-                            type = queryResult.categoryType,
+                            id = queryResult.catalog.category.id!!,
+                            name = queryResult.catalog.category.name,
+                            type = queryResult.catalog.category.type,
                             // 부모 카테고리 정보가 필요하면 추가 쿼리 필요
                             parent = null,
-                            path = queryResult.categoryPath,
-                            depth = queryResult.categoryDepth,
+                            path = queryResult.catalog.category.path,
+                            depth = queryResult.catalog.category.depth,
                         ),
+                    brand = queryResult.catalog.brand,
+                    attributes = queryResult.catalog.attribute?.mapValues { it.value as Any },
                 ),
             price = queryResult.price,
-            seller =
-                User(
-                    id = queryResult.sellerId,
-                    name = User.Name(queryResult.sellerName),
-                ),
-            store =
-                Store(
-                    id = queryResult.storeId,
-                ),
+            seller = queryResult.seller,
+            store = queryResult.store,
             condition = queryResult.condition,
             conditionGrade = queryResult.conditionGrade,
             stockQuantity = queryResult.stockQuantity,
             status = queryResult.status,
-            customName = queryResult.customName,
-            customAttributes = queryResult.customAttributes,
+            customName = queryResult.name, // TODO: customName 필드가 없으므로 name 사용
+            customAttributes = queryResult.attributes,
+            images = queryResult.images?.toMutableList() ?: mutableListOf(),
         )
     }
 } 

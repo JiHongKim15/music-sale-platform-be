@@ -2,6 +2,7 @@
 package com.music.sale.persistence.product.mapper
 
 import com.music.sale.application.product.dto.ProductOutput
+import com.music.sale.application.product.dto.ProductCatalog
 import com.music.sale.application.product.dto.SaveProductItemCondition
 import com.music.sale.domain.product.Product
 import com.music.sale.persistence.category.entity.CategoryEntity
@@ -56,9 +57,12 @@ class ProductCommandPersistenceMapper(
             id = entity.id ?: 0L,
             name = entity.customName ?: entity.catalog.name,
             catalog =
-                ProductOutput.ProductCatalog(
+                ProductCatalog(
                     id = entity.catalog.id ?: 0L,
-                    category = categoryMapper.toDomain(entity.catalog.category),
+                    name = entity.catalog.name,
+                    categories = listOf(categoryMapper.toDomain(entity.catalog.category)),
+                    brand = entity.catalog.brand ?: "",
+                    attribute = entity.catalog.attributes?.mapValues { it.value.toString() } ?: emptyMap(),
                 ),
             price = entity.price,
             // 임시로 null 처리
@@ -70,6 +74,7 @@ class ProductCommandPersistenceMapper(
             stockQuantity = entity.stockQuantity,
             status = entity.status,
             attributes = entity.customAttributes ?: entity.catalog.attributes,
+            images = emptyList(),
         )
     }
 
@@ -109,18 +114,7 @@ class ProductCommandPersistenceMapper(
                 ProductCatalogEntity(
                     id = catalogQueryResult.id,
                     name = catalogQueryResult.name,
-                    category =
-                        CategoryEntity(
-                            id = catalogQueryResult.categoryId,
-                            name = catalogQueryResult.categoryName,
-                            type = catalogQueryResult.categoryType,
-                            // 부모 카테고리 정보가 필요하면 추가 쿼리 필요
-                            parent = null,
-                            path = catalogQueryResult.categoryPath,
-                            depth = catalogQueryResult.categoryDepth,
-                            // 기본값
-                            isActive = true,
-                        ),
+                    category = catalogQueryResult.category,
                     brand = null,
                     attributes = null,
                 ),
@@ -172,18 +166,7 @@ class ProductCommandPersistenceMapper(
                 ProductCatalogEntity(
                     id = catalogQueryResult.id,
                     name = catalogQueryResult.name,
-                    category =
-                        CategoryEntity(
-                            id = catalogQueryResult.categoryId,
-                            name = catalogQueryResult.categoryName,
-                            type = catalogQueryResult.categoryType,
-                            // 부모 카테고리 정보가 필요하면 추가 쿼리 필요
-                            parent = null,
-                            path = catalogQueryResult.categoryPath,
-                            depth = catalogQueryResult.categoryDepth,
-                            // 기본값
-                            isActive = true,
-                        ),
+                    category = catalogQueryResult.category,
                     brand = null,
                     attributes = null,
                 ),

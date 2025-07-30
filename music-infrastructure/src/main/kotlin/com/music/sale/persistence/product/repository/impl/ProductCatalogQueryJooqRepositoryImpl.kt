@@ -2,6 +2,7 @@ package com.music.sale.persistence.product.repository.impl
 
 import com.music.sale.domain.category.CategoryType
 import com.music.sale.persistence.product.dto.ProductCatalogQueryResult
+import com.music.sale.persistence.category.entity.CategoryEntity
 import com.music.sale.persistence.product.repository.ProductCatalogQueryJooqRepository
 import org.jooq.DSLContext
 import org.jooq.impl.DSL
@@ -38,13 +39,17 @@ open class ProductCatalogQueryJooqRepositoryImpl(
                 ProductCatalogQueryResult(
                     id = record.get(0, Long::class.java),
                     name = record.get(1, String::class.java),
-                    categoryId = record.get(2, Long::class.java),
-                    categoryName = record.get(3, String::class.java),
-                    categoryType = CategoryType.valueOf(record.get(4, String::class.java)),
-                    categoryPath = record.get(5, String::class.java),
-                    categoryDepth = record.get(6, Int::class.java),
-                    createdAt = record.get(7, java.time.LocalDateTime::class.java),
-                    updatedAt = record.get(8, java.time.LocalDateTime::class.java),
+                    category = CategoryEntity(
+                        id = record.get(2, Long::class.java),
+                        name = record.get(3, String::class.java),
+                        type = CategoryType.valueOf(record.get(4, String::class.java)),
+                        parent = null,
+                        path = record.get(5, String::class.java),
+                        depth = record.get(6, Int::class.java),
+                        isActive = true
+                    ),
+                    brand = "", // TODO: 브랜드 필드가 쿼리에 없으므로 기본값
+                    attribute = emptyMap(), // TODO: 속성 필드가 쿼리에 없으므로 기본값
                 )
             }
 
@@ -72,13 +77,17 @@ open class ProductCatalogQueryJooqRepositoryImpl(
             ProductCatalogQueryResult(
                 id = record.get(0, Long::class.java),
                 name = record.get(1, String::class.java),
-                categoryId = record.get(2, Long::class.java),
-                categoryName = record.get(3, String::class.java),
-                categoryType = CategoryType.valueOf(record.get(4, String::class.java)),
-                categoryPath = record.get(5, String::class.java),
-                categoryDepth = record.get(6, Int::class.java),
-                createdAt = record.get(7, java.time.LocalDateTime::class.java),
-                updatedAt = record.get(8, java.time.LocalDateTime::class.java),
+                category = CategoryEntity(
+                    id = record.get(2, Long::class.java),
+                    name = record.get(3, String::class.java),
+                    type = CategoryType.valueOf(record.get(4, String::class.java)),
+                    parent = null,
+                    path = record.get(5, String::class.java),
+                    depth = record.get(6, Int::class.java),
+                    isActive = true
+                ),
+                brand = "", // TODO: 브랜드 필드가 쿼리에 없으므로 기본값
+                attribute = emptyMap(), // TODO: 속성 필드가 쿼리에 없으므로 기본값
             )
         }
     }
@@ -111,13 +120,17 @@ open class ProductCatalogQueryJooqRepositoryImpl(
                 ProductCatalogQueryResult(
                     id = record.get(0, Long::class.java),
                     name = record.get(1, String::class.java),
-                    categoryId = record.get(2, Long::class.java),
-                    categoryName = record.get(3, String::class.java),
-                    categoryType = CategoryType.valueOf(record.get(4, String::class.java)),
-                    categoryPath = record.get(5, String::class.java),
-                    categoryDepth = record.get(6, Int::class.java),
-                    createdAt = record.get(7, java.time.LocalDateTime::class.java),
-                    updatedAt = record.get(8, java.time.LocalDateTime::class.java),
+                    category = CategoryEntity(
+                        id = record.get(2, Long::class.java),
+                        name = record.get(3, String::class.java),
+                        type = CategoryType.valueOf(record.get(4, String::class.java)),
+                        parent = null,
+                        path = record.get(5, String::class.java),
+                        depth = record.get(6, Int::class.java),
+                        isActive = true
+                    ),
+                    brand = "", // TODO: 브랜드 필드가 쿼리에 없으므로 기본값
+                    attribute = emptyMap(), // TODO: 속성 필드가 쿼리에 없으므로 기본값
                 )
             }
 
@@ -152,13 +165,17 @@ open class ProductCatalogQueryJooqRepositoryImpl(
                 ProductCatalogQueryResult(
                     id = record.get(0, Long::class.java),
                     name = record.get(1, String::class.java),
-                    categoryId = record.get(2, Long::class.java),
-                    categoryName = record.get(3, String::class.java),
-                    categoryType = CategoryType.valueOf(record.get(4, String::class.java)),
-                    categoryPath = record.get(5, String::class.java),
-                    categoryDepth = record.get(6, Int::class.java),
-                    createdAt = record.get(7, java.time.LocalDateTime::class.java),
-                    updatedAt = record.get(8, java.time.LocalDateTime::class.java),
+                    category = CategoryEntity(
+                        id = record.get(2, Long::class.java),
+                        name = record.get(3, String::class.java),
+                        type = CategoryType.valueOf(record.get(4, String::class.java)),
+                        parent = null,
+                        path = record.get(5, String::class.java),
+                        depth = record.get(6, Int::class.java),
+                        isActive = true
+                    ),
+                    brand = "", // TODO: 브랜드 필드가 쿼리에 없으므로 기본값
+                    attribute = emptyMap(), // TODO: 속성 필드가 쿼리에 없으므로 기본값
                 )
             }
 

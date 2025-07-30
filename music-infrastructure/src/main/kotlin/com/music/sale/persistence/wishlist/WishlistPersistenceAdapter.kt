@@ -1,6 +1,7 @@
 package com.music.sale.persistence.wishlist
 
 import com.music.sale.application.product.dto.ProductOutput
+import com.music.sale.application.product.dto.ProductCatalog
 import com.music.sale.application.wishlist.dto.WishlistOutput
 import com.music.sale.application.wishlist.port.outport.WishlistPort
 import com.music.sale.common.Pageable
@@ -30,9 +31,10 @@ open class WishlistPersistenceAdapter(
                         // 실제로는 ProductService에서 조회해야 함
                         name = "",
                         catalog =
-                            ProductOutput.ProductCatalog(
+                            ProductCatalog(
                                 id = 0,
-                                category =
+                                name = "",
+                                categories = listOf(
                                     com.music.sale.domain.category.Category(
                                         id = 0,
                                         name = "",
@@ -45,7 +47,10 @@ open class WishlistPersistenceAdapter(
                                         path = "",
                                         depth = 0,
                                         isActive = true,
-                                    ),
+                                    )
+                                ),
+                                brand = "",
+                                attribute = emptyMap(),
                             ),
                         price = 0,
                         seller = null,
@@ -60,6 +65,7 @@ open class WishlistPersistenceAdapter(
                             com.music.sale.domain.product.enum.ProductStatus
                                 .SELLING,
                         attributes = emptyMap(),
+                        images = emptyList(),
                     ),
                 createdAt = entity.createdAt,
             )
@@ -84,9 +90,10 @@ open class WishlistPersistenceAdapter(
                     id = savedEntity.productId,
                     name = "",
                     catalog =
-                        ProductOutput.ProductCatalog(
+                        ProductCatalog(
                             id = 0,
-                            category =
+                            name = "",
+                            categories = listOf(
                                 com.music.sale.domain.category.Category(
                                     id = 0,
                                     name = "",
@@ -99,7 +106,10 @@ open class WishlistPersistenceAdapter(
                                     path = "",
                                     depth = 0,
                                     isActive = true,
-                                ),
+                                )
+                            ),
+                            brand = "",
+                            attribute = emptyMap(),
                         ),
                     price = 0,
                     seller = null,
@@ -110,6 +120,7 @@ open class WishlistPersistenceAdapter(
                     stockQuantity = 0,
                     status = com.music.sale.domain.product.enum.ProductStatus.SELLING,
                     attributes = emptyMap(),
+                    images = emptyList(),
                 ),
             createdAt = savedEntity.createdAt,
         )
@@ -144,9 +155,10 @@ open class WishlistPersistenceAdapter(
                         id = it.productId,
                         name = "",
                         catalog =
-                            ProductOutput.ProductCatalog(
+                            ProductCatalog(
                                 id = 0,
-                                category =
+                                name = "",
+                                categories = listOf(
                                     com.music.sale.domain.category.Category(
                                         id = 0,
                                         name = "",
@@ -159,7 +171,10 @@ open class WishlistPersistenceAdapter(
                                         path = "",
                                         depth = 0,
                                         isActive = true,
-                                    ),
+                                    )
+                                ),
+                                brand = "",
+                                attribute = emptyMap(),
                             ),
                         price = 0,
                         seller = null,
@@ -174,6 +189,7 @@ open class WishlistPersistenceAdapter(
                             com.music.sale.domain.product.enum.ProductStatus
                                 .SELLING,
                         attributes = emptyMap(),
+                        images = emptyList(),
                     ),
                 createdAt = it.createdAt,
             )
