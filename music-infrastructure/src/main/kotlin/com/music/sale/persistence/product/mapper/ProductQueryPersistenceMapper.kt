@@ -15,35 +15,23 @@ class ProductQueryPersistenceMapper {
             id = queryResult.id,
             catalog =
                 ProductCatalog(
-                    id = queryResult.catalogId,
-                    name = queryResult.catalogName,
-                    category =
-                        Category(
-                            id = queryResult.categoryId,
-                            name = queryResult.categoryName,
-                            type = queryResult.categoryType,
-                            // 부모 카테고리 정보가 필요하면 추가 쿼리 필요
-                            parent = null,
-                            path = queryResult.categoryPath,
-                            depth = queryResult.categoryDepth,
-                        ),
+                    id = queryResult.catalog.id,
+                    name = queryResult.catalog.name,
+                    category = queryResult.catalog.category,
+                    brand = queryResult.catalog.brand,
+                    attributes = queryResult.catalog.attribute,
                 ),
             price = queryResult.price,
-            seller =
-                User(
-                    id = queryResult.sellerId,
-                    name = User.Name(queryResult.sellerName),
-                ),
-            store =
-                Store(
-                    id = queryResult.storeId,
-                ),
+            seller = queryResult.seller,
+            store = queryResult.store,
             condition = queryResult.condition,
             conditionGrade = queryResult.conditionGrade,
             stockQuantity = queryResult.stockQuantity,
             status = queryResult.status,
-            customName = queryResult.customName,
-            customAttributes = queryResult.customAttributes,
+            customName = queryResult.name,
+            customAttributes = queryResult.attributes,
+            // 이미지는 쿼리 결과에서 가져오거나 빈 리스트로 초기화
+            images = queryResult.images?.toMutableList() ?: mutableListOf(),
         )
     }
 } 

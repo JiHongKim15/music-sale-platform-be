@@ -19,5 +19,5 @@ data class ProductQueryResult(
     val stockQuantity: Int,
     val status: ProductStatus,
     val attributes: Map<String, Any>?,
-    val images: List<ProductImage>?
+    val images: List<ProductImage>?,
 )

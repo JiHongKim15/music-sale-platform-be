@@ -34,11 +34,12 @@ data class SearchProductRequest(
     fun toPageable(): PageRequest {
         val sortProperty: String = sort?.name ?: "id"
 
-        val direction = when (sortDirection) {
-            SortDirection.ASC -> Sort.Direction.ASC
-            SortDirection.DESC -> Sort.Direction.DESC
-            else -> Sort.Direction.ASC // Default to ASC if sortDirection is null
-        }
+        val direction =
+            when (sortDirection) {
+                SortDirection.ASC -> Sort.Direction.ASC
+                SortDirection.DESC -> Sort.Direction.DESC
+                else -> Sort.Direction.ASC // Default to ASC if sortDirection is null
+            }
 
         val actualPageNumber = if (pageNumber < 1) 0 else pageNumber - 1
         val actualPageSize = if (pageSize <= 0) 10 else pageSize
@@ -56,11 +57,12 @@ data class GetProductRequest(
     fun toPageRequest(): PageRequest {
         val sortProperty: String = sort?.name ?: "id" // <--- **Crucial change here**
 
-        val direction = when (sortDirection) {
-            SortDirection.ASC -> Sort.Direction.ASC
-            SortDirection.DESC -> Sort.Direction.DESC
-            else -> Sort.Direction.ASC // Default to ASC if sortDirection is null
-        }
+        val direction =
+            when (sortDirection) {
+                SortDirection.ASC -> Sort.Direction.ASC
+                SortDirection.DESC -> Sort.Direction.DESC
+                else -> Sort.Direction.ASC // Default to ASC if sortDirection is null
+            }
         val actualPageNumber = if (pageNumber < 1) 0 else pageNumber - 1
         val actualPageSize = if (pageSize <= 0) 10 else pageSize
 

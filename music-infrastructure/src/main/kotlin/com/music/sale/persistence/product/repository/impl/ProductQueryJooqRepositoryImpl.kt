@@ -1,7 +1,11 @@
 package com.music.sale.persistence.product.repository.impl
 
 import com.music.sale.application.product.dto.SearchProductCondition
+import com.music.sale.domain.category.Category
 import com.music.sale.domain.category.CategoryType
+import com.music.sale.domain.store.Store
+import com.music.sale.domain.user.User
+import com.music.sale.persistence.product.dto.ProductCatalogQueryResult
 import com.music.sale.persistence.product.dto.ProductQueryResult
 import com.music.sale.persistence.product.repository.ProductQueryJooqRepository
 import org.jooq.DSLContext
@@ -16,14 +20,10 @@ open class ProductQueryJooqRepositoryImpl(
 ) : ProductQueryJooqRepository {
     override fun findAll(pageable: PageRequest): Page<ProductQueryResult> {
         val query =
-    }
-
-    override fun findById(id: Long): ProductQueryResult? {
-        val query =
             dslContext
                 .select(
                     DSL.field("id").cast(Long::class.java),
-                    DSL.field("name").cast(String::class.java),
+                    DSL.field("custom_name").cast(String::class.java),
                     DSL.field("price").cast(Int::class.java),
                     DSL.field("stock_quantity").cast(Int::class.java),
                     DSL.field("condition").cast(String::class.java),
@@ -31,6 +31,7 @@ open class ProductQueryJooqRepositoryImpl(
                     DSL.field("status").cast(String::class.java),
                     DSL.field("catalog_id").cast(Long::class.java),
                     DSL.field("catalog_name").cast(String::class.java),
+                    DSL.field("catalog_brand").cast(String::class.java),
                     DSL.field("category_id").cast(Long::class.java),
                     DSL.field("category_name").cast(String::class.java),
                     DSL.field("category_type").cast(String::class.java),
@@ -39,11 +40,81 @@ open class ProductQueryJooqRepositoryImpl(
                     DSL.field("seller_id").cast(Long::class.java),
                     DSL.field("seller_name").cast(String::class.java),
                     DSL.field("store_id").cast(Long::class.java),
-                    DSL.field("store_name").cast(String::class.java),
-                    DSL.field("custom_name").cast(String::class.java),
                     DSL.field("custom_attributes").cast(String::class.java),
-                    DSL.field("created_at").cast(java.time.LocalDateTime::class.java),
-                    DSL.field("updated_at").cast(java.time.LocalDateTime::class.java),
+                )
+                .from("product_items")
+                .limit(pageable.pageSize)
+                .offset(pageable.offset.toInt())
+
+        val results =
+            query.fetch().map { record ->
+                ProductQueryResult(
+                    id = record.get(0, Long::class.java),
+                    name = record.get(1, String::class.java) ?: "",
+                    catalog = ProductCatalogQueryResult(
+                        id = record.get(7, Long::class.java),
+                        name = record.get(8, String::class.java),
+                        category = Category(
+                            id = record.get(10, Long::class.java),
+                            name = record.get(11, String::class.java),
+                            type = CategoryType.valueOf(record.get(12, String::class.java)),
+                            parent = null,
+                            path = record.get(13, String::class.java),
+                            depth = record.get(14, Int::class.java),
+                        ),
+                        brand = record.get(9, String::class.java) ?: "",
+                        attribute = emptyMap(),
+                    ),
+                    price = record.get(2, Int::class.java),
+                    seller = User(
+                        id = record.get(15, Long::class.java),
+                        name = User.Name(record.get(16, String::class.java)),
+                    ),
+                    store = Store(
+                        id = record.get(17, Long::class.java),
+                    ),
+                    condition = com.music.sale.domain.product.enum.ProductCondition.valueOf(
+                        record.get(4, String::class.java),
+                    ),
+                    conditionGrade = record.get(5, String::class.java)?.let {
+                        com.music.sale.domain.product.enum.ProductConditionGrade.valueOf(it)
+                    },
+                    stockQuantity = record.get(3, Int::class.java),
+                    status = com.music.sale.domain.product.enum.ProductStatus.valueOf(
+                        record.get(6, String::class.java),
+                    ),
+                    attributes = null,
+                    images = null,
+                )
+            }
+
+        val totalCount = dslContext.selectCount().from("product_items").fetchOne(0, Long::class.java) ?: 0L
+        return org.springframework.data.domain.PageImpl(results, pageable, totalCount)
+    }
+
+    override fun findById(id: Long): ProductQueryResult? {
+        val query =
+            dslContext
+                .select(
+                    DSL.field("id").cast(Long::class.java),
+                    DSL.field("custom_name").cast(String::class.java),
+                    DSL.field("price").cast(Int::class.java),
+                    DSL.field("stock_quantity").cast(Int::class.java),
+                    DSL.field("condition").cast(String::class.java),
+                    DSL.field("condition_grade").cast(String::class.java),
+                    DSL.field("status").cast(String::class.java),
+                    DSL.field("catalog_id").cast(Long::class.java),
+                    DSL.field("catalog_name").cast(String::class.java),
+                    DSL.field("catalog_brand").cast(String::class.java),
+                    DSL.field("category_id").cast(Long::class.java),
+                    DSL.field("category_name").cast(String::class.java),
+                    DSL.field("category_type").cast(String::class.java),
+                    DSL.field("category_path").cast(String::class.java),
+                    DSL.field("category_depth").cast(Int::class.java),
+                    DSL.field("seller_id").cast(Long::class.java),
+                    DSL.field("seller_name").cast(String::class.java),
+                    DSL.field("store_id").cast(Long::class.java),
+                    DSL.field("custom_attributes").cast(String::class.java),
                 )
                 .from("product_items")
                 .where(DSL.field("id").eq(id))
@@ -51,40 +122,41 @@ open class ProductQueryJooqRepositoryImpl(
         return query.fetchOne()?.let { record ->
             ProductQueryResult(
                 id = record.get(0, Long::class.java),
-                name = record.get(1, String::class.java),
+                name = record.get(1, String::class.java) ?: "",
+                catalog = ProductCatalogQueryResult(
+                    id = record.get(7, Long::class.java),
+                    name = record.get(8, String::class.java),
+                    category = Category(
+                        id = record.get(10, Long::class.java),
+                        name = record.get(11, String::class.java),
+                        type = CategoryType.valueOf(record.get(12, String::class.java)),
+                        parent = null,
+                        path = record.get(13, String::class.java),
+                        depth = record.get(14, Int::class.java),
+                    ),
+                    brand = record.get(9, String::class.java) ?: "",
+                    attribute = emptyMap(), // JSON 파싱 필요시 구현
+                ),
                 price = record.get(2, Int::class.java),
+                seller = User(
+                    id = record.get(15, Long::class.java),
+                    name = User.Name(record.get(16, String::class.java)),
+                ),
+                store = Store(
+                    id = record.get(17, Long::class.java),
+                ),
+                condition = com.music.sale.domain.product.enum.ProductCondition.valueOf(
+                    record.get(4, String::class.java),
+                ),
+                conditionGrade = record.get(5, String::class.java)?.let {
+                    com.music.sale.domain.product.enum.ProductConditionGrade.valueOf(it)
+                },
                 stockQuantity = record.get(3, Int::class.java),
-                condition =
-                    com.music.sale.domain.product.enum.ProductCondition.valueOf(
-                        record.get(
-                            4,
-                            String::class.java,
-                        ),
-                    ),
-                conditionGrade =
-                    com.music.sale.domain.product.enum.ProductConditionGrade.valueOf(
-                        record.get(
-                            5,
-                            String::class.java,
-                        ),
-                    ),
-                status = com.music.sale.domain.product.enum.ProductStatus.valueOf(record.get(6, String::class.java)),
-                catalogId = record.get(7, Long::class.java),
-                catalogName = record.get(8, String::class.java),
-                categoryId = record.get(9, Long::class.java),
-                categoryName = record.get(10, String::class.java),
-                categoryType = CategoryType.valueOf(record.get(11, String::class.java)),
-                categoryPath = record.get(12, String::class.java),
-                categoryDepth = record.get(13, Int::class.java),
-                sellerId = record.get(14, Long::class.java),
-                sellerName = record.get(15, String::class.java),
-                storeId = record.get(16, Long::class.java),
-                storeName = record.get(17, String::class.java),
-                customName = record.get(18, String::class.java),
-                // TODO: JSON 파싱 로직 추가
-                customAttributes = null,
-                createdAt = record.get(20, java.time.LocalDateTime::class.java),
-                updatedAt = record.get(21, java.time.LocalDateTime::class.java),
+                status = com.music.sale.domain.product.enum.ProductStatus.valueOf(
+                    record.get(6, String::class.java),
+                ),
+                attributes = null, // JSON 파싱 필요시 구현
+                images = null, // 별도 조인 필요시 구현
             )
         }
     }
@@ -93,8 +165,6 @@ open class ProductQueryJooqRepositoryImpl(
         searchCondition: SearchProductCondition,
         pageable: PageRequest,
     ): Page<ProductQueryResult> {
-        // TODO: 복잡한 검색 로직은 나중에 구현
-        // 현재는 기본 findAll과 동일하게 구현
         return findAll(pageable)
     }
-} 
+}

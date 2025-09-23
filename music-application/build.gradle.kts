@@ -18,6 +18,7 @@ dependencies {
     // Spring Core (비즈니스 로직에 필요한 것만)
     implementation("org.springframework:spring-context")
     implementation("org.springframework:spring-tx")
+    implementation("org.springframework.boot:spring-boot-starter")
 
     // Spring Data JPA (Page 인터페이스 사용)
     implementation("org.springframework.data:spring-data-commons")
@@ -36,6 +37,7 @@ dependencies {
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 
     // Kotlin
+    implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
