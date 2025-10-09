@@ -60,6 +60,7 @@ allOpen {
 
 sourceSets["main"].java.srcDirs(
     "src/main/kotlin",
+    "src/main/java",
     "build/generated/source/kapt/main",
 )
 

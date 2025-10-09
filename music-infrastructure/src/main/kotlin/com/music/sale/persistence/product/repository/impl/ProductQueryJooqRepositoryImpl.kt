@@ -70,9 +70,7 @@ open class ProductQueryJooqRepositoryImpl(
                         id = record.get(15, Long::class.java),
                         name = User.Name(record.get(16, String::class.java)),
                     ),
-                    store = Store(
-                        id = record.get(17, Long::class.java),
-                    ),
+                    store = Store(record.get(17, Long::class.java)),
                     condition = com.music.sale.domain.product.enum.ProductCondition.valueOf(
                         record.get(4, String::class.java),
                     ),
@@ -142,9 +140,7 @@ open class ProductQueryJooqRepositoryImpl(
                     id = record.get(15, Long::class.java),
                     name = User.Name(record.get(16, String::class.java)),
                 ),
-                store = Store(
-                    id = record.get(17, Long::class.java),
-                ),
+                store = Store(record.get(17, Long::class.java)),
                 condition = com.music.sale.domain.product.enum.ProductCondition.valueOf(
                     record.get(4, String::class.java),
                 ),

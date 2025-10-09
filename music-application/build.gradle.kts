@@ -56,4 +56,4 @@ kotlin {
     }
 }
 
-sourceSets["main"].java.srcDirs("src/main/kotlin")
+sourceSets["main"].java.srcDirs("src/main/kotlin", "src/main/java")

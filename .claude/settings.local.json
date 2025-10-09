@@ -8,7 +8,14 @@
       "Bash(docker run:*)",
       "Bash(brew list:*)",
       "Bash(lsof:*)",
-      "Bash(kill:*)"
+      "Bash(kill:*)",
+      "Bash(mkdir:*)",
+      "Bash(tree:*)",
+      "Bash(while read dir)",
+      "Bash(do mkdir -p \"$dir\")",
+      "Bash(done)",
+      "Bash(xargs:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
