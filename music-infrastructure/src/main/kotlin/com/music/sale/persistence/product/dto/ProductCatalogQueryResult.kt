@@ -1,16 +1,11 @@
 package com.music.sale.persistence.product.dto
 
-import com.music.sale.domain.category.CategoryType
-import java.time.LocalDateTime
+import com.music.sale.domain.category.Category
 
 data class ProductCatalogQueryResult(
     val id: Long,
     val name: String,
-    val categoryId: Long,
-    val categoryName: String,
-    val categoryType: CategoryType,
-    val categoryPath: String,
-    val categoryDepth: Int,
-    val createdAt: LocalDateTime,
-    val updatedAt: LocalDateTime,
+    val category: Category,
+    val brand: String,
+    val attribute: Map<String, String>,
 ) 

@@ -26,6 +26,7 @@ dependencies {
 
     // Database
     runtimeOnly("com.mysql:mysql-connector-j")
+    runtimeOnly("com.h2database:h2")
 
     // JWT
     implementation("io.jsonwebtoken:jjwt-api:0.12.5")
@@ -59,6 +60,7 @@ allOpen {
 
 sourceSets["main"].java.srcDirs(
     "src/main/kotlin",
+    "src/main/java",
     "build/generated/source/kapt/main",
 )
 

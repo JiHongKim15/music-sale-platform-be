@@ -1,9 +1,15 @@
 package com.music.sale.persistence.wishlist
 
 import com.music.sale.application.product.dto.ProductOutput
+import com.music.sale.application.product.dto.ProductCatalog
 import com.music.sale.application.wishlist.dto.WishlistOutput
 import com.music.sale.application.wishlist.port.outport.WishlistPort
 import com.music.sale.common.Pageable
+import com.music.sale.domain.category.Category
+import com.music.sale.domain.category.CategoryType
+import com.music.sale.domain.product.enum.ProductCondition
+import com.music.sale.domain.product.enum.ProductConditionGrade
+import com.music.sale.domain.product.enum.ProductStatus
 import com.music.sale.persistence.wishlist.entity.WishlistEntity
 import com.music.sale.persistence.wishlist.repository.WishlistRepository
 import org.springframework.data.domain.Page
@@ -30,36 +36,31 @@ open class WishlistPersistenceAdapter(
                         // 실제로는 ProductService에서 조회해야 함
                         name = "",
                         catalog =
-                            ProductOutput.ProductCatalog(
+                            ProductCatalog(
                                 id = 0,
-                                category =
-                                    com.music.sale.domain.category.Category(
+                                name = "",
+                                categories = listOf(
+                                    Category(
                                         id = 0,
                                         name = "",
-                                        type =
-                                            com.music.sale.domain
-                                                .category
-                                                .CategoryType
-                                                .PRODUCT,
+                                        type = CategoryType.PRODUCT,
                                         parent = null,
                                         path = "",
                                         depth = 0,
-                                        isActive = true,
-                                    ),
+                                    )
+                                ),
+                                brand = "",
+                                attribute = emptyMap(),
                             ),
                         price = 0,
                         seller = null,
                         store = null,
-                        condition =
-                            com.music.sale.domain.product.enum.ProductCondition.NEW,
-                        conditionGrade =
-                            com.music.sale.domain.product.enum.ProductConditionGrade
-                                .S,
+                        condition = ProductCondition.NEW,
+                        conditionGrade = ProductConditionGrade.S,
                         stockQuantity = 0,
-                        status =
-                            com.music.sale.domain.product.enum.ProductStatus
-                                .SELLING,
+                        status = ProductStatus.SELLING,
                         attributes = emptyMap(),
+                        images = null,
                     ),
                 createdAt = entity.createdAt,
             )
@@ -84,32 +85,31 @@ open class WishlistPersistenceAdapter(
                     id = savedEntity.productId,
                     name = "",
                     catalog =
-                        ProductOutput.ProductCatalog(
+                        ProductCatalog(
                             id = 0,
-                            category =
-                                com.music.sale.domain.category.Category(
+                            name = "",
+                            categories = listOf(
+                                Category(
                                     id = 0,
                                     name = "",
-                                    type =
-                                        com.music.sale.domain
-                                            .category
-                                            .CategoryType
-                                            .PRODUCT,
+                                    type = CategoryType.PRODUCT,
                                     parent = null,
                                     path = "",
                                     depth = 0,
-                                    isActive = true,
-                                ),
+                                )
+                            ),
+                            brand = "",
+                            attribute = emptyMap(),
                         ),
                     price = 0,
                     seller = null,
                     store = null,
-                    condition = com.music.sale.domain.product.enum.ProductCondition.NEW,
-                    conditionGrade =
-                        com.music.sale.domain.product.enum.ProductConditionGrade.S,
+                    condition = ProductCondition.NEW,
+                    conditionGrade = ProductConditionGrade.S,
                     stockQuantity = 0,
-                    status = com.music.sale.domain.product.enum.ProductStatus.SELLING,
+                    status = ProductStatus.SELLING,
                     attributes = emptyMap(),
+                    images = null,
                 ),
             createdAt = savedEntity.createdAt,
         )
@@ -144,36 +144,31 @@ open class WishlistPersistenceAdapter(
                         id = it.productId,
                         name = "",
                         catalog =
-                            ProductOutput.ProductCatalog(
+                            ProductCatalog(
                                 id = 0,
-                                category =
-                                    com.music.sale.domain.category.Category(
+                                name = "",
+                                categories = listOf(
+                                    Category(
                                         id = 0,
                                         name = "",
-                                        type =
-                                            com.music.sale.domain
-                                                .category
-                                                .CategoryType
-                                                .PRODUCT,
+                                        type = CategoryType.PRODUCT,
                                         parent = null,
                                         path = "",
                                         depth = 0,
-                                        isActive = true,
-                                    ),
+                                    )
+                                ),
+                                brand = "",
+                                attribute = emptyMap(),
                             ),
                         price = 0,
                         seller = null,
                         store = null,
-                        condition =
-                            com.music.sale.domain.product.enum.ProductCondition.NEW,
-                        conditionGrade =
-                            com.music.sale.domain.product.enum.ProductConditionGrade
-                                .S,
+                        condition = ProductCondition.NEW,
+                        conditionGrade = ProductConditionGrade.S,
                         stockQuantity = 0,
-                        status =
-                            com.music.sale.domain.product.enum.ProductStatus
-                                .SELLING,
+                        status = ProductStatus.SELLING,
                         attributes = emptyMap(),
+                        images = null,
                     ),
                 createdAt = it.createdAt,
             )
