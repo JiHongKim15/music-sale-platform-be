@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 @SpringBootApplication
 open class MusicSaleApplication
 
+//main test
 fun main(args: Array<String>) {
     Dotenv.configure()
         .directory(System.getProperty("user.dir"))
