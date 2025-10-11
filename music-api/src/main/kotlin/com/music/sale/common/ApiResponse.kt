@@ -8,6 +8,7 @@ data class ApiResponse<T>(
     val code: String? = null,
 ) {
     companion object {
+        @JvmStatic
         fun <T> success(
             data: T,
             code: String? = null,
@@ -15,6 +16,7 @@ data class ApiResponse<T>(
             return ApiResponse(success = true, data = data, code = code)
         }
 
+        @JvmStatic
         fun <T> error(
             message: String,
             code: String? = null,
