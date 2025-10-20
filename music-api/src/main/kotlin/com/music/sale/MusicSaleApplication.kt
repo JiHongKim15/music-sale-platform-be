@@ -11,11 +11,16 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 open class MusicSaleApplication
 
 fun main(args: Array<String>) {
-    Dotenv.configure()
-        .directory(System.getProperty("user.dir"))
-        .filename(".env.local")
-        .systemProperties()
-        .load()
+    try {
+        Dotenv.configure()
+            .directory(System.getProperty("user.dir"))
+            .filename(".env.local")
+            .systemProperties()
+            .load()
+    } catch (e: Exception) {
+        // .env.local 파일이 없어도 실행 가능하도록 예외 처리
+        println("Warning: .env.local file not found, using default configuration")
+    }
 
     runApplication<MusicSaleApplication>(*args)
 }

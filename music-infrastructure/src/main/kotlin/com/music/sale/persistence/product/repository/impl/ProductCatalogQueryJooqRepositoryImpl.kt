@@ -38,14 +38,15 @@ open class ProductCatalogQueryJooqRepositoryImpl(
                 ProductCatalogQueryResult(
                     id = record.get(0, Long::class.java),
                     name = record.get(1, String::class.java),
-                    category = Category(
-                        id = record.get(2, Long::class.java),
-                        name = record.get(3, String::class.java),
-                        type = CategoryType.valueOf(record.get(4, String::class.java)),
-                        parent = null,
-                        path = record.get(5, String::class.java),
-                        depth = record.get(6, Int::class.java),
-                    ),
+                    category =
+                        Category(
+                            id = record.get(2, Long::class.java),
+                            name = record.get(3, String::class.java),
+                            type = CategoryType.valueOf(record.get(4, String::class.java)),
+                            parent = null,
+                            path = record.get(5, String::class.java),
+                            depth = record.get(6, Int::class.java),
+                        ),
                     brand = record.get(7, String::class.java) ?: "",
                     attribute = emptyMap(),
                 )
@@ -74,14 +75,15 @@ open class ProductCatalogQueryJooqRepositoryImpl(
             ProductCatalogQueryResult(
                 id = record.get(0, Long::class.java),
                 name = record.get(1, String::class.java),
-                category = Category(
-                    id = record.get(2, Long::class.java),
-                    name = record.get(3, String::class.java),
-                    type = CategoryType.valueOf(record.get(4, String::class.java)),
-                    parent = null,
-                    path = record.get(5, String::class.java),
-                    depth = record.get(6, Int::class.java),
-                ),
+                category =
+                    Category(
+                        id = record.get(2, Long::class.java),
+                        name = record.get(3, String::class.java),
+                        type = CategoryType.valueOf(record.get(4, String::class.java)),
+                        parent = null,
+                        path = record.get(5, String::class.java),
+                        depth = record.get(6, Int::class.java),
+                    ),
                 brand = record.get(7, String::class.java) ?: "",
                 attribute = emptyMap(),
             )
@@ -115,14 +117,15 @@ open class ProductCatalogQueryJooqRepositoryImpl(
                 ProductCatalogQueryResult(
                     id = record.get(0, Long::class.java),
                     name = record.get(1, String::class.java),
-                    category = Category(
-                        id = record.get(2, Long::class.java),
-                        name = record.get(3, String::class.java),
-                        type = CategoryType.valueOf(record.get(4, String::class.java)),
-                        parent = null,
-                        path = record.get(5, String::class.java),
-                        depth = record.get(6, Int::class.java),
-                    ),
+                    category =
+                        Category(
+                            id = record.get(2, Long::class.java),
+                            name = record.get(3, String::class.java),
+                            type = CategoryType.valueOf(record.get(4, String::class.java)),
+                            parent = null,
+                            path = record.get(5, String::class.java),
+                            depth = record.get(6, Int::class.java),
+                        ),
                     brand = record.get(7, String::class.java) ?: "",
                     attribute = emptyMap(),
                 )
@@ -158,14 +161,15 @@ open class ProductCatalogQueryJooqRepositoryImpl(
                 ProductCatalogQueryResult(
                     id = record.get(0, Long::class.java),
                     name = record.get(1, String::class.java),
-                    category = Category(
-                        id = record.get(2, Long::class.java),
-                        name = record.get(3, String::class.java),
-                        type = CategoryType.valueOf(record.get(4, String::class.java)),
-                        parent = null,
-                        path = record.get(5, String::class.java),
-                        depth = record.get(6, Int::class.java),
-                    ),
+                    category =
+                        Category(
+                            id = record.get(2, Long::class.java),
+                            name = record.get(3, String::class.java),
+                            type = CategoryType.valueOf(record.get(4, String::class.java)),
+                            parent = null,
+                            path = record.get(5, String::class.java),
+                            depth = record.get(6, Int::class.java),
+                        ),
                     brand = record.get(7, String::class.java) ?: "",
                     attribute = emptyMap(),
                 )
