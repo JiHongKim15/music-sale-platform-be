@@ -1,10 +1,7 @@
 package com.music.sale.persistence.product.mapper
 
-import com.music.sale.domain.category.Category
 import com.music.sale.domain.product.Product
 import com.music.sale.domain.product.ProductCatalog
-import com.music.sale.domain.store.Store
-import com.music.sale.domain.user.User
 import com.music.sale.persistence.product.dto.ProductQueryResult
 import org.springframework.stereotype.Component
 

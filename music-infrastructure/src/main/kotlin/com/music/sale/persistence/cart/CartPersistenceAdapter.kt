@@ -2,8 +2,8 @@ package com.music.sale.persistence.cart
 
 import com.music.sale.application.cart.dto.CartOutput
 import com.music.sale.application.cart.port.outport.CartPort
-import com.music.sale.application.product.dto.ProductOutput
 import com.music.sale.application.product.dto.ProductCatalog
+import com.music.sale.application.product.dto.ProductOutput
 import com.music.sale.common.Pageable
 import com.music.sale.domain.cart.Cart
 import com.music.sale.domain.category.Category
@@ -40,16 +40,17 @@ open class CartPersistenceAdapter(
                                 ProductCatalog(
                                     id = 1L,
                                     name = "Product",
-                                    categories = listOf(
-                                        Category(
-                                            id = 1L,
-                                            name = "Category",
-                                            type = CategoryType.PRODUCT,
-                                            parent = null,
-                                            path = "/1",
-                                            depth = 0,
-                                        )
-                                    ),
+                                    categories =
+                                        listOf(
+                                            Category(
+                                                id = 1L,
+                                                name = "Category",
+                                                type = CategoryType.PRODUCT,
+                                                parent = null,
+                                                path = "/1",
+                                                depth = 0,
+                                            ),
+                                        ),
                                     brand = "Brand",
                                     attribute = emptyMap(),
                                 ),
@@ -90,16 +91,17 @@ open class CartPersistenceAdapter(
                         ProductCatalog(
                             id = 1L,
                             name = "Product",
-                            categories = listOf(
-                                Category(
-                                    id = 1L,
-                                    name = "Category",
-                                    type = CategoryType.PRODUCT,
-                                    parent = null,
-                                    path = "/1",
-                                    depth = 0,
-                                )
-                            ),
+                            categories =
+                                listOf(
+                                    Category(
+                                        id = 1L,
+                                        name = "Category",
+                                        type = CategoryType.PRODUCT,
+                                        parent = null,
+                                        path = "/1",
+                                        depth = 0,
+                                    ),
+                                ),
                             brand = "Brand",
                             attribute = emptyMap(),
                         ),

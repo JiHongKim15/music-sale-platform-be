@@ -1,7 +1,7 @@
 package com.music.sale.persistence.wishlist
 
-import com.music.sale.application.product.dto.ProductOutput
 import com.music.sale.application.product.dto.ProductCatalog
+import com.music.sale.application.product.dto.ProductOutput
 import com.music.sale.application.wishlist.dto.WishlistOutput
 import com.music.sale.application.wishlist.port.outport.WishlistPort
 import com.music.sale.common.Pageable
@@ -39,16 +39,17 @@ open class WishlistPersistenceAdapter(
                             ProductCatalog(
                                 id = 0,
                                 name = "",
-                                categories = listOf(
-                                    Category(
-                                        id = 0,
-                                        name = "",
-                                        type = CategoryType.PRODUCT,
-                                        parent = null,
-                                        path = "",
-                                        depth = 0,
-                                    )
-                                ),
+                                categories =
+                                    listOf(
+                                        Category(
+                                            id = 0,
+                                            name = "",
+                                            type = CategoryType.PRODUCT,
+                                            parent = null,
+                                            path = "",
+                                            depth = 0,
+                                        ),
+                                    ),
                                 brand = "",
                                 attribute = emptyMap(),
                             ),
@@ -88,16 +89,17 @@ open class WishlistPersistenceAdapter(
                         ProductCatalog(
                             id = 0,
                             name = "",
-                            categories = listOf(
-                                Category(
-                                    id = 0,
-                                    name = "",
-                                    type = CategoryType.PRODUCT,
-                                    parent = null,
-                                    path = "",
-                                    depth = 0,
-                                )
-                            ),
+                            categories =
+                                listOf(
+                                    Category(
+                                        id = 0,
+                                        name = "",
+                                        type = CategoryType.PRODUCT,
+                                        parent = null,
+                                        path = "",
+                                        depth = 0,
+                                    ),
+                                ),
                             brand = "",
                             attribute = emptyMap(),
                         ),
@@ -147,16 +149,17 @@ open class WishlistPersistenceAdapter(
                             ProductCatalog(
                                 id = 0,
                                 name = "",
-                                categories = listOf(
-                                    Category(
-                                        id = 0,
-                                        name = "",
-                                        type = CategoryType.PRODUCT,
-                                        parent = null,
-                                        path = "",
-                                        depth = 0,
-                                    )
-                                ),
+                                categories =
+                                    listOf(
+                                        Category(
+                                            id = 0,
+                                            name = "",
+                                            type = CategoryType.PRODUCT,
+                                            parent = null,
+                                            path = "",
+                                            depth = 0,
+                                        ),
+                                    ),
                                 brand = "",
                                 attribute = emptyMap(),
                             ),
