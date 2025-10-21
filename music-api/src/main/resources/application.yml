@@ -1,7 +1,7 @@
 server:
   port: ${SERVER_PORT:8080}
   error:
-    include-stacktrace: ${INCLUDE_STACKTRACE:never}  # 운영시 스택트레이스 비활성화
+    include-stacktrace: ${INCLUDE_STACKTRACE:on_param}  # ?trace=true 파라미터로만 스택트레이스 표시
 
 spring:
   profiles:
@@ -11,10 +11,10 @@ spring:
   
   # 데이터베이스 설정 (개발환경은 H2, 운영환경은 MySQL)
   datasource:
-    url: ${DB_URL:jdbc:h2:mem:music_sale;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
-    driver-class-name: ${DB_DRIVER:org.h2.Driver}
-    username: ${DB_USERNAME:sa}
-    password: ${DB_PASSWORD:}
+    url: ${DB_URL:jdbc:mysql://localhost:3306/music_sale_db}
+    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:password}
     hikari:
       maximum-pool-size: ${DB_MAX_POOL_SIZE:5}
       minimum-idle: ${DB_MIN_IDLE:2}
@@ -32,11 +32,11 @@ spring:
       hibernate:
         format_sql: ${JPA_FORMAT_SQL:true}  # local: true, dev/prod: false
         use_sql_comments: ${JPA_USE_SQL_COMMENTS:true}  # local: true, dev/prod: false
-        dialect: ${JPA_DIALECT:org.hibernate.dialect.H2Dialect}
-    defer-datasource-initialization: ${JPA_DEFER_DATASOURCE_INIT:false}
+        dialect: ${JPA_DIALECT:org.hibernate.dialect.MySQLDialect}
+    defer-datasource-initialization: ${JPA_DEFER_DATASOURCE_INIT:true}
     sql:
       init:
-        mode: ${JPA_SQL_INIT_MODE:never}  # local: never, dev: never, prod: never
+        mode: ${JPA_SQL_INIT_MODE:never}  # MySQL 사용 시 data.sql 비활성화
 
   # H2 콘솔 설정 (개발환경에서만 활성화)
   h2:

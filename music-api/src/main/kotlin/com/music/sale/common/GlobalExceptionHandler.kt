@@ -1,5 +1,7 @@
 package com.music.sale.common
 
+import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.AccessDeniedException
@@ -11,6 +13,10 @@ import org.springframework.web.bind.annotation.RestControllerAdvice
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
+    private val logger = LoggerFactory.getLogger(GlobalExceptionHandler::class.java)
+    
+    @Value("\${spring.profiles.active:prod}")
+    private lateinit var activeProfile: String
     @ExceptionHandler(AuthenticationCredentialsNotFoundException::class)
     fun handleAuthException(e: AuthenticationCredentialsNotFoundException): ResponseEntity<ApiResponse<Unit>> =
         ResponseEntity.status(HttpStatus.UNAUTHORIZED)
@@ -65,12 +71,26 @@ class GlobalExceptionHandler {
             )
 
     @ExceptionHandler(Exception::class)
-    fun handleException(e: Exception): ResponseEntity<ApiResponse<Unit>> =
-        ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+    fun handleException(e: Exception): ResponseEntity<ApiResponse<Unit>> {
+        // 로그에는 항상 상세 에러 기록 (개발자용)
+        logger.error("=== EXCEPTION OCCURRED ===", e)
+        logger.error("Exception Type: ${e.javaClass.name}")
+        logger.error("Exception Message: ${e.message}")
+        
+        // 개발 환경에서만 상세 에러 메시지 반환
+        val isDevelopment = activeProfile in listOf("local", "dev")
+        val errorMessage = if (isDevelopment) {
+            "서버 내부 오류: ${e.message} (${e.javaClass.simpleName})"
+        } else {
+            "서버 내부 오류가 발생했습니다."
+        }
+        
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(
                 ApiResponse.error(
-                    message = "서버 내부 오류가 발생했습니다.",
+                    message = errorMessage,
                     code = "INTERNAL_ERROR",
                 ),
             )
+    }
 }
