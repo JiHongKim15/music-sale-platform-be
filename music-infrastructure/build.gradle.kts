@@ -67,4 +67,9 @@ kotlin {
     }
 }
 
-sourceSets["main"].java.srcDirs("src/main/kotlin")
+tasks.withType<JavaCompile> {
+    sourceCompatibility = "21"
+    targetCompatibility = "21"
+}
+
+sourceSets["main"].java.srcDirs("src/main/kotlin", "src/main/java")

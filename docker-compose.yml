@@ -10,7 +10,7 @@ services:
       MYSQL_PASSWORD: music_password
       MYSQL_ROOT_HOST: '%'
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./mysql/init:/docker-entrypoint-initdb.d
