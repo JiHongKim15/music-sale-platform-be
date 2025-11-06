@@ -2,6 +2,50 @@
 
 음악 판매 플랫폼의 백엔드 애플리케이션입니다.
 
+## 🚀 처음 시작하기 (팀원 온보딩)
+
+### 1단계: 프로젝트 클론
+```bash
+git clone https://github.com/JiHongKim15/music-sale-platform-be.git
+cd music-sale-platform-be
+git checkout develop
+```
+
+### 2단계: 환경 변수 파일 생성
+```bash
+# .env.example을 .env.local로 복사 (한 번만 실행)
+cp .env.example .env.local
+```
+
+> **중요**: 
+> - `.env.local` 파일은 **Git에 커밋되지 않습니다** (`.gitignore`에 포함)
+> - 각 개발자는 자신의 로컬 환경에 맞게 `.env.local` 파일을 생성해야 합니다
+> - 기본값이 설정되어 있어서 대부분 수정 없이 바로 사용 가능합니다
+
+### 3단계: Docker 컨테이너 시작
+```bash
+# MySQL + Redis 시작
+docker compose up -d
+
+# 컨테이너 상태 확인
+docker compose ps
+```
+
+### 4단계: 애플리케이션 실행
+```bash
+# 로컬 환경으로 실행
+./gradlew :music-api:bootRun --args='--spring.profiles.active=local'
+
+# 또는 IntelliJ에서 MusicSaleApplication.kt 파일 실행
+```
+
+### 5단계: 확인
+- **애플리케이션**: http://localhost:8080
+- **Swagger UI**: http://localhost:8080/swagger-ui/index.html
+- **Health Check**: http://localhost:8080/actuator/health
+
+---
+
 ## 🎵 주요 기능
 
 ### 🔐 사용자 관리
@@ -172,12 +216,15 @@ music-infrastructure/
 ### 1. 환경변수 설정
 
 ```bash
-# .env.example을 .env로 복사
-cp .env.example .env
+# .env.example을 .env.local로 복사 (Git에 커밋되지 않음)
+cp .env.example .env.local
 
-# .env 파일에서 필요한 설정 수정
-# 특히 DB_PASSWORD를 실제 MySQL 비밀번호로 변경
+# .env.local 파일에서 필요한 설정 수정
+# 특히 DB_PASSWORD를 실제 MySQL 비밀번호로 변경 (기본값: password)
 ```
+
+> **중요**: `.env.local` 파일은 `.gitignore`에 포함되어 Git에 커밋되지 않습니다.
+> 각 개발자는 자신의 환경에 맞게 `.env.local` 파일을 생성해야 합니다.
 
 ### 2. 데이터베이스 시작
 
@@ -219,13 +266,19 @@ docker-compose up -d redis
 #### 1. 환경변수 파일 생성
 
 ```bash
-# .env.example을 .env로 복사
-cp .env.example .env
+# .env.example을 .env.local로 복사 (Git에 커밋되지 않음)
+cp .env.example .env.local
+
+# .env.local 파일이 자동으로 로드됩니다
+# 애플리케이션 실행 시 자동으로 읽어옵니다
 ```
 
 #### 2. 필수 환경변수 설정
 
-`.env` 파일에서 다음 환경변수들을 설정해주세요:
+`.env.local` 파일에서 다음 환경변수들을 설정해주세요:
+
+> **참고**: 기본값이 이미 설정되어 있어서 대부분 수정 없이 바로 사용 가능합니다.
+> Docker MySQL 비밀번호는 기본값 `password`를 사용합니다.
 
 **기본 설정**
 
