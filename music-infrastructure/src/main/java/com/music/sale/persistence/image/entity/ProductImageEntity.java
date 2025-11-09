@@ -10,12 +10,8 @@ public class ProductImageEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(
-//        name = "product_item_id",
-//        nullable = false
-//    )
-//    private Product product;
+    @Column(name = "product_item_id", nullable = false)
+    private Long productId;
 
     @Column(name = "url", nullable = false, length = 500)
     private String url;
@@ -38,15 +34,15 @@ public class ProductImageEntity extends BaseEntity {
     public ProductImageEntity() {}
 
     public ProductImageEntity(Long id,
-//        Product product,
-                       String url,
-                       Boolean isThumbnail,
-                       Integer imageOrder,
-                       Long fileSize,
-                       String fileName,
-                       String fileType) {
+        Long productId,
+        String url,
+        Boolean isThumbnail,
+        Integer imageOrder,
+        Long fileSize,
+        String fileName,
+        String fileType) {
         this.id = id;
-//        this.product = product;
+        this.productId = productId;
         this.url = url;
         this.isThumbnail = isThumbnail;
         this.imageOrder = imageOrder;
@@ -58,8 +54,8 @@ public class ProductImageEntity extends BaseEntity {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-//    public Product getProduct() { return product; }
-//    public void setProduct(Product product) { this.product = product; }
+    public Long getProductId() { return productId; }
+    public void setProductId(Long productItemId) { this.productId = productItemId; }
 
     public String getUrl() { return url; }
     public void setUrl(String url) { this.url = url; }

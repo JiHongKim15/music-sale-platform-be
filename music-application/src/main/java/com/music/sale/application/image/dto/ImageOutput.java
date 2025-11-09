@@ -1,11 +1,12 @@
 package com.music.sale.application.image.dto;
 
-public record UploadImageInput(
+public record ImageOutput(
+    Long id,
     Long productId,
-    String fileName,
-    String fileType,
-    long fileSize,
+    String url,
     boolean isThumbnail,
     int imageOrder,
-    byte[] content
+    Long fileSize,
+    String fileName,
+    String fileType
 ) {}
