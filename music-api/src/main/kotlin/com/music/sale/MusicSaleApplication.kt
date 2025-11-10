@@ -13,7 +13,7 @@ open class MusicSaleApplication
 fun main(args: Array<String>) {
     Dotenv.configure()
         .directory(System.getProperty("user.dir"))
-        .filename(".env.local")
+        .filename(".env")
         .systemProperties()
         .load()
 
