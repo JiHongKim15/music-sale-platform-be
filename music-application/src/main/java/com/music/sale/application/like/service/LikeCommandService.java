@@ -1,32 +1,28 @@
-// Copyright (C) 2024 Your Name or Company
 package com.music.sale.application.like.service;
 
 import com.music.sale.application.like.dto.LikeOutput;
-import com.music.sale.application.like.dto.LikeStatusOutput;
 import com.music.sale.application.like.exception.LikeAlreadyExistsException;
 import com.music.sale.application.like.exception.LikeNotFoundException;
 import com.music.sale.application.like.mapper.LikeMapper;
-import com.music.sale.application.like.port.inport.LikeUseCase;
-import com.music.sale.application.like.port.outport.LikePort;
-import com.music.sale.common.Pageable;
+import com.music.sale.application.like.port.inport.LikeCommandUseCase;
+import com.music.sale.application.like.port.outport.LikeCommandPort;
 import com.music.sale.domain.like.Like;
 import com.music.sale.domain.like.LikeableType;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 좋아요 서비스
- * 비즈니스 로직을 처리하며, Port 인터페이스에만 의존합니다.
+ * 좋아요 Command Service (쓰기 전용)
+ * CQRS 패턴: Command(쓰기)와 Query(읽기) 분리
  */
 @Service
 @Transactional
-public class LikeService implements LikeUseCase {
-    private final LikePort likePort;
+public class LikeCommandService implements LikeCommandUseCase {
+    private final LikeCommandPort likeCommandPort;
     private final LikeMapper likeMapper;
 
-    public LikeService(LikePort likePort, LikeMapper likeMapper) {
-        this.likePort = likePort;
+    public LikeCommandService(LikeCommandPort likeCommandPort, LikeMapper likeMapper) {
+        this.likeCommandPort = likeCommandPort;
         this.likeMapper = likeMapper;
     }
 
@@ -44,7 +40,7 @@ public class LikeService implements LikeUseCase {
     }
 
     private boolean isDuplicate(Long userId, Long likeableId, LikeableType likeableType) {
-        return likePort.exists(userId, likeableId, likeableType);
+        return likeCommandPort.exists(userId, likeableId, likeableType);
     }
 
     private LikeAlreadyExistsException createDuplicateException(LikeableType type) {
@@ -53,13 +49,13 @@ public class LikeService implements LikeUseCase {
 
     private Like saveNewLike(Long userId, Long likeableId, LikeableType likeableType) {
         Like like = Like.create(userId, likeableId, likeableType);
-        return likePort.save(like);
+        return likeCommandPort.save(like);
     }
 
     @Override
     public void deleteLike(Long userId, Long likeableId, LikeableType likeableType) {
         validateExists(userId, likeableId, likeableType);
-        likePort.delete(userId, likeableId, likeableType);
+        likeCommandPort.delete(userId, likeableId, likeableType);
     }
 
     private void validateExists(Long userId, Long likeableId, LikeableType likeableType) {
@@ -69,40 +65,11 @@ public class LikeService implements LikeUseCase {
     }
 
     private boolean notExists(Long userId, Long likeableId, LikeableType likeableType) {
-        return !likePort.exists(userId, likeableId, likeableType);
+        return !likeCommandPort.exists(userId, likeableId, likeableType);
     }
 
     private LikeNotFoundException createNotFoundException(LikeableType type) {
         return new LikeNotFoundException(getLikeableTypeKorean(type) + " 기록을 찾을 수 없습니다.");
-    }
-
-    /**
-     * 좋아요 상태 조회
-     */
-    @Override
-    @Transactional(readOnly = true)
-    public LikeStatusOutput getLikeStatus(Long userId, Long likeableId, LikeableType likeableType) {
-        boolean isLiked = likePort.exists(userId, likeableId, likeableType);
-        return new LikeStatusOutput(isLiked);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Page<Object> getMyLikes(Long userId, LikeableType likeableType, Pageable pageable) {
-        Page<Like> likes = findLikes(userId, likeableType, pageable);
-        return convertToOutputPage(likes);
-    }
-
-    private Page<Like> findLikes(Long userId, LikeableType likeableType, Pageable pageable) {
-        return likePort.findByUserIdAndType(userId, likeableType, pageable);
-    }
-
-    private Page<Object> convertToOutputPage(Page<Like> likes) {
-        return likes.map(this::convertToOutput);
-    }
-
-    private Object convertToOutput(Like like) {
-        return likeMapper.toOutput(like);
     }
 
     private String getLikeableTypeKorean(LikeableType type) {
@@ -124,4 +91,5 @@ public class LikeService implements LikeUseCase {
         return type == LikeableType.SELLER;
     }
 }
+
 

@@ -4,12 +4,14 @@ package com.music.sale.persistence.like.entity;
 import com.music.sale.domain.like.Like;
 import com.music.sale.domain.like.LikeableType;
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 /**
  * 좋아요 JPA Entity
  * DB 스키마의 likes 테이블과 매핑됩니다.
+ * Lombok 적용: @Getter, @Setter, @NoArgsConstructor, @AllArgsConstructor, @Builder
  */
 @Entity
 @Table(
@@ -31,6 +33,11 @@ import java.time.LocalDateTime;
                 )
         }
 )
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class LikeEntity {
 
     @Id
@@ -50,18 +57,6 @@ public class LikeEntity {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    protected LikeEntity() {
-        // JPA 기본 생성자
-    }
-
-    public LikeEntity(Long id, Long userId, Long likeableId, LikeableType likeableType, LocalDateTime createdAt) {
-        this.id = id;
-        this.userId = userId;
-        this.likeableId = likeableId;
-        this.likeableType = likeableType;
-        this.createdAt = createdAt != null ? createdAt : LocalDateTime.now();
-    }
-
     /**
      * Entity -> Domain 변환
      */
@@ -70,57 +65,16 @@ public class LikeEntity {
     }
 
     /**
-     * Domain -> Entity 변환
+     * Domain -> Entity 변환 (Builder 패턴 사용)
      */
     public static LikeEntity fromDomain(Like like) {
-        return new LikeEntity(
-                like.getId(),
-                like.getUserId(),
-                like.getLikeableId(),
-                like.getLikeableType(),
-                like.getCreatedAt()
-        );
-    }
-
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getLikeableId() {
-        return likeableId;
-    }
-
-    public void setLikeableId(Long likeableId) {
-        this.likeableId = likeableId;
-    }
-
-    public LikeableType getLikeableType() {
-        return likeableType;
-    }
-
-    public void setLikeableType(LikeableType likeableType) {
-        this.likeableType = likeableType;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+        return LikeEntity.builder()
+                .id(like.getId())
+                .userId(like.getUserId())
+                .likeableId(like.getLikeableId())
+                .likeableType(like.getLikeableType())
+                .createdAt(like.getCreatedAt())
+                .build();
     }
 
     @PrePersist

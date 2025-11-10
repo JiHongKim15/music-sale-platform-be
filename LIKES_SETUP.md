@@ -347,3 +347,5 @@ private void validateNotDuplicate(Long userId, Long likeableId, LikeableType lik
 - Actuator Health: http://localhost:8080/actuator/health
 - H2 Console (개발용): http://localhost:8080/h2-console
 
+
+

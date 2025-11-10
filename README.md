@@ -46,6 +46,15 @@ docker compose ps
 
 ---
 
+## 📚 개발 가이드
+
+### 좋아요 도메인 리팩토링
+상품 도메인 수준으로 좋아요 도메인을 리팩토링하려면:
+- **[LIKES_REFACTORING_GUIDE.md](./LIKES_REFACTORING_GUIDE.md)** - CQRS 패턴 적용 가이드
+- **[DAILY_REPORT_TEMPLATE.md](./DAILY_REPORT_TEMPLATE.md)** - 일일 업무 보고서 템플릿
+
+---
+
 ## 🎵 주요 기능
 
 ### 🔐 사용자 관리

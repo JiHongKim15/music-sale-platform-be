@@ -48,5 +48,13 @@ public interface LikeRepository extends JpaRepository<LikeEntity, Long> {
             LikeableType likeableType,
             Pageable pageable
     );
+
+    /**
+     * 특정 대상의 좋아요 개수 조회
+     */
+    long countByLikeableIdAndLikeableType(
+            Long likeableId,
+            LikeableType likeableType
+    );
 }
 
