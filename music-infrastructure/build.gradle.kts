@@ -47,9 +47,6 @@ dependencies {
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     annotationProcessor("com.querydsl:querydsl-apt:5.0.0:jakarta")
     annotationProcessor("jakarta.persistence:jakarta.persistence-api:3.1.0")
-    
-    // Lombok
-    compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 
     // jOOQ
@@ -74,9 +71,4 @@ kotlin {
     }
 }
 
-tasks.withType<JavaCompile> {
-    sourceCompatibility = "21"
-    targetCompatibility = "21"
-}
-
-sourceSets["main"].java.srcDirs("src/main/kotlin", "src/main/java")
+sourceSets["main"].java.srcDirs("src/main/kotlin")
