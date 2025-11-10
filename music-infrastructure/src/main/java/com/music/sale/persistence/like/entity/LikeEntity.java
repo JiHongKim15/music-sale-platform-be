@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 /**
  * 좋아요 JPA Entity
  * DB 스키마의 likes 테이블과 매핑됩니다.
- * Lombok 적용: @Getter, @Setter, @NoArgsConstructor, @AllArgsConstructor, @Builder
+ * Lombok 적용: @Getter, @NoArgsConstructor, @AllArgsConstructor, @Builder
  */
 @Entity
 @Table(
@@ -34,7 +34,6 @@ import java.time.LocalDateTime;
         }
 )
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
