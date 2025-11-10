@@ -28,12 +28,6 @@ public class LikeQueryController {
         this.mapper = mapper;
     }
 
-    // ============ 상품 찜 조회 ============
-
-    /**
-     * 상품 찜 상태 조회
-     * GET /api/v1/products/{productId}/likes/status
-     */
     @GetMapping("/products/{productId}/likes/status")
     public ResponseEntity<ApiResponse<LikeStatusResponse>> getProductLikeStatus(
             @PathVariable Long productId,
@@ -51,10 +45,6 @@ public class LikeQueryController {
         return ResponseEntity.ok(ApiResponse.success(mapper.toStatusResponse(output), "SUCCESS"));
     }
 
-    /**
-     * 내가 찜한 상품 목록 조회
-     * GET /api/v1/users/me/likes/products
-     */
     @GetMapping("/users/me/likes/products")
     public ResponseEntity<ApiResponse<Page<Object>>> getMyLikedProducts(
             @RequestHeader("X-User-Id") Long userId,
@@ -78,12 +68,6 @@ public class LikeQueryController {
         return ResponseEntity.ok(ApiResponse.success(data, "SUCCESS"));
     }
 
-    // ============ 스토어 구독 조회 ============
-
-    /**
-     * 스토어 구독 상태 조회
-     * GET /api/v1/stores/{storeId}/likes/status
-     */
     @GetMapping("/stores/{storeId}/likes/status")
     public ResponseEntity<ApiResponse<LikeStatusResponse>> getStoreLikeStatus(
             @PathVariable Long storeId,
@@ -97,10 +81,6 @@ public class LikeQueryController {
         return likeQueryUseCase.getLikeStatus(userId, storeId, LikeableType.STORE);
     }
 
-    /**
-     * 내 구독 스토어 목록 조회
-     * GET /api/v1/users/me/likes/stores
-     */
     @GetMapping("/users/me/likes/stores")
     public ResponseEntity<ApiResponse<Page<Object>>> getMySubscribedStores(
             @RequestHeader("X-User-Id") Long userId,
@@ -116,12 +96,6 @@ public class LikeQueryController {
         return likeQueryUseCase.getMyLikes(userId, LikeableType.STORE, pageable);
     }
 
-    // ============ 판매자 팔로우 조회 ============
-
-    /**
-     * 판매자 팔로우 상태 조회
-     * GET /api/v1/sellers/{sellerId}/likes/status
-     */
     @GetMapping("/sellers/{sellerId}/likes/status")
     public ResponseEntity<ApiResponse<LikeStatusResponse>> getSellerLikeStatus(
             @PathVariable Long sellerId,
@@ -135,10 +109,6 @@ public class LikeQueryController {
         return likeQueryUseCase.getLikeStatus(userId, sellerId, LikeableType.SELLER);
     }
 
-    /**
-     * 내 팔로우 판매자 목록 조회
-     * GET /api/v1/users/me/likes/sellers
-     */
     @GetMapping("/users/me/likes/sellers")
     public ResponseEntity<ApiResponse<Page<Object>>> getMyFollowedSellers(
             @RequestHeader("X-User-Id") Long userId,

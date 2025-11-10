@@ -1,4 +1,3 @@
-// Copyright (C) 2024 Your Name or Company
 package com.music.sale.persistence.like.entity;
 
 import com.music.sale.domain.like.Like;

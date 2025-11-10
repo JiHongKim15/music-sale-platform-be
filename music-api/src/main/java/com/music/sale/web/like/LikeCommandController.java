@@ -26,12 +26,6 @@ public class LikeCommandController {
         this.mapper = mapper;
     }
 
-    // ============ 상품 찜 ============
-
-    /**
-     * 상품 찜하기
-     * POST /api/v1/products/{productId}/likes
-     */
     @PostMapping("/products/{productId}/likes")
     public ResponseEntity<ApiResponse<LikeResponse>> likeProduct(
             @PathVariable Long productId,
@@ -53,10 +47,6 @@ public class LikeCommandController {
         return ApiResponse.success(mapper.toResponse(output), code);
     }
 
-    /**
-     * 상품 찜 취소
-     * DELETE /api/v1/products/{productId}/likes
-     */
     @DeleteMapping("/products/{productId}/likes")
     public ResponseEntity<Void> unlikeProduct(
             @PathVariable Long productId,
@@ -70,12 +60,6 @@ public class LikeCommandController {
         likeCommandUseCase.deleteLike(userId, productId, LikeableType.PRODUCT);
     }
 
-    // ============ 스토어 구독 ============
-
-    /**
-     * 스토어 구독
-     * POST /api/v1/stores/{storeId}/likes
-     */
     @PostMapping("/stores/{storeId}/likes")
     public ResponseEntity<ApiResponse<LikeResponse>> subscribeStore(
             @PathVariable Long storeId,
@@ -89,10 +73,6 @@ public class LikeCommandController {
         return likeCommandUseCase.addLike(userId, storeId, LikeableType.STORE);
     }
 
-    /**
-     * 스토어 구독 취소
-     * DELETE /api/v1/stores/{storeId}/likes
-     */
     @DeleteMapping("/stores/{storeId}/likes")
     public ResponseEntity<Void> unsubscribeStore(
             @PathVariable Long storeId,
@@ -106,12 +86,6 @@ public class LikeCommandController {
         likeCommandUseCase.deleteLike(userId, storeId, LikeableType.STORE);
     }
 
-    // ============ 판매자 팔로우 ============
-
-    /**
-     * 판매자 팔로우
-     * POST /api/v1/sellers/{sellerId}/likes
-     */
     @PostMapping("/sellers/{sellerId}/likes")
     public ResponseEntity<ApiResponse<LikeResponse>> followSeller(
             @PathVariable Long sellerId,
@@ -125,10 +99,6 @@ public class LikeCommandController {
         return likeCommandUseCase.addLike(userId, sellerId, LikeableType.SELLER);
     }
 
-    /**
-     * 판매자 팔로우 취소
-     * DELETE /api/v1/sellers/{sellerId}/likes
-     */
     @DeleteMapping("/sellers/{sellerId}/likes")
     public ResponseEntity<Void> unfollowSeller(
             @PathVariable Long sellerId,
