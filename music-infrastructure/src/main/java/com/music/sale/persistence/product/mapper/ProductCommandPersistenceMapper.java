@@ -5,8 +5,9 @@ import com.music.sale.persistence.product.entity.ProductItemEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductPersistenceMapper {
+public class ProductCommandPersistenceMapper {
 
+    /** 도메인 -> 엔티티 (신규/수정 공통) */
     public ProductItemEntity toEntity(ProductItem item) {
         ProductItemEntity e = new ProductItemEntity();
         e.setId(item.getId());
@@ -26,6 +27,7 @@ public class ProductPersistenceMapper {
         return e;
     }
 
+    /** 엔티티 -> 도메인 (DB 저장 후 결과 반환용) */
     public ProductItem toDomain(ProductItemEntity e) {
         return ProductItem.builder()
                 .id(e.getId())
@@ -48,5 +50,4 @@ public class ProductPersistenceMapper {
                 .updatedBy(e.getUpdatedBy())
                 .build();
     }
-
 }

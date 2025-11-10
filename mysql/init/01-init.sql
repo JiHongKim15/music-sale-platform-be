@@ -186,29 +186,36 @@ CREATE TABLE `product_catalog` (
 
 -- product_item 테이블
 CREATE TABLE `product_item` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `catalog_id` bigint NOT NULL,
-  `seller_id` bigint DEFAULT NULL,
-  `store_id` bigint DEFAULT NULL,
-  `price` int NOT NULL,
-  `condition` varchar(255) NOT NULL,
-  `condition_grade` varchar(255) DEFAULT NULL,
-  `stock_quantity` int NOT NULL,
-  `status` varchar(255) NOT NULL,
-  `custom_name` varchar(255) DEFAULT NULL,
-  `custom_attributes` text,
-  `created_at` datetime(6) NOT NULL,
-  `created_by` varchar(255) NOT NULL,
-  `updated_at` datetime(6) NOT NULL,
-  `updated_by` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKi6s8d9k8x9y1x2w3z4v5u6t7` (`catalog_id`),
-  KEY `FKg5kdj0brdmd2b0g67oudgifj2` (`store_id`),
-  KEY `FK7lcsnss1f96tf908hemtcbi2r` (`seller_id`),
-  CONSTRAINT `FKi6s8d9k8x9y1x2w3z4v5u6t7` FOREIGN KEY (`catalog_id`) REFERENCES `product_catalog` (`id`),
-  CONSTRAINT `FKg5kdj0brdmd2b0g67oudgifj2` FOREIGN KEY (`store_id`) REFERENCES `store` (`id`),
-  CONSTRAINT `FK7lcsnss1f96tf908hemtcbi2r` FOREIGN KEY (`seller_id`) REFERENCES `users` (`id`)
+`id` BIGINT NOT NULL AUTO_INCREMENT,
+`catalog_id` BIGINT NOT NULL,
+    `seller_id` BIGINT NOT NULL,
+    `store_id` BIGINT NULL,
+    `name` VARCHAR(200) NOT NULL,
+    `brand` VARCHAR(100) NULL,
+    `price` BIGINT NOT NULL,
+    `condition` ENUM('NEW','USED','REFURBISHED') NOT NULL,
+    `condition_grade` ENUM('S','A','B','C') NULL,
+    `status` ENUM('AVAILABLE','SOLD','RESERVED','INACTIVE') NOT NULL,
+    `stock_quantity` INT NOT NULL DEFAULT 1,
+    `custom_name` VARCHAR(200) NULL,
+    `custom_attributes` JSON NULL,
+    `description` TEXT NULL,
+    `view_count` BIGINT NOT NULL DEFAULT 0,
+    `created_at` DATETIME(6) NOT NULL,
+    `created_by` BIGINT NOT NULL,
+    `updated_at` DATETIME(6) NOT NULL,
+    `updated_by` BIGINT NOT NULL,
+    PRIMARY KEY (`id`),
+    KEY `idx_product_item_catalog` (`catalog_id`),
+    KEY `idx_product_item_seller`  (`seller_id`),
+    KEY `idx_product_item_store`   (`store_id`),
+    CONSTRAINT `fk_product_item_catalog`   FOREIGN KEY (`catalog_id`) REFERENCES `product_catalog` (`id`),
+    CONSTRAINT `fk_product_item_seller`    FOREIGN KEY (`seller_id`)  REFERENCES `users` (`id`),
+    CONSTRAINT `fk_product_item_store`     FOREIGN KEY (`store_id`)   REFERENCES `store` (`id`),
+    CONSTRAINT `fk_product_item_created_by` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
+    CONSTRAINT `fk_product_item_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 -- product_image 테이블
 CREATE TABLE `product_image` (
