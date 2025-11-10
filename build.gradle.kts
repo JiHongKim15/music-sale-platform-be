@@ -30,6 +30,10 @@ subprojects {
     }
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 // 환경별 실행 태스크 (간단한 명령어)
 tasks.register("local") {
     group = "application"
