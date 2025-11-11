@@ -1,7 +1,7 @@
 package com.music.sale.application.image.port.outport;
 
+import com.music.sale.application.image.dto.ImageSaveResult;
 import com.music.sale.application.image.dto.UploadImageInput;
-import com.music.sale.domain.image.ProductImage;
 import java.util.List;
 
 public interface ImagePort {
@@ -15,11 +15,10 @@ public interface ImagePort {
     String generateUrl(Long productId, String fileName);
 
     /**
-     * ProductImage 도메인 객체 리스트를 저장하고, 저장된 객체의 ID를 반환.
-     * @param images 저장할 도메인 엔티티 리스트
-     * @return 저장된 이미지 id 리스트
+     * 이미지 저장 후 ID와 URL을 함께 반환
+     * @return 저장된 이미지 정보 리스트
      */
-    List<ProductImage> saveAll(List<UploadImageInput> inputs);
+    List<ImageSaveResult> saveAll(List<UploadImageInput> inputs);
 
 
 } // class

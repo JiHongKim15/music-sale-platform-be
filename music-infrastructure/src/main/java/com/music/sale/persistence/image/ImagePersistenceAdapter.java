@@ -1,5 +1,6 @@
 package com.music.sale.persistence.image;
 
+import com.music.sale.application.image.dto.ImageSaveResult;
 import com.music.sale.application.image.dto.UploadImageInput;
 import com.music.sale.application.image.port.outport.ImagePort;
 import com.music.sale.domain.image.ProductImage;
@@ -33,28 +34,33 @@ public class ImagePersistenceAdapter implements ImagePort {
     }
 
     /**
-     * 2. DB 영속화 구현
+     * 2. DB 영속화 후 ID + URL 반환
      */
     @Override
-    public List<ProductImage> saveAll(List<UploadImageInput> inputs) {
+    public List<ImageSaveResult> saveAll(List<UploadImageInput> inputs) {
+        // 1. Entity 생성 (URL 포함)
         List<ProductImageEntity> entities = inputs.stream()
-            .map(input -> mapper.toEntity(
-                new ProductImage(null),
-                generateUrl(input.productId(), input.fileName()),
-                input.fileName(),
-                input.fileType(),
-                input.fileSize(),
-                input.isThumbnail(),
-                input.imageOrder(),
-                input.productId()
-            ))
-            .collect(Collectors.toList());
+                .map(input -> {
+                    String url = generateUrl(input.productId(), input.fileName());
+                    ProductImage domain = new ProductImage(
+                            null,
+                            input.fileName(),
+                            input.fileType(),
+                            input.fileSize(),
+                            input.isThumbnail(),
+                            input.imageOrder()
+                    );
+                    return mapper.toEntity(domain, url, input.productId());
+                })
+                .collect(Collectors.toList());
 
+        // 2. DB 저장
         List<ProductImageEntity> saved = imageRepository.saveAll(entities);
 
+        // 3. ImageSaveResult로 변환 (ID + URL)
         return saved.stream()
-            .map(mapper::toDomain)
-            .collect(Collectors.toList());
+                .map(mapper::toSaveResult)
+                .collect(Collectors.toList());
     }
 
 } // class
