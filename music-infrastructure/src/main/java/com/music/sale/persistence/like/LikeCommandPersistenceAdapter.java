@@ -4,21 +4,20 @@ import com.music.sale.application.like.port.outport.LikeCommandPort;
 import com.music.sale.domain.like.Like;
 import com.music.sale.domain.like.LikeableType;
 import com.music.sale.persistence.like.entity.LikeEntity;
+import com.music.sale.persistence.like.mapper.LikeEntityMapper;
 import com.music.sale.persistence.like.repository.LikeRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 좋아요 Command Persistence Adapter (쓰기 전용)
- * CQRS 패턴: Command(쓰기)와 Query(읽기) 분리
- */
 @Repository
 @Transactional
 public class LikeCommandPersistenceAdapter implements LikeCommandPort {
     private final LikeRepository likeRepository;
+    private final LikeEntityMapper likeEntityMapper;
 
-    public LikeCommandPersistenceAdapter(LikeRepository likeRepository) {
+    public LikeCommandPersistenceAdapter(LikeRepository likeRepository, LikeEntityMapper likeEntityMapper) {
         this.likeRepository = likeRepository;
+        this.likeEntityMapper = likeEntityMapper;
     }
 
     @Override
@@ -29,7 +28,7 @@ public class LikeCommandPersistenceAdapter implements LikeCommandPort {
     }
 
     private LikeEntity convertToEntity(Like like) {
-        return LikeEntity.fromDomain(like);
+        return likeEntityMapper.toEntity(like);
     }
 
     private LikeEntity saveEntity(LikeEntity entity) {
@@ -37,7 +36,7 @@ public class LikeCommandPersistenceAdapter implements LikeCommandPort {
     }
 
     private Like convertToDomain(LikeEntity entity) {
-        return entity.toDomain();
+        return likeEntityMapper.toDomain(entity);
     }
 
     @Override

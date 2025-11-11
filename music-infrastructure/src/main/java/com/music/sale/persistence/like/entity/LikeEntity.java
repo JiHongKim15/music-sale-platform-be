@@ -1,6 +1,5 @@
 package com.music.sale.persistence.like.entity;
 
-import com.music.sale.domain.like.Like;
 import com.music.sale.domain.like.LikeableType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -54,26 +53,6 @@ public class LikeEntity {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
-
-    /**
-     * Entity -> Domain 변환
-     */
-    public Like toDomain() {
-        return Like.of(id, userId, likeableId, likeableType, createdAt);
-    }
-
-    /**
-     * Domain -> Entity 변환 (Builder 패턴 사용)
-     */
-    public static LikeEntity fromDomain(Like like) {
-        return LikeEntity.builder()
-                .id(like.getId())
-                .userId(like.getUserId())
-                .likeableId(like.getLikeableId())
-                .likeableType(like.getLikeableType())
-                .createdAt(like.getCreatedAt())
-                .build();
-    }
 
     @PrePersist
     protected void onCreate() {

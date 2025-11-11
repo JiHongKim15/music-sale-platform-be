@@ -4,6 +4,7 @@ import com.music.sale.application.like.port.outport.LikeQueryPort;
 import com.music.sale.domain.like.Like;
 import com.music.sale.domain.like.LikeableType;
 import com.music.sale.persistence.like.entity.LikeEntity;
+import com.music.sale.persistence.like.mapper.LikeEntityMapper;
 import com.music.sale.persistence.like.repository.LikeRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,17 +13,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 좋아요 Query Persistence Adapter (읽기 전용)
- * CQRS 패턴: Command(쓰기)와 Query(읽기) 분리
- */
 @Repository
 @Transactional(readOnly = true)
 public class LikeQueryPersistenceAdapter implements LikeQueryPort {
     private final LikeRepository likeRepository;
+    private final LikeEntityMapper likeEntityMapper;
 
-    public LikeQueryPersistenceAdapter(LikeRepository likeRepository) {
+    public LikeQueryPersistenceAdapter(LikeRepository likeRepository, LikeEntityMapper likeEntityMapper) {
         this.likeRepository = likeRepository;
+        this.likeEntityMapper = likeEntityMapper;
     }
 
     @Override
@@ -45,7 +44,7 @@ public class LikeQueryPersistenceAdapter implements LikeQueryPort {
     }
 
     private Page<Like> findAndConvert(Long userId, LikeableType likeableType, PageRequest pageRequest) {
-        return findEntities(userId, likeableType, pageRequest).map(LikeEntity::toDomain);
+        return findEntities(userId, likeableType, pageRequest).map(likeEntityMapper::toDomain);
     }
 
     private Page<LikeEntity> findEntities(Long userId, LikeableType likeableType, PageRequest pageRequest) {
