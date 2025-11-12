@@ -69,6 +69,13 @@ enum class ResponseCode(
     WISHLIST_ALREADY_EXISTS("WISHLIST_ALREADY_EXISTS", "이미 찜 목록에 추가된 상품입니다."),
     WISHLIST_NOT_FOUND("WISHLIST_NOT_FOUND", "찜 목록을 찾을 수 없습니다."),
 
+    // 좋아요 관련 응답 코드
+    LIKE_CREATED("LIKE_CREATED", "좋아요가 성공적으로 등록되었습니다."),
+    LIKE_DELETED("LIKE_DELETED", "좋아요가 성공적으로 취소되었습니다."),
+    LIKE_ALREADY_EXISTS("LIKE_ALREADY_EXISTS", "이미 좋아요한 대상입니다."),
+    LIKE_NOT_FOUND("LIKE_NOT_FOUND", "좋아요 기록을 찾을 수 없습니다."),
+    TARGET_NOT_FOUND("TARGET_NOT_FOUND", "좋아요 대상을 찾을 수 없습니다."),
+
     // 장바구니 관련 응답 코드
     CART_ADDED("CART_ADDED", "장바구니에 성공적으로 추가되었습니다."),
     CART_UPDATED("CART_UPDATED", "장바구니가 성공적으로 업데이트되었습니다."),

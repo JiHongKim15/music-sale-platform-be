@@ -70,6 +70,36 @@ class GlobalExceptionHandler {
                 ),
             )
 
+    @ExceptionHandler(com.music.sale.application.like.exception.LikeAlreadyExistsException::class)
+    fun handleLikeAlreadyExists(e: com.music.sale.application.like.exception.LikeAlreadyExistsException): ResponseEntity<ApiResponse<Unit>> =
+        ResponseEntity.status(HttpStatus.CONFLICT)
+            .body(
+                ApiResponse.error(
+                    message = e.message ?: "이미 좋아요한 대상입니다.",
+                    code = "LIKE_ALREADY_EXISTS",
+                ),
+            )
+
+    @ExceptionHandler(com.music.sale.application.like.exception.LikeNotFoundException::class)
+    fun handleLikeNotFound(e: com.music.sale.application.like.exception.LikeNotFoundException): ResponseEntity<ApiResponse<Unit>> =
+        ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body(
+                ApiResponse.error(
+                    message = e.message ?: "좋아요 기록을 찾을 수 없습니다.",
+                    code = "LIKE_NOT_FOUND",
+                ),
+            )
+
+    @ExceptionHandler(com.music.sale.application.like.exception.TargetNotFoundException::class)
+    fun handleTargetNotFound(e: com.music.sale.application.like.exception.TargetNotFoundException): ResponseEntity<ApiResponse<Unit>> =
+        ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body(
+                ApiResponse.error(
+                    message = e.message ?: "대상을 찾을 수 없습니다.",
+                    code = "TARGET_NOT_FOUND",
+                ),
+            )
+
     @ExceptionHandler(Exception::class)
     fun handleException(e: Exception): ResponseEntity<ApiResponse<Unit>> {
         // 로그에는 항상 상세 에러 기록 (개발자용)
