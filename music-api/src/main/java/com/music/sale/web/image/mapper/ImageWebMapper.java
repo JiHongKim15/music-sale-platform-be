@@ -3,8 +3,9 @@ package com.music.sale.web.image.mapper;
 import com.music.sale.application.image.dto.UploadImageInput;
 import com.music.sale.web.image.request.ImageMetaRequest;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,13 +16,14 @@ import org.springframework.web.multipart.MultipartFile;
 public class ImageWebMapper {
 
     public List<UploadImageInput> toUploadImageInputs(Long productId, List<MultipartFile> files, List<ImageMetaRequest> metas) {
-        List<UploadImageInput> result = new ArrayList<>();
-        for (int i = 0; i < files.size(); i++) {
-            MultipartFile file = files.get(i);
-            ImageMetaRequest meta = metas.get(i);
+        return IntStream.range(0, files.size())
+                .mapToObj(i -> toUploadImageInput(productId, files.get(i), metas.get(i)))
+                .toList();
+    }
 
-            try {
-                result.add(new UploadImageInput(
+    private UploadImageInput toUploadImageInput(Long productId, MultipartFile file, ImageMetaRequest meta) {
+        try {
+            return new UploadImageInput(
                     productId,
                     file.getOriginalFilename(),
                     file.getContentType(),
@@ -29,12 +31,10 @@ public class ImageWebMapper {
                     meta.isThumbnail(),
                     meta.imageOrder(),
                     file.getBytes()
-                ));
-            } catch (IOException e) {
-                throw new RuntimeException("파일 읽기에 실패했습니다: " + file.getOriginalFilename(), e);
-            }
+            );
+        } catch (IOException e) {
+            throw new RuntimeException("파일 읽기에 실패했습니다: " + file.getOriginalFilename(), e);
         }
-        return result;
     }
 
 } // class

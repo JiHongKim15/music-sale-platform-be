@@ -2,21 +2,45 @@ package com.music.sale.domain.image;
 
 import java.util.Objects;
 
-public record ProductImage(Long id) {
+public record ProductImage(
+    Long id,
+    String fileName,
+    String fileType,
+    long fileSize,
+    boolean isThumbnail,
+    int imageOrder
+) {
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        ProductImage image = (ProductImage) obj;
-        return Objects.equals(id, image.id);
-    }
+        /**
+         * 비즈니스 규칙: 썸네일은 하나만
+         */
+        public boolean canBeThumbnail() {
+            return isThumbnail;
+        }
 
-    @Override
-    public String toString() {
-        return "Image{" +
-            "id=" + id +
-            '}';
-    }
+        /**
+         * 파일 확장자 추출
+         */
+        public String extension() {
+            int dotIndex = fileName.lastIndexOf('.');
+            return dotIndex > 0 ? fileName.substring(dotIndex + 1) : "";
+        }
 
-} // class
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || getClass() != obj.getClass()) return false;
+            ProductImage image = (ProductImage) obj;
+            return Objects.equals(id, image.id);
+        }
+
+        @Override
+        public String toString() {
+            return "ProductImage{" +
+                    "id=" + id +
+                    ", fileName='" + fileName + '\'' +
+                    ", isThumbnail=" + isThumbnail +
+                    '}';
+        }
+
+}
