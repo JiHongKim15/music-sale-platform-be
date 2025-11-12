@@ -1,4 +1,4 @@
-package com.music.sale.web.image;
+package com.music.sale.web.image.common;
 
 import java.util.Arrays;
 import java.util.Set;

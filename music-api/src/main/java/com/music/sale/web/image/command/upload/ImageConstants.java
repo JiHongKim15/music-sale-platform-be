@@ -1,4 +1,4 @@
-package com.music.sale.web.image;
+package com.music.sale.web.image.command.upload;
 
 import lombok.NoArgsConstructor;
 

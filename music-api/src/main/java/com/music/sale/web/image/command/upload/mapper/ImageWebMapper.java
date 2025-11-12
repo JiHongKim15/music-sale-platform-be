@@ -1,7 +1,7 @@
-package com.music.sale.web.image.mapper;
+package com.music.sale.web.image.command.upload.mapper;
 
 import com.music.sale.application.image.dto.UploadImageInput;
-import com.music.sale.web.image.request.ImageMetaRequest;
+import com.music.sale.web.image.command.upload.request.ImageMetaRequest;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.IntStream;

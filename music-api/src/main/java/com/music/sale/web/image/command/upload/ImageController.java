@@ -1,11 +1,11 @@
-package com.music.sale.web.image;
+package com.music.sale.web.image.command.upload;
 
 import com.music.sale.application.image.dto.ImageOutput;
 import com.music.sale.application.image.dto.UploadImageInput;
 import com.music.sale.application.image.port.inport.ImageUseCase;
 import com.music.sale.common.ApiResponse;
-import com.music.sale.web.image.mapper.ImageWebMapper;
-import com.music.sale.web.image.request.ImageUploadRequest;
+import com.music.sale.web.image.command.upload.mapper.ImageWebMapper;
+import com.music.sale.web.image.command.upload.request.ImageUploadRequest;
 import com.sun.security.auth.UserPrincipal;
 import java.util.List;
 import java.util.Objects;
