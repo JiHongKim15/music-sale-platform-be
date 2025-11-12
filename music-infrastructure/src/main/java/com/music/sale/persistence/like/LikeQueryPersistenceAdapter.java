@@ -6,6 +6,7 @@ import com.music.sale.domain.like.LikeableType;
 import com.music.sale.persistence.like.entity.LikeEntity;
 import com.music.sale.persistence.like.mapper.LikeEntityMapper;
 import com.music.sale.persistence.like.repository.LikeRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,14 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class LikeQueryPersistenceAdapter implements LikeQueryPort {
     private final LikeRepository likeRepository;
     private final LikeEntityMapper likeEntityMapper;
-
-    public LikeQueryPersistenceAdapter(LikeRepository likeRepository, LikeEntityMapper likeEntityMapper) {
-        this.likeRepository = likeRepository;
-        this.likeEntityMapper = likeEntityMapper;
-    }
 
     @Override
     public boolean exists(Long userId, Long likeableId, LikeableType likeableType) {
