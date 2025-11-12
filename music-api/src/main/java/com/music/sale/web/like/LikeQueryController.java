@@ -29,10 +29,8 @@ public class LikeQueryController {
     }
 
     @GetMapping("/products/{productId}/likes/status")
-    public ResponseEntity<ApiResponse<LikeStatusResponse>> getProductLikeStatus(
-            @PathVariable Long productId,
-            @RequestHeader("X-User-Id") Long userId
-    ) {
+    public ResponseEntity<ApiResponse<LikeStatusResponse>> getProductLikeStatus(@PathVariable Long productId) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         LikeStatusOutput output = getProductStatus(userId, productId);
         return createStatusResponse(output);
     }
@@ -47,10 +45,10 @@ public class LikeQueryController {
 
     @GetMapping("/users/me/likes/products")
     public ResponseEntity<ApiResponse<Page<Object>>> getMyLikedProducts(
-            @RequestHeader("X-User-Id") Long userId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size
     ) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         Page<Object> likes = findMyProductLikes(userId, page, size);
         return createPageResponse(likes);
     }
@@ -69,10 +67,8 @@ public class LikeQueryController {
     }
 
     @GetMapping("/stores/{storeId}/likes/status")
-    public ResponseEntity<ApiResponse<LikeStatusResponse>> getStoreLikeStatus(
-            @PathVariable Long storeId,
-            @RequestHeader("X-User-Id") Long userId
-    ) {
+    public ResponseEntity<ApiResponse<LikeStatusResponse>> getStoreLikeStatus(@PathVariable Long storeId) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         LikeStatusOutput output = getStoreStatus(userId, storeId);
         return createStatusResponse(output);
     }
@@ -83,10 +79,10 @@ public class LikeQueryController {
 
     @GetMapping("/users/me/likes/stores")
     public ResponseEntity<ApiResponse<Page<Object>>> getMySubscribedStores(
-            @RequestHeader("X-User-Id") Long userId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size
     ) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         Page<Object> likes = findMyStoreLikes(userId, page, size);
         return createPageResponse(likes);
     }
@@ -97,10 +93,8 @@ public class LikeQueryController {
     }
 
     @GetMapping("/sellers/{sellerId}/likes/status")
-    public ResponseEntity<ApiResponse<LikeStatusResponse>> getSellerLikeStatus(
-            @PathVariable Long sellerId,
-            @RequestHeader("X-User-Id") Long userId
-    ) {
+    public ResponseEntity<ApiResponse<LikeStatusResponse>> getSellerLikeStatus(@PathVariable Long sellerId) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         LikeStatusOutput output = getSellerStatus(userId, sellerId);
         return createStatusResponse(output);
     }
@@ -111,10 +105,10 @@ public class LikeQueryController {
 
     @GetMapping("/users/me/likes/sellers")
     public ResponseEntity<ApiResponse<Page<Object>>> getMyFollowedSellers(
-            @RequestHeader("X-User-Id") Long userId,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size
     ) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         Page<Object> likes = findMySellerLikes(userId, page, size);
         return createPageResponse(likes);
     }

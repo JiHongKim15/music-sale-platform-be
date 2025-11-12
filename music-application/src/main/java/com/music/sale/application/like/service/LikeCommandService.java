@@ -44,7 +44,7 @@ public class LikeCommandService implements LikeCommandUseCase {
     }
 
     private LikeAlreadyExistsException createDuplicateException(LikeableType type) {
-        return new LikeAlreadyExistsException("이미 " + getLikeableTypeKorean(type) + "한 대상입니다.");
+        return new LikeAlreadyExistsException("이미 " + type.getKorean() + "한 대상입니다.");
     }
 
     private Like saveNewLike(Long userId, Long likeableId, LikeableType likeableType) {
@@ -69,26 +69,7 @@ public class LikeCommandService implements LikeCommandUseCase {
     }
 
     private LikeNotFoundException createNotFoundException(LikeableType type) {
-        return new LikeNotFoundException(getLikeableTypeKorean(type) + " 기록을 찾을 수 없습니다.");
-    }
-
-    private String getLikeableTypeKorean(LikeableType type) {
-        if (isProduct(type)) return "찜";
-        if (isStore(type)) return "구독";
-        if (isSeller(type)) return "팔로우";
-        return "좋아요";
-    }
-
-    private boolean isProduct(LikeableType type) {
-        return type == LikeableType.PRODUCT;
-    }
-
-    private boolean isStore(LikeableType type) {
-        return type == LikeableType.STORE;
-    }
-
-    private boolean isSeller(LikeableType type) {
-        return type == LikeableType.SELLER;
+        return new LikeNotFoundException(type.getKorean() + " 기록을 찾을 수 없습니다.");
     }
 }
 

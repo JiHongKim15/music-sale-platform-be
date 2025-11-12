@@ -27,10 +27,8 @@ public class LikeCommandController {
     }
 
     @PostMapping("/products/{productId}/likes")
-    public ResponseEntity<ApiResponse<LikeResponse>> likeProduct(
-            @PathVariable Long productId,
-            @RequestHeader("X-User-Id") Long userId
-    ) {
+    public ResponseEntity<ApiResponse<LikeResponse>> likeProduct(@PathVariable Long productId) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         LikeOutput output = addProductLike(userId, productId);
         return createCreatedResponse(output, "LIKE_CREATED");
     }
@@ -48,10 +46,8 @@ public class LikeCommandController {
     }
 
     @DeleteMapping("/products/{productId}/likes")
-    public ResponseEntity<Void> unlikeProduct(
-            @PathVariable Long productId,
-            @RequestHeader("X-User-Id") Long userId
-    ) {
+    public ResponseEntity<Void> unlikeProduct(@PathVariable Long productId) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         deleteProductLike(userId, productId);
         return ResponseEntity.noContent().build();
     }
@@ -61,10 +57,8 @@ public class LikeCommandController {
     }
 
     @PostMapping("/stores/{storeId}/likes")
-    public ResponseEntity<ApiResponse<LikeResponse>> subscribeStore(
-            @PathVariable Long storeId,
-            @RequestHeader("X-User-Id") Long userId
-    ) {
+    public ResponseEntity<ApiResponse<LikeResponse>> subscribeStore(@PathVariable Long storeId) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         LikeOutput output = addStoreLike(userId, storeId);
         return createCreatedResponse(output, "STORE_SUBSCRIBED");
     }
@@ -74,10 +68,8 @@ public class LikeCommandController {
     }
 
     @DeleteMapping("/stores/{storeId}/likes")
-    public ResponseEntity<Void> unsubscribeStore(
-            @PathVariable Long storeId,
-            @RequestHeader("X-User-Id") Long userId
-    ) {
+    public ResponseEntity<Void> unsubscribeStore(@PathVariable Long storeId) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         deleteStoreLike(userId, storeId);
         return ResponseEntity.noContent().build();
     }
@@ -87,10 +79,8 @@ public class LikeCommandController {
     }
 
     @PostMapping("/sellers/{sellerId}/likes")
-    public ResponseEntity<ApiResponse<LikeResponse>> followSeller(
-            @PathVariable Long sellerId,
-            @RequestHeader("X-User-Id") Long userId
-    ) {
+    public ResponseEntity<ApiResponse<LikeResponse>> followSeller(@PathVariable Long sellerId) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         LikeOutput output = addSellerLike(userId, sellerId);
         return createCreatedResponse(output, "SELLER_FOLLOWED");
     }
@@ -100,10 +90,8 @@ public class LikeCommandController {
     }
 
     @DeleteMapping("/sellers/{sellerId}/likes")
-    public ResponseEntity<Void> unfollowSeller(
-            @PathVariable Long sellerId,
-            @RequestHeader("X-User-Id") Long userId
-    ) {
+    public ResponseEntity<Void> unfollowSeller(@PathVariable Long sellerId) {
+        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         deleteSellerLike(userId, sellerId);
         return ResponseEntity.noContent().build();
     }
