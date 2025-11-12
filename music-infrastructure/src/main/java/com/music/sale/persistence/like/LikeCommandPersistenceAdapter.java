@@ -6,19 +6,16 @@ import com.music.sale.domain.like.LikeableType;
 import com.music.sale.persistence.like.entity.LikeEntity;
 import com.music.sale.persistence.like.mapper.LikeEntityMapper;
 import com.music.sale.persistence.like.repository.LikeRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
+@RequiredArgsConstructor
 public class LikeCommandPersistenceAdapter implements LikeCommandPort {
     private final LikeRepository likeRepository;
     private final LikeEntityMapper likeEntityMapper;
-
-    public LikeCommandPersistenceAdapter(LikeRepository likeRepository, LikeEntityMapper likeEntityMapper) {
-        this.likeRepository = likeRepository;
-        this.likeEntityMapper = likeEntityMapper;
-    }
 
     @Override
     public Like save(Like like) {
