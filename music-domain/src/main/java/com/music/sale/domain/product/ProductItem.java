@@ -42,35 +42,4 @@ public class ProductItem {
     LocalDateTime updatedAt;
     Long createdBy;
     Long updatedBy;
-
-    // 도메인 동작: 기존 값 유지 + 부분 변경 → 불변 객체 새로 생성
-    public ProductItem changeInfo(UpdateCommand c) {
-        return this.toBuilder()
-                .name(c.name() != null ? c.name() : name)
-                .brand(c.brand() != null ? c.brand() : brand)
-                .price(c.price() != null ? c.price() : price)
-                .condition(c.condition() != null ? c.condition() : condition)
-                .conditionGrade(c.conditionGrade() != null ? c.conditionGrade() : conditionGrade)
-                .stockQuantity(c.stockQuantity() != null ? c.stockQuantity() : stockQuantity)
-                .status(c.status() != null ? c.status() : status)
-                .attributes(c.attributes() != null ? c.attributes() : attributes)
-                .description(c.description() != null ? c.description() : description)
-                .imageId(c.imageId() != null ? c.imageId() : imageId)
-                .updatedBy(c.updatedBy())
-                .build();
-    }
-
-    public record UpdateCommand(
-            String name,
-            String brand,
-            Long price,
-            ProductCondition condition,
-            ProductConditionGrade conditionGrade,
-            Integer stockQuantity,
-            ProductStatus status,
-            Map<String, Object> attributes,
-            String description,
-            Long imageId,
-            Long updatedBy
-    ) {}
 }

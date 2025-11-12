@@ -4,12 +4,18 @@ import com.music.sale.domain.product.enums.*;
 import com.music.sale.persistence.common.BaseEntity;
 import com.music.sale.persistence.product.support.JsonMapConverter;
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 import java.util.Map;
 
 @Entity
 @Table(name = "product_item")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@SuperBuilder
 public class ProductItemEntity extends BaseEntity {
 
     @Id
@@ -67,50 +73,4 @@ public class ProductItemEntity extends BaseEntity {
 
     @Column(name = "view_count", nullable = false)
     private long viewCount;
-
-    // ===== Getters/Setters =====
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public Long getCatalogId() { return catalogId; }
-    public void setCatalogId(Long catalogId) { this.catalogId = catalogId; }
-
-    public Long getSellerId() { return sellerId; }
-    public void setSellerId(Long sellerId) { this.sellerId = sellerId; }
-
-    public Long getStoreId() { return storeId; }
-    public void setStoreId(Long storeId) { this.storeId = storeId; }
-
-    //image 추후 업데이트
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getBrand() { return brand; }
-    public void setBrand(String brand) { this.brand = brand; }
-
-    public long getPrice() { return price; }
-    public void setPrice(long price) { this.price = price; }
-
-    public ProductCondition getCondition() { return condition; }
-    public void setCondition(ProductCondition condition) { this.condition = condition; }
-
-    public ProductConditionGrade getConditionGrade() { return conditionGrade; }
-    public void setConditionGrade(ProductConditionGrade conditionGrade) { this.conditionGrade = conditionGrade; }
-
-    public int getStockQuantity() { return stockQuantity; }
-    public void setStockQuantity(int stockQuantity) { this.stockQuantity = stockQuantity; }
-
-    public ProductStatus getStatus() { return status; }
-    public void setStatus(ProductStatus status) { this.status = status; }
-
-    public Map<String, Object> getAttributes() { return attributes; }
-    public void setAttributes(Map<String, Object> attributes) { this.attributes = attributes; }
-
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
-    public long getViewCount() { return viewCount; }
-    public void setViewCount(long viewCount) { this.viewCount = viewCount; }
 }
