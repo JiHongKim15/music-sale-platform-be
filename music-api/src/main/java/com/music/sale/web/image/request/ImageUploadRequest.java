@@ -1,4 +1,4 @@
-package com.music.sale.web.image.command.upload.request;
+package com.music.sale.web.image.request;
 
 import com.music.sale.web.image.common.ImageContentType;
 import jakarta.validation.Valid;
@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
-import static com.music.sale.web.image.command.upload.ImageConstants.*;
+import static com.music.sale.web.image.common.ImageConstants.*;
 
 import java.util.List;
 

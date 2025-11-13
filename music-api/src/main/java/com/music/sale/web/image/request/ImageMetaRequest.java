@@ -1,6 +1,6 @@
-package com.music.sale.web.image.command.upload.request;
+package com.music.sale.web.image.request;
 
-import com.music.sale.web.image.command.upload.ImageConstants;
+import com.music.sale.web.image.common.ImageConstants;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;

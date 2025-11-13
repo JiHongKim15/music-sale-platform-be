@@ -37,9 +37,6 @@ public class ProductImageEntity extends BaseEntity {
     @Column(name = "file_type", nullable = false, length = 100)
     private String fileType;
 
-    public ProductImageEntity(Long id, Long productId, String url, boolean thumbnail, int i, long l, String s, String s1) {
-        super();
-    }
 }
 
 
