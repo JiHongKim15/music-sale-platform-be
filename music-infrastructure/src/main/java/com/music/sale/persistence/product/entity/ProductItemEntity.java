@@ -6,6 +6,7 @@ import com.music.sale.persistence.product.support.JsonMapConverter;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.LastModifiedBy;
 
 import java.util.List;
 import java.util.Map;
@@ -33,8 +34,8 @@ public class ProductItemEntity extends BaseEntity {
 
     //image 추후 업데이트
 
-    @OneToMany(mappedBy = "productItem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductImageEntity> images;
+//    @OneToMany(mappedBy = "productItem", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<ProductImageEntity> images;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;
@@ -44,7 +45,7 @@ public class ProductItemEntity extends BaseEntity {
 
     // 원 단위 가격 -> BIGINT 매핑
     @Column(name = "price", nullable = false)
-    private long price;
+    private Long price;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "condition", nullable = false, columnDefinition = "enum('NEW','USED')")
@@ -56,7 +57,7 @@ public class ProductItemEntity extends BaseEntity {
     private ProductConditionGrade conditionGrade;
 
     @Column(name = "stock_quantity", nullable = false)
-    private int stockQuantity;
+    private Integer stockQuantity;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false,
@@ -72,5 +73,5 @@ public class ProductItemEntity extends BaseEntity {
     private String description;
 
     @Column(name = "view_count", nullable = false)
-    private long viewCount;
+    private Long viewCount;
 }
