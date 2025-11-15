@@ -4,6 +4,8 @@ import com.music.sale.application.store.port.outport.StorePort;
 import com.music.sale.domain.store.Store;
 import com.music.sale.persistence.store.mapper.StorePersistenceMapper;
 import com.music.sale.persistence.store.repository.StoreRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,9 +29,19 @@ public class StorePersistenceAdapter implements StorePort {
     }
 
     @Override
+    public Page<Store> findAll(PageRequest pageable) {
+        return null;
+    }
+
+    @Override
     public Store save(Store store) {
         var storeEntity = mapper.toEntity(store);
         var savedStore = storeRepository.save(storeEntity);
         return mapper.toDomain(savedStore);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+
     }
 }

@@ -1,4 +1,4 @@
-// Copyright (C)2024ur Name or Company
+// Copyright (C) 2024 Your Name or Company
 package com.music.sale.application.auth.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -16,7 +16,8 @@ class JwtService {
     @Value("\${jwt.secret:your-secret-key-here-make-it-long-enough-for-security}")
     private lateinit var secret: String
 
-    @Value("\${jwt.expiration:86400000}") // 24시간
+    // 24시간
+    @Value("\${jwt.expiration:86400000}")
     private var expiration: Long = 86400000
 
     private val objectMapper = ObjectMapper()

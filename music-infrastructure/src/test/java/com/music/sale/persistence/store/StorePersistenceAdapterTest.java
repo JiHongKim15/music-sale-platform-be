@@ -15,7 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -39,19 +38,19 @@ class StorePersistenceAdapterTest {
     void setUp() {
         store = new Store(1L);
         storeEntity = new StoreEntity(
-            1L,
-            "Test Store",
-            "Test Description",
-            "12345",
-            "Test Address",
-            null,
-            null,
-            null,
-            "010-1234-5678",
-            "123-45-67890",
-            null,
-            StoreEntity.StoreStatus.ACTIVE,
-            1L
+                1L,
+                "Test Store",
+                "Test Description",
+                "12345",
+                "Test Address",
+                null,
+                null,
+                null,
+                "010-1234-5678",
+                "123-45-67890",
+                null,
+                StoreEntity.StoreStatus.ACTIVE,
+                1L
         );
     }
 
@@ -68,7 +67,7 @@ class StorePersistenceAdapterTest {
 
         // then
         assertThat(result).isNotNull();
-        assertThat(result.getId()).isEqualTo(storeId);
+        assertThat(result.id()).isEqualTo(storeId);
         verify(storeRepository).findById(storeId);
         verify(mapper).toDomain(storeEntity);
     }
@@ -101,7 +100,7 @@ class StorePersistenceAdapterTest {
 
         // then
         assertThat(result).isNotNull();
-        assertThat(result.getId()).isEqualTo(store.getId());
+        assertThat(result.id()).isEqualTo(store.id());
         verify(mapper).toEntity(store);
         verify(storeRepository).save(storeEntity);
         verify(mapper).toDomain(storeEntity);

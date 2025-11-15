@@ -23,19 +23,19 @@ class StorePersistenceMapperTest {
     void toDomain() {
         // given
         StoreEntity entity = new StoreEntity(
-            1L,
-            "Test Store",
-            "Test Description",
-            "12345",
-            "Test Address",
-            "Detail Address",
-            37.5665,
-            126.9780,
-            "010-1234-5678",
-            "123-45-67890",
-            "http://test-image.com",
-            StoreEntity.StoreStatus.ACTIVE,
-            1L
+                1L,
+                "Test Store",
+                "Test Description",
+                "12345",
+                "Test Address",
+                "Detail Address",
+                37.5665,
+                126.9780,
+                "010-1234-5678",
+                "123-45-67890",
+                "http://test-image.com",
+                StoreEntity.StoreStatus.ACTIVE,
+                1L
         );
 
         // when
@@ -43,7 +43,7 @@ class StorePersistenceMapperTest {
 
         // then
         assertThat(domain).isNotNull();
-        assertThat(domain.getId()).isEqualTo(entity.getId());
+        assertThat(domain.id()).isEqualTo(entity.getId());
     }
 
     @Test
@@ -57,7 +57,7 @@ class StorePersistenceMapperTest {
 
         // then
         assertThat(entity).isNotNull();
-        assertThat(entity.getId()).isEqualTo(domain.getId());
+        assertThat(entity.getId()).isEqualTo(domain.id());
         assertThat(entity.getName()).isEqualTo("Default Store");
         assertThat(entity.getDescription()).isEqualTo("Default Description");
         assertThat(entity.getZipcode()).isEqualTo("00000");

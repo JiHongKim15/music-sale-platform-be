@@ -32,7 +32,7 @@ data class SearchProductRequest(
     val sortDirection: SortDirection? = SortDirection.DESC,
 ) {
     fun toPageable(): PageRequest {
-        val sortProperty: String = sort?.name ?: "id"
+        val sortProperty: String = sort?.fieldName ?: "id"
 
         val direction =
             when (sortDirection) {
@@ -55,7 +55,7 @@ data class GetProductRequest(
     val sortDirection: SortDirection? = SortDirection.DESC,
 ) {
     fun toPageRequest(): PageRequest {
-        val sortProperty: String = sort?.name ?: "id" // <--- **Crucial change here**
+        val sortProperty: String = sort?.fieldName ?: "id"
 
         val direction =
             when (sortDirection) {

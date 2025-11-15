@@ -13,19 +13,19 @@ public class StorePersistenceMapper {
 
     public StoreEntity toEntity(Store store) {
         return new StoreEntity(
-            store.getId(),
-            "Default Store",
-            "Default Description",
-            "00000",
-            "Default Address",
-            null,
-            null,
-            null,
-            "000-0000-0000",
-            "000-00-00000",
-            null,
-            StoreEntity.StoreStatus.ACTIVE,
-            1L
+                store.id(),
+                "Default Store",
+                "Default Description",
+                "00000",
+                "Default Address",
+                null,
+                null,
+                null,
+                "000-0000-0000",
+                "000-00-00000",
+                null,
+                StoreEntity.StoreStatus.ACTIVE,
+                1L
         );
     }
 }
