@@ -1,0 +1,33 @@
+package com.music.sale.persistence.product.mapper;
+
+import com.music.sale.domain.product.ProductItem;
+import com.music.sale.persistence.product.entity.ProductItemEntity;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ProductItemQueryPersistenceMapper {
+
+    /** 엔티티 -> 도메인 (조회 응답용) */
+    public ProductItem toDomain(ProductItemEntity entity) {
+        return ProductItem.builder()
+                .id(entity.getId())
+                .catalogId(entity.getCatalogId())
+                .sellerId(entity.getSellerId())
+                .storeId(entity.getStoreId())
+                .name(entity.getName())
+                .brand(entity.getBrand())
+                .price(entity.getPrice())
+                .condition(entity.getCondition())
+                .conditionGrade(entity.getConditionGrade())
+                .stockQuantity(entity.getStockQuantity())
+                .status(entity.getStatus())
+                .attributes(entity.getAttributes())
+                .description(entity.getDescription())
+                .viewCount(entity.getViewCount())
+                .createdAt(entity.getCreatedAt())
+                .updatedAt(entity.getUpdatedAt())
+                .createdBy(entity.getCreatedBy())
+                .updatedBy(entity.getUpdatedBy())
+                .build();
+    }
+}
