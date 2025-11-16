@@ -7,4 +7,5 @@ public interface ProductCommandPort {
     ProductItem update(ProductItem productItem);
     void deleteById(Long productId);
     boolean existsByNameAndSellerId(String name, Long sellerId);
+    void increaseViewCount(Long productId);
 }

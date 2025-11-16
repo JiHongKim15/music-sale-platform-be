@@ -26,8 +26,6 @@ public class ProductMapper {
                 .attributes(input.getAttributes())
                 .description(input.getDescription())
                 .viewCount(0L)
-                .createdBy(createdBy)
-                .updatedBy(createdBy)
                 .build();
     }
 

@@ -11,7 +11,7 @@ import java.util.Map;
 public class UpdateProductInput {
     private String name;
     private String brand;
-    private String storeId;
+    private Long storeId;
     private Long price;
 
     private ProductCondition condition;
@@ -21,5 +21,4 @@ public class UpdateProductInput {
 
     private Map<String, Object> attributes;
     private String description;
-    private Long updatedBy;
 }

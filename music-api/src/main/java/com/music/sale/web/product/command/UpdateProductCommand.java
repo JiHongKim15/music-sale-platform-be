@@ -3,6 +3,7 @@ package com.music.sale.web.product.command;
 import com.music.sale.domain.product.enums.ProductCondition;
 import com.music.sale.domain.product.enums.ProductConditionGrade;
 import com.music.sale.domain.product.enums.ProductStatus;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.Map;
@@ -21,5 +22,4 @@ public class UpdateProductCommand {
 
     private Map<String, Object> attributes;
     private String description;
-    private Long updatedBy;
 }

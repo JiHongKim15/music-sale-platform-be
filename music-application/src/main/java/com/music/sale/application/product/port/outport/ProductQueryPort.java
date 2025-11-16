@@ -12,5 +12,5 @@ public interface ProductQueryPort {
     Page<ProductItem> findByStatus(ProductStatus status, Pageable pageable);
     Page<ProductItem> findBySellerId(Long sellerId, Pageable pageable);
     Page<ProductItem> findByStoreId(Long storeId, Pageable pageable);
-    Page<ProductItem> findByNameContaining(String keyword, Pageable pageable);
+    Page<ProductItem> searchByName(String keyword, Pageable pageable);
 }

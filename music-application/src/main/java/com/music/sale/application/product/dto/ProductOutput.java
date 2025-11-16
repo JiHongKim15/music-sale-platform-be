@@ -1,3 +1,5 @@
+package com.music.sale.application.product.dto;
+
 import com.music.sale.domain.product.enums.ProductCondition;
 import com.music.sale.domain.product.enums.ProductConditionGrade;
 import com.music.sale.domain.product.enums.ProductStatus;
@@ -21,7 +23,7 @@ public class ProductOutput {
 
     ProductCondition condition;
     ProductConditionGrade conditionGrade;
-    int stockQuantity;
+    Integer stockQuantity;
     ProductStatus status;
 
     Map<String, Object> attributes;

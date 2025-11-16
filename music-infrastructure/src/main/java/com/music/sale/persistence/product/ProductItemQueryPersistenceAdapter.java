@@ -17,30 +17,31 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductItemQueryPersistenceAdapter {
 
-    private final ProductItemQueryRepository ProductItemQueryRepository;
+    private final ProductItemQueryRepository productItemQueryRepository;
     private final ProductItemQueryPersistenceMapper mapper;
 
     public Optional<ProductItem> findById(Long id) {
-        return ProductItemQueryRepository.findById(id).map(mapper::toDomain);
+        return productItemQueryRepository.findById(id).map(mapper::toDomain);
     }
 
     public Page<ProductItem> findByStatus(ProductStatus status, Pageable pageable) {
-        return ProductItemQueryRepository.findByStatus(status, pageable).map(mapper::toDomain);
+        return productItemQueryRepository.findByStatus(status, pageable).map(mapper::toDomain);
     }
 
     public Page<ProductItem> findBySellerId(Long sellerId, Pageable pageable) {
-        return ProductItemQueryRepository.findBySellerId(sellerId, pageable).map(mapper::toDomain);
+        return productItemQueryRepository.findBySellerId(sellerId, pageable).map(mapper::toDomain);
     }
 
     public Page<ProductItem> findByStoreId(Long storeId, Pageable pageable) {
-        return ProductItemQueryRepository.findByStoreId(storeId, pageable).map(mapper::toDomain);
+        return productItemQueryRepository.findByStoreId(storeId, pageable).map(mapper::toDomain);
     }
 
     public Page<ProductItem> searchByName(String keyword, Pageable pageable) {
-        return ProductItemQueryRepository.findByNameContainingIgnoreCase(keyword, pageable).map(mapper::toDomain);
+        return productItemQueryRepository.findByNameContainingIgnoreCase(keyword, pageable).map(mapper::toDomain);
     }
 
     public boolean existsByNameAndSellerId(String name, Long sellerId) {
-        return ProductItemQueryRepository.existsByNameAndSellerId(name, sellerId);
+        return productItemQueryRepository.existsByNameAndSellerId(name, sellerId);
     }
+
 }

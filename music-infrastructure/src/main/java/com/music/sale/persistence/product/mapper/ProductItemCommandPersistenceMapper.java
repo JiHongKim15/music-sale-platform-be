@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductItemCommandPersistenceMapper {
 
-    /** 도메인 -> 엔티티 (신규/수정 공통) */
-    public ProductItemEntity toEntity(ProductItem domain) {
+    /** 도메인 -> 엔티티 (생성용) */
+    public ProductItemEntity toEntityForCreate(ProductItem domain) {
         return ProductItemEntity.builder()
                 .id(domain.getId())
                 .catalogId(domain.getCatalogId())
@@ -24,12 +24,33 @@ public class ProductItemCommandPersistenceMapper {
                 .attributes(domain.getAttributes())
                 .description(domain.getDescription())
                 .viewCount(domain.getViewCount())
-                .createdAt(domain.getCreatedAt())
-                .updatedAt(domain.getUpdatedAt())
-                .createdBy(domain.getCreatedBy())
-                .updatedBy(domain.getUpdatedBy())
                 .build();
     }
+
+    /** 도메인 -> 엔티티 (수정용) */
+    public ProductItemEntity toEntityForUpdate(ProductItem domain, ProductItemEntity existing) {
+        return ProductItemEntity.builder()
+                .id(existing.getId())
+                .catalogId(domain.getCatalogId())
+                .sellerId(domain.getSellerId())
+                .storeId(domain.getStoreId())
+                .name(domain.getName())
+                .brand(domain.getBrand())
+                .price(domain.getPrice())
+                .condition(domain.getCondition())
+                .conditionGrade(domain.getConditionGrade())
+                .stockQuantity(domain.getStockQuantity())
+                .status(domain.getStatus())
+                .attributes(domain.getAttributes())
+                .description(domain.getDescription())
+                .viewCount(domain.getViewCount())
+                .createdAt(existing.getCreatedAt())
+                .createdBy(existing.getCreatedBy())
+                .updatedAt(existing.getUpdatedAt())
+                .updatedBy(existing.getUpdatedBy())
+                .build();
+    }
+
 
     /** 엔티티 -> 도메인 (DB 저장 후 결과 반환용) */
     public ProductItem toDomain(ProductItemEntity entity) {

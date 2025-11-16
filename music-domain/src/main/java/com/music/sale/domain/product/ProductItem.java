@@ -17,15 +17,14 @@ public class ProductItem {
     Long catalogId;
     Long sellerId;
     Long storeId;
-    Long imageId;
     String name;
     String brand;
-    long price;
+    Long price;
     ProductCondition condition;
     ProductConditionGrade conditionGrade;
 
     @Builder.Default
-    int stockQuantity = 1;
+    Integer stockQuantity = 1;
 
     @Builder.Default
     ProductStatus status = ProductStatus.AVAILABLE;
@@ -36,7 +35,7 @@ public class ProductItem {
     String description;
 
     @Builder.Default
-    long viewCount = 0L;
+    Long viewCount = 0L;
 
     LocalDateTime createdAt;
     LocalDateTime updatedAt;

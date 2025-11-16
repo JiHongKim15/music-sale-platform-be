@@ -40,7 +40,6 @@ public class ProductWebMapper {
         input.setStatus(cmd.getStatus());
         input.setAttributes(cmd.getAttributes());
         input.setDescription(cmd.getDescription());
-        input.setUpdatedBy(cmd.getUpdatedBy());
         return input;
     }
 

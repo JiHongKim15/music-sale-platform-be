@@ -43,7 +43,6 @@ public class ProductCommandService implements ProductCommandUseCase {
                 .status(input.getStatus() != null ? input.getStatus() : existing.getStatus())
                 .attributes(input.getAttributes() != null ? input.getAttributes() : existing.getAttributes())
                 .description(input.getDescription() != null ? input.getDescription() : existing.getDescription())
-                .updatedBy(input.getUpdatedBy() != null ? input.getUpdatedBy() : existing.getUpdatedBy())
                 .build();
 
         ProductItem saved = commandPort.update(updated);
