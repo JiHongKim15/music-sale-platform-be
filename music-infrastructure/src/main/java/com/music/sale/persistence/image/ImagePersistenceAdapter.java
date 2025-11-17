@@ -63,4 +63,14 @@ public class ImagePersistenceAdapter implements ImagePort {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public boolean existsByIdAndProductId(Long imageId, Long productId) {
+        return imageRepository.existsByIdAndProductId(imageId, productId);
+    }
+
+    @Override
+    public void deleteById(Long imageId) {
+        imageRepository.deleteById(imageId);
+    }
+
 } // class

@@ -1,5 +1,7 @@
 package com.music.sale.application.image.service;
 
+import com.music.sale.application.common.BusinessException;
+import com.music.sale.application.common.ErrorCode;
 import com.music.sale.application.image.dto.ImageOutput;
 import com.music.sale.application.image.dto.ImageSaveResult;
 import com.music.sale.application.image.dto.UploadImageInput;
@@ -53,6 +55,21 @@ public class ImageService implements ImageUseCase {
                 input.fileName(),
                 input.fileType()
         );
+    }
+
+    @Transactional
+    public void deleteImage(Long productId, Long imageId) {
+        // 이미지 존재 여부 및 상품 일치 확인
+        if (!imagePort.existsByIdAndProductId(imageId, productId)) {
+            throw new BusinessException(ErrorCode.IMAGE_NOT_FOUND);
+        }
+
+        try {
+            // 이미지 삭제
+            imagePort.deleteById(imageId);
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.IMAGE_DELETE_FAILED);
+        }
     }
 
 }

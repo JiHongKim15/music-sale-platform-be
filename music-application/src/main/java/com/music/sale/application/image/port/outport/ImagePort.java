@@ -20,5 +20,18 @@ public interface ImagePort {
      */
     List<ImageSaveResult> saveAll(List<UploadImageInput> inputs);
 
+    /**
+     * 이미지 ID와 상품 ID로 이미지 존재 여부 확인
+     * @param imageId
+     * @param productId
+     * @return
+     */
+    boolean existsByIdAndProductId(Long imageId, Long productId);
 
-} // class
+    /**
+     * 이미지 ID로 이미지 삭제
+     * @param imageId
+     */
+    void deleteById(Long imageId);
+
+}
