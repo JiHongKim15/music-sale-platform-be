@@ -6,6 +6,7 @@ import com.music.sale.application.image.port.inport.ImageUseCase;
 import com.music.sale.common.ApiResponse;
 import com.music.sale.web.image.mapper.ImageWebMapper;
 import com.music.sale.web.image.request.ImageUploadRequest;
+import com.music.sale.web.image.request.ThumbnailUpdateRequest;
 import com.sun.security.auth.UserPrincipal;
 import java.util.List;
 import java.util.Objects;
@@ -73,6 +74,24 @@ public class ImageController {
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT)
                 .body(ApiResponse.success(null, "이미지가 성공적으로 삭제되었습니다."));
+    }
+
+    /**
+     * 상품 이미지 썸네일 업데이트
+     * @param productId 상품 ID
+     * @param imageId 이미지 ID
+     * @param request 썸네일 업데이트 요청
+     * @return 업데이트된 이미지 리스트
+     * */
+    @PatchMapping("/{imageId}/thumbnail")
+    public ResponseEntity<List<ImageResponse>> updateThumbnail(
+        @PathVariable Long productId,
+        @PathVariable Long imageId,
+        @RequestBody ThumbnailUpdateRequest request
+    ) {
+        // 사양상 request.isThumbnail은 true여야 함 — 필요시 검증 추가 가능
+        List<ImageResponse> result = updateThumbnailUseCase.updateThumbnail(productId, imageId, request.isThumbnail());
+        return ResponseEntity.ok(result);
     }
     
     // TODO: 실제 상품 서비스와 연동하여 권한 체크 로직 구현 필요 -> 서비스단에서 처리 후 호출 예정

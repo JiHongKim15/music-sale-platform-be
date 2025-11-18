@@ -8,6 +8,7 @@ import com.music.sale.application.image.dto.UploadImageInput;
 import com.music.sale.application.image.port.inport.ImageUseCase;
 import com.music.sale.application.image.port.outport.ImagePort;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import lombok.RequiredArgsConstructor;
@@ -70,6 +71,30 @@ public class ImageService implements ImageUseCase {
         } catch (Exception e) {
             throw new BusinessException(ErrorCode.IMAGE_DELETE_FAILED);
         }
+    }
+
+    @Override
+    @Transactional
+    public List<ImageOutput> updateThumbnail(Long productId, Long imageId, boolean isThumbnail) {
+        if (!imagePort.existsByIdAndProductId(imageId, productId)) {
+            throw new IllegalArgumentException("image not found for product");
+        }
+
+        return imagePort.updateThumbnail(productId, imageId, isThumbnail)
+            .stream()
+            .map(domain -> new ImageOutput(
+                domain.getId(),
+                productId,
+                generateUrl(productId, domain.getFileName()), // 도메인에는 URL이 없으므로 생성
+                domain.isThumbnail(),
+                domain.getImageOrder(),
+                domain.getFileSize(),
+                domain.getFileName(),
+                domain.getFileType(),
+                null,  // createdAt은 엔티티에서만 관리
+                null   // updatedAt은 엔티티에서만 관리
+            ))
+            .collect(Collectors.toList());
     }
 
 }
