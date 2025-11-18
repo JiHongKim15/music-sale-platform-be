@@ -1,4 +1,4 @@
-package com.music.sale.web.image;
+package com.music.sale.web.image.controller;
 
 import com.music.sale.application.image.dto.ImageOutput;
 import com.music.sale.application.image.dto.UploadImageInput;
