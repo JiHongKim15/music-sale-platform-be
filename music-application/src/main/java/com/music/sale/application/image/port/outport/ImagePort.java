@@ -1,9 +1,8 @@
 package com.music.sale.application.image.port.outport;
 
+import com.music.sale.application.image.dto.ImageOutput;
 import com.music.sale.application.image.dto.ImageSaveResult;
 import com.music.sale.application.image.dto.UploadImageInput;
-import com.music.sale.domain.image.ProductImage;
-import com.music.sale.persistence.image.entity.ProductImage;
 import java.util.List;
 
 public interface ImagePort {
@@ -35,6 +34,6 @@ public interface ImagePort {
      * @param imageId
      */
     void deleteById(Long imageId);
-    List<ProductImage> updateThumbnail(Long productId, Long newThumbnailImageId, boolean isThumbnail);
+    List<ImageOutput> updateThumbnail(Long productId, Long newThumbnailImageId, boolean isThumbnail);
 
 }

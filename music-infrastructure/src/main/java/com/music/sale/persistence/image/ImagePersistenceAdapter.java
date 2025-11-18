@@ -1,5 +1,6 @@
 package com.music.sale.persistence.image;
 
+import com.music.sale.application.image.dto.ImageOutput;
 import com.music.sale.application.image.dto.ImageSaveResult;
 import com.music.sale.application.image.dto.UploadImageInput;
 import com.music.sale.application.image.port.outport.ImagePort;
@@ -8,7 +9,6 @@ import com.music.sale.persistence.image.entity.ProductImageEntity;
 import com.music.sale.persistence.image.mapper.ImagePersistenceMapper;
 import com.music.sale.persistence.image.repository.ImageRepository;
 
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -79,7 +79,7 @@ public class ImagePersistenceAdapter implements ImagePort {
 
     @Override
     @Transactional
-    public List<ProductImage> updateThumbnail(Long productId, Long newThumbnailImageId, boolean isThumbnail) {
+    public List<ImageOutput> updateThumbnail(Long productId, Long newThumbnailImageId, boolean isThumbnail) {
         List<ProductImageEntity> images = imageRepository.findAllByProductIdOrderByImageOrderAsc(productId);
         if (images.isEmpty()) {
             return List.of();
@@ -109,7 +109,16 @@ public class ImagePersistenceAdapter implements ImagePort {
         imageRepository.saveAll(reordered);
 
         return reordered.stream()
-            .map(mapper::toDomain)
+            .map(entity -> new ImageOutput(
+                entity.getId(),
+                productId,
+                generateUrl(productId, entity.getFileName()), // URL 생성
+                entity.isThumbnail(),
+                entity.getImageOrder(),
+                entity.getFileSize(),
+                entity.getFileName(),
+                entity.getFileType()
+            ))
             .collect(Collectors.toList());
     }
 

@@ -7,5 +7,6 @@ import java.util.List;
 public interface ImageUseCase {
     List<ImageOutput> uploadImage(List<UploadImageInput> inputs);
     void deleteImage(Long productId, Long imageId);
+    List<ImageOutput> updateThumbnail(Long productId, Long imageId, boolean isThumbnail);
 
 }
