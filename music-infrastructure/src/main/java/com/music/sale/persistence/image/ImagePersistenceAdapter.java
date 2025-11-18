@@ -73,4 +73,4 @@ public class ImagePersistenceAdapter implements ImagePort {
         imageRepository.deleteById(imageId);
     }
 
-} // class
+}

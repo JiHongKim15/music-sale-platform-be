@@ -126,15 +126,12 @@ class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(BusinessException::class)
-    fun handleBusinessException(e: BusinessException): ResponseEntity<ApiResponse<Unit>> {
+    fun handleBusinessException(e: BusinessException): ApiResponse<Unit> {
         logger.warn("비즈니스 예외 발생: ${e.errorCode.name} - ${e.message}")
 
-        return ResponseEntity.status(e.errorCode.statusCode)
-            .body(
-                ApiResponse.error(
-                    message = e.message ?: "오류가 발생했습니다.",
-                    code = e.errorCode.name,
-                ),
-            )
+        return ApiResponse.error(
+            message = e.message ?: "오류가 발생했습니다.",
+            code = e.errorCode.name,
+        )
     }
 }
