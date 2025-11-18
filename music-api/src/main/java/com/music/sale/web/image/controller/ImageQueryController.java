@@ -25,13 +25,9 @@ public class ImageQueryController {
      * @return List<ImageQueryOutPut>
      */
     @GetMapping("/{productId}/images")
-    public ResponseEntity<ApiResponse<List<ImageQueryOutPut>>> getImages(@PathVariable Long productId) {
-
+    public ApiResponse<List<ImageQueryOutPut>> getImages(@PathVariable Long productId) {
         List<ImageQueryOutPut> outputs = imageQueryUseCase.getImagesByProductId(productId);
-
-        return ResponseEntity.ok(
-                ApiResponse.success(outputs, "이미지 조회 성공")
-        );
+        return ApiResponse.success(outputs, "이미지 조회 성공");
     }
 
 }
