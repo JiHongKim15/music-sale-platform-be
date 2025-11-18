@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum ErrorCode {
+    // TODO errorCode가 image만 관련된 것이 아니라면 내부 ErrorProductImage와 같이 enum 선언??
+
     // 이미지 관련
     IMAGE_NOT_FOUND("이미지를 찾을 수 없습니다.", 404),
     IMAGE_DELETE_FAILED("이미지 삭제에 실패했습니다.", 500),

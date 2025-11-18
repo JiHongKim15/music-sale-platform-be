@@ -1,6 +1,5 @@
 package com.music.sale.persistence.image;
 
-import com.music.sale.application.image.dto.ImageOutput;
 import com.music.sale.application.image.dto.ImageSaveResult;
 import com.music.sale.application.image.dto.UploadImageInput;
 import com.music.sale.application.image.port.outport.ImagePort;
@@ -45,27 +44,27 @@ public class ImagePersistenceAdapter implements ImagePort {
     public List<ImageSaveResult> saveAll(List<UploadImageInput> inputs) {
         // 1. Entity 생성 (URL 포함)
         List<ProductImageEntity> entities = inputs.stream()
-                .map(input -> {
-                    String url = generateUrl(input.productId(), input.fileName());
-                    ProductImage domain = new ProductImage(
-                            null,
-                            input.fileName(),
-                            input.fileType(),
-                            input.fileSize(),
-                            input.isThumbnail(),
-                            input.imageOrder()
-                    );
-                    return mapper.toEntity(domain, url, input.productId());
-                })
-                .collect(Collectors.toList());
+            .map(input -> {
+                String url = generateUrl(input.productId(), input.fileName());
+                ProductImage domain = new ProductImage(
+                    null,
+                    input.fileName(),
+                    input.fileType(),
+                    input.fileSize(),
+                    input.isThumbnail(),
+                    input.imageOrder()
+                );
+                return mapper.toEntity(domain, url, input.productId());
+            })
+            .collect(Collectors.toList());
 
         // 2. DB 저장
         List<ProductImageEntity> saved = imageRepository.saveAll(entities);
 
         // 3. ImageSaveResult로 변환 (ID + URL)
         return saved.stream()
-                .map(mapper::toSaveResult)
-                .collect(Collectors.toList());
+            .map(mapper::toSaveResult)
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -92,49 +91,27 @@ public class ImagePersistenceAdapter implements ImagePort {
             .orElseThrow(() -> new IllegalArgumentException("image not found for product"));
 
         List<ProductImageEntity> reordered = new ArrayList<>();
-        OffsetDateTime now = OffsetDateTime.now();
 
-        // 선택된 이미지를 새 인스턴스로 생성 (order=1, isThumbnail=true)
-        ProductImageEntity newThumbnail = new ProductImageEntity(
-            selected.getId(),
-            productId,
-            selected.getUrl(),
-            true,  // isThumbnail
-            1,     // order
-            selected.getFileSize(),
-            selected.getFileName(),
-            selected.getFileType(),
-            selected.getCreatedAt(),
-            now    // updatedAt
-        );
-        reordered.add(newThumbnail);
+        // 선택된 이미지를 썸네일로 설정
+        selected.updateThumbnail(true, 1); // Setter 필요
+        reordered.add(selected);
 
-        // 나머지 이미지들을 새 인스턴스로 생성 (order=2..N, isThumbnail=false)
+        // 나머지 이미지들 재정렬
         int order = 2;
-        for (ProductImageEntity e : images) {
-            if (e.getId().equals(selected.getId())) continue;
+        for (ProductImageEntity entity : images) {
+            if (entity.getId().equals(selected.getId())) continue;
 
-            ProductImageEntity updated = new ProductImageEntity(
-                e.getId(),
-                productId,
-                e.getUrl(),
-                false,  // isThumbnail
-                order++,
-                e.getFileSize(),
-                e.getFileName(),
-                e.getFileType(),
-                e.getCreatedAt(),
-                now
-            );
-            reordered.add(updated);
+            entity.updateThumbnail(false, order++);
+            reordered.add(entity);
         }
 
-        // 저장 후 도메인 객체로 변환하여 반환
-        List<ProductImageEntity> saved = imageRepository.saveAll(reordered);
-        return saved.stream()
+        // @Transactional이므로 자동 저장됨 (Dirty Checking)
+        imageRepository.saveAll(reordered);
+
+        return reordered.stream()
             .map(mapper::toDomain)
             .collect(Collectors.toList());
     }
 
 
-} // class
+}
