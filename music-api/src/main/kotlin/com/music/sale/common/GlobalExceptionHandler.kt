@@ -1,5 +1,6 @@
 package com.music.sale.common
 
+import com.music.sale.application.common.BusinessException
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
@@ -120,6 +121,19 @@ class GlobalExceptionHandler {
                 ApiResponse.error(
                     message = errorMessage,
                     code = "INTERNAL_ERROR",
+                ),
+            )
+    }
+
+    @ExceptionHandler(BusinessException::class)
+    fun handleBusinessException(e: BusinessException): ResponseEntity<ApiResponse<Unit>> {
+        logger.warn("비즈니스 예외 발생: ${e.errorCode.name} - ${e.message}")
+
+        return ResponseEntity.status(e.errorCode.statusCode)
+            .body(
+                ApiResponse.error(
+                    message = e.message ?: "오류가 발생했습니다.",
+                    code = e.errorCode.name,
                 ),
             )
     }

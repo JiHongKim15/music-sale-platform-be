@@ -27,8 +27,8 @@ public class ImageController {
     /**
      * 상품 이미지 업로드
      * @param productId
-     * @param files
-     * @param metas
+     * @param request
+     * (meta{순서, 썸네일여부}, multipart)
      * @return
      */
     @PostMapping(value = "/api/v1/products/{productId}/images", consumes = "multipart/form-data")
@@ -50,6 +50,29 @@ public class ImageController {
 
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(ApiResponse.success(outputs, "이미지 업로드가 완료되었습니다."));
+    }
+
+    /**
+     * 상품 이미지 삭제
+     * @param productId 상품 ID
+     * @param imageId 이미지 ID
+     * @param loginUser 로그인 사용자
+     * @return 삭제 완료 응답
+     */
+    @DeleteMapping("/api/v1/products/{productId}/images/{imageId}")
+    public ResponseEntity<ApiResponse<Void>> deleteImage(
+            @PathVariable Long productId,
+            @PathVariable Long imageId,
+            @AuthenticationPrincipal UserPrincipal loginUser) {
+
+        // 권한 검증 (기존 메서드 재사용)
+        checkUserAuthorization(loginUser, productId);
+
+        // 이미지 삭제
+        imageUseCase.deleteImage(productId, imageId);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                .body(ApiResponse.success(null, "이미지가 성공적으로 삭제되었습니다."));
     }
     
     // TODO: 실제 상품 서비스와 연동하여 권한 체크 로직 구현 필요 -> 서비스단에서 처리 후 호출 예정
