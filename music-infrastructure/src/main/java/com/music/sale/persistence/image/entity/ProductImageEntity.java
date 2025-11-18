@@ -3,12 +3,14 @@ package com.music.sale.persistence.image.entity;
 import com.music.sale.persistence.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "ImageProductImageEntity")
 @Table(name = "product_image")
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductImageEntity extends BaseEntity {
@@ -36,6 +38,11 @@ public class ProductImageEntity extends BaseEntity {
 
     @Column(name = "file_type", nullable = false, length = 100)
     private String fileType;
+
+    public void updateThumbnail(boolean isThumbnail, int order) {
+        this.isThumbnail = isThumbnail;
+        this.imageOrder = order;
+    }
 
 }
 
