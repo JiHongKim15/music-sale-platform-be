@@ -7,7 +7,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: music_sale_db
       MYSQL_USER: music_user
-      MYSQL_PASSWORD: music_password
+      MYSQL_PASSWORD: root
       MYSQL_ROOT_HOST: '%'
     ports:
       - "3306:3306"
