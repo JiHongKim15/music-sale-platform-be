@@ -1,6 +1,5 @@
 package com.music.sale.application.image.dto;
 
-import com.music.sale.domain.image.ProductImage;
 import lombok.Builder;
 
 @Builder
