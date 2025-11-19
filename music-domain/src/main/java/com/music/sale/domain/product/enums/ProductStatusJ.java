@@ -1,6 +1,6 @@
 package com.music.sale.domain.product.enums;
 
-public enum ProductStatus {
+public enum ProductStatusJ {
     AVAILABLE,
     SOLD_OUT,
     RESERVED,

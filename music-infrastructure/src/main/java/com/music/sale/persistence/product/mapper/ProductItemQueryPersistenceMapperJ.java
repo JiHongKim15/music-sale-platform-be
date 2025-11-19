@@ -1,15 +1,15 @@
 package com.music.sale.persistence.product.mapper;
 
-import com.music.sale.domain.product.ProductItem;
-import com.music.sale.persistence.product.entity.ProductItemEntity;
+import com.music.sale.domain.product.ProductItemJ;
+import com.music.sale.persistence.product.entity.ProductItemEntityJ;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ProductItemQueryPersistenceMapper {
+public class ProductItemQueryPersistenceMapperJ {
 
     /** 엔티티 -> 도메인 (조회 응답용) */
-    public ProductItem toDomain(ProductItemEntity entity) {
-        return ProductItem.builder()
+    public ProductItemJ toDomain(ProductItemEntityJ entity) {
+        return ProductItemJ.builder()
                 .id(entity.getId())
                 .catalogId(entity.getCatalogId())
                 .sellerId(entity.getSellerId())

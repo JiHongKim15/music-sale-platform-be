@@ -1,6 +1,8 @@
-import com.music.sale.domain.product.enums.ProductCondition;
-import com.music.sale.domain.product.enums.ProductConditionGrade;
-import com.music.sale.domain.product.enums.ProductStatus;
+package com.music.sale.web.product.response;
+
+import com.music.sale.domain.product.enums.ProductConditionJ;
+import com.music.sale.domain.product.enums.ProductConditionGradeJ;
+import com.music.sale.domain.product.enums.ProductStatusJ;
 import lombok.Builder;
 import lombok.Value;
 
@@ -9,7 +11,8 @@ import java.util.Map;
 
 @Value
 @Builder
-public class ProductOutput {
+public class ProductResponseJ {
+
     Long id;
     Long catalogId;
     Long sellerId;
@@ -19,10 +22,10 @@ public class ProductOutput {
     String brand;
     Long price;
 
-    ProductCondition condition;
-    ProductConditionGrade conditionGrade;
+    ProductConditionJ condition;
+    ProductConditionGradeJ conditionGrade;
     int stockQuantity;
-    ProductStatus status;
+    ProductStatusJ status;
 
     Map<String, Object> attributes;
     String description;

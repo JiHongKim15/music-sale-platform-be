@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional
 @Repository
 @Component
 @Transactional
-open class ProductCommandPersistenceAdapter(
+open class ProductCommandPersistenceAdapterJ(
     private val productCatalogCommandJpaRepository: ProductCatalogCommandJpaRepository,
     private val productCatalogQueryJooqRepository: ProductCatalogQueryJooqRepository,
     private val productItemCommandJpaRepository: ProductItemCommandJpaRepository,

@@ -1,8 +1,8 @@
 package com.music.sale.domain.product;
 
-import com.music.sale.domain.product.enums.ProductCondition;
-import com.music.sale.domain.product.enums.ProductConditionGrade;
-import com.music.sale.domain.product.enums.ProductStatus;
+import com.music.sale.domain.product.enums.ProductConditionJ;
+import com.music.sale.domain.product.enums.ProductConditionGradeJ;
+import com.music.sale.domain.product.enums.ProductStatusJ;
 import lombok.Builder;
 import lombok.Value;
 
@@ -12,23 +12,22 @@ import java.util.Map;
 
 @Value
 @Builder(toBuilder = true)
-public class ProductItem {
+public class ProductItemJ {
     Long id;
     Long catalogId;
     Long sellerId;
     Long storeId;
-    Long imageId;
     String name;
     String brand;
-    long price;
-    ProductCondition condition;
-    ProductConditionGrade conditionGrade;
+    Long price;
+    ProductConditionJ condition;
+    ProductConditionGradeJ conditionGrade;
 
     @Builder.Default
-    int stockQuantity = 1;
+    Integer stockQuantity = 1;
 
     @Builder.Default
-    ProductStatus status = ProductStatus.AVAILABLE;
+    ProductStatusJ status = ProductStatusJ.AVAILABLE;
 
     @Builder.Default
     Map<String, Object> attributes = Collections.emptyMap();
@@ -36,7 +35,7 @@ public class ProductItem {
     String description;
 
     @Builder.Default
-    long viewCount = 0L;
+    Long viewCount = 0L;
 
     LocalDateTime createdAt;
     LocalDateTime updatedAt;

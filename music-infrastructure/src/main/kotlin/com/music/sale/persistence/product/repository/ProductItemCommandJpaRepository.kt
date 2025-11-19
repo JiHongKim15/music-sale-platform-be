@@ -11,17 +11,19 @@ import java.util.*
 @Repository
 interface ProductItemCommandJpaRepository : JpaRepository<ProductItemEntity, Long> {
     
-    @Query("SELECT DISTINCT pi FROM ProductItemEntity pi " +
+    @Query(
+        "SELECT DISTINCT pi FROM ProductItemEntityJ pi " +
            "LEFT JOIN FETCH pi.catalog c " +
            "LEFT JOIN FETCH c.category " +
            "LEFT JOIN FETCH pi.seller " +
            "LEFT JOIN FETCH pi.store")
     fun findAllWithJoins(pageable: Pageable): List<ProductItemEntity>
 
-    @Query("SELECT count(pi.id) FROM ProductItemEntity pi")
+    @Query("SELECT count(pi.id) FROM ProductItemEntityJ pi")
     fun countAllItems(): Long
 
-    @Query("SELECT DISTINCT pi FROM ProductItemEntity pi " +
+    @Query(
+        "SELECT DISTINCT pi FROM ProductItemEntityJ pi " +
            "LEFT JOIN FETCH pi.catalog c " +
            "LEFT JOIN FETCH c.category " +
            "LEFT JOIN FETCH pi.seller " +

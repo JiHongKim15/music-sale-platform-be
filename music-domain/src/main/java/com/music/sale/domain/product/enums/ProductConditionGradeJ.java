@@ -1,6 +1,6 @@
 package com.music.sale.domain.product.enums;
 
-public enum ProductConditionGrade {
+public enum ProductConditionGradeJ {
     S,
     A,
     B,

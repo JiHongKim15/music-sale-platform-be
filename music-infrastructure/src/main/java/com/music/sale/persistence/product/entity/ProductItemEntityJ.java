@@ -1,14 +1,11 @@
 package com.music.sale.persistence.product.entity;
 
 import com.music.sale.domain.product.enums.*;
-import com.music.sale.persistence.common.BaseEntity;
 import com.music.sale.persistence.product.support.JsonMapConverter;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
-import org.springframework.data.annotation.LastModifiedBy;
 
-import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -17,7 +14,7 @@ import java.util.Map;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @SuperBuilder
-public class ProductItemEntity extends BaseEntity {
+public class ProductItemEntityJ extends com.music.sale.persistence.product.entity.BaseEntityJ {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,12 +46,12 @@ public class ProductItemEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "condition", nullable = false, columnDefinition = "enum('NEW','USED')")
-    private ProductCondition condition;
+    private ProductConditionJ condition;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "condition_grade", nullable = false,
             columnDefinition = "enum('S','A','B','C','D')")
-    private ProductConditionGrade conditionGrade;
+    private ProductConditionGradeJ conditionGrade;
 
     @Column(name = "stock_quantity", nullable = false)
     private Integer stockQuantity;
@@ -62,7 +59,7 @@ public class ProductItemEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false,
             columnDefinition = "enum('AVAILABLE','SOLD_OUT','RESERVED','DISCONTINUED')")
-    private ProductStatus status;
+    private ProductStatusJ status;
 
     @Convert(converter = JsonMapConverter.class)
     @Column(name = "custom_attributes", columnDefinition = "text")

@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Repository
 @Component
-open class ProductQueryPersistenceAdapter(
+open class ProductQueryPersistenceAdapterJ(
     private val jpaRepository: ProductItemCommandJpaRepository,
 ) : ProductQueryPort {
     @Transactional(readOnly = true)

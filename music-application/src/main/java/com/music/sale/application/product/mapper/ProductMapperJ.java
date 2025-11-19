@@ -1,18 +1,18 @@
 package com.music.sale.application.product.mapper;
 
-import com.music.sale.application.product.dto.CreateProductInput;
+import com.music.sale.application.product.dto.CreateProductInputJ;
 
 
-import com.music.sale.application.product.dto.ProductOutput;
-import com.music.sale.domain.product.ProductItem;
+import com.music.sale.application.product.dto.ProductOutputJ;
+import com.music.sale.domain.product.ProductItemJ;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ProductMapper {
-    public ProductItem toDomainForCreate(CreateProductInput input, Long createdBy) {
-        return ProductItem.builder()
+public class ProductMapperJ {
+    public ProductItemJ toDomainForCreate(CreateProductInputJ input, Long createdBy) {
+        return ProductItemJ.builder()
                 .catalogId(input.getCatalogId())
                 .sellerId(input.getSellerId())
                 .storeId(input.getStoreId())
@@ -26,13 +26,11 @@ public class ProductMapper {
                 .attributes(input.getAttributes())
                 .description(input.getDescription())
                 .viewCount(0L)
-                .createdBy(createdBy)
-                .updatedBy(createdBy)
                 .build();
     }
 
-    public ProductOutput toOutput(ProductItem item) {
-        return ProductOutput.builder()
+    public ProductOutputJ toOutput(ProductItemJ item) {
+        return ProductOutputJ.builder()
                 .id(item.getId())
                 .catalogId(item.getCatalogId())
                 .sellerId(item.getSellerId())
