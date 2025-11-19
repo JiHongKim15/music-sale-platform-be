@@ -12,35 +12,36 @@ import org.springframework.stereotype.Component;
 public class ProductWebMapper {
 
     public CreateProductInput toCreateInput(CreateProductCommand cmd) {
-        CreateProductInput input = new CreateProductInput();
-        input.setCatalogId(cmd.getCatalogId());
-        input.setSellerId(cmd.getSellerId());
-        input.setStoreId(cmd.getStoreId());
-        input.setName(cmd.getName());
-        input.setBrand(cmd.getBrand());
-        input.setPrice(cmd.getPrice());
-        input.setCondition(cmd.getCondition());
-        input.setConditionGrade(cmd.getConditionGrade());
-        input.setStockQuantity(cmd.getStockQuantity());
-        input.setStatus(cmd.getStatus());
-        input.setAttributes(cmd.getAttributes());
-        input.setDescription(cmd.getDescription());
-        return input;
+        return new CreateProductInput (
+                cmd.getCatalogId(),
+                cmd.getSellerId(),
+                cmd.getStoreId(),
+                cmd.getName(),
+                cmd.getBrand(),
+                cmd.getPrice(),
+                cmd.getCondition(),
+                cmd.getConditionGrade(),
+                cmd.getStockQuantity(),
+                cmd.getStatus(),
+                cmd.getAttributes(),
+                cmd.getDescription()
+        );
     }
 
     public UpdateProductInput toUpdateInput(UpdateProductCommand cmd) {
-        UpdateProductInput input = new UpdateProductInput();
-        input.setName(cmd.getName());
-        input.setBrand(cmd.getBrand());
-        input.setStoreId(cmd.getStoreId());
-        input.setPrice(cmd.getPrice());
-        input.setCondition(cmd.getCondition());
-        input.setConditionGrade(cmd.getConditionGrade());
-        input.setStockQuantity(cmd.getStockQuantity());
-        input.setStatus(cmd.getStatus());
-        input.setAttributes(cmd.getAttributes());
-        input.setDescription(cmd.getDescription());
-        return input;
+        return new UpdateProductInput(
+                cmd.getName(),
+                cmd.getBrand(),
+                cmd.getCatalogId(),
+                cmd.getStoreId(),
+                cmd.getPrice(),
+                cmd.getCondition(),
+                cmd.getConditionGrade(),
+                cmd.getStockQuantity(),
+                cmd.getStatus(),
+                cmd.getAttributes(),
+                cmd.getDescription()
+        );
     }
 
     public ProductResponse toResponse(ProductOutput output) {

@@ -23,33 +23,27 @@ public class ProductQueryService implements ProductQueryUseCase {
 
     @Override
     @Transactional
-    public ProductOutput getById(Long productId) {
-        ProductItem item = queryPort.findById(productId)
-                .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다. id=" + productId));
-        productCommandPort.increaseViewCount(productId);
-
-        ProductItem incremented = item.toBuilder()
-                .viewCount(item.getViewCount() + 1)
-                .build();
-
-        return mapper.toOutput(incremented);
+    public ProductOutput getByProductId(Long productId) {
+        return queryPort.findByProductId(productId)
+                .map(mapper::toOutput)
+                .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다. productId=" + productId));
     }
 
     @Override
-    public Page<ProductOutput> getBySeller(Long sellerId, Pageable pageable) {
+    public Page<ProductOutput> getBySellerId(Long sellerId, Pageable pageable) {
         return queryPort.findBySellerId(sellerId, pageable)
                 .map(mapper::toOutput);
     }
 
     @Override
-    public Page<ProductOutput> getByStore(Long storeId, Pageable pageable) {
+    public Page<ProductOutput> getByStoreId(Long storeId, Pageable pageable) {
         return queryPort.findByStoreId(storeId, pageable)
                 .map(mapper::toOutput);
     }
 
     @Override
-    public Page<ProductOutput> searchByName(String keyword, Pageable pageable) {
-        return queryPort.searchByName(keyword, pageable)
+    public Page<ProductOutput> searchByKeyword(String keyword, Pageable pageable) {
+        return queryPort.searchByKeyword(keyword, pageable)
                 .map(mapper::toOutput);
     }
 }

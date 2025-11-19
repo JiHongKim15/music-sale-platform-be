@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductItemCommandPersistenceMapper {
 
-    /** 도메인 -> 엔티티 (생성용) */
     public ProductItemEntity toEntityForCreate(ProductItem domain) {
         return ProductItemEntity.builder()
                 .id(domain.getId())
@@ -27,10 +26,9 @@ public class ProductItemCommandPersistenceMapper {
                 .build();
     }
 
-    /** 도메인 -> 엔티티 (수정용) */
-    public ProductItemEntity toEntityForUpdate(ProductItem domain, ProductItemEntity existing) {
+    public ProductItemEntity toEntityForUpdate(ProductItem domain) {
         return ProductItemEntity.builder()
-                .id(existing.getId())
+                .id(domain.getId())
                 .catalogId(domain.getCatalogId())
                 .sellerId(domain.getSellerId())
                 .storeId(domain.getStoreId())
@@ -44,15 +42,11 @@ public class ProductItemCommandPersistenceMapper {
                 .attributes(domain.getAttributes())
                 .description(domain.getDescription())
                 .viewCount(domain.getViewCount())
-                .createdAt(existing.getCreatedAt())
-                .createdBy(existing.getCreatedBy())
-                .updatedAt(existing.getUpdatedAt())
-                .updatedBy(existing.getUpdatedBy())
                 .build();
     }
 
 
-    /** 엔티티 -> 도메인 (DB 저장 후 결과 반환용) */
+
     public ProductItem toDomain(ProductItemEntity entity) {
         return ProductItem.builder()
                 .id(entity.getId())

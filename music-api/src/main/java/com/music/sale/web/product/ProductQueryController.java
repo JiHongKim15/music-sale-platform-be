@@ -20,32 +20,32 @@ public class ProductQueryController {
 
     // 단건 조회
     @GetMapping("/{productId}")
-    public ApiResponse<ProductResponse> getById(@PathVariable Long productId) {
-        ProductOutput output = productQueryUseCase.getById(productId);
+    public ApiResponse<ProductResponse> getByProductId(@PathVariable Long productId) {
+        ProductOutput output = productQueryUseCase.getByProductId(productId);
         ProductResponse response = productWebMapper.toResponse(output);
         return ApiResponse.success(response, "PRODUCT_FOUND");
     }
 
     // 판매자 기준 목록
     @GetMapping("/seller/{sellerId}")
-    public ApiResponse<Page<ProductResponse>> getBySeller(@PathVariable Long sellerId, Pageable pageable) {
-        Page<ProductResponse> page = productQueryUseCase.getBySeller(sellerId, pageable)
+    public ApiResponse<Page<ProductResponse>> getBySellerId(@PathVariable Long sellerId, Pageable pageable) {
+        Page<ProductResponse> page = productQueryUseCase.getBySellerId(sellerId, pageable)
                 .map(productWebMapper::toResponse);
         return ApiResponse.success(page, "PRODUCT_LIST_BY_SELLER");
     }
 
     // 스토어 기준 목록
     @GetMapping("/store/{storeId}")
-    public ApiResponse<Page<ProductResponse>> getByStore(@PathVariable Long storeId, Pageable pageable) {
-        Page<ProductResponse> page = productQueryUseCase.getByStore(storeId, pageable)
+    public ApiResponse<Page<ProductResponse>> getByStoreId(@PathVariable Long storeId, Pageable pageable) {
+        Page<ProductResponse> page = productQueryUseCase.getByStoreId(storeId, pageable)
                 .map(productWebMapper::toResponse);
         return ApiResponse.success(page, "PRODUCT_LIST_BY_STORE");
     }
 
     // 이름 검색
     @GetMapping("/search")
-    public ApiResponse<Page<ProductResponse>> searchByName(@RequestParam String keyword, Pageable pageable) {
-        Page<ProductResponse> page = productQueryUseCase.searchByName(keyword, pageable)
+    public ApiResponse<Page<ProductResponse>> searchByKeyword(@RequestParam String keyword, Pageable pageable) {
+        Page<ProductResponse> page = productQueryUseCase.searchByKeyword(keyword, pageable)
                 .map(productWebMapper::toResponse);
         return ApiResponse.success(page, "PRODUCT_SEARCH_RESULT");
     }

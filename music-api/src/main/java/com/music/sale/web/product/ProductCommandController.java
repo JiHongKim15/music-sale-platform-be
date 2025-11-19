@@ -23,11 +23,11 @@ public class ProductCommandController {
 
     // 상품 등록
     @PostMapping
-    public ApiResponse<ProductResponse> create(@RequestBody @Valid CreateProductCommand command) {
-        Long currentUserId = command.getSellerId();
+    public ApiResponse<ProductResponse> createProduct(@RequestBody @Valid CreateProductCommand command) {
+        Long currentUserId = 1L; // TODO: Session에서 가져오도록 수정 예정
 
         CreateProductInput input = productWebMapper.toCreateInput(command);
-        ProductOutput output = productCommandUseCase.create(input, currentUserId);
+        ProductOutput output = productCommandUseCase.createProduct(input, currentUserId);
 
         ProductResponse response = productWebMapper.toResponse(output);
         return ApiResponse.success(response, "PRODUCT_CREATED");
@@ -35,11 +35,11 @@ public class ProductCommandController {
 
     // 상품 수정
     @PutMapping("/{productId}")
-    public ApiResponse<ProductResponse> update(@PathVariable Long productId, @RequestBody @Valid UpdateProductCommand command) {
+    public ApiResponse<ProductResponse> updateProduct(@PathVariable Long productId, @RequestBody @Valid UpdateProductCommand command) {
         Long currentUserId = 1L; // TODO: Session에서 가져오도록 수정 예정
 
         UpdateProductInput input = productWebMapper.toUpdateInput(command);
-        ProductOutput output = productCommandUseCase.update(productId, input, currentUserId);
+        ProductOutput output = productCommandUseCase.updateProduct(productId, input, currentUserId);
 
         ProductResponse response = productWebMapper.toResponse(output);
         return ApiResponse.success(response, "PRODUCT_UPDATED");
@@ -47,8 +47,9 @@ public class ProductCommandController {
 
     // 상품 삭제
     @DeleteMapping("/{productId}")
-    public ApiResponse<Void> delete(@PathVariable Long productId, @RequestParam Long currentUserId) {
-        productCommandUseCase.delete(productId, currentUserId);
+    public ApiResponse<Void> deleteProduct(@PathVariable Long productId) {
+        Long currentUserId = 1L; // TODO: Session에서 가져오도록 수정 예정
+        productCommandUseCase.deleteProduct(productId, currentUserId);
         return ApiResponse.success(null, "PRODUCT_DELETED");
     }
 }

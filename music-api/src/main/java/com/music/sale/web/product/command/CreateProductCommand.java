@@ -4,11 +4,14 @@ import com.music.sale.domain.product.enums.ProductCondition;
 import com.music.sale.domain.product.enums.ProductConditionGrade;
 import com.music.sale.domain.product.enums.ProductStatus;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.Map;
 
-@Data
+@Getter
+@AllArgsConstructor
 public class CreateProductCommand {
     @NotNull
     private Long catalogId;

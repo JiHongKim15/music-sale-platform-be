@@ -3,13 +3,16 @@ package com.music.sale.application.product.dto;
 import com.music.sale.domain.product.enums.ProductCondition;
 import com.music.sale.domain.product.enums.ProductConditionGrade;
 import com.music.sale.domain.product.enums.ProductStatus;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.Value;
 
 import java.time.LocalDateTime;
 import java.util.Map;
 
-@Value
+@Getter
+@AllArgsConstructor
 @Builder
 public class ProductOutput {
     Long id;
