@@ -12,6 +12,11 @@ tasks.getByName("jar") {
     enabled = true
 }
 
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+
 dependencies {
     implementation(project(":music-application"))
     implementation(project(":music-domain"))

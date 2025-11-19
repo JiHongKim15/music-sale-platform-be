@@ -3,7 +3,6 @@ package com.music.sale.persistence.common;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
-import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -14,7 +13,6 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@SuperBuilder
 public abstract class BaseEntity {
 
     @CreatedDate
@@ -23,7 +21,7 @@ public abstract class BaseEntity {
 
     @CreatedBy
     @Column(name = "created_by", nullable = false, updatable = false)
-    private Long createdBy = -1L;
+    private String createdBy = "-1";
 
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
@@ -31,7 +29,7 @@ public abstract class BaseEntity {
 
     @LastModifiedBy
     @Column(name = "updated_by", nullable = false)
-    private Long updatedBy = -1L;
+    private String updatedBy = "-1";
 
     // Getters and Setters
     public LocalDateTime getCreatedAt() {
@@ -42,11 +40,11 @@ public abstract class BaseEntity {
         this.createdAt = createdAt;
     }
 
-    public Long getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(Long createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -58,11 +56,11 @@ public abstract class BaseEntity {
         this.updatedAt = updatedAt;
     }
 
-    public Long getUpdatedBy() {
+    public String getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(Long updatedBy) {
+    public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
 }

@@ -37,7 +37,7 @@ open class CartService(
                 ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
 
         val product =
-            productQueryPort.findByProductId(productId)
+            productQueryPort.findById(productId)
                 ?: throw IllegalArgumentException("상품을 찾을 수 없습니다: $productId")
 
         // 이미 장바구니에 있는지 확인
@@ -68,7 +68,7 @@ open class CartService(
                 ?: throw IllegalArgumentException("사용자를 찾을 수 없습니다: $userId")
 
         val product =
-            productQueryPort.findByProductId(productId)
+            productQueryPort.findById(productId)
                 ?: throw IllegalArgumentException("상품을 찾을 수 없습니다: $productId")
 
         // 도메인 모델로 변환 후 수량 업데이트
