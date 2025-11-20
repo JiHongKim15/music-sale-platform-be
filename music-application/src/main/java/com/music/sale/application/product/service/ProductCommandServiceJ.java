@@ -1,13 +1,13 @@
 package com.music.sale.application.product.service;
 
-import com.music.sale.application.product.dto.CreateProductInputJ;
+import com.music.sale.application.product.dto.CreateProductInput;
 import com.music.sale.application.product.dto.ProductOutputJ;
-import com.music.sale.application.product.dto.UpdateProductInputJ;
+import com.music.sale.application.product.dto.UpdateProductInput;
 import com.music.sale.application.product.mapper.ProductMapperJ;
 import com.music.sale.application.product.port.inport.ProductCommandUseCaseJ;
 import com.music.sale.application.product.port.outport.ProductCommandPortJ;
 import com.music.sale.application.product.port.outport.ProductQueryPortJ;
-import com.music.sale.domain.product.ProductItemJ;
+import com.music.sale.domain.product.ProductItem;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,22 +21,22 @@ public class ProductCommandServiceJ implements ProductCommandUseCaseJ {
     private final ProductMapperJ mapper;
 
     @Override
-    public ProductOutputJ createProduct(CreateProductInputJ input, Long currentUserId) {
-        ProductItemJ item = mapper.toDomainForCreate(input, currentUserId);
-        ProductItemJ saved = commandPort.saveProduct(item);
+    public ProductOutputJ createProduct(CreateProductInput input, Long currentUserId) {
+        ProductItem item = mapper.toDomainForCreate(input, currentUserId);
+        ProductItem saved = commandPort.saveProduct(item);
         return mapper.toOutput(saved);
     }
 
     @Override
-    public ProductOutputJ updateProduct(Long productId, UpdateProductInputJ input, Long currentUserId) {
-        ProductItemJ existing = queryPort.findByProductId(productId)
+    public ProductOutputJ updateProduct(Long productId, UpdateProductInput input, Long currentUserId) {
+        ProductItem existing = queryPort.findByProductId(productId)
                 .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다. productId=" + productId));
 
         if (!existing.getSellerId().equals(currentUserId)) {
             throw new IllegalArgumentException("수정 권한이 없습니다.");
         }
 
-        ProductItemJ updated = existing.toBuilder()
+        ProductItem updated = existing.toBuilder()
                 .name(input.getName() != null ? input.getName() : existing.getName())
                 .brand(input.getBrand() != null ? input.getBrand() : existing.getBrand())
                 .storeId(input.getStoreId() != null ? input.getStoreId() : existing.getStoreId())
@@ -49,13 +49,13 @@ public class ProductCommandServiceJ implements ProductCommandUseCaseJ {
                 .description(input.getDescription() != null ? input.getDescription() : existing.getDescription())
                 .build();
 
-        ProductItemJ saved = commandPort.updateProduct(updated);
+        ProductItem saved = commandPort.updateProduct(updated);
         return mapper.toOutput(saved);
     }
 
     @Override
     public void deleteProduct(Long productId, Long currentUserId) {
-        ProductItemJ existing = queryPort.findByProductId(productId)
+        ProductItem existing = queryPort.findByProductId(productId)
                 .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다. productId=" + productId));
 
         if (!existing.getSellerId().equals(currentUserId)) {

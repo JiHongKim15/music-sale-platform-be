@@ -18,11 +18,6 @@ public class ImageQueryController {
 
     private final ImageQueryUseCase imageQueryUseCase;
 
-    /**
-     * 상품의 이미지 전체 목록 조회
-     * @param productId
-     * @return List<ImageQueryOutPut>
-     */
     @GetMapping("/{productId}/images")
     public ApiResponse<List<ImageQueryOutPut>> getImages(@PathVariable Long productId) {
         List<ImageQueryOutPut> outputs = imageQueryUseCase.getImagesByProductId(productId);

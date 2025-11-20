@@ -1,8 +1,8 @@
 package com.music.sale.application.product.dto;
 
-import com.music.sale.domain.product.enums.ProductConditionJ;
-import com.music.sale.domain.product.enums.ProductConditionGradeJ;
-import com.music.sale.domain.product.enums.ProductStatusJ;
+import com.music.sale.domain.product.enums.ProductCondition;
+import com.music.sale.domain.product.enums.ProductConditionGrade;
+import com.music.sale.domain.product.enums.ProductStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,10 +23,10 @@ public class ProductOutputJ {
     String brand;
     Long price;
 
-    ProductConditionJ condition;
-    ProductConditionGradeJ conditionGrade;
+    ProductCondition condition;
+    ProductConditionGrade conditionGrade;
     Integer stockQuantity;
-    ProductStatusJ status;
+    ProductStatus status;
 
     Map<String, Object> attributes;
     String description;

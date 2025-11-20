@@ -9,9 +9,6 @@ import java.util.stream.IntStream;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- * 바인딩된 이미지 파일과 메타데이터를 Application Layer의 DTO로 변환
- * */
 @Component
 public class ImageWebMapper {
 
@@ -36,5 +33,4 @@ public class ImageWebMapper {
             throw new RuntimeException("파일 읽기에 실패했습니다: " + file.getOriginalFilename(), e);
         }
     }
-
-} // class
+}

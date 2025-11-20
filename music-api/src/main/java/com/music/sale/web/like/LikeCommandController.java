@@ -13,58 +13,30 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/likes")
 public class LikeCommandController {
     private final LikeCommandUseCase likeCommandUseCase;
     private final LikeWebMapper mapper;
 
-    @PostMapping("/products/{productId}/likes")
-    public ApiResponse<LikeResponse> likeProduct(@PathVariable Long productId) {
+    @PostMapping("/{targetId}")
+    public ApiResponse<LikeResponse> likeTarget(
+            @PathVariable Long targetId,
+            @RequestParam("type") LikeableType likeableType
+    ) {
         Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
-        AddLikeCommand command = mapper.toAddCommand(userId, productId, LikeableType.PRODUCT);
+        AddLikeCommand command = mapper.toAddCommand(userId, targetId, likeableType);
         LikeOutput output = likeCommandUseCase.addLike(command.getUserId(), command.getLikeableId(), command.getLikeableType());
         LikeResponse response = mapper.toResponse(output);
         return ApiResponse.success(response, "LIKE_CREATED");
     }
 
-    @DeleteMapping("/products/{productId}/likes")
-    public ApiResponse<Void> unlikeProduct(@PathVariable Long productId) {
+    @DeleteMapping("/{targetId}")
+    public ApiResponse<Void> unlikeTarget(
+            @PathVariable Long targetId,
+            @RequestParam("type") LikeableType likeableType
+    ) {
         Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
-        DeleteLikeCommand command = mapper.toDeleteCommand(userId, productId, LikeableType.PRODUCT);
-        likeCommandUseCase.deleteLike(command.getUserId(), command.getLikeableId(), command.getLikeableType());
-        return ApiResponse.success(null, "SUCCESS");
-    }
-
-    @PostMapping("/stores/{storeId}/likes")
-    public ApiResponse<LikeResponse> subscribeStore(@PathVariable Long storeId) {
-        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
-        AddLikeCommand command = mapper.toAddCommand(userId, storeId, LikeableType.STORE);
-        LikeOutput output = likeCommandUseCase.addLike(command.getUserId(), command.getLikeableId(), command.getLikeableType());
-        LikeResponse response = mapper.toResponse(output);
-        return ApiResponse.success(response, "STORE_SUBSCRIBED");
-    }
-
-    @DeleteMapping("/stores/{storeId}/likes")
-    public ApiResponse<Void> unsubscribeStore(@PathVariable Long storeId) {
-        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
-        DeleteLikeCommand command = mapper.toDeleteCommand(userId, storeId, LikeableType.STORE);
-        likeCommandUseCase.deleteLike(command.getUserId(), command.getLikeableId(), command.getLikeableType());
-        return ApiResponse.success(null, "SUCCESS");
-    }
-
-    @PostMapping("/sellers/{sellerId}/likes")
-    public ApiResponse<LikeResponse> followSeller(@PathVariable Long sellerId) {
-        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
-        AddLikeCommand command = mapper.toAddCommand(userId, sellerId, LikeableType.SELLER);
-        LikeOutput output = likeCommandUseCase.addLike(command.getUserId(), command.getLikeableId(), command.getLikeableType());
-        LikeResponse response = mapper.toResponse(output);
-        return ApiResponse.success(response, "SELLER_FOLLOWED");
-    }
-
-    @DeleteMapping("/sellers/{sellerId}/likes")
-    public ApiResponse<Void> unfollowSeller(@PathVariable Long sellerId) {
-        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
-        DeleteLikeCommand command = mapper.toDeleteCommand(userId, sellerId, LikeableType.SELLER);
+        DeleteLikeCommand command = mapper.toDeleteCommand(userId, targetId, likeableType);
         likeCommandUseCase.deleteLike(command.getUserId(), command.getLikeableId(), command.getLikeableType());
         return ApiResponse.success(null, "SUCCESS");
     }

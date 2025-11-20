@@ -1,5 +1,6 @@
 package com.music.sale.application.like.port.inport;
 
+import com.music.sale.application.like.dto.LikeOutput;
 import com.music.sale.application.like.dto.LikeStatusOutput;
 import com.music.sale.common.Pageable;
 import com.music.sale.domain.like.LikeableType;
@@ -18,7 +19,7 @@ public interface LikeQueryUseCase {
     /**
      * 내가 좋아요한 목록 조회 (페이징)
      */
-    Page<Object> getMyLikes(Long userId, LikeableType likeableType, Pageable pageable);
+    Page<LikeOutput> getMyLikes(Long userId, LikeableType likeableType, Pageable pageable);
 }
 
 

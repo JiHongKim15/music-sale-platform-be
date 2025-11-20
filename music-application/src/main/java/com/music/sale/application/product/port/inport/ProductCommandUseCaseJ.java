@@ -1,11 +1,11 @@
 package com.music.sale.application.product.port.inport;
 
-import com.music.sale.application.product.dto.CreateProductInputJ;
+import com.music.sale.application.product.dto.CreateProductInput;
 import com.music.sale.application.product.dto.ProductOutputJ;
-import com.music.sale.application.product.dto.UpdateProductInputJ;
+import com.music.sale.application.product.dto.UpdateProductInput;
 
 public interface ProductCommandUseCaseJ {
-    ProductOutputJ createProduct(CreateProductInputJ input, Long currentUserId);
-    ProductOutputJ updateProduct(Long productId, UpdateProductInputJ input, Long currentUserId);
+    ProductOutputJ createProduct(CreateProductInput input, Long currentUserId);
+    ProductOutputJ updateProduct(Long productId, UpdateProductInput input, Long currentUserId);
     void deleteProduct(Long productId, Long currentUserId);
 }

@@ -1,5 +1,6 @@
 package com.music.sale.application.like.service;
 
+import com.music.sale.application.like.dto.LikeOutput;
 import com.music.sale.application.like.dto.LikeStatusOutput;
 import com.music.sale.application.like.mapper.LikeMapper;
 import com.music.sale.application.like.port.inport.LikeQueryUseCase;
@@ -13,10 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 좋아요 Query Service (읽기 전용)
- * CQRS 패턴: Command(쓰기)와 Query(읽기) 분리
- */
 @Service
 @Transactional(readOnly = true)
 public class LikeQueryService implements LikeQueryUseCase {
@@ -39,7 +36,7 @@ public class LikeQueryService implements LikeQueryUseCase {
     }
 
     @Override
-    public Page<Object> getMyLikes(Long userId, LikeableType likeableType, Pageable pageable) {
+    public Page<LikeOutput> getMyLikes(Long userId, LikeableType likeableType, Pageable pageable) {
         Page<Like> likes = findLikes(userId, likeableType, pageable);
         return convertToOutputPage(likes);
     }
@@ -58,11 +55,11 @@ public class LikeQueryService implements LikeQueryUseCase {
         return Sort.by(Sort.Direction.DESC, "createdAt");
     }
 
-    private Page<Object> convertToOutputPage(Page<Like> likes) {
+    private Page<LikeOutput> convertToOutputPage(Page<Like> likes) {
         return likes.map(this::convertToOutput);
     }
 
-    private Object convertToOutput(Like like) {
+    private LikeOutput convertToOutput(Like like) {
         return likeMapper.toOutput(like);
     }
 }

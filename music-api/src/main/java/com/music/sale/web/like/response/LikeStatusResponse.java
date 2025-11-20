@@ -4,10 +4,6 @@ package com.music.sale.web.like.response;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/**
- * 좋아요 상태 응답 DTO
- * Lombok 적용: @Getter, @AllArgsConstructor
- */
 @Getter
 @AllArgsConstructor
 public class LikeStatusResponse {

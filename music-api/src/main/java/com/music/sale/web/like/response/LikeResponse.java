@@ -8,10 +8,6 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-/**
- * 좋아요 생성 응답 DTO
- * Lombok 적용: @Getter, @AllArgsConstructor, @Builder
- */
 @Getter
 @AllArgsConstructor
 @Builder

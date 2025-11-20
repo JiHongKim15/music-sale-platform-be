@@ -20,37 +20,22 @@ public class ImageCommandController {
     private final ImageWebMapper imageWebMapper;
     private final ImageUseCase imageUseCase;
 
-    /**
-     * 상품 이미지 업로드
-     * @param productId
-     * @param request
-     * (meta{순서, 썸네일여부}, multipart)
-     * @return
-     */
     @PostMapping(value = "/{productId}/images", consumes = "multipart/form-data")
     public ApiResponse<List<ImageOutput>> uploadImages(
         @PathVariable Long productId,
         @ModelAttribute @Valid ImageUploadRequest request) {
         request.validate();
 
-        // 1. DTO 변환 및 파일 데이터 추출
         List<UploadImageInput> inputs = imageWebMapper.toUploadImageInputs(
                 productId,
                 request.getImages(),
                 request.getMeta()
         );
-        // 2. UseCase 호출 (업로드 및 영속화)
         List<ImageOutput> outputs = imageUseCase.uploadImage(inputs);
 
         return ApiResponse.success(outputs, "이미지 업로드가 완료되었습니다.");
     }
 
-    /**
-     * 상품 이미지 삭제
-     * @param productId 상품 ID
-     * @param imageId 이미지 ID
-     * @return 삭제 완료 응답
-     */
     @DeleteMapping("/{productId}/images/{imageId}")
     public ApiResponse<Void> deleteImage(
             @PathVariable Long productId,
