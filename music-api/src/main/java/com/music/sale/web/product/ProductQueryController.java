@@ -1,6 +1,6 @@
 package com.music.sale.web.product;
 
-import com.music.sale.application.product.dto.ProductOutputJ;
+import com.music.sale.application.product.dto.output.ProductOutput;
 import com.music.sale.application.product.port.inport.ProductQueryUseCase;
 import com.music.sale.common.ApiResponse;
 import com.music.sale.web.product.mapper.ProductWebMapper;
@@ -20,7 +20,7 @@ public class ProductQueryController {
 
     @GetMapping("/{productId}")
     public ApiResponse<ProductResponse> getByProductId(@PathVariable Long productId) {
-        ProductOutputJ output = productQueryUseCase.getByProductId(productId);
+        ProductOutput output = productQueryUseCase.getByProductId(productId);
         ProductResponse response = productWebMapper.toResponse(output);
         return ApiResponse.success(response, "PRODUCT_FOUND");
     }

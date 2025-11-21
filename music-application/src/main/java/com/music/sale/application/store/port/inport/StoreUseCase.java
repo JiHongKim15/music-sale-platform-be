@@ -8,12 +8,10 @@ import org.springframework.data.domain.PageRequest;
 
 public interface StoreUseCase {
 
-    // Query operations
     Page<StoreOutput> getStores(PageRequest pageable);
 
     StoreOutput getStoreById(Long id);
 
-    // Command operations
     StoreOutput createStore(CreateStoreInput input);
 
     StoreOutput updateStore(UpdateStoreInput input);

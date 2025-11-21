@@ -1,12 +1,10 @@
 package com.music.sale.web.product;
 
-import com.music.sale.application.product.dto.CreateProductInput;
-import com.music.sale.application.product.dto.ProductOutputJ;
-import com.music.sale.application.product.dto.UpdateProductInput;
-import com.music.sale.application.product.port.inport.ProductCommandUseCaseJ;
+import com.music.sale.application.product.dto.input.CreateProductInput;
+import com.music.sale.application.product.dto.output.ProductOutput;
+import com.music.sale.application.product.dto.input.UpdateProductInput;
+import com.music.sale.application.product.port.inport.ProductCommandUseCase;
 import com.music.sale.common.ApiResponse;
-import com.music.sale.web.product.command.CreateProductCommand;
-import com.music.sale.web.product.command.UpdateProductCommand;
 import com.music.sale.web.product.mapper.ProductWebMapper;
 import com.music.sale.web.product.response.ProductResponse;
 import jakarta.validation.Valid;
@@ -18,29 +16,25 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/products")
 public class ProductCommandController {
 
-    private final ProductCommandUseCaseJ productCommandUseCaseJ;
+    private final ProductCommandUseCase productCommandUseCase;
     private final ProductWebMapper productWebMapper;
 
     // 상품 등록
     @PostMapping
-    public ApiResponse<ProductResponse> createProduct(@RequestBody @Valid CreateProductCommand command) {
+    public ApiResponse<ProductResponse> createProduct(@RequestBody @Valid CreateProductInput input) {
         Long currentUserId = 1L; // TODO: Session에서 가져오도록 수정 예정
 
-        CreateProductInput input = productWebMapper.toCreateInput(command);
-        ProductOutputJ output = productCommandUseCaseJ.createProduct(input, currentUserId);
-
+        ProductOutput output = productCommandUseCase.createProduct(input, currentUserId);
         ProductResponse response = productWebMapper.toResponse(output);
         return ApiResponse.success(response, "PRODUCT_CREATED");
     }
 
     // 상품 수정
     @PutMapping("/{productId}")
-    public ApiResponse<ProductResponse> updateProduct(@PathVariable Long productId, @RequestBody @Valid UpdateProductCommand command) {
+    public ApiResponse<ProductResponse> updateProduct(@PathVariable Long productId, @RequestBody @Valid UpdateProductInput input) {
         Long currentUserId = 1L; // TODO: Session에서 가져오도록 수정 예정
 
-        UpdateProductInput input = productWebMapper.toUpdateInput(command);
-        ProductOutputJ output = productCommandUseCaseJ.updateProduct(productId, input, currentUserId);
-
+        ProductOutput output = productCommandUseCase.updateProduct(productId, input, currentUserId);
         ProductResponse response = productWebMapper.toResponse(output);
         return ApiResponse.success(response, "PRODUCT_UPDATED");
     }
@@ -49,7 +43,7 @@ public class ProductCommandController {
     @DeleteMapping("/{productId}")
     public ApiResponse<Void> deleteProduct(@PathVariable Long productId) {
         Long currentUserId = 1L; // TODO: Session에서 가져오도록 수정 예정
-        productCommandUseCaseJ.deleteProduct(productId, currentUserId);
+        productCommandUseCase.deleteProduct(productId, currentUserId);
         return ApiResponse.success(null, "PRODUCT_DELETED");
     }
 }

@@ -1,10 +1,10 @@
 package com.music.sale.web.like.mapper;
 
-import com.music.sale.application.like.dto.LikeOutput;
-import com.music.sale.application.like.dto.LikeStatusOutput;
+import com.music.sale.application.like.dto.input.AddLikeInput;
+import com.music.sale.application.like.dto.input.DeleteLikeInput;
+import com.music.sale.application.like.dto.output.LikeOutput;
+import com.music.sale.application.like.dto.output.LikeStatusOutput;
 import com.music.sale.domain.like.LikeableType;
-import com.music.sale.web.like.command.AddLikeCommand;
-import com.music.sale.web.like.command.DeleteLikeCommand;
 import com.music.sale.web.like.response.LikeResponse;
 import com.music.sale.web.like.response.LikeStatusResponse;
 import org.springframework.stereotype.Component;
@@ -12,12 +12,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class LikeWebMapper {
     
-    public AddLikeCommand toAddCommand(Long userId, Long likeableId, LikeableType likeableType) {
-        return new AddLikeCommand(userId, likeableId, likeableType);
+    public AddLikeInput toAddLikeInput(Long userId, Long likeableId, LikeableType likeableType) {
+        return AddLikeInput.builder()
+                .userId(userId)
+                .likeableId(likeableId)
+                .likeableType(likeableType)
+                .build();
     }
     
-    public DeleteLikeCommand toDeleteCommand(Long userId, Long likeableId, LikeableType likeableType) {
-        return new DeleteLikeCommand(userId, likeableId, likeableType);
+    public DeleteLikeInput toDeleteLikeInput(Long userId, Long likeableId, LikeableType likeableType) {
+        return DeleteLikeInput.builder()
+                .userId(userId)
+                .likeableId(likeableId)
+                .likeableType(likeableType)
+                .build();
     }
     
     public LikeResponse toResponse(LikeOutput output) {

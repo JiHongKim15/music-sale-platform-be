@@ -1,6 +1,6 @@
 package com.music.sale.persistence.product;
 
-import com.music.sale.application.product.port.outport.ProductCommandPortJ;
+import com.music.sale.application.product.port.outport.ProductCommandPort;
 import com.music.sale.domain.product.ProductItem;
 import com.music.sale.persistence.product.entity.ProductItemEntity;
 import com.music.sale.persistence.product.mapper.ProductItemCommandPersistenceMapper;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
-public class ProductItemCommandPersistenceAdapter implements ProductCommandPortJ {
+public class ProductItemCommandPersistenceAdapter implements ProductCommandPort {
 
     private final ProductItemCommandRepository productItemCommandRepository;
     private final ProductItemCommandPersistenceMapper mapper;

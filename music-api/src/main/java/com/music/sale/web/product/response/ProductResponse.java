@@ -9,6 +9,7 @@ import lombok.Value;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+@Builder
 public record ProductResponse(
         Long id,
         Long catalogId,
@@ -23,7 +24,5 @@ public record ProductResponse(
         ProductStatus status,
         Map<String, Object> attributes,
         String description,
-        Long viewCount,
-        LocalDateTime createdAt,
-        LocalDateTime updatedAt
+        Long viewCount
 ) {}

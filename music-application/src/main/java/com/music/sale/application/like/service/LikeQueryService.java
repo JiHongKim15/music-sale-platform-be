@@ -1,18 +1,19 @@
 package com.music.sale.application.like.service;
 
-import com.music.sale.application.like.dto.LikeOutput;
-import com.music.sale.application.like.dto.LikeStatusOutput;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.music.sale.application.like.dto.output.LikeOutput;
+import com.music.sale.application.like.dto.output.LikeStatusOutput;
 import com.music.sale.application.like.mapper.LikeMapper;
 import com.music.sale.application.like.port.inport.LikeQueryUseCase;
 import com.music.sale.application.like.port.outport.LikeQueryPort;
 import com.music.sale.common.Pageable;
 import com.music.sale.domain.like.Like;
 import com.music.sale.domain.like.LikeableType;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(readOnly = true)
@@ -63,5 +64,3 @@ public class LikeQueryService implements LikeQueryUseCase {
         return likeMapper.toOutput(like);
     }
 }
-
-

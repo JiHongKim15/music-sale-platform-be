@@ -1,12 +1,12 @@
 package com.music.sale.web.category;
 
 import com.music.sale.application.category.port.inport.CategoryQueryUseCase;
+import com.music.sale.common.ApiResponse;
 import com.music.sale.domain.category.CategoryType;
 import com.music.sale.web.category.mapper.CategoryQueryWebMapper;
 import com.music.sale.web.category.response.CategoryQueryResponse;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,47 +28,51 @@ public class CategoryQueryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryQueryResponse> getCategoryById(@PathVariable Long id) {
+    public ApiResponse<CategoryQueryResponse> getCategoryById(@PathVariable Long id) {
         var category = categoryQueryUseCase.getCategoryById(id);
-        return ResponseEntity.ok(categoryQueryWebMapper.toResponse(category));
+        return ApiResponse.success(categoryQueryWebMapper.toResponse(category), "CATEGORY_FOUND");
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<CategoryQueryResponse>> getAllCategories() {
+    public ApiResponse<List<CategoryQueryResponse>> getAllCategories() {
         var categories = categoryQueryUseCase.getAllCategories();
-        return ResponseEntity.ok(
+        return ApiResponse.success(
                 categories.stream()
                         .map(categoryQueryWebMapper::toResponse)
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList()),
+                "CATEGORIES_FOUND");
     }
 
     @GetMapping("/type")
-    public ResponseEntity<List<CategoryQueryResponse>> getCategoriesByType(
+    public ApiResponse<List<CategoryQueryResponse>> getCategoriesByType(
             @RequestParam CategoryType type) {
         var categories = categoryQueryUseCase.getCategoriesByType(type);
-        return ResponseEntity.ok(
+        return ApiResponse.success(
                 categories.stream()
                         .map(categoryQueryWebMapper::toResponse)
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList()),
+                "CATEGORIES_BY_TYPE_FOUND");
     }
 
     @GetMapping("/root")
-    public ResponseEntity<List<CategoryQueryResponse>> getRootCategories() {
+    public ApiResponse<List<CategoryQueryResponse>> getRootCategories() {
         var categories = categoryQueryUseCase.getRootCategories();
-        return ResponseEntity.ok(
+        return ApiResponse.success(
                 categories.stream()
                         .map(categoryQueryWebMapper::toResponse)
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList()),
+                "ROOT_CATEGORIES_FOUND");
     }
 
     @GetMapping("/parent/{parentId}")
-    public ResponseEntity<List<CategoryQueryResponse>> getCategoriesByParentId(
+    public ApiResponse<List<CategoryQueryResponse>> getCategoriesByParentId(
             @PathVariable Long parentId) {
         var categories = categoryQueryUseCase.getCategoriesByParentId(parentId);
-        return ResponseEntity.ok(
+        return ApiResponse.success(
                 categories.stream()
                         .map(categoryQueryWebMapper::toResponse)
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList()),
+                "CHILD_CATEGORIES_FOUND");
     }
 }
 

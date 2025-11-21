@@ -1,15 +1,17 @@
 package com.music.sale.application.like.service;
 
-import com.music.sale.application.like.dto.LikeOutput;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.music.sale.application.like.dto.input.AddLikeInput;
+import com.music.sale.application.like.dto.input.DeleteLikeInput;
+import com.music.sale.application.like.dto.output.LikeOutput;
 import com.music.sale.application.like.exception.LikeAlreadyExistsException;
 import com.music.sale.application.like.exception.LikeNotFoundException;
 import com.music.sale.application.like.mapper.LikeMapper;
 import com.music.sale.application.like.port.inport.LikeCommandUseCase;
 import com.music.sale.application.like.port.outport.LikeCommandPort;
 import com.music.sale.domain.like.Like;
-import com.music.sale.domain.like.LikeableType;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 좋아요 Command Service (쓰기 전용)
@@ -27,50 +29,48 @@ public class LikeCommandService implements LikeCommandUseCase {
     }
 
     @Override
-    public LikeOutput addLike(Long userId, Long likeableId, LikeableType likeableType) {
-        validateNotDuplicate(userId, likeableId, likeableType);
-        Like savedLike = saveNewLike(userId, likeableId, likeableType);
+    public LikeOutput addLike(AddLikeInput input) {
+        validateNotDuplicate(input);
+        Like savedLike = saveNewLike(input);
         return likeMapper.toOutput(savedLike);
     }
 
-    private void validateNotDuplicate(Long userId, Long likeableId, LikeableType likeableType) {
-        if (isDuplicate(userId, likeableId, likeableType)) {
-            throw createDuplicateException(likeableType);
+    private void validateNotDuplicate(AddLikeInput input) {
+        if (isDuplicate(input)) {
+            throw createDuplicateException(input.getLikeableType());
         }
     }
 
-    private boolean isDuplicate(Long userId, Long likeableId, LikeableType likeableType) {
-        return likeCommandPort.exists(userId, likeableId, likeableType);
+    private boolean isDuplicate(AddLikeInput input) {
+        return likeCommandPort.exists(input.getUserId(), input.getLikeableId(), input.getLikeableType());
     }
 
-    private LikeAlreadyExistsException createDuplicateException(LikeableType type) {
+    private LikeAlreadyExistsException createDuplicateException(com.music.sale.domain.like.LikeableType type) {
         return new LikeAlreadyExistsException("이미 " + type.getKorean() + "한 대상입니다.");
     }
 
-    private Like saveNewLike(Long userId, Long likeableId, LikeableType likeableType) {
-        Like like = Like.create(userId, likeableId, likeableType);
+    private Like saveNewLike(AddLikeInput input) {
+        Like like = Like.create(input.getUserId(), input.getLikeableId(), input.getLikeableType());
         return likeCommandPort.save(like);
     }
 
     @Override
-    public void deleteLike(Long userId, Long likeableId, LikeableType likeableType) {
-        validateExists(userId, likeableId, likeableType);
-        likeCommandPort.delete(userId, likeableId, likeableType);
+    public void deleteLike(DeleteLikeInput input) {
+        validateExists(input);
+        likeCommandPort.delete(input.getUserId(), input.getLikeableId(), input.getLikeableType());
     }
 
-    private void validateExists(Long userId, Long likeableId, LikeableType likeableType) {
-        if (notExists(userId, likeableId, likeableType)) {
-            throw createNotFoundException(likeableType);
+    private void validateExists(DeleteLikeInput input) {
+        if (notExists(input)) {
+            throw createNotFoundException(input.getLikeableType());
         }
     }
 
-    private boolean notExists(Long userId, Long likeableId, LikeableType likeableType) {
-        return !likeCommandPort.exists(userId, likeableId, likeableType);
+    private boolean notExists(DeleteLikeInput input) {
+        return !likeCommandPort.exists(input.getUserId(), input.getLikeableId(), input.getLikeableType());
     }
 
-    private LikeNotFoundException createNotFoundException(LikeableType type) {
+    private LikeNotFoundException createNotFoundException(com.music.sale.domain.like.LikeableType type) {
         return new LikeNotFoundException(type.getKorean() + " 기록을 찾을 수 없습니다.");
     }
 }
-
-

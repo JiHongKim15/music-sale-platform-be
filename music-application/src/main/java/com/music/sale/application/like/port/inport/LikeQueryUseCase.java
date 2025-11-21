@@ -1,10 +1,11 @@
 package com.music.sale.application.like.port.inport;
 
-import com.music.sale.application.like.dto.LikeOutput;
-import com.music.sale.application.like.dto.LikeStatusOutput;
+import org.springframework.data.domain.Page;
+
+import com.music.sale.application.like.dto.output.LikeOutput;
+import com.music.sale.application.like.dto.output.LikeStatusOutput;
 import com.music.sale.common.Pageable;
 import com.music.sale.domain.like.LikeableType;
-import org.springframework.data.domain.Page;
 
 /**
  * 좋아요 Query UseCase (읽기 전용)
@@ -21,6 +22,3 @@ public interface LikeQueryUseCase {
      */
     Page<LikeOutput> getMyLikes(Long userId, LikeableType likeableType, Pageable pageable);
 }
-
-
-

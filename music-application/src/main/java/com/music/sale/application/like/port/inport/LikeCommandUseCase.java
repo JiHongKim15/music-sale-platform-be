@@ -1,7 +1,8 @@
 package com.music.sale.application.like.port.inport;
 
-import com.music.sale.application.like.dto.LikeOutput;
-import com.music.sale.domain.like.LikeableType;
+import com.music.sale.application.like.dto.input.AddLikeInput;
+import com.music.sale.application.like.dto.input.DeleteLikeInput;
+import com.music.sale.application.like.dto.output.LikeOutput;
 
 /**
  * 좋아요 Command UseCase (쓰기 전용)
@@ -11,12 +12,12 @@ public interface LikeCommandUseCase {
     /**
      * 좋아요 추가
      */
-    LikeOutput addLike(Long userId, Long likeableId, LikeableType likeableType);
+    LikeOutput addLike(AddLikeInput input);
 
     /**
      * 좋아요 취소
      */
-    void deleteLike(Long userId, Long likeableId, LikeableType likeableType);
+    void deleteLike(DeleteLikeInput input);
 }
 
 

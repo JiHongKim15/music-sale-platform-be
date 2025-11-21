@@ -1,9 +1,13 @@
 package com.music.sale.web.user;
 
+import com.music.sale.application.user.dto.PhoneVerificationOutput;
+import com.music.sale.application.user.dto.PhoneVerificationResult;
 import com.music.sale.application.user.dto.SocialConnectionResult;
 import com.music.sale.application.user.dto.TwoFactorVerificationResult;
 import com.music.sale.application.user.dto.UserProfileUpdateResult;
 import com.music.sale.application.user.port.inport.UserUseCase;
+import com.music.sale.domain.user.enum.SocialProvider;
+import com.music.sale.domain.user.enum.VerificationType;
 import com.music.sale.common.ApiResponse;
 import com.music.sale.web.user.mapper.UserWebMapper;
 import com.music.sale.web.user.request.ConnectSocialAccountRequest;
@@ -29,7 +33,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -57,62 +60,62 @@ public class UserController {
 
     @PostMapping("/register/email")
     @Operation(summary = "이메일로 회원가입", description = "이메일과 비밀번호로 새로운 사용자를 등록합니다.")
-    public ResponseEntity<ApiResponse<UserResponse>> createUserByEmail(
+    public ApiResponse<UserResponse> createUserByEmail(
             @RequestBody CreateUserByEmailRequest request) {
         var input = mapper.toCreateUserByEmailInput(request);
         var output = userUseCase.createUserByEmail(input);
-        return ResponseEntity.ok(ApiResponse.success(mapper.toUserResponse(output)));
+        return ApiResponse.success(mapper.toUserResponse(output), "USER_CREATED");
     }
 
     @PostMapping("/register/phone")
     @Operation(summary = "휴대폰번호로 회원가입", description = "휴대폰번호와 비밀번호로 새로운 사용자를 등록합니다.")
-    public ResponseEntity<ApiResponse<UserResponse>> createUserByPhone(
+    public ApiResponse<UserResponse> createUserByPhone(
             @RequestBody CreateUserByPhoneRequest request) {
         var input = mapper.toCreateUserByPhoneInput(request);
         var output = userUseCase.createUserByPhone(input);
-        return ResponseEntity.ok(ApiResponse.success(mapper.toUserResponse(output)));
+        return ApiResponse.success(mapper.toUserResponse(output), "USER_CREATED");
     }
 
     @PostMapping("/register/social")
     @Operation(summary = "소셜 로그인으로 회원가입", description = "소셜 플랫폼을 통해 새로운 사용자를 등록합니다.")
-    public ResponseEntity<ApiResponse<UserResponse>> createUserByProvider(
+    public ApiResponse<UserResponse> createUserByProvider(
             @RequestBody CreateUserByProviderRequest request) {
         var input = mapper.toCreateUserByProviderInput(request);
         var output = userUseCase.createUserByProvider(input);
-        return ResponseEntity.ok(ApiResponse.success(mapper.toUserResponse(output)));
+        return ApiResponse.success(mapper.toUserResponse(output), "USER_CREATED");
     }
 
     @GetMapping("/me")
     @Operation(summary = "내 정보 조회", description = "현재 로그인한 사용자의 정보를 조회합니다.")
-    public ResponseEntity<ApiResponse<UserResponse>> getMyInfo(
+    public ApiResponse<UserResponse> getMyInfo(
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = requireUserId(userDetails);
         var output = userUseCase.getUserById(userId);
-        return ResponseEntity.ok(ApiResponse.success(mapper.toUserResponse(output)));
+        return ApiResponse.success(mapper.toUserResponse(output), "USER_FOUND");
     }
 
     @GetMapping("/me/detail")
     @Operation(
             summary = "내 상세 정보 조회",
             description = "현재 로그인한 사용자의 상세 정보(소셜 연동, 관심 카테고리 포함)를 조회합니다.")
-    public ResponseEntity<ApiResponse<UserDetailResponse>> getMyDetailInfo(
+    public ApiResponse<UserDetailResponse> getMyDetailInfo(
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = requireUserId(userDetails);
         var output = userUseCase.getUserById(userId);
-        return ResponseEntity.ok(ApiResponse.success(mapper.toUserDetailResponse(output)));
+        return ApiResponse.success(mapper.toUserDetailResponse(output), "USER_DETAIL_FOUND");
     }
 
     @GetMapping("/{userId}")
     @Operation(summary = "사용자 정보 조회", description = "특정 사용자의 공개 정보를 조회합니다.")
-    public ResponseEntity<ApiResponse<UserResponse>> getUserById(
+    public ApiResponse<UserResponse> getUserById(
             @PathVariable Long userId) {
         var output = userUseCase.getUserById(userId);
-        return ResponseEntity.ok(ApiResponse.success(mapper.toUserResponse(output)));
+        return ApiResponse.success(mapper.toUserResponse(output), "USER_FOUND");
     }
 
     @PutMapping("/me/profile")
     @Operation(summary = "프로필 정보 수정", description = "현재 로그인한 사용자의 프로필 정보를 수정합니다.")
-    public ResponseEntity<ApiResponse<UserProfileUpdateResponse>> updateMyProfile(
+    public ApiResponse<UserProfileUpdateResponse> updateMyProfile(
             @AuthenticationPrincipal UserDetails userDetails,
             @RequestBody UpdateUserProfileRequest request) {
         Long userId = requireUserId(userDetails);
@@ -122,131 +125,133 @@ public class UserController {
                 result.getSuccess(),
                 result.getMessage(),
                 result.getUpdatedFields());
-        return ResponseEntity.ok(ApiResponse.success(response));
+        return ApiResponse.success(response, "PROFILE_UPDATED");
     }
 
     @PostMapping("/phone/verification/send")
     @Operation(summary = "휴대폰 인증 코드 발송", description = "휴대폰 번호로 인증 코드를 발송합니다.")
-    public ResponseEntity<ApiResponse<PhoneVerificationResponse>> sendPhoneVerificationCode(
+    public ApiResponse<PhoneVerificationResponse> sendPhoneVerificationCode(
             @RequestBody SendPhoneVerificationRequest request) {
-        var result = userUseCase.sendPhoneVerificationCode(
+        VerificationType verificationType = request.verificationType();
+        PhoneVerificationOutput result = userUseCase.sendPhoneVerificationCode(
                 request.phoneNumber(),
-                request.verificationType());
-        return ResponseEntity.ok(ApiResponse.success(
-                mapper.toPhoneVerificationResponse(result)));
+                verificationType);
+        return ApiResponse.success(
+                mapper.toPhoneVerificationResponse(result), "VERIFICATION_CODE_SENT");
     }
 
     @PostMapping("/phone/verification/verify")
     @Operation(summary = "휴대폰 인증 코드 확인", description = "휴대폰 인증 코드를 확인합니다.")
-    public ResponseEntity<ApiResponse<PhoneVerificationResultResponse>> verifyPhoneCode(
+    public ApiResponse<PhoneVerificationResultResponse> verifyPhoneCode(
             @RequestBody VerifyPhoneCodeRequest request) {
-        var result = userUseCase.verifyPhoneCode(
+        VerificationType verificationType = request.verificationType();
+        PhoneVerificationResult result = userUseCase.verifyPhoneCode(
                 request.phoneNumber(),
                 request.verificationCode(),
-                request.verificationType());
-        var response = mapper.toPhoneVerificationResultResponse(
+                verificationType);
+        PhoneVerificationResultResponse response = mapper.toPhoneVerificationResultResponse(
                 result.getSuccess(),
                 result.getMessage(),
                 request.phoneNumber(),
                 result.getVerifiedAt());
-        return ResponseEntity.ok(ApiResponse.success(response));
+        return ApiResponse.success(response, "VERIFICATION_COMPLETED");
     }
 
     @PostMapping("/social/connect")
     @Operation(summary = "소셜 계정 연동", description = "기존 계정에 소셜 플랫폼을 연동합니다.")
-    public ResponseEntity<ApiResponse<SocialConnectionResultResponse>> connectSocialAccount(
+    public ApiResponse<SocialConnectionResultResponse> connectSocialAccount(
             @AuthenticationPrincipal UserDetails userDetails,
             @RequestBody ConnectSocialAccountRequest request) {
         Long userId = requireUserId(userDetails);
         SocialConnectionResult result =
                 userUseCase.connectSocialAccount(userId, request.toInput());
-        var response = mapper.toSocialConnectionResultResponse(
+        SocialConnectionResultResponse response = mapper.toSocialConnectionResultResponse(
                 result.getSuccess(),
                 result.getMessage(),
                 result.getProvider(),
                 result.getConnectedAt());
-        return ResponseEntity.ok(ApiResponse.success(response));
+        return ApiResponse.success(response, "SOCIAL_ACCOUNT_CONNECTED");
     }
 
     @DeleteMapping("/social/disconnect/{provider}")
     @Operation(summary = "소셜 계정 연동 해제", description = "연동된 소셜 플랫폼을 해제합니다.")
-    public ResponseEntity<ApiResponse<SocialConnectionResultResponse>> disconnectSocialAccount(
+    public ApiResponse<SocialConnectionResultResponse> disconnectSocialAccount(
             @AuthenticationPrincipal UserDetails userDetails,
             @PathVariable String provider) {
         Long userId = requireUserId(userDetails);
         SocialConnectionResult result =
                 userUseCase.disconnectSocialAccount(userId, provider);
-        var response = mapper.toSocialConnectionResultResponse(
+        SocialConnectionResultResponse response = mapper.toSocialConnectionResultResponse(
                 result.getSuccess(),
                 result.getMessage(),
                 result.getProvider(),
                 null);
-        return ResponseEntity.ok(ApiResponse.success(response));
+        return ApiResponse.success(response, "SOCIAL_ACCOUNT_DISCONNECTED");
     }
 
     @GetMapping("/me/stats")
     @Operation(summary = "내 통계 정보 조회", description = "현재 로그인한 사용자의 통계 정보를 조회합니다.")
-    public ResponseEntity<ApiResponse<UserStatsResponse>> getMyStats(
+    public ApiResponse<UserStatsResponse> getMyStats(
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = requireUserId(userDetails);
         var stats = userUseCase.getUserStats(userId);
-        return ResponseEntity.ok(ApiResponse.success(
-                mapper.toUserStatsResponse(stats)));
+        return ApiResponse.success(
+                mapper.toUserStatsResponse(stats), "USER_STATS_FOUND");
     }
 
     @PostMapping("/2fa/setup")
     @Operation(summary = "2단계 인증 설정", description = "2단계 인증을 설정합니다.")
-    public ResponseEntity<ApiResponse<TwoFactorSetupResponse>> setupTwoFactorAuth(
+    public ApiResponse<TwoFactorSetupResponse> setupTwoFactorAuth(
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = requireUserId(userDetails);
         var setup = userUseCase.setupTwoFactorAuth(userId);
-        return ResponseEntity.ok(ApiResponse.success(
-                mapper.toTwoFactorSetupResponse(setup)));
+        return ApiResponse.success(
+                mapper.toTwoFactorSetupResponse(setup), "TWO_FACTOR_SETUP");
     }
 
     @PostMapping("/2fa/verify")
     @Operation(summary = "2단계 인증 확인", description = "2단계 인증 코드를 확인합니다.")
-    public ResponseEntity<ApiResponse<Map<String, String>>> verifyTwoFactorAuth(
+    public ApiResponse<Map<String, String>> verifyTwoFactorAuth(
             @AuthenticationPrincipal UserDetails userDetails,
             @RequestBody VerifyTwoFactorRequest request) {
         Long userId = requireUserId(userDetails);
         TwoFactorVerificationResult result =
                 userUseCase.verifyTwoFactorAuth(userId, request.twoFactorCode());
-        return ResponseEntity.ok(ApiResponse.success(
-                Map.of("message", result.getMessage())));
+        return ApiResponse.success(
+                Map.of("message", result.getMessage()), "TWO_FACTOR_VERIFIED");
     }
 
     @DeleteMapping("/me")
     @Operation(summary = "회원 탈퇴", description = "현재 로그인한 사용자의 계정을 삭제합니다.")
-    public ResponseEntity<ApiResponse<Map<String, String>>> deleteMyAccount(
+    public ApiResponse<Map<String, String>> deleteMyAccount(
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = requireUserId(userDetails);
         userUseCase.deleteUser(userId);
-        return ResponseEntity.ok(ApiResponse.success(
-                Map.of("message", "회원 탈퇴가 완료되었습니다.")));
+        return ApiResponse.success(
+                Map.of("message", "회원 탈퇴가 완료되었습니다."), "USER_DELETED");
     }
 
     @PostMapping("/me/interests")
     @Operation(summary = "관심 카테고리 설정", description = "사용자의 관심 카테고리를 설정합니다.")
-    public ResponseEntity<ApiResponse<Map<String, String>>> setInterestedCategories(
+    public ApiResponse<Map<String, String>> setInterestedCategories(
             @AuthenticationPrincipal UserDetails userDetails,
             @RequestBody SetInterestedCategoriesRequest request) {
         Long userId = requireUserId(userDetails);
         userUseCase.setInterestedCategories(userId, request.categoryIds());
-        return ResponseEntity.ok(ApiResponse.success(
-                Map.of("message", "관심 카테고리가 설정되었습니다.")));
+        return ApiResponse.success(
+                Map.of("message", "관심 카테고리가 설정되었습니다."), "INTERESTS_SET");
     }
 
     @GetMapping("/me/interests")
     @Operation(summary = "관심 카테고리 조회", description = "사용자의 관심 카테고리를 조회합니다.")
-    public ResponseEntity<ApiResponse<List<CategoryResponse>>> getInterestedCategories(
+    public ApiResponse<List<CategoryResponse>> getInterestedCategories(
             @AuthenticationPrincipal UserDetails userDetails) {
         Long userId = requireUserId(userDetails);
         List<CategoryResponse> categories =
                 userUseCase.getInterestedCategories(userId).stream()
                         .map(mapper::toCategoryResponse)
                         .collect(Collectors.toList());
-        return ResponseEntity.ok(ApiResponse.success(categories));
+        return ApiResponse.success(categories, "INTERESTS_FOUND");
     }
 
     private Long requireUserId(UserDetails userDetails) {
