@@ -1,7 +1,7 @@
 package com.music.sale.web.user.request;
 
 import com.music.sale.application.user.dto.UpdateUserProfileInput;
-import com.music.sale.domain.user.enum.Gender;
+import com.music.sale.domain.user.enums.Gender;
 import java.time.LocalDate;
 
 public record UpdateUserProfileRequest(

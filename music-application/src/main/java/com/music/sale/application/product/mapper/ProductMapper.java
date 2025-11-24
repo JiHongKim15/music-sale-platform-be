@@ -1,13 +1,13 @@
 package com.music.sale.application.product.mapper;
 
-import org.springframework.stereotype.Component;
-
 import com.music.sale.application.product.dto.input.CreateProductInput;
 import com.music.sale.application.product.dto.input.UpdateProductInput;
-import com.music.sale.application.product.dto.output.ProductOutput;
+import com.music.sale.application.product.dto.output.CreateProductOutput;
+import com.music.sale.application.product.dto.output.GetProductOutput;
+import com.music.sale.application.product.dto.output.UpdateProductOutput;
 import com.music.sale.domain.product.ProductItem;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
@@ -50,8 +50,8 @@ public class ProductMapper {
         return value != null ? value : defaultValue;
     }
 
-    public ProductOutput toOutput(ProductItem item) {
-        return ProductOutput.builder()
+    public CreateProductOutput toCreateOutput(ProductItem item) {
+        return CreateProductOutput.builder()
                 .id(item.getId())
                 .catalogId(item.getCatalogId())
                 .sellerId(item.getSellerId())
@@ -66,8 +66,44 @@ public class ProductMapper {
                 .attributes(item.getAttributes())
                 .description(item.getDescription())
                 .viewCount(item.getViewCount())
-                .createdAt(item.getCreatedAt())
-                .updatedAt(item.getUpdatedAt())
+                .build();
+    }
+
+    public UpdateProductOutput toUpdateOutput(ProductItem item) {
+        return UpdateProductOutput.builder()
+                .id(item.getId())
+                .catalogId(item.getCatalogId())
+                .sellerId(item.getSellerId())
+                .storeId(item.getStoreId())
+                .name(item.getName())
+                .brand(item.getBrand())
+                .price(item.getPrice())
+                .condition(item.getCondition())
+                .conditionGrade(item.getConditionGrade())
+                .stockQuantity(item.getStockQuantity())
+                .status(item.getStatus())
+                .attributes(item.getAttributes())
+                .description(item.getDescription())
+                .viewCount(item.getViewCount())
+                .build();
+    }
+
+    public GetProductOutput toGetOutput(ProductItem item) {
+        return GetProductOutput.builder()
+                .id(item.getId())
+                .catalogId(item.getCatalogId())
+                .sellerId(item.getSellerId())
+                .storeId(item.getStoreId())
+                .name(item.getName())
+                .brand(item.getBrand())
+                .price(item.getPrice())
+                .condition(item.getCondition())
+                .conditionGrade(item.getConditionGrade())
+                .stockQuantity(item.getStockQuantity())
+                .status(item.getStatus())
+                .attributes(item.getAttributes())
+                .description(item.getDescription())
+                .viewCount(item.getViewCount())
                 .build();
     }
 }

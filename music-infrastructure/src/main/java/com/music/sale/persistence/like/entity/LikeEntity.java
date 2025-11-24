@@ -1,10 +1,8 @@
 package com.music.sale.persistence.like.entity;
 
-import com.music.sale.domain.like.LikeableType;
+import com.music.sale.domain.like.enums.LikeableType;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(

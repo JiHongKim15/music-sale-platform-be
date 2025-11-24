@@ -1,7 +1,7 @@
 package com.music.sale.persistence.like;
 
 import com.music.sale.domain.like.Like;
-import com.music.sale.domain.like.LikeableType;
+import com.music.sale.domain.like.enums.LikeableType;
 import com.music.sale.persistence.like.repository.LikeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -49,10 +49,10 @@ class LikePersistenceAdapterIntegrationTest {
         Like savedLike = commandAdapter.save(like);
 
         // then
-        assertThat(savedLike.getId()).isNotNull();
-        assertThat(savedLike.getUserId()).isEqualTo(1L);
-        assertThat(savedLike.getLikeableId()).isEqualTo(100L);
-        assertThat(savedLike.getLikeableType()).isEqualTo(LikeableType.PRODUCT);
+        assertThat(savedLike.id()).isNotNull();
+        assertThat(savedLike.userId()).isEqualTo(1L);
+        assertThat(savedLike.likeableId()).isEqualTo(100L);
+        assertThat(savedLike.likeableType()).isEqualTo(LikeableType.PRODUCT);
     }
 
     @Test
@@ -119,7 +119,7 @@ class LikePersistenceAdapterIntegrationTest {
         assertThat(result.getContent()).hasSize(3);
         assertThat(result.getTotalElements()).isEqualTo(3);
         assertThat(result.getContent())
-                .extracting(Like::getUserId)
+                .extracting(Like::userId)
                 .containsOnly(1L);
     }
 
@@ -168,7 +168,7 @@ class LikePersistenceAdapterIntegrationTest {
 
         // when & then
         Like like2 = Like.create(1L, 100L, LikeableType.PRODUCT);
-        
+
         try {
             commandAdapter.save(like2);
             // H2 DB는 flush가 명시적으로 필요할 수 있음

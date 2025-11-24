@@ -1,24 +1,15 @@
 package com.music.sale.web.like;
 
-import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.music.sale.application.like.dto.output.LikeOutput;
-import com.music.sale.application.like.dto.output.LikeStatusOutput;
+import com.music.sale.application.like.dto.output.GetLikeStatusOutput;
 import com.music.sale.application.like.port.inport.LikeQueryUseCase;
 import com.music.sale.common.ApiResponse;
-import com.music.sale.common.DefaultPageable;
-import com.music.sale.common.Pageable;
-import com.music.sale.domain.like.LikeableType;
+import com.music.sale.domain.like.enums.LikeableType;
 import com.music.sale.web.like.mapper.LikeWebMapper;
-import com.music.sale.web.like.response.LikeResponse;
-import com.music.sale.web.like.response.LikeStatusResponse;
-
+import com.music.sale.web.like.response.GetLikeResponse;
+import com.music.sale.web.like.response.GetLikeStatusResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,23 +19,23 @@ public class LikeQueryController {
     private final LikeWebMapper mapper;
 
     @GetMapping("/status/{targetId}")
-    public ApiResponse<LikeStatusResponse> getLikeStatus(
+    public ApiResponse<GetLikeStatusResponse> getLikeStatus(
             @PathVariable("targetId") Long targetId,
             @RequestParam("type") LikeableType likeableType
     ) {
         Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
-        LikeStatusOutput output = likeQueryUseCase.getLikeStatus(userId, targetId, likeableType);
-        return ApiResponse.success(mapper.toStatusResponse(output), "SUCCESS");
+        GetLikeStatusOutput output = likeQueryUseCase.getLikeStatus(userId, targetId, likeableType);
+        return ApiResponse.success(mapper.toGetLikeStatusResponse(output), "SUCCESS");
     }
+
     @GetMapping("/users/me")
-    public ApiResponse<Page<LikeResponse>> getMyLikes(
+    public ApiResponse<Page<GetLikeResponse>> getMyLikes(
             @RequestParam("type") LikeableType likeableType,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size
     ) {
- 
-        Page<LikeResponse> responsePage = likes.map(mapper::toResponse);
-        return ApiResponse.success(responsePage, "SUCCESS");
+        // TODO: Implement getMyLikes
+        return ApiResponse.success(Page.empty(), "SUCCESS");
     }
 }
 

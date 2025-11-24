@@ -2,7 +2,7 @@ package com.music.sale.persistence.like;
 
 import com.music.sale.application.like.port.outport.LikeQueryPort;
 import com.music.sale.domain.like.Like;
-import com.music.sale.domain.like.LikeableType;
+import com.music.sale.domain.like.enums.LikeableType;
 import com.music.sale.persistence.like.entity.LikeEntity;
 import com.music.sale.persistence.like.mapper.LikeEntityMapper;
 import com.music.sale.persistence.like.repository.LikeRepository;

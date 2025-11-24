@@ -19,10 +19,10 @@ public class LikeEntityMapper {
 
     public LikeEntity toEntity(Like domain) {
         return LikeEntity.builder()
-                .id(domain.getId())
-                .userId(domain.getUserId())
-                .likeableId(domain.getLikeableId())
-                .likeableType(domain.getLikeableType())
+                .id(domain.id())
+                .userId(domain.userId())
+                .likeableId(domain.likeableId())
+                .likeableType(domain.likeableType())
                 .createdAt(domain.getCreatedAt())
                 .build();
     }

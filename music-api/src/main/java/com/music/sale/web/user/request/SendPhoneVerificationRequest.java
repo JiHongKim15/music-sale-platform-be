@@ -1,6 +1,6 @@
 package com.music.sale.web.user.request;
 
-import com.music.sale.domain.user.enum.VerificationType;
+import com.music.sale.domain.user.enums.VerificationType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

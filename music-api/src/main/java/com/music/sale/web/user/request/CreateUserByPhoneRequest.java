@@ -1,8 +1,8 @@
 package com.music.sale.web.user.request;
 
-import com.music.sale.domain.user.enum.Gender;
-import com.music.sale.domain.user.enum.UserRole;
-import com.music.sale.domain.user.enum.UserType;
+import com.music.sale.domain.user.enums.Gender;
+import com.music.sale.domain.user.enums.UserRole;
+import com.music.sale.domain.user.enums.UserType;
 import java.time.LocalDate;
 
 public record CreateUserByPhoneRequest(

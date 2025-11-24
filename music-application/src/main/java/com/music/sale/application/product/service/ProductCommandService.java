@@ -5,7 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.music.sale.application.product.dto.input.CreateProductInput;
 import com.music.sale.application.product.dto.input.UpdateProductInput;
-import com.music.sale.application.product.dto.output.ProductOutput;
+import com.music.sale.application.product.dto.output.CreateProductOutput;
+import com.music.sale.application.product.dto.output.UpdateProductOutput;
 import com.music.sale.application.product.mapper.ProductMapper;
 import com.music.sale.application.product.port.inport.ProductCommandUseCase;
 import com.music.sale.application.product.port.outport.ProductCommandPort;
@@ -23,14 +24,14 @@ public class ProductCommandService implements ProductCommandUseCase {
     private final ProductMapper mapper;
 
     @Override
-    public ProductOutput createProduct(CreateProductInput input, Long currentUserId) {
+    public CreateProductOutput createProduct(CreateProductInput input, Long currentUserId) {
         ProductItem item = mapper.toDomainForCreate(input, currentUserId);
         ProductItem saved = commandPort.saveProduct(item);
-        return mapper.toOutput(saved);
+        return mapper.toCreateOutput(saved);
     }
 
     @Override
-    public ProductOutput updateProduct(Long productId, UpdateProductInput input, Long currentUserId) {
+    public UpdateProductOutput updateProduct(Long productId, UpdateProductInput input, Long currentUserId) {
         ProductItem existing = queryPort.findByProductId(productId)
                 .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다. productId=" + productId));
 
@@ -40,7 +41,7 @@ public class ProductCommandService implements ProductCommandUseCase {
 
         ProductItem updated = mapper.toDomainForUpdate(existing, input);
         ProductItem saved = commandPort.updateProduct(updated);
-        return mapper.toOutput(saved);
+        return mapper.toUpdateOutput(saved);
     }
 
     @Override

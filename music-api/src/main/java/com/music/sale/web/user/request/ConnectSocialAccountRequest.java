@@ -1,7 +1,7 @@
 package com.music.sale.web.user.request;
 
 import com.music.sale.application.user.dto.ConnectSocialAccountInput;
-import com.music.sale.domain.user.enum.SocialProvider;
+import com.music.sale.domain.user.enums.SocialProvider;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

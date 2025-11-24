@@ -1,7 +1,7 @@
 // Copyright (C) 2024 Your Name or Company
 package com.music.sale.persistence.like.repository;
 
-import com.music.sale.domain.like.LikeableType;
+import com.music.sale.domain.like.enums.LikeableType;
 import com.music.sale.persistence.like.entity.LikeEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

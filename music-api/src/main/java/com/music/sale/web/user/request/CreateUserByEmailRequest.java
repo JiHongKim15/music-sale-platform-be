@@ -1,7 +1,7 @@
 package com.music.sale.web.user.request;
 
-import com.music.sale.domain.user.enum.Gender;
-import com.music.sale.domain.user.enum.UserType;
+import com.music.sale.domain.user.enums.Gender;
+import com.music.sale.domain.user.enums.UserType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

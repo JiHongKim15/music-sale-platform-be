@@ -2,7 +2,7 @@ package com.music.sale.config.oauth2;
 
 import com.music.sale.application.auth.service.JwtService;
 import com.music.sale.domain.user.User;
-import com.music.sale.domain.user.enum.UserRole;
+import com.music.sale.domain.user.enums.UserRole;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

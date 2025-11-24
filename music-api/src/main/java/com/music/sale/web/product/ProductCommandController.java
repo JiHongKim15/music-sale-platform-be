@@ -1,8 +1,9 @@
 package com.music.sale.web.product;
 
 import com.music.sale.application.product.dto.input.CreateProductInput;
-import com.music.sale.application.product.dto.output.ProductOutput;
 import com.music.sale.application.product.dto.input.UpdateProductInput;
+import com.music.sale.application.product.dto.output.CreateProductOutput;
+import com.music.sale.application.product.dto.output.UpdateProductOutput;
 import com.music.sale.application.product.port.inport.ProductCommandUseCase;
 import com.music.sale.common.ApiResponse;
 import com.music.sale.web.product.mapper.ProductWebMapper;
@@ -24,8 +25,8 @@ public class ProductCommandController {
     public ApiResponse<ProductResponse> createProduct(@RequestBody @Valid CreateProductInput input) {
         Long currentUserId = 1L; // TODO: Session에서 가져오도록 수정 예정
 
-        ProductOutput output = productCommandUseCase.createProduct(input, currentUserId);
-        ProductResponse response = productWebMapper.toResponse(output);
+        CreateProductOutput output = productCommandUseCase.createProduct(input, currentUserId);
+        ProductResponse response = productWebMapper.toCreateProductResponse(output);
         return ApiResponse.success(response, "PRODUCT_CREATED");
     }
 
@@ -34,8 +35,8 @@ public class ProductCommandController {
     public ApiResponse<ProductResponse> updateProduct(@PathVariable Long productId, @RequestBody @Valid UpdateProductInput input) {
         Long currentUserId = 1L; // TODO: Session에서 가져오도록 수정 예정
 
-        ProductOutput output = productCommandUseCase.updateProduct(productId, input, currentUserId);
-        ProductResponse response = productWebMapper.toResponse(output);
+        UpdateProductOutput output = productCommandUseCase.updateProduct(productId, input, currentUserId);
+        ProductResponse response = productWebMapper.toUpdateProductResponse(output);
         return ApiResponse.success(response, "PRODUCT_UPDATED");
     }
 

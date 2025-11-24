@@ -1,19 +1,18 @@
 package com.music.sale.application.like.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.music.sale.application.like.dto.output.LikeOutput;
-import com.music.sale.application.like.dto.output.LikeStatusOutput;
+import com.music.sale.application.like.dto.output.GetLikeOutput;
+import com.music.sale.application.like.dto.output.GetLikeStatusOutput;
 import com.music.sale.application.like.mapper.LikeMapper;
 import com.music.sale.application.like.port.inport.LikeQueryUseCase;
 import com.music.sale.application.like.port.outport.LikeQueryPort;
 import com.music.sale.common.Pageable;
 import com.music.sale.domain.like.Like;
-import com.music.sale.domain.like.LikeableType;
+import com.music.sale.domain.like.enums.LikeableType;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(readOnly = true)
@@ -27,9 +26,9 @@ public class LikeQueryService implements LikeQueryUseCase {
     }
 
     @Override
-    public LikeStatusOutput getLikeStatus(Long userId, Long likeableId, LikeableType likeableType) {
+    public GetLikeStatusOutput getLikeStatus(Long userId, Long likeableId, LikeableType likeableType) {
         boolean isLiked = checkIsLiked(userId, likeableId, likeableType);
-        return new LikeStatusOutput(isLiked);
+        return new GetLikeStatusOutput(isLiked);
     }
 
     private boolean checkIsLiked(Long userId, Long likeableId, LikeableType likeableType) {
@@ -37,7 +36,7 @@ public class LikeQueryService implements LikeQueryUseCase {
     }
 
     @Override
-    public Page<LikeOutput> getMyLikes(Long userId, LikeableType likeableType, Pageable pageable) {
+    public Page<GetLikeOutput> getMyLikes(Long userId, LikeableType likeableType, Pageable pageable) {
         Page<Like> likes = findLikes(userId, likeableType, pageable);
         return convertToOutputPage(likes);
     }
@@ -56,11 +55,11 @@ public class LikeQueryService implements LikeQueryUseCase {
         return Sort.by(Sort.Direction.DESC, "createdAt");
     }
 
-    private Page<LikeOutput> convertToOutputPage(Page<Like> likes) {
+    private Page<GetLikeOutput> convertToOutputPage(Page<Like> likes) {
         return likes.map(this::convertToOutput);
     }
 
-    private LikeOutput convertToOutput(Like like) {
-        return likeMapper.toOutput(like);
+    private GetLikeOutput convertToOutput(Like like) {
+        return likeMapper.toGetOutput(like);
     }
 }
