@@ -24,6 +24,7 @@ dependencies {
     implementation("org.springframework.data:spring-data-commons")
 
     // Spring Security (PasswordEncoder 사용)
+    implementation("org.springframework.security:spring-security-core")
     implementation("org.springframework.security:spring-security-crypto")
 
     // Spring Messaging (WebSocket 메시징)
@@ -45,12 +46,12 @@ dependencies {
     implementation("org.springframework.security:spring-security-jwt:1.1.1.RELEASE")
 
     // Lombok
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+    compileOnly("org.projectlombok:lombok:1.18.42")
+    annotationProcessor("org.projectlombok:lombok:1.18.42")
 }
 
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(25)
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict")
     }

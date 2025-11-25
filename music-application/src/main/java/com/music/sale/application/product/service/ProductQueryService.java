@@ -1,6 +1,6 @@
 package com.music.sale.application.product.service;
 
-import com.music.sale.application.product.dto.output.GetProductOutput;
+import com.music.sale.application.product.dto.output.ProductOutput;
 import com.music.sale.application.product.mapper.ProductMapper;
 import com.music.sale.application.product.port.inport.ProductQueryUseCase;
 import com.music.sale.application.product.port.outport.ProductCommandPort;
@@ -22,27 +22,27 @@ public class ProductQueryService implements ProductQueryUseCase {
 
     @Override
     @Transactional
-    public GetProductOutput getByProductId(Long productId) {
+    public ProductOutput getByProductId(Long productId) {
         return queryPort.findByProductId(productId)
-                .map(mapper::toGetOutput)
+                .map(mapper::toOutput)
                 .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다. productId=" + productId));
     }
 
     @Override
-    public Page<GetProductOutput> getBySellerId(Long sellerId, Pageable pageable) {
+    public Page<ProductOutput> getBySellerId(Long sellerId, Pageable pageable) {
         return queryPort.findBySellerId(sellerId, pageable)
-                .map(mapper::toGetOutput);
+                .map(mapper::toOutput);
     }
 
     @Override
-    public Page<GetProductOutput> getByStoreId(Long storeId, Pageable pageable) {
+    public Page<ProductOutput> getByStoreId(Long storeId, Pageable pageable) {
         return queryPort.findByStoreId(storeId, pageable)
-                .map(mapper::toGetOutput);
+                .map(mapper::toOutput);
     }
 
     @Override
-    public Page<GetProductOutput> searchByKeyword(String keyword, Pageable pageable) {
+    public Page<ProductOutput> searchByKeyword(String keyword, Pageable pageable) {
         return queryPort.searchByKeyword(keyword, pageable)
-                .map(mapper::toGetOutput);
+                .map(mapper::toOutput);
     }
 }

@@ -9,63 +9,35 @@ import com.music.sale.application.like.mapper.LikeMapper;
 import com.music.sale.application.like.port.inport.LikeCommandUseCase;
 import com.music.sale.application.like.port.outport.LikeCommandPort;
 import com.music.sale.domain.like.Like;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class LikeCommandService implements LikeCommandUseCase {
     private final LikeCommandPort likeCommandPort;
     private final LikeMapper likeMapper;
 
-    public LikeCommandService(LikeCommandPort likeCommandPort, LikeMapper likeMapper) {
-        this.likeCommandPort = likeCommandPort;
-        this.likeMapper = likeMapper;
-    }
-
     @Override
     public CreateLikeOutput createLike(CreateLikeInput input) {
-        validateNotDuplicate(input);
-        Like savedLike = saveNewLike(input);
-        return likeMapper.toCreateOutput(savedLike);
-    }
-
-    private void validateNotDuplicate(CreateLikeInput input) {
-        if (isDuplicate(input)) {
-            throw createDuplicateException(input.likeableType());
+        if (likeCommandPort.exists(input.userId(), input.likeableId(), input.likeableType())) {
+            throw new LikeAlreadyExistsException("이미 " + input.likeableType().getKorean() + "한 대상입니다.");
         }
-    }
 
-    private boolean isDuplicate(CreateLikeInput input) {
-        return likeCommandPort.exists(input.userId(), input.likeableId(), input.likeableType());
-    }
-
-    private LikeAlreadyExistsException createDuplicateException(com.music.sale.domain.like.enums.LikeableType type) {
-        return new LikeAlreadyExistsException("이미 " + type.getKorean() + "한 대상입니다.");
-    }
-
-    private Like saveNewLike(CreateLikeInput input) {
         Like like = Like.create(input.userId(), input.likeableId(), input.likeableType());
-        return likeCommandPort.save(like);
+        Like savedLike = likeCommandPort.save(like);
+
+        return likeMapper.toCreateOutput(savedLike);
     }
 
     @Override
     public void deleteLike(DeleteLikeInput input) {
-        validateExists(input);
-        likeCommandPort.delete(input.userId(), input.likeableId(), input.likeableType());
-    }
-
-    private void validateExists(DeleteLikeInput input) {
-        if (notExists(input)) {
-            throw createNotFoundException(input.likeableType());
+        if (!likeCommandPort.exists(input.userId(), input.likeableId(), input.likeableType())) {
+            throw new LikeNotFoundException(input.likeableType().getKorean() + " 기록을 찾을 수 없습니다.");
         }
-    }
 
-    private boolean notExists(DeleteLikeInput input) {
-        return !likeCommandPort.exists(input.userId(), input.likeableId(), input.likeableType());
-    }
-
-    private LikeNotFoundException createNotFoundException(com.music.sale.domain.like.enums.LikeableType type) {
-        return new LikeNotFoundException(type.getKorean() + " 기록을 찾을 수 없습니다.");
+        likeCommandPort.delete(input.userId(), input.likeableId(), input.likeableType());
     }
 }

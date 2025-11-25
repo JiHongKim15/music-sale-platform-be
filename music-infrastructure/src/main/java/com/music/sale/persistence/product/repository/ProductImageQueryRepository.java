@@ -7,9 +7,6 @@ import java.util.List;
 
 public interface ProductImageQueryRepository extends JpaRepository<ProductImageEntity, Long> {
 
-    /**
-     * productId로 이미지 조회 (imageOrder 오름차순)
-     */
     List<ProductImageEntity> findByProductIdOrderByImageOrderAsc(Long productId);
 
 }

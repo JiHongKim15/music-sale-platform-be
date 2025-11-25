@@ -10,46 +10,40 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
 
-@Getter
-@AllArgsConstructor
-@Builder
-public class CreateProductInput {
+public record CreateProductInput(
     @NotNull
-    private Long catalogId;
+    Long catalogId,
 
     @NotNull
-    private Long sellerId;
+    Long sellerId,
 
     @NotNull
-    private Long storeId;
+    Long storeId,
 
     @NotBlank
-    private String name;
+    String name,
 
-    private String brand;
+    String brand,
 
     @NotNull
     @PositiveOrZero
-    private Long price;
+    Long price,
 
     @NotNull
-    private ProductCondition condition;
+    ProductCondition condition,
 
-    private ProductConditionGrade conditionGrade;
+    ProductConditionGrade conditionGrade,
 
     @NotNull
     @Positive
-    private Integer stockQuantity;
+    Integer stockQuantity,
 
     @NotNull
-    private ProductStatus status;
+    ProductStatus status,
 
-    private Map<String, Object> attributes;
+    Map<String, Object> attributes,
 
     @NotBlank
-    private String description;
-}
+    String description
+) {}

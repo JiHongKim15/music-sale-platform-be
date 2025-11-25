@@ -31,15 +31,14 @@ public class ProductImageCommandController {
     public ApiResponse<List<ProductImageOutput>> uploadImages(
             @PathVariable Long productId,
             @ModelAttribute @Valid ProductImageUploadRequest request) {
-        request.validate();
 
         List<UpdateProductImageInput> inputs = productImageWebMapper.toUploadImageInputs(
                 productId,
-                request.getImages(),
-                request.getMeta());
+                request.files(),
+                request.metas());
         List<ProductImageOutput> outputs = productImageCommandUseCase.uploadImage(inputs);
 
-        return ApiResponse.success(outputs, "이미지 업로드가 완료되었습니다.");
+        return ApiResponse.success(outputs);
     }
 
     @DeleteMapping("/{productId}/images/{imageId}")
@@ -48,7 +47,7 @@ public class ProductImageCommandController {
             @PathVariable Long imageId) {
 
         productImageCommandUseCase.deleteImage(productId, imageId);
-        return ApiResponse.success(null, "이미지가 성공적으로 삭제되었습니다.");
+        return ApiResponse.success();
     }
 
     // TODO: 실제 상품 서비스와 연동하여 권한 체크 로직 구현 필요 -> 서비스단에서 처리 후 호출 예정

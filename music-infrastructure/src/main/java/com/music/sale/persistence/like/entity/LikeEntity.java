@@ -1,6 +1,7 @@
 package com.music.sale.persistence.like.entity;
 
 import com.music.sale.domain.like.enums.LikeableType;
+import com.music.sale.persistence.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -30,7 +30,7 @@ public class CategoryQueryController {
     @GetMapping("/{id}")
     public ApiResponse<CategoryQueryResponse> getCategoryById(@PathVariable Long id) {
         var category = categoryQueryUseCase.getCategoryById(id);
-        return ApiResponse.success(categoryQueryWebMapper.toResponse(category), "CATEGORY_FOUND");
+        return ApiResponse.success(categoryQueryWebMapper.toResponse(category));
     }
 
     @GetMapping("/all")
@@ -39,8 +39,7 @@ public class CategoryQueryController {
         return ApiResponse.success(
                 categories.stream()
                         .map(categoryQueryWebMapper::toResponse)
-                        .collect(Collectors.toList()),
-                "CATEGORIES_FOUND");
+                        .collect(Collectors.toList()));
     }
 
     @GetMapping("/type")
@@ -50,8 +49,7 @@ public class CategoryQueryController {
         return ApiResponse.success(
                 categories.stream()
                         .map(categoryQueryWebMapper::toResponse)
-                        .collect(Collectors.toList()),
-                "CATEGORIES_BY_TYPE_FOUND");
+                        .collect(Collectors.toList()));
     }
 
     @GetMapping("/root")
@@ -60,8 +58,7 @@ public class CategoryQueryController {
         return ApiResponse.success(
                 categories.stream()
                         .map(categoryQueryWebMapper::toResponse)
-                        .collect(Collectors.toList()),
-                "ROOT_CATEGORIES_FOUND");
+                        .collect(Collectors.toList()));
     }
 
     @GetMapping("/parent/{parentId}")
@@ -71,8 +68,7 @@ public class CategoryQueryController {
         return ApiResponse.success(
                 categories.stream()
                         .map(categoryQueryWebMapper::toResponse)
-                        .collect(Collectors.toList()),
-                "CHILD_CATEGORIES_FOUND");
+                        .collect(Collectors.toList()));
     }
 }
 

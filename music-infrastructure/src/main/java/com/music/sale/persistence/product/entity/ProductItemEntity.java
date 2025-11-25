@@ -1,12 +1,14 @@
 package com.music.sale.persistence.product.entity;
 
-import com.music.sale.domain.product.enums.*;
+import com.music.sale.domain.product.enums.ProductCondition;
+import com.music.sale.domain.product.enums.ProductConditionGrade;
+import com.music.sale.domain.product.enums.ProductStatus;
 import com.music.sale.persistence.common.BaseEntity;
-import com.music.sale.persistence.common.support.JsonMapConverter;
+import com.music.sale.persistence.common.JsonConverter;
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -14,7 +16,7 @@ import java.util.Map;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@SuperBuilder
+@Builder
 public class ProductItemEntity extends BaseEntity {
 
     @Id
@@ -30,10 +32,9 @@ public class ProductItemEntity extends BaseEntity {
     @Column(name = "store_id", nullable = false)
     private Long storeId;
 
-    //image 추후 업데이트
 
-//    @OneToMany(mappedBy = "productItem", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<ProductImageEntity> images;
+    @OneToMany(mappedBy = "productItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductImageEntity> images;
 
     @Column(name = "name", nullable = false, length = 255)
     private String name;
@@ -61,7 +62,7 @@ public class ProductItemEntity extends BaseEntity {
             columnDefinition = "enum('AVAILABLE','SOLD_OUT','RESERVED','DISCONTINUED')")
     private ProductStatus status;
 
-    @Convert(converter = JsonMapConverter.class)
+    @Convert(converter = JsonConverter.class)
     @Column(name = "custom_attributes", columnDefinition = "text")
     private Map<String, Object> attributes;
 

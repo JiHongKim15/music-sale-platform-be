@@ -3,7 +3,7 @@ package com.music.sale.persistence.product;
 import com.music.sale.application.product.port.outport.ProductQueryPort;
 import com.music.sale.domain.product.ProductItem;
 import com.music.sale.domain.product.enums.ProductStatus;
-import com.music.sale.persistence.product.mapper.ProductItemQueryPersistenceMapper;
+import com.music.sale.persistence.product.mapper.ProductItemPersistenceMapper;
 import com.music.sale.persistence.product.repository.ProductItemQueryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class ProductItemQueryPersistenceAdapter implements ProductQueryPort {
 
     private final ProductItemQueryRepository productItemQueryRepository;
-    private final ProductItemQueryPersistenceMapper mapper;
+    private final ProductItemPersistenceMapper mapper;
 
     @Override
     public Optional<ProductItem> findByProductId(Long id) {

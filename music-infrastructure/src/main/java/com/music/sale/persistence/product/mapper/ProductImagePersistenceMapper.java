@@ -1,6 +1,5 @@
 package com.music.sale.persistence.product.mapper;
 
-import com.music.sale.application.product.dto.ProductImageSaveResult;
 import com.music.sale.domain.product.ProductImage;
 import com.music.sale.persistence.product.entity.ProductImageEntity;
 import org.springframework.stereotype.Component;
@@ -8,49 +7,29 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductImagePersistenceMapper {
 
-    /**
-     * Domain + URL + productId → Entity
-     * 영속성 엔티티 -> 도메인 엔티티 (DB 데이터 조회 후)
-     */
-    public ProductImageEntity toEntity(
-            ProductImage domain,
-            String url,
-            Long productId
-    ) {
+    public ProductImageEntity toEntity(ProductImage domain) {
         return new ProductImageEntity(
-                domain.id(),
-                productId,
-                url,
+                domain.getId(),
+                domain.getProductId(),
+                domain.getUrl(),
                 domain.isThumbnail(),
-                domain.imageOrder(),
-                domain.fileSize(),
-                domain.fileName(),
-                domain.fileType()
+                domain.getImageOrder(),
+                domain.getFileSize(),
+                domain.getFileName(),
+                domain.getFileType()
         );
     }
 
-    /**
-     * 도메인 엔티티 -> 영속성 엔티티 (DB 저장 직전)
-     */
     public ProductImage toDomain(ProductImageEntity entity) {
-        return new ProductImage(
-                entity.getId(),
-                entity.getFileName(),
-                entity.getFileType(),
-                entity.getFileSize(),
-                entity.isThumbnail(),
-                entity.getImageOrder()
-        );
+        return ProductImage.builder()
+                .id(entity.getId())
+                .productId(entity.getProductId())
+                .url(entity.getUrl())
+                .isThumbnail(entity.isThumbnail())
+                .imageOrder(entity.getImageOrder())
+                .fileSize(entity.getFileSize())
+                .fileName(entity.getFileName())
+                .fileType(entity.getFileType())
+                .build();
     }
-
-    /**
-     * Entity → ImageSaveResult (ID + URL)
-     */
-    public ProductImageSaveResult toSaveResult(ProductImageEntity entity) {
-        return new ProductImageSaveResult(
-                entity.getId(),
-                entity.getUrl()
-        );
-    }
-
-} // class
+}

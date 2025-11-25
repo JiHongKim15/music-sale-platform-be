@@ -1,11 +1,10 @@
 package com.music.sale.application.product.port.outport;
 
+import com.music.sale.domain.product.ProductImage;
+
 import java.util.List;
 
 public interface ProductImageQueryPort {
 
-    /**
-     * productId로 이미지 조회 (imageOrder 오름차순)
-     */
-    List<ProductImageQueryOutPut> findImagesByProductId(Long ProductId);
+    List<ProductImage> findImagesByProductId(Long ProductId);
 }

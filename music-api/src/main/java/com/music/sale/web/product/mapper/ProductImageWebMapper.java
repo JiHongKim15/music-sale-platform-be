@@ -27,7 +27,7 @@ public class ProductImageWebMapper {
                     file.getContentType(),
                     file.getSize(),
                     meta.isThumbnail(),
-                    meta.imageOrder(),
+                    meta.ordering(),
                     file.getBytes()
             );
         } catch (IOException e) {

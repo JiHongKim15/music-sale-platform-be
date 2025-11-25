@@ -1,6 +1,6 @@
 package com.music.sale.application.product.dto.output;
 
-public record UploadProductImageOutput(
+public record ProductImageOutput(
     Long id,
     Long productId,
     String url,

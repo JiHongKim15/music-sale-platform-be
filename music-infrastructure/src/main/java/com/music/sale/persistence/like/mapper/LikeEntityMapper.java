@@ -13,7 +13,6 @@ public class LikeEntityMapper {
                 .userId(entity.getUserId())
                 .likeableId(entity.getLikeableId())
                 .likeableType(entity.getLikeableType())
-                .createdAt(entity.getCreatedAt())
                 .build();
     }
 
@@ -23,7 +22,6 @@ public class LikeEntityMapper {
                 .userId(domain.userId())
                 .likeableId(domain.likeableId())
                 .likeableType(domain.likeableType())
-                .createdAt(domain.getCreatedAt())
                 .build();
     }
 }

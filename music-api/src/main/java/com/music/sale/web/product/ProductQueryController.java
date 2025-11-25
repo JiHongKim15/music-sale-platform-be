@@ -1,6 +1,6 @@
 package com.music.sale.web.product;
 
-import com.music.sale.application.product.dto.output.GetProductOutput;
+import com.music.sale.application.product.dto.output.ProductOutput;
 import com.music.sale.application.product.port.inport.ProductQueryUseCase;
 import com.music.sale.common.ApiResponse;
 import com.music.sale.web.product.mapper.ProductWebMapper;
@@ -20,29 +20,29 @@ public class ProductQueryController {
 
     @GetMapping("/{productId}")
     public ApiResponse<ProductResponse> getByProductId(@PathVariable Long productId) {
-        GetProductOutput output = productQueryUseCase.getByProductId(productId);
-        ProductResponse response = productWebMapper.toGetProductResponse(output);
-        return ApiResponse.success(response, "PRODUCT_FOUND");
+        ProductOutput output = productQueryUseCase.getByProductId(productId);
+        ProductResponse response = productWebMapper.toProductResponse(output);
+        return ApiResponse.success(response);
     }
 
     @GetMapping("/seller/{sellerId}")
     public ApiResponse<Page<ProductResponse>> getBySellerId(@PathVariable Long sellerId, Pageable pageable) {
         Page<ProductResponse> page = productQueryUseCase.getBySellerId(sellerId, pageable)
-                .map(productWebMapper::toGetProductResponse);
-        return ApiResponse.success(page, "PRODUCT_LIST_BY_SELLER");
+                .map(productWebMapper::toProductResponse);
+        return ApiResponse.success(page);
     }
 
     @GetMapping("/store/{storeId}")
     public ApiResponse<Page<ProductResponse>> getByStoreId(@PathVariable Long storeId, Pageable pageable) {
         Page<ProductResponse> page = productQueryUseCase.getByStoreId(storeId, pageable)
-                .map(productWebMapper::toGetProductResponse);
-        return ApiResponse.success(page, "PRODUCT_LIST_BY_STORE");
+                .map(productWebMapper::toProductResponse);
+        return ApiResponse.success(page);
     }
 
     @GetMapping("/search")
     public ApiResponse<Page<ProductResponse>> searchByKeyword(@RequestParam String keyword, Pageable pageable) {
         Page<ProductResponse> page = productQueryUseCase.searchByKeyword(keyword, pageable)
-                .map(productWebMapper::toGetProductResponse);
-        return ApiResponse.success(page, "PRODUCT_SEARCH_RESULT");
+                .map(productWebMapper::toProductResponse);
+        return ApiResponse.success(page);
     }
 }

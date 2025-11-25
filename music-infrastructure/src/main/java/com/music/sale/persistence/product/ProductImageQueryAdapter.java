@@ -1,0 +1,31 @@
+package com.music.sale.persistence.product;
+
+import com.music.sale.application.product.port.outport.ProductImageQueryPort;
+import com.music.sale.domain.product.ProductImage;
+import com.music.sale.persistence.product.entity.ProductImageEntity;
+import com.music.sale.persistence.product.mapper.ProductImagePersistenceMapper;
+import com.music.sale.persistence.product.repository.ProductImageQueryRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Component
+@RequiredArgsConstructor
+public class ProductImageQueryAdapter implements ProductImageQueryPort {
+
+    private final ProductImageQueryRepository productImageQueryRepository;
+    private final ProductImagePersistenceMapper mapper;
+
+    @Override
+    public List<ProductImage> findImagesByProductId(Long productId) {
+        List<ProductImageEntity> entities =
+                productImageQueryRepository.findByProductIdOrderByImageOrderAsc(productId);
+
+        return entities.stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
+}

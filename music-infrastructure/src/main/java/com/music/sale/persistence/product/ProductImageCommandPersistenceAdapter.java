@@ -1,20 +1,19 @@
 package com.music.sale.persistence.product;
 
-import com.music.sale.application.product.dto.ProductImageSaveResult;
-import com.music.sale.application.product.dto.input.UpdateProductImageInput;
 import com.music.sale.application.product.port.outport.ProductImageCommandPort;
 import com.music.sale.domain.product.ProductImage;
 import com.music.sale.persistence.product.entity.ProductImageEntity;
 import com.music.sale.persistence.product.mapper.ProductImagePersistenceMapper;
 import com.music.sale.persistence.product.repository.ProductImageCommandRepository;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository
 @RequiredArgsConstructor
-public class ProductProductImageCommandPersistenceAdapter implements ProductImageCommandPort {
+public class ProductImageCommandPersistenceAdapter implements ProductImageCommandPort {
 
     private final ProductImageCommandRepository productImageCommandRepository;
     private final ProductImagePersistenceMapper mapper;
@@ -26,26 +25,15 @@ public class ProductProductImageCommandPersistenceAdapter implements ProductImag
     }
 
     @Override
-    public List<ProductImageSaveResult> saveAll(List<UpdateProductImageInput> inputs) {
-        List<ProductImageEntity> entities = inputs.stream()
-                .map(input -> {
-                    String url = generateUrl(input.productId(), input.fileName());
-                    ProductImage domain = new ProductImage(
-                            null,
-                            input.fileName(),
-                            input.fileType(),
-                            input.fileSize(),
-                            input.isThumbnail(),
-                            input.imageOrder()
-                    );
-                    return mapper.toEntity(domain, url, input.productId());
-                })
+    public List<ProductImage> saveAll(List<ProductImage> images) {
+        List<ProductImageEntity> entitiesToSave = images.stream()
+                .map(mapper::toEntity)
                 .collect(Collectors.toList());
 
-        List<ProductImageEntity> saved = productImageCommandRepository.saveAll(entities);
+        List<ProductImageEntity> savedEntities = productImageCommandRepository.saveAll(entitiesToSave);
 
-        return saved.stream()
-                .map(mapper::toSaveResult)
+        return savedEntities.stream()
+                .map(mapper::toDomain)
                 .collect(Collectors.toList());
     }
 

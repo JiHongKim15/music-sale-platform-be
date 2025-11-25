@@ -30,10 +30,10 @@ public class JsonConverter implements AttributeConverter<Map<String, Object>, St
                 return new HashMap<>();
             }
 
-            return objectMapper.readValue(dbData, new TypeReference<HashMap<String, Object>>() {});
+            return objectMapper.readValue(dbData, new TypeReference<HashMap<String, Object>>() {
+            });
         } catch (Exception e) {
             System.out.println("Error deserializing JSON: " + e.getMessage() + ", data: " + dbData);
-            // JSON 파싱 실패 시 빈 맵 반환
             return new HashMap<>();
         }
     }

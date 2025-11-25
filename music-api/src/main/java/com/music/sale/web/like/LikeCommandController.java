@@ -26,7 +26,7 @@ public class LikeCommandController {
         CreateLikeInput input = mapper.toCreateLikeInput(userId, targetId, likeableType);
         CreateLikeOutput output = likeCommandUseCase.createLike(input);
         CreateLikeResponse response = mapper.toCreateLikeResponse(output);
-        return ApiResponse.success(response, "LIKE_CREATED");
+        return ApiResponse.success(response);
     }
 
     @DeleteMapping("/{targetId}")
@@ -36,6 +36,6 @@ public class LikeCommandController {
         Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         DeleteLikeInput input = mapper.toDeleteLikeInput(userId, targetId, likeableType);
         likeCommandUseCase.deleteLike(input);
-        return ApiResponse.success(null, "SUCCESS");
+        return ApiResponse.success();
     }
 }

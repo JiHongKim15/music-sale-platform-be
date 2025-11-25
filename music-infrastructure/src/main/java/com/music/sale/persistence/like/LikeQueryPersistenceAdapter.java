@@ -45,7 +45,7 @@ public class LikeQueryPersistenceAdapter implements LikeQueryPort {
     }
 
     private Page<LikeEntity> findEntities(Long userId, LikeableType likeableType, PageRequest pageRequest) {
-        return likeRepository.findByUserIdAndLikeableTypeOrderByCreatedAtDesc(userId, likeableType, pageRequest);
+        return likeRepository.findByUserIdAndLikeableType(userId, likeableType, pageRequest);
     }
 
     @Override

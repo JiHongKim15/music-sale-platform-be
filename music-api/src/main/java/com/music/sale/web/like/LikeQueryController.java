@@ -25,7 +25,7 @@ public class LikeQueryController {
     ) {
         Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
         GetLikeStatusOutput output = likeQueryUseCase.getLikeStatus(userId, targetId, likeableType);
-        return ApiResponse.success(mapper.toGetLikeStatusResponse(output), "SUCCESS");
+        return ApiResponse.success(mapper.toGetLikeStatusResponse(output));
     }
 
     @GetMapping("/users/me")
@@ -35,7 +35,7 @@ public class LikeQueryController {
             @RequestParam(defaultValue = "20") int size
     ) {
         // TODO: Implement getMyLikes
-        return ApiResponse.success(Page.empty(), "SUCCESS");
+        return ApiResponse.success(Page.empty());
     }
 }
 
