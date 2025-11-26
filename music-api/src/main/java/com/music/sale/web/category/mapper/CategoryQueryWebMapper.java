@@ -14,7 +14,7 @@ public class CategoryQueryWebMapper {
             return null;
         }
 
-        List<com.music.sale.web.category.response.CategoryQueryResponse> childrenResponses =
+        List<CategoryQueryResponse> childrenResponses =
                 category.getChildren().stream()
                         .map(this::toResponse) // Recursive call
                         .collect(java.util.stream.Collectors.toList());
@@ -22,8 +22,8 @@ public class CategoryQueryWebMapper {
         return new CategoryQueryResponse(
                 category.getId(),
                 category.getName(),
-                category.getName(), // Assumption for displayName
-                null, // Assumption for ordering
+                category.getName(),
+                null,
                 category.getType().name(),
                 category.getParent() != null ? category.getParent().getId() : null,
                 childrenResponses
