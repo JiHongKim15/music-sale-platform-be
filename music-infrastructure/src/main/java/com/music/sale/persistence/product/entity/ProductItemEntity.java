@@ -32,8 +32,7 @@ public class ProductItemEntity extends BaseEntity {
     @Column(name = "store_id", nullable = false)
     private Long storeId;
 
-
-    @OneToMany(mappedBy = "productItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductImageEntity> images;
 
     @Column(name = "name", nullable = false, length = 255)

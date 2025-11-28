@@ -23,7 +23,7 @@ public class ProductImagePersistenceMapper {
     public ProductImage toDomain(ProductImageEntity entity) {
         return ProductImage.builder()
                 .id(entity.getId())
-                .productId(entity.getProductId())
+                .productId(entity.getProductItemId())
                 .url(entity.getUrl())
                 .isThumbnail(entity.isThumbnail())
                 .imageOrder(entity.getImageOrder())

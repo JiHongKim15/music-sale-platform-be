@@ -17,7 +17,7 @@ public class ProductImageEntity extends BaseEntity {
     private Long id;
 
     @Column(name = "product_item_id", nullable = false)
-    private Long productId;
+    private Long productItemId;
 
     @Column(name = "url", nullable = false, length = 500)
     private String url;
