@@ -38,8 +38,8 @@ public class ProductImageCommandPersistenceAdapter implements ProductImageComman
     }
 
     @Override
-    public boolean existsByIdAndProductId(Long imageId, Long productId) {
-        return productImageCommandRepository.existsByIdAndProductId(imageId, productId);
+    public boolean existsByIdAndProductItemId(Long imageId, Long productItemId) {
+        return productImageCommandRepository.existsByIdAndProductItemId(imageId, productItemId);
     }
 
     @Override

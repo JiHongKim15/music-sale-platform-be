@@ -10,7 +10,7 @@ public interface ProductImageCommandPort {
 
     List<ProductImage> saveAll(List<ProductImage> images);
 
-    boolean existsByIdAndProductId(Long imageId, Long productId);
+    boolean existsByIdAndProductItemId(Long imageId, Long productItemId);
 
     void deleteById(Long imageId);
 

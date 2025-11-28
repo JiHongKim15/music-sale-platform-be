@@ -19,9 +19,9 @@ public class ProductImageQueryAdapter implements ProductImageQueryPort {
     private final ProductImagePersistenceMapper mapper;
 
     @Override
-    public List<ProductImage> findImagesByProductId(Long productId) {
+    public List<ProductImage> findImagesByProductItemId(Long productItemId) {
         List<ProductImageEntity> entities =
-                productImageQueryRepository.findByProductIdOrderByImageOrderAsc(productId);
+                productImageQueryRepository.findByProductItemIdOrderByImageOrderAsc(productItemId);
 
         return entities.stream()
                 .map(mapper::toDomain)

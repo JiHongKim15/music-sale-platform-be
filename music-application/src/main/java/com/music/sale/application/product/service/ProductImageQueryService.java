@@ -18,8 +18,8 @@ public class ProductImageQueryService implements ProductImageQueryUseCase {
 
     private final ProductImageQueryPort productImageQueryPort;
 
-    public List<ProductImageOutput> getImagesByProductId(Long productId) {
-        List<ProductImage> images = productImageQueryPort.findImagesByProductId(productId);
+    public List<ProductImageOutput> getImagesByProductItemId(Long productItemId) {
+        List<ProductImage> images = productImageQueryPort.findImagesByProductItemId(productItemId);
         return images.stream()
                 .map(this::toOutput)
                 .collect(Collectors.toList());

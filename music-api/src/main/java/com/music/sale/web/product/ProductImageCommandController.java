@@ -1,23 +1,16 @@
 package com.music.sale.web.product;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.music.sale.application.product.dto.output.ProductImageOutput;
 import com.music.sale.application.product.dto.input.UpdateProductImageInput;
+import com.music.sale.application.product.dto.output.ProductImageOutput;
 import com.music.sale.application.product.port.inport.ProductImageCommandUseCase;
 import com.music.sale.common.ApiResponse;
 import com.music.sale.web.product.mapper.ProductImageWebMapper;
 import com.music.sale.web.product.request.ProductImageUploadRequest;
-
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -41,12 +34,12 @@ public class ProductImageCommandController {
         return ApiResponse.success(outputs);
     }
 
-    @DeleteMapping("/{productId}/images/{imageId}")
+    @DeleteMapping("/{productItemId}/images/{imageId}")
     public ApiResponse<Void> deleteImage(
-            @PathVariable Long productId,
+            @PathVariable Long productItemId,
             @PathVariable Long imageId) {
 
-        productImageCommandUseCase.deleteImage(productId, imageId);
+        productImageCommandUseCase.deleteImage(productItemId, imageId);
         return ApiResponse.success();
     }
 

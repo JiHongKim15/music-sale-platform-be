@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ProductImageQueryPort {
 
-    List<ProductImage> findImagesByProductId(Long ProductId);
+    List<ProductImage> findImagesByProductItemId(Long productItemId);
 }

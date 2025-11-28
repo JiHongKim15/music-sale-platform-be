@@ -18,9 +18,9 @@ public class ProductImageQueryController {
 
     private final ProductImageQueryUseCase productImageQueryUseCase;
 
-    @GetMapping("/{productId}/images")
-    public ApiResponse<List<ProductImageOutput>> getImages(@PathVariable Long productId) {
-        List<ProductImageOutput> outputs = productImageQueryUseCase.getImagesByProductId(productId);
+    @GetMapping("/{productItemId}/images")
+    public ApiResponse<List<ProductImageOutput>> getImages(@PathVariable Long productItemId) {
+        List<ProductImageOutput> outputs = productImageQueryUseCase.getImagesByProductItemId(productItemId);
         return ApiResponse.success(outputs);
     }
 
