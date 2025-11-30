@@ -136,3 +136,6 @@ management:
     export:
       prometheus:
         enabled: ${ACTUATOR_PROMETHEUS_ENABLED:false}
+  health:
+    redis:
+      enabled: ${REDIS_HEALTH_CHECK_ENABLED:false}  # local: false, prod: true
