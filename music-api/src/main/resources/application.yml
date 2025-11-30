@@ -11,10 +11,10 @@ spring:
   
   # 데이터베이스 설정 (개발환경은 H2, 운영환경은 MySQL)
   datasource:
-    url: ${DB_URL:jdbc:mysql://localhost:3306/music_sale_db}
-    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:password}
+    url: ${DB_URL:jdbc:h2:mem:testdb}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
     hikari:
       maximum-pool-size: ${DB_MAX_POOL_SIZE:5}
       minimum-idle: ${DB_MIN_IDLE:2}
@@ -26,17 +26,17 @@ spring:
   # JPA 설정 - 환경별로 다른 설정
   jpa:
     hibernate:
-      ddl-auto: ${JPA_DDL_AUTO:update}  # local: create, dev: update, prod: validate
+      ddl-auto: ${JPA_DDL_AUTO:create-drop}  # local: create-drop, dev: update, prod: validate
     show-sql: ${JPA_SHOW_SQL:true}  # local: true, dev/prod: false
     properties:
       hibernate:
         format_sql: ${JPA_FORMAT_SQL:true}  # local: true, dev/prod: false
         use_sql_comments: ${JPA_USE_SQL_COMMENTS:true}  # local: true, dev/prod: false
-        dialect: ${JPA_DIALECT:org.hibernate.dialect.MySQLDialect}
+        dialect: ${JPA_DIALECT:org.hibernate.dialect.H2Dialect}
     defer-datasource-initialization: ${JPA_DEFER_DATASOURCE_INIT:true}
     sql:
       init:
-        mode: ${JPA_SQL_INIT_MODE:never}  # MySQL 사용 시 data.sql 비활성화
+        mode: ${JPA_SQL_INIT_MODE:never}
 
   # H2 콘솔 설정 (개발환경에서만 활성화)
   h2:
@@ -44,7 +44,7 @@ spring:
       enabled: ${H2_CONSOLE_ENABLED:true}
       path: ${H2_CONSOLE_PATH:/h2-console}
 
-  # Redis 설정
+  # Redis 설정 (환경변수로 Redis 사용 여부 결정)
   redis:
     host: ${REDIS_HOST:localhost}
     password: ${REDIS_PASSWORD:}
@@ -57,14 +57,11 @@ spring:
         min-idle: ${REDIS_MIN_IDLE:0}
         max-wait: ${REDIS_MAX_WAIT:-1ms}
   session:
-    store-type: redis
-    redis:
-      namespace: music-sale:session
-      flush-mode: on_save
-  
-  # 캐시 설정
+    store-type: ${SESSION_STORE_TYPE:none}  # local: none, dev/prod: redis
+
+  # 캐시 설정 (기본값: simple = 내장 캐시)
   cache:
-    type: redis
+    type: ${CACHE_TYPE:simple}  # local: simple, dev/prod: redis
     redis:
       time-to-live: ${CACHE_TTL:600000}  # 10분
       cache-null-values: ${CACHE_NULL_VALUES:false}
