@@ -16,7 +16,6 @@ tasks.jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
-
 dependencies {
     implementation(project(":music-application"))
     implementation(project(":music-domain"))
@@ -52,7 +51,7 @@ dependencies {
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
     annotationProcessor("com.querydsl:querydsl-apt:5.0.0:jakarta")
     annotationProcessor("jakarta.persistence:jakarta.persistence-api:3.1.0")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+    annotationProcessor("org.projectlombok:lombok:1.18.42")
 
     // jOOQ
     implementation("org.jooq:jooq:3.20.1")
@@ -65,8 +64,8 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // Lombok
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+    compileOnly("org.projectlombok:lombok:1.18.42")
+    annotationProcessor("org.projectlombok:lombok:1.18.42")
 }
 
 kotlin {
@@ -76,4 +75,4 @@ kotlin {
     }
 }
 
-sourceSets["main"].java.srcDirs("src/main/kotlin")
+sourceSets["main"].java.srcDirs("src/main/kotlin", "src/main/java")

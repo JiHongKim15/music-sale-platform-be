@@ -45,8 +45,8 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 
     // Lombok
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+    compileOnly("org.projectlombok:lombok:1.18.42")
+    annotationProcessor("org.projectlombok:lombok:1.18.42")
 }
 
 kotlin {

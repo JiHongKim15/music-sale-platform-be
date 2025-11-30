@@ -1,7 +1,8 @@
 // Copyright (C) 2024 Your Name or Company
 package com.music.sale.application.like.mapper;
 
-import com.music.sale.application.like.dto.LikeOutput;
+import com.music.sale.application.like.dto.output.CreateLikeOutput;
+import com.music.sale.application.like.dto.output.GetLikeOutput;
 import com.music.sale.domain.like.Like;
 import org.springframework.stereotype.Component;
 
@@ -12,29 +13,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class LikeMapper {
     /**
-     * Domain 모델을 Output DTO로 변환
+     * Domain 모델을 생성 결과 Output DTO로 변환
      */
-    public LikeOutput toOutput(Like like) {
-        return new LikeOutput(
-                like.getId(),
-                like.getUserId(),
-                like.getLikeableId(),
-                like.getLikeableType(),
-                like.getCreatedAt()
-        );
+    public CreateLikeOutput toCreateOutput(Like like) {
+        return CreateLikeOutput.builder()
+                .id(like.id())
+                .userId(like.userId())
+                .likeableId(like.likeableId())
+                .likeableType(like.likeableType())
+                .build();
     }
 
     /**
-     * Output DTO를 Domain 모델로 변환
+     * Domain 모델을 조회 결과 Output DTO로 변환
      */
-    public Like toDomain(LikeOutput output) {
-        return Like.of(
-                output.getId(),
-                output.getUserId(),
-                output.getLikeableId(),
-                output.getLikeableType(),
-                output.getCreatedAt()
-        );
+    public GetLikeOutput toGetOutput(Like like) {
+        return GetLikeOutput.builder()
+                .id(like.id())
+                .userId(like.userId())
+                .likeableId(like.likeableId())
+                .likeableType(like.likeableType())
+                .build();
     }
 }
 

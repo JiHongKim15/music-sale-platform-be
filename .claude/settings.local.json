@@ -17,7 +17,14 @@
       "Bash(xargs:*)",
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Store 도메인을 Kotlin에서 Java로 마이그레이션\n\n- Store 도메인 전체를 Java로 전환하여 Java/Kotlin 혼용 개발 환경 구축\n- Domain Layer: Store.kt → Store.java 변환 (equals, hashCode, toString 구현)\n- Application Layer: StorePort.kt → StorePort.java 변환\n- Infrastructure Layer: Entity, Repository, Mapper, Adapter 모두 Java로 변환\n- BaseEntity도 Kotlin → Java 변환 (QueryDSL 호환성 개선)\n- Store 생성자 호출 시 named argument 제거 (Java 호환성)\n- Java 소스 디렉토리 추가 및 빌드 설정 업데이트\n- 포괄적인 Java 테스트 코드 추가\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(java:*)",
+      "Bash(where:*)",
+      "Bash(cmd /c \"dir /b /s C:\\Progra~1\\Java\\jdk* 2>nul | findstr /i bin\\javac.exe\")",
+      "Bash(echo:*)",
+      "Bash(cat:*)",
+      "Bash(git rm:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nchore: 백엔드 프로젝트에서 불필요한 Node.js 파일 제거\n\n- package.json, package-lock.json 삭제 (Spring Boot 프로젝트에 불필요)\n- HELP.md 삭제 (기본 스프링 도움말 파일)\n- .claude/settings.local.json 권한 설정 업데이트\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []

@@ -8,22 +8,20 @@ import org.springframework.stereotype.Component;
 public class LikeEntityMapper {
 
     public Like toDomain(LikeEntity entity) {
-        return Like.of(
-                entity.getId(),
-                entity.getUserId(),
-                entity.getLikeableId(),
-                entity.getLikeableType(),
-                entity.getCreatedAt()
-        );
+        return Like.builder()
+                .id(entity.getId())
+                .userId(entity.getUserId())
+                .likeableId(entity.getLikeableId())
+                .likeableType(entity.getLikeableType())
+                .build();
     }
 
     public LikeEntity toEntity(Like domain) {
         return LikeEntity.builder()
-                .id(domain.getId())
-                .userId(domain.getUserId())
-                .likeableId(domain.getLikeableId())
-                .likeableType(domain.getLikeableType())
-                .createdAt(domain.getCreatedAt())
+                .id(domain.id())
+                .userId(domain.userId())
+                .likeableId(domain.likeableId())
+                .likeableType(domain.likeableType())
                 .build();
     }
 }

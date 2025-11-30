@@ -110,20 +110,17 @@ logging:
 # API 문서 설정 (Swagger)
 springdoc:
   api-docs:
-    path: ${API_DOCS_PATH:/api-docs}
+    path: ${API_DOCS_PATH:/v3/api-docs}
     enabled: ${API_DOCS_ENABLED:true}
   swagger-ui:
     path: ${SWAGGER_UI_PATH:/swagger-ui.html}
     operations-sorter: ${SWAGGER_OPERATIONS_SORTER:method}
     tags-sorter: ${SWAGGER_TAGS_SORTER:alpha}
     doc-expansion: ${SWAGGER_DOC_EXPANSION:none}
-  info:
-    title: ${API_INFO_TITLE:Music Sale Platform API}
-    description: ${API_INFO_DESCRIPTION:악기 판매 플랫폼 API 문서}
-    version: ${API_INFO_VERSION:1.0.0}
-    contact:
-      name: ${API_INFO_CONTACT_NAME:Music Sale Team}
-      email: ${API_INFO_CONTACT_EMAIL:contact@musicsale.com}
+    disable-swagger-default-url: true
+    use-root-path: true
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
 
 # 모니터링 설정 (Actuator)
 management:
