@@ -21,7 +21,10 @@
       "Bash(java:*)",
       "Bash(where:*)",
       "Bash(cmd /c \"dir /b /s C:\\Progra~1\\Java\\jdk* 2>nul | findstr /i bin\\javac.exe\")",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(cat:*)",
+      "Bash(git rm:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nchore: 백엔드 프로젝트에서 불필요한 Node.js 파일 제거\n\n- package.json, package-lock.json 삭제 (Spring Boot 프로젝트에 불필요)\n- HELP.md 삭제 (기본 스프링 도움말 파일)\n- .claude/settings.local.json 권한 설정 업데이트\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
