@@ -8,6 +8,8 @@ spring:
     active: ${SPRING_PROFILES_ACTIVE:local}  # 환경변수로 프로파일 설정
   application:
     name: music.sale
+  messages:
+    basename: messages,errors
   
   # 데이터베이스 설정 (개발환경은 H2, 운영환경은 MySQL)
   datasource:

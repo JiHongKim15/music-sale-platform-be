@@ -41,6 +41,9 @@ application-prod.yml
 ehthumbs.db
 Thumbs.db
 
+# Windows special files
+nul
+
 # Database
 *.db
 *.sqlite

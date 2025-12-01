@@ -1,11 +1,11 @@
 package com.music.sale.application.product.service;
 
+import com.music.sale.application.image.exception.ImageErrorCode;
 import com.music.sale.application.product.dto.input.UpdateProductImageInput;
 import com.music.sale.application.product.dto.output.ProductImageOutput;
 import com.music.sale.application.product.port.inport.ProductImageCommandUseCase;
 import com.music.sale.application.product.port.outport.ProductImageCommandPort;
 import com.music.sale.common.BusinessException;
-import com.music.sale.common.ErrorCode;
 import com.music.sale.domain.product.ProductImage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -79,7 +79,7 @@ public class ProductImageCommandService implements ProductImageCommandUseCase {
     @Transactional
     public void deleteImage(Long productItemId, Long imageId) {
         if (!productImageCommandPort.existsByIdAndProductItemId(imageId, productItemId)) {
-            throw new BusinessException(ErrorCode.IMAGE_NOT_FOUND);
+            throw new BusinessException(ImageErrorCode.IMAGE_NOT_FOUND);
         }
 
         productImageCommandPort.deleteById(imageId);

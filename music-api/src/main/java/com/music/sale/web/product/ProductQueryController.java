@@ -4,7 +4,7 @@ import com.music.sale.application.product.dto.output.ProductOutput;
 import com.music.sale.application.product.port.inport.ProductQueryUseCase;
 import com.music.sale.common.ApiResponse;
 import com.music.sale.common.BusinessException;
-import com.music.sale.common.ErrorCode;
+import com.music.sale.application.product.exception.ProductErrorCode;
 import com.music.sale.web.product.mapper.ProductWebMapper;
 import com.music.sale.web.product.response.ProductResponse;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class ProductQueryController {
     public ApiResponse<ProductResponse> getByProductId(@PathVariable Long productId) {
         ProductOutput output = productQueryUseCase.getByProductId(productId);
         if (output == null) {
-            throw new BusinessException(ErrorCode.PRODUCT_NOT_FOUND); // Changed to BusinessException and ErrorCode
+            throw new BusinessException(ProductErrorCode.PRODUCT_NOT_FOUND); // Changed to BusinessException and ErrorCode
         }
         ProductResponse response = productWebMapper.toProductResponse(output);
         return ApiResponse.success(response);

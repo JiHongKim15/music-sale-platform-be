@@ -1,4 +1,4 @@
-package com.music.sale.domain.user.enums;
+package com.music.sale.persistence.user.enums;
 
 public enum SocialProvider {
     GOOGLE, KAKAO, NAVER, APPLE
