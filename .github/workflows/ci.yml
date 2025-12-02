@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  push:
+    branches: [ develop, main ]
+  pull_request:
+    branches: [ develop, main ]
+
+jobs:
+  spotless-check:
+    name: Code Formatting Check
+    runs-on: ubuntu-latest
+    # PR일 때는 continue-on-error로 실행 (auto-fix가 있으므로)
+    # push일 때는 반드시 통과해야 함 (develop/main 브랜치)
+    continue-on-error: ${{ github.event_name == 'pull_request' }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: 'gradle'
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Check code formatting with Spotless
+      run: ./gradlew spotlessCheck
+
+    - name: Comment PR with formatting issues
+      if: failure() && github.event_name == 'pull_request'
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '⚠️ **코드 포맷팅 체크 실패**\n\nSpotless Auto-fix 워크플로우가 자동으로 코드를 포맷팅합니다.\n잠시만 기다려주세요...'
+          })
+
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    needs: spotless-check
+    # spotless-check가 실패해도 빌드는 계속 진행 (PR의 경우)
+    if: always()
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: 'gradle'
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build with Gradle
+      run: ./gradlew build -x test
+
+    - name: Run tests
+      run: ./gradlew test
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: |
+          **/build/test-results/test/
+          **/build/reports/tests/test/
+
+    - name: Upload build artifacts
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: |
+          music-api/build/libs/*.jar

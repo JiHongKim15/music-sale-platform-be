@@ -364,12 +364,110 @@ KAKAO_USER_INFO_URI=https://kapi.kakao.com/v2/user/me
 ### 코드 스타일
 
 ```bash
-# 코드 포맷팅
+# 코드 포맷팅 적용
 ./gradlew spotlessApply
 
 # 코드 스타일 검사
-./gradlew spotlessKotlin
+./gradlew spotlessCheck
 ```
+
+#### Git Hooks 설정
+
+코드 커밋 전 자동으로 Spotless를 실행하도록 Git Hook을 설정할 수 있습니다:
+
+```bash
+# Git hooks 설정 스크립트 실행
+./setup-hooks.sh
+```
+
+이제 커밋할 때마다 자동으로 코드 포맷팅이 체크되며, 포맷이 올바르지 않으면 커밋이 거부됩니다.
+
+## 🔄 CI/CD
+
+### GitHub Actions
+
+프로젝트는 GitHub Actions를 통한 자동화된 CI/CD 파이프라인을 제공합니다.
+
+#### CI Workflow
+
+`develop` 또는 `main` 브랜치로 push하거나 PR을 생성하면 자동으로 다음 작업이 실행됩니다:
+
+1. **코드 포맷팅 검사** (`spotlessCheck`)
+   - Google Java Format 준수 여부 확인
+   - Ktlint 준수 여부 확인
+
+2. **빌드** (`./gradlew build`)
+   - 전체 프로젝트 컴파일
+   - 의존성 해결
+
+3. **테스트** (`./gradlew test`)
+   - 단위 테스트 실행
+   - 테스트 결과 리포트 생성
+
+4. **아티팩트 업로드**
+   - 테스트 결과 보고서
+   - 빌드된 JAR 파일
+
+#### Spotless Auto-fix Workflow
+
+Pull Request를 생성하면 **자동으로** 코드 포맷팅을 수정해주는 워크플로우가 실행됩니다:
+
+1. PR이 생성되거나 업데이트되면 자동 실행
+2. `spotlessApply`를 실행하여 코드 포맷팅
+3. 변경사항이 있으면 자동으로 커밋 & push
+4. PR에 완료 코멘트 추가
+
+**장점:**
+- 개발자가 수동으로 `spotlessApply`를 실행할 필요 없음
+- 포맷팅 때문에 CI가 실패하는 일이 없음
+- 코드 리뷰에 집중할 수 있음
+
+### 로컬에서 CI 체크하기
+
+GitHub에 push하기 전에 로컬에서 CI 체크를 실행할 수 있습니다:
+
+```bash
+# 포맷팅 체크
+./gradlew spotlessCheck
+
+# 빌드
+./gradlew build -x test
+
+# 테스트
+./gradlew test
+
+# 모두 한 번에 실행
+./gradlew spotlessCheck build test
+```
+
+### 브랜치 보호 규칙 설정 (필수)
+
+**⚠️ 중요**: Git hooks는 로컬에서만 동작하므로 우회가 가능합니다. 따라서 GitHub 브랜치 보호 규칙을 반드시 설정해야 합니다.
+
+#### 설정 방법:
+
+1. GitHub 저장소 → **Settings** → **Branches**
+2. **Branch protection rules** → **Add rule**
+3. 다음과 같이 설정:
+
+**보호할 브랜치:**
+- `develop`
+- `main`
+
+**필수 설정:**
+- ✅ **Require status checks to pass before merging**
+  - ✅ `Code Formatting Check` (Spotless 체크)
+  - ✅ `Build and Test` (빌드 및 테스트)
+- ✅ **Require branches to be up to date before merging**
+- ✅ **Require pull request before merging**
+  - Require approvals: 1명 이상 (권장)
+- ✅ **Do not allow bypassing the above settings**
+
+이렇게 설정하면:
+- 코드 포맷팅이 맞지 않으면 **merge 불가**
+- 테스트가 실패하면 **merge 불가**
+- PR 없이 직접 push **불가**
+- 관리자도 규칙을 우회할 수 **없음**
 
 ## 📊 데이터베이스 관리
 
