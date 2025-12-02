@@ -1,0 +1,48 @@
+# Git
+.git
+.gitignore
+.gitattributes
+.github
+
+# IDE
+.idea
+.vscode
+*.iml
+*.ipr
+*.iws
+
+# Build
+**/build/
+**/target/
+**/out/
+*.class
+
+# Gradle
+.gradle
+gradle-app.setting
+!gradle-wrapper.jar
+
+# Environment
+.env
+.env.*
+*.local
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+*.md
+docs/
+
+# Test
+**/test/
+**/*Test.java
+**/*Tests.java
+
+# Claude Code
+.claude/

@@ -469,6 +469,131 @@ GitHub에 push하기 전에 로컬에서 CI 체크를 실행할 수 있습니다
 - PR 없이 직접 push **불가**
 - 관리자도 규칙을 우회할 수 **없음**
 
+## 🚀 CD (Continuous Deployment)
+
+### 자동 배포 워크플로우
+
+`main` 브랜치에 merge되거나 태그가 생성되면 자동으로 배포가 진행됩니다.
+
+#### 배포 트리거
+
+1. **main 브랜치에 push**
+   ```bash
+   git checkout main
+   git merge develop
+   git push origin main
+   ```
+
+2. **버전 태그 생성**
+   ```bash
+   git tag v1.0.0
+   git push origin v1.0.0
+   ```
+
+3. **수동 배포** (GitHub Actions 탭에서)
+   - Actions → CD → Run workflow
+
+#### 배포 프로세스
+
+1. **빌드**
+   - Spring Boot JAR 파일 생성
+   - Docker 이미지 빌드
+
+2. **아티팩트 저장**
+   - Docker 이미지를 아티팩트로 업로드
+   - JAR 파일 업로드
+
+3. **GitHub Release 생성** (태그 push 시)
+   - 자동으로 Release Notes 생성
+   - 빌드된 파일 첨부
+
+4. **서버 배포** (선택사항)
+   - SSH를 통해 서버에 배포
+   - Docker 컨테이너 업데이트
+   - 헬스 체크
+
+### Docker 이미지 빌드 및 실행
+
+**로컬에서 테스트:**
+
+```bash
+# Docker 이미지 빌드
+docker build -t music-sale-api:latest -f music-api/Dockerfile .
+
+# 컨테이너 실행
+docker run -d \
+  --name music-sale-api \
+  -p 8080:8080 \
+  --env-file .env \
+  music-sale-api:latest
+
+# 로그 확인
+docker logs -f music-sale-api
+
+# 헬스 체크
+curl http://localhost:8080/actuator/health
+```
+
+### 서버 배포 설정
+
+실제 서버에 배포하려면 GitHub Secrets에 다음 정보를 설정해야 합니다:
+
+**필수 Secrets (Settings → Secrets and variables → Actions):**
+
+```
+SERVER_HOST       # 배포 서버 IP/도메인
+SERVER_USER       # SSH 사용자명
+SERVER_SSH_KEY    # SSH private key
+```
+
+**선택 Secrets (Docker Hub 사용 시):**
+
+```
+DOCKER_USERNAME   # Docker Hub 사용자명
+DOCKER_PASSWORD   # Docker Hub 비밀번호
+```
+
+### 배포 환경 준비
+
+**서버 요구사항:**
+- Docker 설치
+- Java 21 (선택사항, Docker만 사용 시 불필요)
+- 8080 포트 개방
+
+**서버 설정:**
+
+```bash
+# 서버에서 실행
+# 1. 환경변수 파일 생성
+sudo mkdir -p /opt/music-sale
+sudo vim /opt/music-sale/.env
+
+# 2. 환경변수 설정 (프로덕션 설정)
+SPRING_PROFILES_ACTIVE=prod
+DB_HOST=your-db-host
+DB_USERNAME=your-db-user
+DB_PASSWORD=your-db-password
+# ... 기타 필요한 환경변수
+
+# 3. Docker 설치 (없는 경우)
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
+### CD 워크플로우 활성화
+
+`.github/workflows/cd.yml` 파일에서 다음 설정을 변경:
+
+```yaml
+# Docker Hub 사용 시
+- name: Log in to Docker Hub (Optional)
+  if: true  # false → true로 변경
+
+# 서버 배포 사용 시
+deploy-to-server:
+  if: true  # false → true로 변경
+```
+
 ## 📊 데이터베이스 관리
 
 ### 컨테이너 관리

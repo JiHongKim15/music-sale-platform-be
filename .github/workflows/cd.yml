@@ -1,0 +1,131 @@
+name: CD
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:  # 수동 배포 가능
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: 'gradle'
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build with Gradle
+      run: ./gradlew :music-api:bootJar -x test
+
+    - name: Get version from tag
+      id: get_version
+      run: |
+        if [[ $GITHUB_REF == refs/tags/* ]]; then
+          echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        else
+          echo "version=latest" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Build Docker image
+      run: |
+        docker build -t music-sale-api:${{ steps.get_version.outputs.version }} \
+          -f music-api/Dockerfile \
+          --build-arg JAR_FILE=music-api/build/libs/music-api-*.jar \
+          .
+
+    - name: Log in to Docker Hub (Optional)
+      if: false  # Docker Hub를 사용하려면 true로 변경
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Push to Docker Hub (Optional)
+      if: false  # Docker Hub를 사용하려면 true로 변경
+      run: |
+        docker tag music-sale-api:${{ steps.get_version.outputs.version }} \
+          ${{ secrets.DOCKER_USERNAME }}/music-sale-api:${{ steps.get_version.outputs.version }}
+        docker push ${{ secrets.DOCKER_USERNAME }}/music-sale-api:${{ steps.get_version.outputs.version }}
+
+    - name: Save Docker image as artifact
+      run: |
+        docker save music-sale-api:${{ steps.get_version.outputs.version }} | gzip > music-sale-api.tar.gz
+
+    - name: Upload Docker image artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: docker-image-${{ steps.get_version.outputs.version }}
+        path: music-sale-api.tar.gz
+        retention-days: 7
+
+    - name: Create Release Notes
+      if: startsWith(github.ref, 'refs/tags/')
+      id: release_notes
+      run: |
+        echo "## 🚀 Release ${{ steps.get_version.outputs.version }}" > release_notes.md
+        echo "" >> release_notes.md
+        echo "### 📦 Artifacts" >> release_notes.md
+        echo "- Docker Image: \`music-sale-api:${{ steps.get_version.outputs.version }}\`" >> release_notes.md
+        echo "- JAR File: Available in artifacts" >> release_notes.md
+
+    - name: Create GitHub Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        body_path: release_notes.md
+        files: |
+          music-api/build/libs/*.jar
+          music-sale-api.tar.gz
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # 실제 서버 배포 (선택사항)
+  deploy-to-server:
+    name: Deploy to Server
+    needs: build-and-deploy
+    runs-on: ubuntu-latest
+    if: false  # 실제 배포 서버가 있으면 true로 변경
+
+    steps:
+    - name: Download Docker image artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: docker-image-${{ needs.build-and-deploy.outputs.version }}
+
+    - name: Deploy to server via SSH
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          # Docker 이미지 로드
+          docker load < /tmp/music-sale-api.tar.gz
+
+          # 기존 컨테이너 중지 및 제거
+          docker stop music-sale-api || true
+          docker rm music-sale-api || true
+
+          # 새 컨테이너 실행
+          docker run -d \
+            --name music-sale-api \
+            -p 8080:8080 \
+            --env-file /opt/music-sale/.env \
+            --restart unless-stopped \
+            music-sale-api:${{ needs.build-and-deploy.outputs.version }}
+
+          # 헬스 체크
+          sleep 10
+          curl -f http://localhost:8080/actuator/health || exit 1

@@ -1,19 +1,35 @@
 #!/bin/sh
-# Spotless check before commit
+# Spotless check and auto-fix before commit
 
-echo "Running Spotless check..."
+echo "🔍 Checking code formatting..."
 
-./gradlew spotlessCheck
+./gradlew spotlessCheck --quiet
 
 RESULT=$?
 
 if [ $RESULT -ne 0 ]; then
     echo ""
-    echo "❌ Spotless check failed!"
-    echo "Run './gradlew spotlessApply' to fix formatting issues."
+    echo "⚠️  Code formatting issues detected!"
+    echo "🔧 Automatically applying Spotless formatting..."
     echo ""
-    exit 1
+
+    ./gradlew spotlessApply --quiet
+
+    if [ $? -eq 0 ]; then
+        echo ""
+        echo "✅ Formatting applied successfully!"
+        echo "📝 Please review the changes and add them to your commit:"
+        echo ""
+        echo "   git add -u"
+        echo "   git commit --amend --no-edit"
+        echo ""
+        exit 1
+    else
+        echo ""
+        echo "❌ Failed to apply formatting!"
+        exit 1
+    fi
 fi
 
-echo "✅ Spotless check passed!"
+echo "✅ Code formatting is correct!"
 exit 0
