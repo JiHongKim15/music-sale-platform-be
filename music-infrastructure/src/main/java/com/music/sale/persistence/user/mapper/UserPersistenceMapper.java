@@ -1,10 +1,12 @@
 package com.music.sale.persistence.user.mapper;
 
 import com.music.sale.domain.user.User;
+import com.music.sale.domain.user.UserSocial;
 import com.music.sale.domain.user.UserTerms;
 import com.music.sale.domain.user.enums.UserRole;
 import com.music.sale.domain.user.enums.UserStatus;
 import com.music.sale.persistence.user.entity.UserEntity;
+import com.music.sale.persistence.user.entity.UserSocialEntity;
 import com.music.sale.persistence.user.entity.UserTermsEntity;
 import com.music.sale.persistence.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -55,13 +57,11 @@ public class UserPersistenceMapper {
                 .updatedAt(entity.getUpdatedAt())
                 .build();
     }
-    
+
     public UserTermsEntity toEntity(UserTerms domain) {
         if (domain == null) {
             return null;
         }
-        // UserTermsEntity requires a UserEntity, not just a userId.
-        // We need to fetch the UserEntity from the database.
         UserEntity userEntity = userRepository.findById(domain.getUserId())
                 .orElseThrow(() -> new IllegalArgumentException("User not found for UserTerms mapping: " + domain.getUserId()));
 

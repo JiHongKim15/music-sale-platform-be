@@ -1,17 +1,38 @@
 package com.music.sale.common;
 
+import com.music.sale.config.ErrorProperties;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.util.Locale;
+import java.util.Optional;
+
 @ControllerAdvice
+@RequiredArgsConstructor
 public class GlobalExceptionHandler {
 
+    private final MessageSource messageSource;
+    private final ErrorProperties errorProperties;
+
     @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<ApiResponse<Void>> handleBusinessException(BusinessException ex) { // Changed method name and type
-        HttpStatus status = HttpStatus.valueOf(ex.getErrorCode().getStatusCode());
-        return new ResponseEntity<>(ApiResponse.error(ex.getMessage()), status);
+    public ResponseEntity<ApiResponse<Void>> handleBusinessException(BusinessException ex, Locale locale) {
+        String key = ex.getErrorDefinition().getKey();
+        ErrorProperties.ErrorDetail errorDetail = errorProperties.getCodes().get(key.replace("error.", ""));
+
+        int statusCode = Optional.ofNullable(errorDetail)
+                .map(ErrorProperties.ErrorDetail::getStatus)
+                .orElse(500);
+
+        String message = Optional.ofNullable(ex.getMessage())
+                .filter(msg -> !msg.equals(key))
+                .orElse(messageSource.getMessage(key, ex.getArgs(), "An unexpected error occurred.", locale));
+
+        HttpStatus status = HttpStatus.valueOf(statusCode);
+        return new ResponseEntity<>(ApiResponse.error(message), status);
     }
 
     @ExceptionHandler(Exception.class)

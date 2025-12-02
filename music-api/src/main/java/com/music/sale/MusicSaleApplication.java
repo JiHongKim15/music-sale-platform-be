@@ -1,10 +1,13 @@
 package com.music.sale;
 
+import com.music.sale.config.ErrorProperties;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+@EnableConfigurationProperties(ErrorProperties.class)
 @EnableJpaAuditing
 @SpringBootApplication
 public class MusicSaleApplication {
