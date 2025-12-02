@@ -4,4 +4,4 @@ import com.music.sale.domain.like.enums.LikeableType;
 import lombok.Builder;
 
 @Builder
-public record DeleteLikeInput(Long userId, Long likeableId, LikeableType likeableType) {}
+public record GetLikeStatusInput(Long userId, Long likeableId, LikeableType likeableType) {}

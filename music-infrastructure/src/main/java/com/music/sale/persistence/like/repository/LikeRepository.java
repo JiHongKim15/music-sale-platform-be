@@ -10,27 +10,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LikeRepository extends JpaRepository<LikeEntity, Long> {
-    boolean existsByUserIdAndLikeableIdAndLikeableType(
-            Long userId,
-            Long likeableId,
-            LikeableType likeableType
-    );
+  boolean existsByUserIdAndLikeableIdAndLikeableType(
+      Long userId, Long likeableId, LikeableType likeableType);
 
-    void deleteByUserIdAndLikeableIdAndLikeableType(
-            Long userId,
-            Long likeableId,
-            LikeableType likeableType
-    );
+  void deleteByUserIdAndLikeableIdAndLikeableType(
+      Long userId, Long likeableId, LikeableType likeableType);
 
-    Page<LikeEntity> findByUserIdAndLikeableType(
-            Long userId,
-            LikeableType likeableType,
-            Pageable pageable
-    );
+  Page<LikeEntity> findByUserIdAndLikeableType(
+      Long userId, LikeableType likeableType, Pageable pageable);
 
-    long countByLikeableIdAndLikeableType(
-            Long likeableId,
-            LikeableType likeableType
-    );
+  long countByLikeableIdAndLikeableType(Long likeableId, LikeableType likeableType);
 }
-

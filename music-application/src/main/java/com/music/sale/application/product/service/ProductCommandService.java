@@ -16,40 +16,46 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Transactional
 public class ProductCommandService implements ProductCommandUseCase {
-    private final ProductCommandPort commandPort;
-    private final ProductQueryPort queryPort;
-    private final ProductMapper mapper;
+  private final ProductCommandPort commandPort;
+  private final ProductQueryPort queryPort;
+  private final ProductMapper mapper;
 
-    @Override
-    public ProductOutput createProduct(CreateProductInput input, Long currentUserId) {
-        ProductItem item = mapper.toDomainForCreate(input, currentUserId);
-        ProductItem saved = commandPort.saveProduct(item);
-        return mapper.toOutput(saved);
+  @Override
+  public ProductOutput createProduct(CreateProductInput input, Long currentUserId) {
+    ProductItem item = mapper.toDomainForCreate(input, currentUserId);
+    ProductItem saved = commandPort.saveProduct(item);
+    return mapper.toOutput(saved);
+  }
+
+  @Override
+  public ProductOutput updateProduct(Long productId, UpdateProductInput input, Long currentUserId) {
+    ProductItem existing =
+        queryPort
+            .findByProductId(productId)
+            .orElseThrow(
+                () -> new IllegalArgumentException("상품을 찾을 수 없습니다. productId=" + productId));
+
+    if (!existing.getSellerId().equals(currentUserId)) {
+      throw new IllegalArgumentException("수정 권한이 없습니다.");
     }
 
-    @Override
-    public ProductOutput updateProduct(Long productId, UpdateProductInput input, Long currentUserId) {
-        ProductItem existing = queryPort.findByProductId(productId)
-                .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다. productId=" + productId));
+    ProductItem updated = mapper.toDomainForUpdate(existing, input);
+    ProductItem saved = commandPort.updateProduct(updated);
+    return mapper.toOutput(saved);
+  }
 
-        if (!existing.getSellerId().equals(currentUserId)) {
-            throw new IllegalArgumentException("수정 권한이 없습니다.");
-        }
+  @Override
+  public void deleteProduct(Long productId, Long currentUserId) {
+    ProductItem existing =
+        queryPort
+            .findByProductId(productId)
+            .orElseThrow(
+                () -> new IllegalArgumentException("상품을 찾을 수 없습니다. productId=" + productId));
 
-        ProductItem updated = mapper.toDomainForUpdate(existing, input);
-        ProductItem saved = commandPort.updateProduct(updated);
-        return mapper.toOutput(saved);
+    if (!existing.getSellerId().equals(currentUserId)) {
+      throw new IllegalArgumentException("삭제 권한이 없습니다.");
     }
 
-    @Override
-    public void deleteProduct(Long productId, Long currentUserId) {
-        ProductItem existing = queryPort.findByProductId(productId)
-                .orElseThrow(() -> new IllegalArgumentException("상품을 찾을 수 없습니다. productId=" + productId));
-
-        if (!existing.getSellerId().equals(currentUserId)) {
-            throw new IllegalArgumentException("삭제 권한이 없습니다.");
-        }
-
-        commandPort.deleteByProductId(productId);
-    }
+    commandPort.deleteByProductId(productId);
+  }
 }

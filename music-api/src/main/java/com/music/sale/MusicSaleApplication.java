@@ -12,19 +12,17 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 public class MusicSaleApplication {
 
-    public static void main(String[] args) {
-        try {
-            Dotenv.configure()
-                    .directory(System.getProperty("user.dir"))
-                    .filename(".env.local")
-                    .systemProperties()
-                    .load();
-        } catch (Exception ex) {
-            System.out.println(
-                    "Warning: .env.local file not found, using default configuration");
-        }
-
-        SpringApplication.run(MusicSaleApplication.class, args);
+  public static void main(String[] args) {
+    try {
+      Dotenv.configure()
+          .directory(System.getProperty("user.dir"))
+          .filename(".env.local")
+          .systemProperties()
+          .load();
+    } catch (Exception ex) {
+      System.out.println("Warning: .env.local file not found, using default configuration");
     }
-}
 
+    SpringApplication.run(MusicSaleApplication.class, args);
+  }
+}

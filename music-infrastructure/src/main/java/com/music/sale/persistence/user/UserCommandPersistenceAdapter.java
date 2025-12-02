@@ -15,21 +15,21 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UserCommandPersistenceAdapter implements UserCommandPort {
 
-    private final UserRepository userRepository;
-    private final UserTermsRepository userTermsRepository;
-    private final UserPersistenceMapper userMapper;
+  private final UserRepository userRepository;
+  private final UserTermsRepository userTermsRepository;
+  private final UserPersistenceMapper userMapper;
 
-    @Override
-    public User save(User user) {
-        UserEntity entity = userMapper.toEntity(user);
-        UserEntity savedEntity = userRepository.save(entity);
-        return userMapper.toDomain(savedEntity);
-    }
+  @Override
+  public User save(User user) {
+    UserEntity entity = userMapper.toEntity(user);
+    UserEntity savedEntity = userRepository.save(entity);
+    return userMapper.toDomain(savedEntity);
+  }
 
-    @Override
-    public UserTerms saveTerms(UserTerms userTerms) {
-        UserTermsEntity entity = userMapper.toEntity(userTerms);
-        UserTermsEntity savedEntity = userTermsRepository.save(entity);
-        return userMapper.toDomain(savedEntity);
-    }
+  @Override
+  public UserTerms saveTerms(UserTerms userTerms) {
+    UserTermsEntity entity = userMapper.toEntity(userTerms);
+    UserTermsEntity savedEntity = userTermsRepository.save(entity);
+    return userMapper.toDomain(savedEntity);
+  }
 }

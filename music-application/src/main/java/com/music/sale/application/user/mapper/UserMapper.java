@@ -11,32 +11,32 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
-    public UserOutput toOutput(User user) {
-        return UserOutput.builder()
-                .id(user.getId())
-                .nickname(user.getNickname())
-                .profileImageUrl(user.getProfileImageUrl())
-                .email(user.getEmail())
-                .role(user.getRole())
-                .status(user.getStatus())
-                .isVerified(user.isVerified())
-                .createdAt(user.getCreatedAt())
-                .build();
-    }
+  public UserOutput toOutput(User user) {
+    return UserOutput.builder()
+        .id(user.getId())
+        .nickname(user.getNickname())
+        .profileImageUrl(user.getProfileImageUrl())
+        .email(user.getEmail())
+        .role(user.getRole())
+        .status(user.getStatus())
+        .isVerified(user.isVerified())
+        .createdAt(user.getCreatedAt())
+        .build();
+  }
 
-    public UserSocialOutput toOutput(UserSocial userSocial) {
-        return UserSocialOutput.builder()
-                .provider(userSocial.getProvider())
-                .providerId(userSocial.getProviderId())
-                .build();
-    }
+  public UserSocialOutput toOutput(UserSocial userSocial) {
+    return UserSocialOutput.builder()
+        .provider(userSocial.getProvider())
+        .providerId(userSocial.getProviderId())
+        .build();
+  }
 
-    public UserTermsOutput toOutput(UserTerms userTerms) {
-        return UserTermsOutput.builder()
-                .title(userTerms.getTitle())
-                .version(userTerms.getVersion())
-                .isAgreed(userTerms.getIsAgreed())
-                .agreedAt(userTerms.getUpdatedAt()) // Or createdAt, depending on business logic
-                .build();
-    }
+  public UserTermsOutput toOutput(UserTerms userTerms) {
+    return UserTermsOutput.builder()
+        .title(userTerms.getTitle())
+        .version(userTerms.getVersion())
+        .isAgreed(userTerms.getIsAgreed())
+        .agreedAt(userTerms.getUpdatedAt()) // Or createdAt, depending on business logic
+        .build();
+  }
 }

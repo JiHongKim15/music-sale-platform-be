@@ -2,7 +2,6 @@ package com.music.sale.web.like;
 
 import com.music.sale.application.like.dto.input.CreateLikeInput;
 import com.music.sale.application.like.dto.input.DeleteLikeInput;
-import com.music.sale.application.like.dto.output.CreateLikeOutput;
 import com.music.sale.application.like.port.inport.LikeCommandUseCase;
 import com.music.sale.common.ApiResponse;
 import com.music.sale.domain.like.enums.LikeableType;
@@ -15,27 +14,24 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/likes")
 public class LikeCommandController {
-    private final LikeCommandUseCase likeCommandUseCase;
-    private final LikeWebMapper mapper;
+  private final LikeCommandUseCase likeCommandUseCase;
+  private final LikeWebMapper mapper;
 
-    @PostMapping("/{targetId}")
-    public ApiResponse<CreateLikeResponse> likeTarget(
-            @PathVariable Long targetId,
-            @RequestParam("type") LikeableType likeableType) {
-        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
-        CreateLikeInput input = mapper.toCreateLikeInput(userId, targetId, likeableType);
-        CreateLikeOutput output = likeCommandUseCase.createLike(input);
-        CreateLikeResponse response = mapper.toCreateLikeResponse(output);
-        return ApiResponse.success(response);
-    }
+  @PostMapping("/{targetId}")
+  public ApiResponse<CreateLikeResponse> likeTarget(
+      @PathVariable Long targetId, @RequestParam("type") LikeableType likeableType) {
+    Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
+    CreateLikeInput input = mapper.toCreateLikeInput(userId, targetId, likeableType);
+    CreateLikeResponse response = mapper.toCreateLikeResponse(likeCommandUseCase.createLike(input));
+    return ApiResponse.success(response);
+  }
 
-    @DeleteMapping("/{targetId}")
-    public ApiResponse<Void> unlikeTarget(
-            @PathVariable Long targetId,
-            @RequestParam("type") LikeableType likeableType) {
-        Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
-        DeleteLikeInput input = mapper.toDeleteLikeInput(userId, targetId, likeableType);
-        likeCommandUseCase.deleteLike(input);
-        return ApiResponse.success();
-    }
+  @DeleteMapping("/{targetId}")
+  public ApiResponse<Void> unlikeTarget(
+      @PathVariable Long targetId, @RequestParam("type") LikeableType likeableType) {
+    Long userId = 1L; // TODO: Session에서 가져오도록 수정 예정
+    DeleteLikeInput input = mapper.toDeleteLikeInput(userId, targetId, likeableType);
+    likeCommandUseCase.deleteLike(input);
+    return ApiResponse.success();
+  }
 }

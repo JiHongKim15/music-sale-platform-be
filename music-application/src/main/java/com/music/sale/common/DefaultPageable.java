@@ -7,30 +7,28 @@ import lombok.Value;
 @Value
 @Builder
 public class DefaultPageable implements Pageable {
-    @Builder.Default
-    Integer pageNumber = 1;
-    @Builder.Default
-    Integer pageSize = 10;
-    String sort;
-    SortDirection sortDirection;
+  @Builder.Default Integer pageNumber = 1;
+  @Builder.Default Integer pageSize = 10;
+  String sort;
+  SortDirection sortDirection;
 
-    @Override
-    public int getPageNumber() {
-        return pageNumber;
-    }
+  @Override
+  public int getPageNumber() {
+    return pageNumber;
+  }
 
-    @Override
-    public int getPageSize() {
-        return pageSize;
-    }
+  @Override
+  public int getPageSize() {
+    return pageSize;
+  }
 
-    @Override
-    public String getSort() {
-        return sort;
-    }
+  @Override
+  public String getSort() {
+    return sort;
+  }
 
-    @Override
-    public SortDirection getSortDirection() {
-        return sortDirection;
-    }
+  @Override
+  public SortDirection getSortDirection() {
+    return sortDirection;
+  }
 }

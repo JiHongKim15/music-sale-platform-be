@@ -13,20 +13,20 @@ import lombok.*;
 @Table(name = "user_terms")
 public class UserTermsEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id", nullable = false)
+  private UserEntity user;
 
-    @Column(nullable = false, length = 50)
-    private String title;
+  @Column(nullable = false, length = 50)
+  private String title;
 
-    @Column(nullable = false, length = 20)
-    private String version;
+  @Column(nullable = false, length = 20)
+  private String version;
 
-    @Column(nullable = false)
-    private Boolean isAgreed;
+  @Column(nullable = false)
+  private Boolean isAgreed;
 }

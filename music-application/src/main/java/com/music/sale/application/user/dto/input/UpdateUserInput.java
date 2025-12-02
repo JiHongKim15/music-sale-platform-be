@@ -4,9 +4,4 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 
 @Builder
-public record UpdateUserInput(
-        @NotBlank
-        String nickname,
-        String profileImageUrl
-) {
-}
+public record UpdateUserInput(@NotBlank String nickname, String profileImageUrl) {}

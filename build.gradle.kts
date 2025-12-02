@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.25"
+    kotlin("jvm") version "2.1.0"
     id("com.diffplug.spotless") version "6.25.0"
     id("io.spring.dependency-management") version "1.1.7"
 }
@@ -64,5 +64,13 @@ spotless {
         target("**/*.kt", "**/*.kts")
         targetExclude("**/bin/**")
         ktlint()
+    }
+    java {
+        target("**/*.java")
+        targetExclude("**/bin/**", "**/build/**")
+        googleJavaFormat()
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        endWithNewline()
     }
 }

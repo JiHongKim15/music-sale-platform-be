@@ -11,23 +11,25 @@ import lombok.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table(name = "user_socials", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"provider", "providerId"}) // 같은 소셜ID 중복 가입 방지
-})
+@Table(
+    name = "user_socials",
+    uniqueConstraints = {
+      @UniqueConstraint(columnNames = {"provider", "providerId"}) // 같은 소셜ID 중복 가입 방지
+    })
 public class UserSocialEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private UserEntity user;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id", nullable = false)
+  private UserEntity user;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private SocialProvider provider;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private SocialProvider provider;
 
-    @Column(nullable = false)
-    private String providerId;
+  @Column(nullable = false)
+  private String providerId;
 }

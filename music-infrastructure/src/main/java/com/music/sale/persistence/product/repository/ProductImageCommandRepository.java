@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProductImageCommandRepository extends JpaRepository<ProductImageEntity, Long> {
 
-    boolean existsByIdAndProductItemId(Long id, Long productItemId);
+  boolean existsByIdAndProductItemId(Long id, Long productItemId);
 }

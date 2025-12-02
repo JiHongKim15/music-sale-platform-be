@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum ProductErrorCode implements ErrorDefinition {
-    PRODUCT_NOT_FOUND("error.PRODUCT_NOT_FOUND");
+  PRODUCT_NOT_FOUND("error.PRODUCT_NOT_FOUND");
 
-    private final String key;
+  private final String key;
 }

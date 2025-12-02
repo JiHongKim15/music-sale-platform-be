@@ -17,27 +17,29 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class LikeCommandService implements LikeCommandUseCase {
-    private final LikeCommandPort likeCommandPort;
-    private final LikeMapper likeMapper;
+  private final LikeCommandPort likeCommandPort;
+  private final LikeMapper likeMapper;
 
-    @Override
-    public CreateLikeOutput createLike(CreateLikeInput input) {
-        if (likeCommandPort.exists(input.userId(), input.likeableId(), input.likeableType())) {
-            throw new BusinessException(LikeErrorCode.LIKE_ALREADY_EXISTS, "이미 " + input.likeableType().getKorean() + "한 대상입니다.");
-        }
-
-        Like like = Like.create(input.userId(), input.likeableId(), input.likeableType());
-        Like savedLike = likeCommandPort.save(like);
-
-        return likeMapper.toCreateOutput(savedLike);
+  @Override
+  public CreateLikeOutput createLike(CreateLikeInput input) {
+    if (likeCommandPort.exists(input.userId(), input.likeableId(), input.likeableType())) {
+      throw new BusinessException(
+          LikeErrorCode.LIKE_ALREADY_EXISTS, "이미 " + input.likeableType().getKorean() + "한 대상입니다.");
     }
 
-    @Override
-    public void deleteLike(DeleteLikeInput input) {
-        if (!likeCommandPort.exists(input.userId(), input.likeableId(), input.likeableType())) {
-            throw new BusinessException(LikeErrorCode.LIKE_NOT_FOUND, input.likeableType().getKorean() + " 기록을 찾을 수 없습니다.");
-        }
+    Like like = Like.create(input.userId(), input.likeableId(), input.likeableType());
+    Like savedLike = likeCommandPort.save(like);
 
-        likeCommandPort.delete(input.userId(), input.likeableId(), input.likeableType());
+    return likeMapper.toCreateOutput(savedLike);
+  }
+
+  @Override
+  public void deleteLike(DeleteLikeInput input) {
+    if (!likeCommandPort.exists(input.userId(), input.likeableId(), input.likeableType())) {
+      throw new BusinessException(
+          LikeErrorCode.LIKE_NOT_FOUND, input.likeableType().getKorean() + " 기록을 찾을 수 없습니다.");
     }
+
+    likeCommandPort.delete(input.userId(), input.likeableId(), input.likeableType());
+  }
 }

@@ -3,7 +3,6 @@ package com.music.sale.application.product.dto.output;
 import com.music.sale.domain.product.enums.ProductCondition;
 import com.music.sale.domain.product.enums.ProductConditionGrade;
 import com.music.sale.domain.product.enums.ProductStatus;
-
 import java.util.Map;
 
 public record ProductOutput(
@@ -20,5 +19,4 @@ public record ProductOutput(
     ProductStatus status,
     Map<String, Object> attributes,
     String description,
-    Long viewCount
-) {}
+    Long viewCount) {}

@@ -3,7 +3,6 @@ package com.music.sale.application.product.dto.input;
 import com.music.sale.domain.product.enums.ProductCondition;
 import com.music.sale.domain.product.enums.ProductConditionGrade;
 import com.music.sale.domain.product.enums.ProductStatus;
-
 import java.util.Map;
 
 public record UpdateProductInput(
@@ -17,5 +16,4 @@ public record UpdateProductInput(
     Integer stockQuantity,
     ProductStatus status,
     Map<String, Object> attributes,
-    String description
-) {}
+    String description) {}

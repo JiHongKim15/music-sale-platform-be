@@ -6,10 +6,9 @@ import com.music.sale.domain.product.enums.ProductStatus;
 import com.music.sale.persistence.common.BaseEntity;
 import com.music.sale.persistence.common.JsonConverter;
 import jakarta.persistence.*;
-import lombok.*;
-
 import java.util.List;
 import java.util.Map;
+import lombok.*;
 
 @Entity
 @Table(name = "product_item")
@@ -19,56 +18,60 @@ import java.util.Map;
 @Builder
 public class ProductItemEntity extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(name = "catalog_id", nullable = false)
-    private Long catalogId;
+  @Column(name = "catalog_id", nullable = false)
+  private Long catalogId;
 
-    @Column(name = "seller_id", nullable = false)
-    private Long sellerId;
+  @Column(name = "seller_id", nullable = false)
+  private Long sellerId;
 
-    @Column(name = "store_id", nullable = false)
-    private Long storeId;
+  @Column(name = "store_id", nullable = false)
+  private Long storeId;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductImageEntity> images;
+  @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<ProductImageEntity> images;
 
-    @Column(name = "name", nullable = false, length = 255)
-    private String name;
+  @Column(name = "name", nullable = false, length = 255)
+  private String name;
 
-    @Column(name = "brand", length = 255)
-    private String brand;
+  @Column(name = "brand", length = 255)
+  private String brand;
 
-    @Column(name = "price", nullable = false)
-    private Long price;
+  @Column(name = "price", nullable = false)
+  private Long price;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "condition", nullable = false, columnDefinition = "enum('NEW','USED')")
-    private ProductCondition condition;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "condition", nullable = false, columnDefinition = "enum('NEW','USED')")
+  private ProductCondition condition;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "condition_grade", nullable = false,
-            columnDefinition = "enum('S','A','B','C','D')")
-    private ProductConditionGrade conditionGrade;
+  @Enumerated(EnumType.STRING)
+  @Column(
+      name = "condition_grade",
+      nullable = false,
+      columnDefinition = "enum('S','A','B','C','D')")
+  private ProductConditionGrade conditionGrade;
 
-    @Column(name = "stock_quantity", nullable = false)
-    private Integer stockQuantity;
+  @Column(name = "stock_quantity", nullable = false)
+  private Integer stockQuantity;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false,
-            columnDefinition = "enum('AVAILABLE','SOLD_OUT','RESERVED','DISCONTINUED')")
-    private ProductStatus status;
+  @Enumerated(EnumType.STRING)
+  @Column(
+      name = "status",
+      nullable = false,
+      columnDefinition = "enum('AVAILABLE','SOLD_OUT','RESERVED','DISCONTINUED')")
+  private ProductStatus status;
 
-    @Convert(converter = JsonConverter.class)
-    @Column(name = "custom_attributes", columnDefinition = "text")
-    private Map<String, Object> attributes;
+  @Convert(converter = JsonConverter.class)
+  @Column(name = "custom_attributes", columnDefinition = "text")
+  private Map<String, Object> attributes;
 
-    @Lob
-    @Column(name = "description")
-    private String description;
+  @Lob
+  @Column(name = "description")
+  private String description;
 
-    @Column(name = "view_count", nullable = false)
-    private Long viewCount;
+  @Column(name = "view_count", nullable = false)
+  private Long viewCount;
 }

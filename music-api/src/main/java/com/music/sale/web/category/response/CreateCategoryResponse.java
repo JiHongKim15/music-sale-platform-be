@@ -1,13 +1,13 @@
 package com.music.sale.web.category.response;
 
 import com.music.sale.domain.category.Category;
-import com.music.sale.domain.category.CategoryType;
+import com.music.sale.domain.category.enums.CategoryType;
 
 public record CreateCategoryResponse(
-        Long id,
-        String name,
-        CategoryType type,
-        Category parent,
-        String path,
-        Integer depth,
-        Boolean isActive) {}
+    Long id,
+    String name,
+    CategoryType type,
+    Category parent,
+    String path,
+    Integer depth,
+    Boolean isActive) {}

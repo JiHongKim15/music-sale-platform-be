@@ -2,7 +2,6 @@
 package com.music.sale.common;
 
 public enum SortDirection {
-    ASC,
-    DESC
+  ASC,
+  DESC
 }
-

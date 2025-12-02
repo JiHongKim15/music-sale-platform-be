@@ -8,5 +8,4 @@ public record ProductImageOutput(
     Integer imageOrder,
     Long fileSize,
     String fileName,
-    String fileType
-) {}
+    String fileType) {}

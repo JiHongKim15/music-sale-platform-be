@@ -12,26 +12,25 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class ProductItemCommandPersistenceAdapter implements ProductCommandPort {
 
-    private final ProductItemCommandRepository productItemCommandRepository;
-    private final ProductItemPersistenceMapper mapper;
+  private final ProductItemCommandRepository productItemCommandRepository;
+  private final ProductItemPersistenceMapper mapper;
 
-    @Override
-    public ProductItem saveProduct(ProductItem item) {
-        ProductItemEntity entity = mapper.toEntity(item);
-        ProductItemEntity saved = productItemCommandRepository.save(entity);
-        return mapper.toDomain(saved);
-    }
+  @Override
+  public ProductItem saveProduct(ProductItem item) {
+    ProductItemEntity entity = mapper.toEntity(item);
+    ProductItemEntity saved = productItemCommandRepository.save(entity);
+    return mapper.toDomain(saved);
+  }
 
-    @Override
-    public ProductItem updateProduct(ProductItem productItem) {
-        ProductItemEntity entity = mapper.toEntity(productItem);
-        ProductItemEntity saved = productItemCommandRepository.save(entity);
-        return mapper.toDomain(saved);
-    }
+  @Override
+  public ProductItem updateProduct(ProductItem productItem) {
+    ProductItemEntity entity = mapper.toEntity(productItem);
+    ProductItemEntity saved = productItemCommandRepository.save(entity);
+    return mapper.toDomain(saved);
+  }
 
-
-    @Override
-    public void deleteByProductId(Long id) {
-        productItemCommandRepository.deleteById(id);
-    }
+  @Override
+  public void deleteByProductId(Long id) {
+    productItemCommandRepository.deleteById(id);
+  }
 }

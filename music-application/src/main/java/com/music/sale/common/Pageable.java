@@ -2,9 +2,11 @@
 package com.music.sale.common;
 
 public interface Pageable {
-    int getPageNumber();
-    int getPageSize();
-    String getSort();
-    SortDirection getSortDirection();
-}
+  int getPageNumber();
 
+  int getPageSize();
+
+  String getSort();
+
+  SortDirection getSortDirection();
+}

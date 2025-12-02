@@ -7,5 +7,4 @@ public record UpdateProductImageInput(
     long fileSize,
     boolean isThumbnail,
     int imageOrder,
-    byte[] content
-) {}
+    byte[] content) {}

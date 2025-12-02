@@ -10,13 +10,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductItemQueryRepository extends JpaRepository<ProductItemEntity, Long> {
 
-    boolean existsByNameAndSellerId(String name, Long sellerId);
+  boolean existsByNameAndSellerId(String name, Long sellerId);
 
-    Page<ProductItemEntity> findByStatus(ProductStatus status, Pageable pageable);
+  Page<ProductItemEntity> findByStatus(ProductStatus status, Pageable pageable);
 
-    Page<ProductItemEntity> findBySellerId(Long sellerId, Pageable pageable);
+  Page<ProductItemEntity> findBySellerId(Long sellerId, Pageable pageable);
 
-    Page<ProductItemEntity> findByStoreId(Long storeId, Pageable pageable);
+  Page<ProductItemEntity> findByStoreId(Long storeId, Pageable pageable);
 
-    Page<ProductItemEntity> findByNameContainingIgnoreCase(String keyword, Pageable pageable);
+  Page<ProductItemEntity> findByNameContainingIgnoreCase(String keyword, Pageable pageable);
 }

@@ -6,13 +6,7 @@ import lombok.Builder;
 
 @Builder
 public record AgreeTermsInput(
-        @NotNull
-        Long userId,
-        @NotBlank
-        String title,
-        @NotBlank
-        String version,
-        @NotNull
-        Boolean isAgreed
-) {
-}
+    @NotNull Long userId,
+    @NotBlank String title,
+    @NotBlank String version,
+    @NotNull Boolean isAgreed) {}

@@ -8,13 +8,12 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 public class ProductImage {
-    private final Long id;
-    private final Long productId;
-    private final String url;
-    private final boolean isThumbnail;
-    private final int imageOrder;
-    private final long fileSize;
-    private final String fileName;
-    private final String fileType;
+  private final Long id;
+  private final Long productId;
+  private final String url;
+  private final boolean isThumbnail;
+  private final int imageOrder;
+  private final long fileSize;
+  private final String fileName;
+  private final String fileType;
 }
-

@@ -6,12 +6,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface LikeQueryPort {
-    boolean exists(Long userId, Long likeableId, LikeableType likeableType);
+  boolean exists(Long userId, Long likeableId, LikeableType likeableType);
 
-    Page<Like> findByUserIdAndType(Long userId, LikeableType likeableType, Pageable pageable);
+  Page<Like> findByUserIdAndType(Long userId, LikeableType likeableType, Pageable pageable);
 
-    long countByLikeableIdAndType(Long likeableId, LikeableType likeableType);
+  long countByLikeableIdAndType(Long likeableId, LikeableType likeableType);
 }
-
-
-

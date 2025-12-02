@@ -8,12 +8,11 @@ import org.springframework.data.redis.core.RedisHash;
 @RedisHash(value = "refreshToken", timeToLive = 1209600)
 public class RefreshTokenEntity {
 
-    @Id
-    private String refreshToken;
+  @Id private String refreshToken;
 
-    private Long userId;
+  private Long userId;
 
-    private String ip;
+  private String ip;
 
-    private String deviceInfo;
+  private String deviceInfo;
 }
