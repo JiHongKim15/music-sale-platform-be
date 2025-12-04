@@ -30,4 +30,8 @@ public class User {
   public void withdraw() {
     this.status = UserStatus.WITHDRAWAL;
   }
+
+  public boolean isActive() {
+    return this.status == UserStatus.ACTIVE;
+  }
 }
