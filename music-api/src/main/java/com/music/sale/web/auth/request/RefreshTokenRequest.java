@@ -1,3 +1,3 @@
-package com.music.sale.api.auth.dto;
+package com.music.sale.web.auth.request;
 
 public record RefreshTokenRequest(String refreshToken) {}

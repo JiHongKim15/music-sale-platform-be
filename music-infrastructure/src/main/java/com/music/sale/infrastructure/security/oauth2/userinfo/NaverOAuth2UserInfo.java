@@ -1,4 +1,4 @@
-package com.music.sale.infrastructure.security.oauth2;
+package com.music.sale.infrastructure.security.oauth2.userinfo;
 
 import com.music.sale.domain.user.enums.SocialProvider;
 import java.util.Map;
@@ -11,6 +11,7 @@ public class NaverOAuth2UserInfo implements OAuth2UserInfo {
   }
 
   @Override
+  @SuppressWarnings("unchecked")
   public String getProviderId() {
     Map<String, Object> response = (Map<String, Object>) attributes.get("response");
     if (response == null) {
@@ -20,6 +21,7 @@ public class NaverOAuth2UserInfo implements OAuth2UserInfo {
   }
 
   @Override
+  @SuppressWarnings("unchecked")
   public String getEmail() {
     Map<String, Object> response = (Map<String, Object>) attributes.get("response");
     if (response == null) {
@@ -29,6 +31,7 @@ public class NaverOAuth2UserInfo implements OAuth2UserInfo {
   }
 
   @Override
+  @SuppressWarnings("unchecked")
   public String getName() {
     Map<String, Object> response = (Map<String, Object>) attributes.get("response");
     if (response == null) {
@@ -38,6 +41,7 @@ public class NaverOAuth2UserInfo implements OAuth2UserInfo {
   }
 
   @Override
+  @SuppressWarnings("unchecked")
   public String getProfileImage() {
     Map<String, Object> response = (Map<String, Object>) attributes.get("response");
     if (response == null) {

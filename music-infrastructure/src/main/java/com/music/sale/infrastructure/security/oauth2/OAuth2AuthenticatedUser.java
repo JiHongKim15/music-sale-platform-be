@@ -1,5 +1,6 @@
 package com.music.sale.infrastructure.security.oauth2;
 
+import com.music.sale.infrastructure.security.oauth2.userinfo.OAuth2UserInfo;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -8,11 +9,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 @Getter
-public class CustomOAuth2User implements OAuth2User {
+public class OAuth2AuthenticatedUser implements OAuth2User {
   private final OAuth2UserInfo userInfo;
   private final Map<String, Object> attributes;
 
-  public CustomOAuth2User(OAuth2UserInfo userInfo, Map<String, Object> attributes) {
+  public OAuth2AuthenticatedUser(OAuth2UserInfo userInfo, Map<String, Object> attributes) {
     this.userInfo = userInfo;
     this.attributes = attributes;
   }
@@ -30,9 +31,5 @@ public class CustomOAuth2User implements OAuth2User {
   @Override
   public String getName() {
     return userInfo.getEmail();
-  }
-
-  public OAuth2UserInfo getUserInfo() {
-    return userInfo;
   }
 }

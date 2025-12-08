@@ -5,15 +5,15 @@ import com.music.sale.persistence.user.entity.RefreshTokenEntity;
 import com.music.sale.persistence.user.repository.RefreshTokenRepository;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "spring.cache.type", havingValue = "redis")
 public class RefreshTokenPersistenceAdapter implements RefreshTokenPort {
 
   private final RefreshTokenRepository refreshTokenRepository;
-  private final RedisTemplate<String, String> redisTemplate;
 
   @Override
   public void saveRefreshToken(String refreshToken, Long userId, String ip, String deviceInfo) {

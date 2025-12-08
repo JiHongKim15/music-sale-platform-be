@@ -1,11 +1,13 @@
-package com.music.sale.infrastructure.security.oauth2;
+package com.music.sale.infrastructure.security.oauth2.userinfo;
 
 import com.music.sale.domain.user.enums.SocialProvider;
 import java.util.Map;
 
 public class OAuth2UserInfoFactory {
-  public static OAuth2UserInfo getOAuth2UserInfo(
-      String registrationId, Map<String, Object> attributes) {
+
+  private OAuth2UserInfoFactory() {}
+
+  public static OAuth2UserInfo create(String registrationId, Map<String, Object> attributes) {
     SocialProvider provider = SocialProvider.valueOf(registrationId.toUpperCase());
 
     return switch (provider) {

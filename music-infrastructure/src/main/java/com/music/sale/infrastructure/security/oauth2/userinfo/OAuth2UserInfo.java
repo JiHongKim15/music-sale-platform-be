@@ -1,4 +1,4 @@
-package com.music.sale.infrastructure.security.oauth2;
+package com.music.sale.infrastructure.security.oauth2.userinfo;
 
 import com.music.sale.domain.user.enums.SocialProvider;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.music.sale.infrastructure.security;
+package com.music.sale.application.auth.security;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,4 +9,4 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
 @AuthenticationPrincipal
-public @interface AuthUser {}
+public @interface CurrentUser {}

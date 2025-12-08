@@ -1,4 +1,4 @@
-package com.music.sale.infrastructure.security;
+package com.music.sale.application.auth.security;
 
 import com.music.sale.domain.user.enums.UserRole;
 import java.util.Collection;
@@ -9,21 +9,21 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Getter
-public class LoginUser implements UserDetails {
+public class AuthenticatedUser implements UserDetails {
   private final Long userId;
   private final String email;
   private final String nickname;
   private final UserRole role;
 
-  public LoginUser(Long userId, String email, String nickname, UserRole role) {
+  private AuthenticatedUser(Long userId, String email, String nickname, UserRole role) {
     this.userId = userId;
     this.email = email;
     this.nickname = nickname;
     this.role = role;
   }
 
-  public static LoginUser of(Long userId, String email, String nickname, UserRole role) {
-    return new LoginUser(userId, email, nickname, role);
+  public static AuthenticatedUser of(Long userId, String email, String nickname, UserRole role) {
+    return new AuthenticatedUser(userId, email, nickname, role);
   }
 
   @Override
@@ -33,7 +33,7 @@ public class LoginUser implements UserDetails {
 
   @Override
   public String getPassword() {
-    return null; // OAuth2 사용하므로 비밀번호 없음
+    return null;
   }
 
   @Override

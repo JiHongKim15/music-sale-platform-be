@@ -1,9 +1,6 @@
 package com.music.sale.config;
 
 import com.music.sale.infrastructure.security.jwt.JwtAuthenticationFilter;
-import com.music.sale.infrastructure.security.oauth2.CustomOAuth2UserService;
-import com.music.sale.infrastructure.security.oauth2.OAuth2FailureHandler;
-import com.music.sale.infrastructure.security.oauth2.OAuth2SuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,9 +17,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
   private final JwtAuthenticationFilter jwtAuthenticationFilter;
-  private final CustomOAuth2UserService customOAuth2UserService;
-  private final OAuth2SuccessHandler oAuth2SuccessHandler;
-  private final OAuth2FailureHandler oAuth2FailureHandler;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -60,14 +54,6 @@ public class SecurityConfig {
                     // Authenticated endpoints
                     .anyRequest()
                     .authenticated())
-
-        // OAuth2 로그인 설정
-        .oauth2Login(
-            oauth2 ->
-                oauth2
-                    .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
-                    .successHandler(oAuth2SuccessHandler)
-                    .failureHandler(oAuth2FailureHandler))
 
         // JWT 필터 추가
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
