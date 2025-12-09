@@ -1,10 +1,7 @@
 package com.music.sale.web.product;
 
-import com.music.sale.application.product.dto.output.ProductOutput;
-import com.music.sale.application.product.exception.ProductErrorCode;
 import com.music.sale.application.product.port.inport.ProductQueryUseCase;
 import com.music.sale.common.ApiResponse;
-import com.music.sale.common.BusinessException;
 import com.music.sale.web.product.mapper.ProductWebMapper;
 import com.music.sale.web.product.response.ProductResponse;
 import lombok.RequiredArgsConstructor;
@@ -22,13 +19,16 @@ public class ProductQueryController {
 
   @GetMapping("/{productId}")
   public ApiResponse<ProductResponse> getByProductId(@PathVariable Long productId) {
-    ProductOutput output = productQueryUseCase.getByProductId(productId);
-    if (output == null) {
-      throw new BusinessException(
-          ProductErrorCode.PRODUCT_NOT_FOUND); // Changed to BusinessException and ErrorCode
-    }
-    ProductResponse response = productWebMapper.toProductResponse(output);
+    ProductResponse response =
+        productWebMapper.toProductResponse(productQueryUseCase.getByProductId(productId));
     return ApiResponse.success(response);
+  }
+
+  @GetMapping
+  public ApiResponse<Page<ProductResponse>> getAll(Pageable pageable) {
+    Page<ProductResponse> page =
+        productQueryUseCase.getAll(pageable).map(productWebMapper::toProductResponse);
+    return ApiResponse.success(page);
   }
 
   @GetMapping("/seller/{sellerId}")

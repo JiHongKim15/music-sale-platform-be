@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 public interface ProductQueryPort {
   Optional<ProductItem> findByProductId(Long id);
 
+  Page<ProductItem> findAll(Pageable pageable);
+
   Page<ProductItem> findByStatus(ProductStatus status, Pageable pageable);
 
   Page<ProductItem> findBySellerId(Long sellerId, Pageable pageable);

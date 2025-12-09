@@ -26,6 +26,11 @@ public class ProductItemQueryPersistenceAdapter implements ProductQueryPort {
   }
 
   @Override
+  public Page<ProductItem> findAll(Pageable pageable) {
+    return productItemQueryRepository.findAll(pageable).map(mapper::toDomain);
+  }
+
+  @Override
   public Page<ProductItem> findByStatus(ProductStatus status, Pageable pageable) {
     return productItemQueryRepository.findByStatus(status, pageable).map(mapper::toDomain);
   }
