@@ -134,3 +134,4 @@ application.log*
 # Test results
 test-results/
 .scannerwork/ 
+gradlew-local.bat

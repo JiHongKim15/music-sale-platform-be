@@ -1,9 +1,16 @@
 #!/bin/sh
 # Spotless check and auto-fix before commit
 
+# Determine which gradle command to use
+if [ -f "./gradlew-local.bat" ]; then
+    GRADLE_CMD="./gradlew-local.bat"
+else
+    GRADLE_CMD="./gradlew"
+fi
+
 echo "🔍 Checking code formatting..."
 
-./gradlew spotlessCheck --quiet
+$GRADLE_CMD spotlessCheck --quiet
 
 RESULT=$?
 
@@ -13,7 +20,7 @@ if [ $RESULT -ne 0 ]; then
     echo "🔧 Automatically applying Spotless formatting..."
     echo ""
 
-    ./gradlew spotlessApply --quiet
+    $GRADLE_CMD spotlessApply --quiet
 
     if [ $? -eq 0 ]; then
         echo ""
