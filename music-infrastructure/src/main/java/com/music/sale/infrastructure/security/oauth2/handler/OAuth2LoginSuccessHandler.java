@@ -2,7 +2,7 @@ package com.music.sale.infrastructure.security.oauth2.handler;
 
 import com.music.sale.application.auth.dto.SocialLoginCommand;
 import com.music.sale.application.auth.dto.TokenResponse;
-import com.music.sale.application.auth.port.in.SocialLoginUseCase;
+import com.music.sale.application.auth.port.in.AuthUseCase;
 import com.music.sale.infrastructure.common.HttpRequestUtils;
 import com.music.sale.infrastructure.security.oauth2.OAuth2AuthenticatedUser;
 import com.music.sale.infrastructure.security.oauth2.userinfo.OAuth2UserInfo;
@@ -25,7 +25,7 @@ import org.springframework.web.util.UriComponentsBuilder;
     name = "client-id")
 public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-  private final SocialLoginUseCase socialLoginUseCase;
+  private final AuthUseCase authUseCase;
 
   @Override
   public void onAuthenticationSuccess(
@@ -46,7 +46,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
             userInfo.getName(),
             userInfo.getProfileImage());
 
-    TokenResponse tokenResponse = socialLoginUseCase.socialLogin(command, ip, deviceInfo);
+    TokenResponse tokenResponse = authUseCase.loginWithSocialAccount(command, ip, deviceInfo);
 
     String targetUrl =
         UriComponentsBuilder.fromUriString("/swagger-auth.html")

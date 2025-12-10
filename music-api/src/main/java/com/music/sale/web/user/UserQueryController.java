@@ -40,7 +40,7 @@ public class UserQueryController {
   public ApiResponse<GetUserResponse> getCurrentUser(
       @Parameter(hidden = true) @CurrentUser AuthenticatedUser user) {
     GetUserResponse response =
-        mapper.toGetUserResponse(userQueryUseCase.getUserById(user.getUserId()));
+        mapper.toGetUserResponse(userQueryUseCase.getUserById(user.userId()));
     return ApiResponse.success(response);
   }
 
@@ -49,7 +49,7 @@ public class UserQueryController {
   public ApiResponse<List<GetUserSocialResponse>> getMySocials(
       @Parameter(hidden = true) @CurrentUser AuthenticatedUser user) {
     List<GetUserSocialResponse> response =
-        mapper.toGetUserSocialResponses(userQueryUseCase.getSocialsByUserId(user.getUserId()));
+        mapper.toGetUserSocialResponses(userQueryUseCase.getSocialsByUserId(user.userId()));
     return ApiResponse.success(response);
   }
 
@@ -58,7 +58,7 @@ public class UserQueryController {
   public ApiResponse<List<GetUserTermsResponse>> getMyTerms(
       @Parameter(hidden = true) @CurrentUser AuthenticatedUser user) {
     List<GetUserTermsResponse> response =
-        mapper.toGetUserTermsResponses(userQueryUseCase.getTermsByUserId(user.getUserId()));
+        mapper.toGetUserTermsResponses(userQueryUseCase.getTermsByUserId(user.userId()));
     return ApiResponse.success(response);
   }
 }

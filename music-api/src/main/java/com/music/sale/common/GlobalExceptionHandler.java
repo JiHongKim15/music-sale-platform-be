@@ -1,6 +1,7 @@
 package com.music.sale.common;
 
 import com.music.sale.config.ErrorProperties;
+import com.music.sale.domain.exception.DomainException;
 import java.util.Locale;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,22 @@ public class GlobalExceptionHandler {
             .orElse(
                 messageSource.getMessage(
                     key, ex.getArgs(), "An unexpected error occurred.", locale));
+
+    HttpStatus status = HttpStatus.valueOf(statusCode);
+    return new ResponseEntity<>(ApiResponse.error(message), status);
+  }
+
+  @ExceptionHandler(DomainException.class)
+  public ResponseEntity<ApiResponse<Void>> handleDomainException(
+      DomainException ex, Locale locale) {
+    String key = ex.getErrorKey();
+    ErrorProperties.ErrorDetail errorDetail =
+        errorProperties.getCodes().get(key.replace("error.", ""));
+
+    int statusCode =
+        Optional.ofNullable(errorDetail).map(ErrorProperties.ErrorDetail::status).orElse(400);
+
+    String message = messageSource.getMessage(key, null, ex.getMessage(), locale);
 
     HttpStatus status = HttpStatus.valueOf(statusCode);
     return new ResponseEntity<>(ApiResponse.error(message), status);

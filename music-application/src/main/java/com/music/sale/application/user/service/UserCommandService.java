@@ -1,6 +1,7 @@
 package com.music.sale.application.user.service;
 
 import com.music.sale.application.user.dto.input.AgreeTermsInput;
+import com.music.sale.application.user.dto.input.CreateSocialUserInput;
 import com.music.sale.application.user.dto.input.UpdateUserInput;
 import com.music.sale.application.user.dto.output.UserOutput;
 import com.music.sale.application.user.exception.UserErrorCode;
@@ -10,7 +11,10 @@ import com.music.sale.application.user.port.outport.UserCommandPort;
 import com.music.sale.application.user.port.outport.UserQueryPort;
 import com.music.sale.common.BusinessException;
 import com.music.sale.domain.user.User;
+import com.music.sale.domain.user.UserSocial;
 import com.music.sale.domain.user.UserTerms;
+import com.music.sale.domain.user.enums.UserRole;
+import com.music.sale.domain.user.enums.UserStatus;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,6 +28,32 @@ public class UserCommandService implements UserCommandUseCase {
   private final UserCommandPort userCommandPort;
   private final UserQueryPort userQueryPort;
   private final UserMapper userMapper;
+
+  @Override
+  public User createSocialUser(CreateSocialUserInput input) {
+    User newUser =
+        User.builder()
+            .email(input.email())
+            .nickname(input.nickname())
+            .profileImageUrl(input.profileImageUrl())
+            .role(UserRole.USER)
+            .status(UserStatus.ACTIVE)
+            .isVerified(false)
+            .build();
+
+    User savedUser = userCommandPort.save(newUser);
+
+    UserSocial socialAccount =
+        UserSocial.builder()
+            .userId(savedUser.getId())
+            .provider(input.provider())
+            .providerId(input.providerId())
+            .build();
+
+    userCommandPort.saveSocialAccount(socialAccount);
+
+    return savedUser;
+  }
 
   @Override
   public UserOutput updateUser(Long userId, UpdateUserInput input, Long currentUserId) {

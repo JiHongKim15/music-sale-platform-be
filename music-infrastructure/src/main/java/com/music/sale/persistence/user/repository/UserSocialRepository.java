@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserSocialRepository extends JpaRepository<UserSocialEntity, Long> {
-  List<UserSocialEntity> findByUser_Id(Long userId);
+  List<UserSocialEntity> findByUserId(Long userId);
 
   Optional<UserSocialEntity> findByProviderAndProviderId(
       SocialProvider provider, String providerId);

@@ -1,6 +1,7 @@
 package com.music.sale.persistence.user.adapter;
 
 import com.music.sale.application.auth.port.out.RefreshTokenPort;
+import com.music.sale.infrastructure.security.jwt.JwtProperties;
 import com.music.sale.persistence.user.entity.RefreshTokenEntity;
 import com.music.sale.persistence.user.repository.RefreshTokenRepository;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class RefreshTokenPersistenceAdapter implements RefreshTokenPort {
 
   private final RefreshTokenRepository refreshTokenRepository;
+  private final JwtProperties jwtProperties;
 
   @Override
   public void saveRefreshToken(String refreshToken, Long userId, String ip, String deviceInfo) {
@@ -23,7 +25,7 @@ public class RefreshTokenPersistenceAdapter implements RefreshTokenPort {
             .userId(userId)
             .ip(ip)
             .deviceInfo(deviceInfo)
-            .expiresAt(System.currentTimeMillis() + 1209600000L) // 14일
+            .expiresAt(System.currentTimeMillis() + jwtProperties.getRefreshTokenValidity())
             .build();
 
     refreshTokenRepository.save(entity);
