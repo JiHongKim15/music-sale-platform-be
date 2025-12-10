@@ -39,9 +39,8 @@ public class AuthController {
 
   @Operation(summary = "로그아웃", description = "Refresh Token을 무효화합니다.")
   @PostMapping("/logout")
-  public ApiResponse<Void> logout(@RequestHeader("Authorization") String authHeader) {
-    String refreshToken = authHeader.replace("Bearer ", "");
-    authUseCase.logout(refreshToken);
+  public ApiResponse<Void> logout(@RequestBody RefreshTokenRequest request) {
+    authUseCase.logout(request.refreshToken());
     return ApiResponse.success();
   }
 }
