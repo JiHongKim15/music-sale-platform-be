@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -41,8 +42,8 @@ public class SecurityConfig {
         // CSRF 비활성화 (JWT 사용)
         .csrf(AbstractHttpConfigurer::disable)
 
-        // CORS 설정
-        .cors(cors -> cors.configure(http))
+        // CORS 설정 (CorsConfigurationSource 빈 자동 적용)
+        .cors(Customizer.withDefaults())
 
         // 세션 사용 안 함 (JWT 사용)
         .sessionManagement(
