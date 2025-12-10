@@ -8,6 +8,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -18,69 +20,68 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import java.io.IOException;
-import java.util.Map;
-
 @Slf4j
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private static final String AUTHORIZATION_HEADER = "Authorization";
-    private static final String BEARER_PREFIX = "Bearer ";
-    private final JwtTokenProvider jwtTokenProvider;
+  private static final String AUTHORIZATION_HEADER = "Authorization";
+  private static final String BEARER_PREFIX = "Bearer ";
+  private final JwtTokenProvider jwtTokenProvider;
 
-    @Override
-    protected void doFilterInternal(
-            @NotNull HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull FilterChain filterChain)
-            throws ServletException, IOException {
+  @Override
+  protected void doFilterInternal(
+      @NotNull HttpServletRequest request,
+      @NotNull HttpServletResponse response,
+      @NotNull FilterChain filterChain)
+      throws ServletException, IOException {
 
-        try {
-            String token = extractToken(request);
+    try {
+      String token = extractToken(request);
 
-            if (token != null) {
-                authenticateUser(token, request);
-            }
-        } catch (ExpiredJwtException e) {
-            log.warn("Expired JWT token");
-            request.setAttribute("exception", "EXPIRED_TOKEN");
-        } catch (JwtException e) {
-            log.warn("Invalid JWT token: {}", e.getMessage());
-            request.setAttribute("exception", "INVALID_TOKEN");
-        } catch (Exception e) {
-            log.error("Authentication error", e);
-        }
-
-        filterChain.doFilter(request, response);
+      if (token != null) {
+        authenticateUser(token, request);
+      }
+    } catch (ExpiredJwtException e) {
+      log.warn("Expired JWT token");
+      request.setAttribute("exception", "EXPIRED_TOKEN");
+    } catch (JwtException e) {
+      log.warn("Invalid JWT token: {}", e.getMessage());
+      request.setAttribute("exception", "INVALID_TOKEN");
+    } catch (Exception e) {
+      log.error("Authentication error", e);
     }
 
-    private String extractToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
+    filterChain.doFilter(request, response);
+  }
 
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX)) {
-            return bearerToken.substring(BEARER_PREFIX.length());
-        }
+  private String extractToken(HttpServletRequest request) {
+    String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
 
-        return null;
+    if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX)) {
+      return bearerToken.substring(BEARER_PREFIX.length());
     }
 
-    private void authenticateUser(String token, HttpServletRequest request) {
-        Map<String, Object> claims = jwtTokenProvider.validateToken(token);
+    return null;
+  }
 
-        Long userId = ((Number) claims.get("userId")).longValue();
-        String email = (String) claims.get("email");
-        String nickname = (String) claims.get("nickname");
-        String roleStr = (String) claims.get("role");
+  private void authenticateUser(String token, HttpServletRequest request) {
+    Map<String, Object> claims = jwtTokenProvider.validateToken(token);
 
-        UserRole role = UserRole.valueOf(roleStr);
+    Long userId = ((Number) claims.get("userId")).longValue();
+    String email = (String) claims.get("email");
+    String nickname = (String) claims.get("nickname");
+    String roleStr = (String) claims.get("role");
 
-        AuthenticatedUser user = AuthenticatedUser.of(userId, email, nickname, role);
+    UserRole role = UserRole.valueOf(roleStr);
 
-        UsernamePasswordAuthenticationToken authentication =
-                new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+    AuthenticatedUser user = AuthenticatedUser.of(userId, email, nickname, role);
 
-        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+    UsernamePasswordAuthenticationToken authentication =
+        new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-    }
+    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+    SecurityContextHolder.getContext().setAuthentication(authentication);
+  }
 }

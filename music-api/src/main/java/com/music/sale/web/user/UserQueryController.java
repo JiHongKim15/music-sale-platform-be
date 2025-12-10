@@ -8,10 +8,17 @@ import com.music.sale.web.user.mapper.UserWebMapper;
 import com.music.sale.web.user.response.GetUserResponse;
 import com.music.sale.web.user.response.GetUserSocialResponse;
 import com.music.sale.web.user.response.GetUserTermsResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "User", description = "사용자 정보 API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/users")
@@ -20,22 +27,36 @@ public class UserQueryController {
   private final UserQueryUseCase userQueryUseCase;
   private final UserWebMapper mapper;
 
+  @Operation(summary = "내 정보 조회", description = "현재 로그인한 사용자의 정보를 조회합니다.")
+  @ApiResponses({
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+        responseCode = "200",
+        description = "조회 성공"),
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+        responseCode = "401",
+        description = "인증 실패")
+  })
   @GetMapping("/me")
-  public ApiResponse<GetUserResponse> getCurrentUser(@CurrentUser AuthenticatedUser user) {
+  public ApiResponse<GetUserResponse> getCurrentUser(
+      @Parameter(hidden = true) @CurrentUser AuthenticatedUser user) {
     GetUserResponse response =
         mapper.toGetUserResponse(userQueryUseCase.getUserById(user.getUserId()));
     return ApiResponse.success(response);
   }
 
+  @Operation(summary = "내 소셜 연동 정보 조회", description = "현재 로그인한 사용자의 소셜 연동 정보를 조회합니다.")
   @GetMapping("/me/socials")
-  public ApiResponse<List<GetUserSocialResponse>> getMySocials(@CurrentUser AuthenticatedUser user) {
+  public ApiResponse<List<GetUserSocialResponse>> getMySocials(
+      @Parameter(hidden = true) @CurrentUser AuthenticatedUser user) {
     List<GetUserSocialResponse> response =
         mapper.toGetUserSocialResponses(userQueryUseCase.getSocialsByUserId(user.getUserId()));
     return ApiResponse.success(response);
   }
 
+  @Operation(summary = "내 약관 동의 정보 조회", description = "현재 로그인한 사용자의 약관 동의 정보를 조회합니다.")
   @GetMapping("/me/terms")
-  public ApiResponse<List<GetUserTermsResponse>> getMyTerms(@CurrentUser AuthenticatedUser user) {
+  public ApiResponse<List<GetUserTermsResponse>> getMyTerms(
+      @Parameter(hidden = true) @CurrentUser AuthenticatedUser user) {
     List<GetUserTermsResponse> response =
         mapper.toGetUserTermsResponses(userQueryUseCase.getTermsByUserId(user.getUserId()));
     return ApiResponse.success(response);

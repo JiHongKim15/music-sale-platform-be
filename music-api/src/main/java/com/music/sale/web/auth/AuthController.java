@@ -9,7 +9,7 @@ import com.music.sale.application.auth.port.in.RefreshTokenUseCase;
 import com.music.sale.common.ApiResponse;
 import com.music.sale.web.auth.mapper.AuthWebMapper;
 import com.music.sale.web.auth.request.RefreshTokenRequest;
-import com.music.sale.web.auth.response.TokenResponseDto;
+import com.music.sale.web.auth.response.TokenResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class AuthController {
   private final AuthWebMapper mapper;
 
   @PostMapping("/refresh")
-  public ApiResponse<TokenResponseDto> refreshToken(
+  public ApiResponse<TokenResponse> refreshToken(
       @RequestBody RefreshTokenRequest request, HttpServletRequest httpRequest) {
 
     String ip = getClientIP(httpRequest);
@@ -33,8 +33,7 @@ public class AuthController {
     RefreshTokenCommand command =
         mapper.toRefreshTokenCommand(request.refreshToken(), ip, deviceInfo);
 
-    TokenResponseDto response =
-        mapper.toTokenResponseDto(refreshTokenUseCase.refreshToken(command));
+    TokenResponse response = mapper.toTokenResponse(refreshTokenUseCase.refreshToken(command));
     return ApiResponse.success(response);
   }
 

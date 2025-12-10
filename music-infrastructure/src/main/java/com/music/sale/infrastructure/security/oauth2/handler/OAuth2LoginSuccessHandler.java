@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -27,9 +26,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
   private final SocialLoginUseCase socialLoginUseCase;
-
-  @Value("${oauth2.redirect-uri}")
-  private String redirectUri;
 
   @Override
   public void onAuthenticationSuccess(
@@ -53,7 +49,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
     TokenResponse tokenResponse = socialLoginUseCase.socialLogin(command, ip, deviceInfo);
 
     String targetUrl =
-        UriComponentsBuilder.fromUriString(redirectUri)
+        UriComponentsBuilder.fromUriString("/swagger-auth.html")
             .queryParam("accessToken", tokenResponse.accessToken())
             .queryParam("refreshToken", tokenResponse.refreshToken())
             .queryParam("tokenType", tokenResponse.tokenType())
