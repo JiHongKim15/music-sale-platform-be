@@ -48,10 +48,6 @@ spring:
 
   # Redis 설정 (환경변수로 Redis 사용 여부 결정)
   redis:
-    host: ${REDIS_HOST:localhost}
-    password: ${REDIS_PASSWORD:}
-    database: ${REDIS_DATABASE:0}
-    timeout: ${REDIS_TIMEOUT:2000ms}
     lettuce:
       pool:
         max-active: ${REDIS_MAX_ACTIVE:8}
@@ -71,29 +67,24 @@ spring:
   data:
     redis:
       port: ${REDIS_PORT:6379}
+      host: ${REDIS_HOST:localhost}
+      password: ${REDIS_PASSWORD:}
+      database: ${REDIS_DATABASE:0}
+      timeout: ${REDIS_TIMEOUT:2000ms}
+
+  # OAuth2 설정 - 환경변수가 설정된 경우에만 활성화됨
+  # GOOGLE_CLIENT_ID, KAKAO_CLIENT_ID 등이 설정되면 자동으로 OAuth2 로그인 활성화
+  # 설정 방법은 application-oauth2.yml 참고
 
 # JWT 설정
 jwt:
-  secret: ${JWT_SECRET:your-super-secret-jwt-key-here-make-it-long-and-secure}
-  expiration: ${JWT_EXPIRATION_MS:86400000}
+  secret: ${JWT_SECRET:your-super-secret-jwt-key-here-make-it-long-and-secure-at-least-256-bits}
+  access-token-validity: ${JWT_ACCESS_TOKEN_VALIDITY:3600000}  # 1시간 (milliseconds)
+  refresh-token-validity: ${JWT_REFRESH_TOKEN_VALIDITY:1209600000}  # 14일 (milliseconds)
 
-# OAuth2 설정
+# OAuth2 Redirect URI (프론트엔드)
 oauth2:
-  google:
-    client-id: ${GOOGLE_CLIENT_ID:}
-    client-secret: ${GOOGLE_CLIENT_SECRET:}
-  naver:
-    client-id: ${NAVER_CLIENT_ID:}
-    client-secret: ${NAVER_CLIENT_SECRET:}
-    auth-uri: ${NAVER_AUTH_URI:https://nid.naver.com/oauth2.0/authorize}
-    token-uri: ${NAVER_TOKEN_URI:https://nid.naver.com/oauth2.0/token}
-    user-info-uri: ${NAVER_USER_INFO_URI:https://openapi.naver.com/v1/nid/me}
-  kakao:
-    client-id: ${KAKAO_CLIENT_ID:}
-    client-secret: ${KAKAO_CLIENT_SECRET:}
-    auth-uri: ${KAKAO_AUTH_URI:https://kauth.kakao.com/oauth/authorize}
-    token-uri: ${KAKAO_TOKEN_URI:https://kauth.kakao.com/oauth/token}
-    user-info-uri: ${KAKAO_USER_INFO_URI:https://kapi.kakao.com/v2/user/me}
+  redirect-uri: ${OAUTH2_FRONTEND_REDIRECT_URI:http://localhost:3000/oauth2/redirect}
 
 # 로깅 설정
 logging:
@@ -118,6 +109,7 @@ springdoc:
     doc-expansion: ${SWAGGER_DOC_EXPANSION:none}
     disable-swagger-default-url: true
     use-root-path: true
+    persist-authorization: true  # 인증 정보 localStorage에 저장
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
 
@@ -134,10 +126,10 @@ management:
       show-components: ${ACTUATOR_HEALTH_SHOW_COMPONENTS:always}
     metrics:
       enabled: ${ACTUATOR_METRICS_ENABLED:true}
-  metrics:
-    export:
-      prometheus:
-        enabled: ${ACTUATOR_PROMETHEUS_ENABLED:false}
   health:
     redis:
       enabled: ${REDIS_HEALTH_CHECK_ENABLED:false}  # local: false, prod: true
+  prometheus:
+    metrics:
+      export:
+        enabled: ${ACTUATOR_PROMETHEUS_ENABLED:false}

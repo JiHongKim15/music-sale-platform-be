@@ -113,7 +113,7 @@ pip-delete-this-directory.txt
 # JetBrains IDEs
 .idea/
 *.iml
-out/
+/out/
 gen/
 
 # Maven (in case someone wants to use Maven instead)
@@ -134,3 +134,4 @@ application.log*
 # Test results
 test-results/
 .scannerwork/ 
+gradlew-local.bat

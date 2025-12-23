@@ -5,5 +5,5 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserTermsRepository extends JpaRepository<UserTermsEntity, Long> {
-  List<UserTermsEntity> findByUser_Id(Long userId);
+  List<UserTermsEntity> findByUserId(Long userId);
 }

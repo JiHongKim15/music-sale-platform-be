@@ -2,6 +2,7 @@ package com.music.sale.domain.user;
 
 import com.music.sale.domain.user.enums.UserRole;
 import com.music.sale.domain.user.enums.UserStatus;
+import com.music.sale.domain.user.exception.UserNotActiveException;
 import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,5 +30,15 @@ public class User {
 
   public void withdraw() {
     this.status = UserStatus.WITHDRAWAL;
+  }
+
+  public boolean isActive() {
+    return this.status == UserStatus.ACTIVE;
+  }
+
+  public void validateActive() {
+    if (!isActive()) {
+      throw new UserNotActiveException();
+    }
   }
 }

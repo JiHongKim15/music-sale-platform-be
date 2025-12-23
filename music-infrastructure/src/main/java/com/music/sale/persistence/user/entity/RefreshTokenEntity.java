@@ -1,18 +1,24 @@
 package com.music.sale.persistence.user.entity;
 
-import jakarta.persistence.Id;
-import lombok.Getter;
+import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.index.Indexed;
 
 @Getter
-@RedisHash(value = "refreshToken", timeToLive = 1209600)
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@RedisHash(value = "refreshToken", timeToLive = 1209600) // 14일
 public class RefreshTokenEntity {
 
   @Id private String refreshToken;
 
-  private Long userId;
+  @Indexed private Long userId;
 
   private String ip;
 
   private String deviceInfo;
+
+  private Long expiresAt;
 }

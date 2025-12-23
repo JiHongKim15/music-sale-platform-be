@@ -29,6 +29,11 @@ public class ProductQueryService implements ProductQueryUseCase {
   }
 
   @Override
+  public Page<ProductOutput> getAll(Pageable pageable) {
+    return queryPort.findAll(pageable).map(mapper::toOutput);
+  }
+
+  @Override
   public Page<ProductOutput> getBySellerId(Long sellerId, Pageable pageable) {
     return queryPort.findBySellerId(sellerId, pageable).map(mapper::toOutput);
   }

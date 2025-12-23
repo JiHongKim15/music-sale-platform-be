@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 public interface ProductQueryUseCase {
   ProductOutput getByProductId(Long productId);
 
+  Page<ProductOutput> getAll(Pageable pageable);
+
   Page<ProductOutput> getBySellerId(Long sellerId, Pageable pageable);
 
   Page<ProductOutput> getByStoreId(Long storeId, Pageable pageable);

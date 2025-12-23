@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>OAuth2 인증 완료</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+            Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f7f9;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .success-icon {
+            color: #28a745;
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .token-section {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .token-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .token-box {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 12px;
+            word-break: break-all;
+            max-height: 100px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .copy-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .copy-btn.copied {
+            background-color: #28a745;
+        }
+
+        .steps {
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .steps h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .step-number {
+            background-color: #007bff;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .swagger-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.2s;
+        }
+
+        .swagger-btn:hover {
+            background-color: #1e7e34;
+        }
+
+        .error {
+            color: #dc3545;
+        }
+
+        .error-container {
+            display: none;
+        }
+
+        code {
+            background-color: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="success-container">
+    <div class="success-icon">✓</div>
+    <h1>OAuth2 로그인 성공!</h1>
+    <p class="subtitle">JWT 토큰이 발급되었습니다. 아래 토큰을 Swagger UI에서 사용하세요.</p>
+
+    <div class="token-section">
+        <div class="token-label">Access Token</div>
+        <div class="token-box" id="token-display"></div>
+        <button class="copy-btn" id="copy-btn" onclick="copyToken()">토큰 복사</button>
+    </div>
+
+    <div class="steps">
+        <h3>Swagger UI 인증 방법</h3>
+        <div class="step">
+            <span class="step-number">1</span>
+            <span>위의 <strong>토큰 복사</strong> 버튼을 클릭하세요</span>
+        </div>
+        <div class="step">
+            <span class="step-number">2</span>
+            <span>Swagger UI에서 <strong>Authorize</strong> 버튼 (자물쇠 아이콘) 클릭</span>
+        </div>
+        <div class="step">
+            <span class="step-number">3</span>
+            <span><code>bearerAuth</code> 입력창에 토큰 붙여넣기</span>
+        </div>
+        <div class="step">
+            <span class="step-number">4</span>
+            <span><strong>Authorize</strong> 버튼 클릭 후 <strong>Close</strong></span>
+        </div>
+    </div>
+
+    <a class="swagger-btn" href="/swagger-ui/index.html">Swagger UI 열기</a>
+</div>
+
+<div class="container error-container" id="error-container">
+    <h1 class="error">인증 실패</h1>
+    <p id="error-message"></p>
+    <a class="swagger-btn" href="/oauth2/authorization/google" style="background-color: #007bff;">다시 로그인</a>
+</div>
+
+<script>
+    let accessToken = '';
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const params = new URLSearchParams(window.location.search);
+        accessToken = params.get('accessToken');
+
+        const successContainer = document.getElementById('success-container');
+        const errorContainer = document.getElementById('error-container');
+        const tokenDisplay = document.getElementById('token-display');
+        const errorMessage = document.getElementById('error-message');
+
+        if (!accessToken) {
+            successContainer.style.display = 'none';
+            errorContainer.style.display = 'block';
+            errorMessage.textContent = 'URL에서 accessToken을 찾을 수 없습니다.';
+            return;
+        }
+
+        tokenDisplay.textContent = accessToken;
+    });
+
+    function copyToken() {
+        if (!accessToken) return;
+
+        const copyBtn = document.getElementById('copy-btn');
+
+        navigator.clipboard.writeText(accessToken).then(function () {
+            copyBtn.textContent = '복사됨!';
+            copyBtn.classList.add('copied');
+
+            setTimeout(function () {
+                copyBtn.textContent = '토큰 복사';
+                copyBtn.classList.remove('copied');
+            }, 2000);
+        }).catch(function (err) {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = accessToken;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            copyBtn.textContent = '복사됨!';
+            copyBtn.classList.add('copied');
+
+            setTimeout(function () {
+                copyBtn.textContent = '토큰 복사';
+                copyBtn.classList.remove('copied');
+            }, 2000);
+        });
+    }
+</script>
+
+</body>
+</html>
