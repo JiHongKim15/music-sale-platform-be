@@ -307,25 +307,36 @@ REDIS_MAX_WAIT=-1ms
 
 **OAuth2 설정 (소셜 로그인)**
 
+OAuth2 로그인 기능을 사용하려면 먼저 각 플랫폼에서 Client ID/Secret을 발급받아야 합니다.
+
 ```bash
+# .env.local 파일에 설정 (프로파일: local,oauth2)
+SPRING_PROFILES_ACTIVE=local,oauth2
+
 # Google OAuth2
+# 발급: https://console.cloud.google.com/
+# Redirect URI: http://localhost:8080/login/oauth2/code/google
 GOOGLE_CLIENT_ID=your-google-client-id
 GOOGLE_CLIENT_SECRET=your-google-client-secret
 
-# Naver OAuth2
-NAVER_CLIENT_ID=your-naver-client-id
-NAVER_CLIENT_SECRET=your-naver-client-secret
-NAVER_AUTH_URI=https://nid.naver.com/oauth2.0/authorize
-NAVER_TOKEN_URI=https://nid.naver.com/oauth2.0/token
-NAVER_USER_INFO_URI=https://openapi.naver.com/v1/nid/me
-
 # Kakao OAuth2
+# 발급: https://developers.kakao.com/
+# Redirect URI: http://localhost:8080/login/oauth2/code/kakao
 KAKAO_CLIENT_ID=your-kakao-client-id
 KAKAO_CLIENT_SECRET=your-kakao-client-secret
-KAKAO_AUTH_URI=https://kauth.kakao.com/oauth/authorize
-KAKAO_TOKEN_URI=https://kauth.kakao.com/oauth/token
-KAKAO_USER_INFO_URI=https://kapi.kakao.com/v2/user/me
+
+# Naver OAuth2
+# 발급: https://developers.naver.com/
+# Redirect URI: http://localhost:8080/login/oauth2/code/naver
+NAVER_CLIENT_ID=your-naver-client-id
+NAVER_CLIENT_SECRET=your-naver-client-secret
+
+# OAuth2 Frontend Redirect (로그인 성공 후 리다이렉트될 프론트엔드 URL)
+OAUTH2_FRONTEND_REDIRECT_URI=http://localhost:3000/oauth2/redirect
 ```
+
+> **중요**: OAuth2를 사용하려면 `.env.local` 파일에 `SPRING_PROFILES_ACTIVE=local,oauth2`를 설정해야 합니다.
+> 환경변수가 없으면 OAuth2 엔드포인트(`/oauth2/authorization/google` 등)가 생성되지 않습니다.
 
 #### 3. 환경별 설정 가이드
 

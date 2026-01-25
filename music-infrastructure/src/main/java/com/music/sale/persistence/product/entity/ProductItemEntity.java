@@ -44,7 +44,7 @@ public class ProductItemEntity extends BaseEntity {
   private Long price;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "condition", nullable = false, columnDefinition = "enum('NEW','USED')")
+  @Column(name = "`condition`", nullable = false, columnDefinition = "enum('NEW','USED')")
   private ProductCondition condition;
 
   @Enumerated(EnumType.STRING)

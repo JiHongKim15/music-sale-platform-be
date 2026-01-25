@@ -29,7 +29,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: ${JPA_DDL_AUTO:create-drop}  # local: create-drop, dev: update, prod: validate
-    show-sql: ${JPA_SHOW_SQL:true}  # local: true, dev/prod: false
+    show-sql: false  # Logger 사용 (logging.level.org.hibernate.SQL로 제어)
     properties:
       hibernate:
         format_sql: ${JPA_FORMAT_SQL:true}  # local: true, dev/prod: false

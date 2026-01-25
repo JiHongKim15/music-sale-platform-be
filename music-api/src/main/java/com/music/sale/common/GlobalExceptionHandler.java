@@ -55,9 +55,16 @@ public class GlobalExceptionHandler {
     return new ResponseEntity<>(ApiResponse.error(message), status);
   }
 
+  @ExceptionHandler(IllegalArgumentException.class)
+  public ResponseEntity<ApiResponse<Void>> handleIllegalArgumentException(
+      IllegalArgumentException ex) {
+    return new ResponseEntity<>(ApiResponse.error(ex.getMessage()), HttpStatus.BAD_REQUEST);
+  }
+
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ApiResponse<Void>> handleAllExceptions(Exception ex) {
     return new ResponseEntity<>(
-        ApiResponse.error("서버 오류가 발생했습니다: " + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        ApiResponse.error("서버 오류가 발생했습니다: " + ex.getMessage()),
+        HttpStatus.INTERNAL_SERVER_ERROR);
   }
 }

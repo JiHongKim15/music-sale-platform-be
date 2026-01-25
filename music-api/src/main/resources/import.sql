@@ -1,0 +1,16 @@
+-- 테스트 사용자 데이터
+INSERT INTO users (user_id, nickname, email, role, status, is_verified, created_at, created_by, updated_at, updated_by) VALUES (1, 'admin', 'admin@musicsale.com', 'ADMIN', 'ACTIVE', true, NOW(), 'system', NOW(), 'system');
+INSERT INTO users (user_id, nickname, email, role, status, is_verified, created_at, created_by, updated_at, updated_by) VALUES (2, 'seller1', 'seller1@musicsale.com', 'USER', 'ACTIVE', true, NOW(), 'system', NOW(), 'system');
+INSERT INTO users (user_id, nickname, email, role, status, is_verified, created_at, created_by, updated_at, updated_by) VALUES (3, 'user1', 'user1@musicsale.com', 'USER', 'ACTIVE', true, NOW(), 'system', NOW(), 'system');
+
+-- 테스트 상품 데이터 (catalog_id, store_id는 참조만 하는 값)
+INSERT INTO product_item (id, catalog_id, seller_id, store_id, name, brand, price, `condition`, condition_grade, stock_quantity, status, view_count, created_at, created_by, updated_at, updated_by) VALUES (1, 1, 2, 1, 'Fender Stratocaster (중고)', 'Fender', 1200000, 'USED', 'A', 1, 'AVAILABLE', 0, NOW(), 'system', NOW(), 'system');
+INSERT INTO product_item (id, catalog_id, seller_id, store_id, name, brand, price, `condition`, condition_grade, stock_quantity, status, view_count, created_at, created_by, updated_at, updated_by) VALUES (2, 2, 2, 1, 'Gibson Les Paul (신품)', 'Gibson', 2500000, 'NEW', 'S', 2, 'AVAILABLE', 0, NOW(), 'system', NOW(), 'system');
+INSERT INTO product_item (id, catalog_id, seller_id, store_id, name, brand, price, `condition`, condition_grade, stock_quantity, status, view_count, created_at, created_by, updated_at, updated_by) VALUES (3, 3, 2, 1, 'Martin D-28 (중고)', 'Martin', 1800000, 'USED', 'B', 1, 'AVAILABLE', 0, NOW(), 'system', NOW(), 'system');
+INSERT INTO product_item (id, catalog_id, seller_id, store_id, name, brand, price, `condition`, condition_grade, stock_quantity, status, view_count, created_at, created_by, updated_at, updated_by) VALUES (4, 4, 2, 1, 'Yamaha P-125 (신품)', 'Yamaha', 800000, 'NEW', 'S', 2, 'AVAILABLE', 0, NOW(), 'system', NOW(), 'system');
+
+-- 테스트 상품 이미지 데이터
+INSERT INTO product_image (id, product_item_id, url, is_thumbnail, image_order, file_size, file_name, file_type, created_at, created_by, updated_at, updated_by) VALUES (1, 1, 'https://example.com/images/fender-strat-1.jpg', true, 1, 102400, 'fender-strat-1.jpg', 'image/jpeg', NOW(), 'system', NOW(), 'system');
+INSERT INTO product_image (id, product_item_id, url, is_thumbnail, image_order, file_size, file_name, file_type, created_at, created_by, updated_at, updated_by) VALUES (2, 2, 'https://example.com/images/gibson-lp-1.jpg', true, 1, 153600, 'gibson-lp-1.jpg', 'image/jpeg', NOW(), 'system', NOW(), 'system');
+INSERT INTO product_image (id, product_item_id, url, is_thumbnail, image_order, file_size, file_name, file_type, created_at, created_by, updated_at, updated_by) VALUES (3, 3, 'https://example.com/images/martin-d28-1.jpg', true, 1, 128000, 'martin-d28-1.jpg', 'image/jpeg', NOW(), 'system', NOW(), 'system');
+INSERT INTO product_image (id, product_item_id, url, is_thumbnail, image_order, file_size, file_name, file_type, created_at, created_by, updated_at, updated_by) VALUES (4, 4, 'https://example.com/images/yamaha-p125-1.jpg', true, 1, 115200, 'yamaha-p125-1.jpg', 'image/jpeg', NOW(), 'system', NOW(), 'system');

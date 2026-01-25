@@ -128,31 +128,33 @@ FROM category WHERE name = '디지털 피아노';
 -- ========================================
 
 -- 기타 상품
-INSERT INTO product_item (catalog_id, seller_id, store_id, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by) 
-SELECT pc.id, u.id, s.id, 1200000, 'USED', 'A', 1, 'SELLING', NOW(), 'system', NOW(), 'system' 
+-- product_item 테이블에 실제 상품 데이터 삽입
+-- created_by와 updated_by는 users 테이블의 id를 참조해야 함
+INSERT INTO product_item (catalog_id, seller_id, store_id, name, brand, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by)
+SELECT pc.id, u.id, s.id, 'Fender Stratocaster (중고)', 'Fender', 1200000, 'USED', 'A', 1, 'AVAILABLE', NOW(), u.id, NOW(), u.id
 FROM product_catalog pc, store s, users u WHERE pc.name = 'Fender Stratocaster' AND s.name = '음악의 정원' AND u.email = 'seller1@musicsale.com';
 
-INSERT INTO product_item (catalog_id, seller_id, store_id, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by) 
-SELECT pc.id, u.id, s.id, 2500000, 'NEW', 'S', 2, 'SELLING', NOW(), 'system', NOW(), 'system' 
+INSERT INTO product_item (catalog_id, seller_id, store_id, name, brand, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by)
+SELECT pc.id, u.id, s.id, 'Gibson Les Paul (신품)', 'Gibson', 2500000, 'NEW', 'S', 2, 'AVAILABLE', NOW(), u.id, NOW(), u.id
 FROM product_catalog pc, store s, users u WHERE pc.name = 'Gibson Les Paul' AND s.name = '음악의 정원' AND u.email = 'seller1@musicsale.com';
 
-INSERT INTO product_item (catalog_id, seller_id, store_id, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by) 
-SELECT pc.id, u.id, s.id, 1800000, 'USED', 'B', 1, 'SELLING', NOW(), 'system', NOW(), 'system' 
+INSERT INTO product_item (catalog_id, seller_id, store_id, name, brand, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by)
+SELECT pc.id, u.id, s.id, 'Martin D-28 (중고)', 'Martin', 1800000, 'USED', 'B', 1, 'AVAILABLE', NOW(), u.id, NOW(), u.id
 FROM product_catalog pc, store s, users u WHERE pc.name = 'Martin D-28' AND s.name = '음악의 정원' AND u.email = 'seller1@musicsale.com';
 
 -- 베이스 상품
-INSERT INTO product_item (catalog_id, seller_id, store_id, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by) 
-SELECT pc.id, u.id, s.id, 800000, 'USED', 'A', 1, 'SELLING', NOW(), 'system', NOW(), 'system' 
+INSERT INTO product_item (catalog_id, seller_id, store_id, name, brand, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by)
+SELECT pc.id, u.id, s.id, 'Fender Precision Bass (중고)', 'Fender', 800000, 'USED', 'A', 1, 'AVAILABLE', NOW(), u.id, NOW(), u.id
 FROM product_catalog pc, store s, users u WHERE pc.name = 'Fender Precision Bass' AND s.name = '음악의 정원' AND u.email = 'seller1@musicsale.com';
 
 -- 드럼 상품
-INSERT INTO product_item (catalog_id, seller_id, store_id, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by) 
-SELECT pc.id, u.id, s.id, 1200000, 'USED', 'B', 1, 'SELLING', NOW(), 'system', NOW(), 'system' 
+INSERT INTO product_item (catalog_id, seller_id, store_id, name, brand, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by)
+SELECT pc.id, u.id, s.id, 'Pearl Export (중고)', 'Pearl', 1200000, 'USED', 'B', 1, 'AVAILABLE', NOW(), u.id, NOW(), u.id
 FROM product_catalog pc, store s, users u WHERE pc.name = 'Pearl Export' AND s.name = '음악의 정원' AND u.email = 'seller1@musicsale.com';
 
 -- 키보드 상품
-INSERT INTO product_item (catalog_id, seller_id, store_id, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by) 
-SELECT pc.id, u.id, s.id, 800000, 'NEW', 'S', 2, 'SELLING', NOW(), 'system', NOW(), 'system' 
+INSERT INTO product_item (catalog_id, seller_id, store_id, name, brand, price, `condition`, condition_grade, stock_quantity, status, created_at, created_by, updated_at, updated_by)
+SELECT pc.id, u.id, s.id, 'Yamaha P-125 (신품)', 'Yamaha', 800000, 'NEW', 'S', 2, 'AVAILABLE', NOW(), u.id, NOW(), u.id
 FROM product_catalog pc, store s, users u WHERE pc.name = 'Yamaha P-125' AND s.name = '음악의 정원' AND u.email = 'seller1@musicsale.com';
 
 -- ========================================

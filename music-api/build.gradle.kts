@@ -72,6 +72,31 @@ tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
     mainClass.set("com.music.sale.MusicSaleApplicationKt")
 }
 
+// .env 파일 로드 함수
+fun loadEnvFile(): Map<String, String> {
+    val envFile = file("../.env")
+    val envLocalFile = file("../.env.local")
+    val targetFile = when {
+        envLocalFile.exists() -> envLocalFile
+        envFile.exists() -> envFile
+        else -> return emptyMap()
+    }
+
+    return targetFile.readLines()
+        .filter { it.isNotBlank() && !it.trim().startsWith("#") }
+        .mapNotNull { line ->
+            val parts = line.split("=", limit = 2)
+            if (parts.size == 2) parts[0].trim() to parts[1].trim() else null
+        }
+        .toMap()
+}
+
+// bootRun 태스크에 환경 변수 설정
+tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
+    val envVars = loadEnvFile()
+    environment(envVars)
+}
+
 // 환경별 실행 태스크
 tasks.register("local") {
     group = "application"
