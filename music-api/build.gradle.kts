@@ -76,11 +76,12 @@ tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
 fun loadEnvFile(): Map<String, String> {
     val envFile = file("../.env")
     val envLocalFile = file("../.env.local")
-    val targetFile = when {
-        envLocalFile.exists() -> envLocalFile
-        envFile.exists() -> envFile
-        else -> return emptyMap()
-    }
+    val targetFile =
+        when {
+            envLocalFile.exists() -> envLocalFile
+            envFile.exists() -> envFile
+            else -> return emptyMap()
+        }
 
     return targetFile.readLines()
         .filter { it.isNotBlank() && !it.trim().startsWith("#") }

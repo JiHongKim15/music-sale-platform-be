@@ -64,7 +64,6 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ApiResponse<Void>> handleAllExceptions(Exception ex) {
     return new ResponseEntity<>(
-        ApiResponse.error("서버 오류가 발생했습니다: " + ex.getMessage()),
-        HttpStatus.INTERNAL_SERVER_ERROR);
+        ApiResponse.error("서버 오류가 발생했습니다: " + ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
   }
 }

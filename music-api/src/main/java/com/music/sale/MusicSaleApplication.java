@@ -21,9 +21,7 @@ public class MusicSaleApplication {
   }
 
   /**
-   * 로컬 개발 환경에서 .env 파일을 로드합니다.
-   * 우선순위: .env.local > .env
-   * 서버 환경에서는 실제 환경 변수를 사용하므로 파일이 없어도 정상 동작합니다.
+   * 로컬 개발 환경에서 .env 파일을 로드합니다. 우선순위: .env.local > .env 서버 환경에서는 실제 환경 변수를 사용하므로 파일이 없어도 정상 동작합니다.
    */
   private static void loadDotenvIfExists() {
     String projectRoot = findProjectRoot();
@@ -32,11 +30,7 @@ public class MusicSaleApplication {
       File envFile = new File(projectRoot, filename);
       if (envFile.exists()) {
         try {
-          Dotenv.configure()
-              .directory(projectRoot)
-              .filename(filename)
-              .systemProperties()
-              .load();
+          Dotenv.configure().directory(projectRoot).filename(filename).systemProperties().load();
           System.out.println("[ENV] Loaded: " + projectRoot + "/" + filename);
           printLoadedEnvInfo();
           return;
