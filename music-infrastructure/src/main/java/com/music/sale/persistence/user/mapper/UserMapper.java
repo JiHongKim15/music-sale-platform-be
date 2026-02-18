@@ -14,19 +14,18 @@ public class UserMapper {
       return null;
     }
 
-    return User.builder()
-        .id(entity.getId())
-        .nickname(entity.getNickname())
-        .profileImageUrl(entity.getProfileImageUrl())
-        .email(entity.getEmail())
-        .role(convertRole(entity.getRole()))
-        .status(convertStatus(entity.getStatus()))
-        .ci(entity.getCi())
-        .realName(entity.getRealName())
-        .phoneNumber(entity.getPhoneNumber())
-        .birthDate(entity.getBirthDate())
-        .isVerified(entity.isVerified())
-        .build();
+    return new User(
+        entity.getId(),
+        entity.getNickname(),
+        entity.getProfileImageUrl(),
+        entity.getEmail(),
+        convertRole(entity.getRole()),
+        convertStatus(entity.getStatus()),
+        entity.getCi(),
+        entity.getRealName(),
+        entity.getPhoneNumber(),
+        entity.getBirthDate(),
+        entity.isVerified());
   }
 
   public UserEntity toEntity(User domain) {

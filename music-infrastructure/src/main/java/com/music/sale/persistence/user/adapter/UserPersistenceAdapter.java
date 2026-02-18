@@ -16,6 +16,7 @@ import com.music.sale.persistence.user.repository.UserTermsRepository;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -28,7 +29,7 @@ public class UserPersistenceAdapter implements UserQueryPort, UserCommandPort {
   private final UserPersistenceMapper mapper;
 
   @Override
-  public Optional<User> findById(Long userId) {
+  public Optional<User> findById(long userId) {
     return userRepository.findById(userId).map(mapper::toDomain);
   }
 
@@ -44,13 +45,18 @@ public class UserPersistenceAdapter implements UserQueryPort, UserCommandPort {
   }
 
   @Override
-  public List<UserSocial> findSocialsByUserId(Long userId) {
+  public List<UserSocial> findSocialsByUserId(long userId) {
     return userSocialRepository.findByUserId(userId).stream().map(mapper::toDomain).toList();
   }
 
   @Override
-  public List<UserTerms> findTermsByUserId(Long userId) {
+  public List<UserTerms> findTermsByUserId(long userId) {
     return userTermsRepository.findByUserId(userId).stream().map(mapper::toDomain).toList();
+  }
+
+  @Override
+  public Optional<User> findByCi(String ci) {
+    return userRepository.findByCi(ci).map(mapper::toDomain);
   }
 
   @Override
@@ -60,17 +66,37 @@ public class UserPersistenceAdapter implements UserQueryPort, UserCommandPort {
     return mapper.toDomain(savedEntity);
   }
 
+  @NotNull
   @Override
-  public UserSocial saveSocialAccount(UserSocial userSocial) {
+  public UserSocial saveSocialAccount(@NotNull UserSocial userSocial) {
     UserSocialEntity entity = mapper.toEntity(userSocial);
     UserSocialEntity savedEntity = userSocialRepository.save(entity);
     return mapper.toDomain(savedEntity);
   }
 
+  @NotNull
   @Override
-  public UserTerms saveTerms(UserTerms userTerms) {
+  public UserTerms saveTerms(@NotNull UserTerms userTerms) {
     UserTermsEntity entity = mapper.toEntity(userTerms);
     UserTermsEntity savedEntity = userTermsRepository.save(entity);
     return mapper.toDomain(savedEntity);
+  }
+
+  @Override
+  public void updateSocialAccountUserId(long fromUserId, long toUserId) {
+    UserEntity fromUser =
+        userRepository
+            .findById(fromUserId)
+            .orElseThrow(() -> new IllegalArgumentException("User not found: " + fromUserId));
+    UserEntity toUser =
+        userRepository
+            .findById(toUserId)
+            .orElseThrow(() -> new IllegalArgumentException("User not found: " + toUserId));
+    userSocialRepository.updateUserForSocials(fromUser, toUser);
+  }
+
+  @Override
+  public void deleteUser(long userId) {
+    userRepository.deleteById(userId);
   }
 }

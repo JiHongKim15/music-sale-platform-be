@@ -41,21 +41,18 @@ public class UserPersistenceMapper {
     if (entity == null) {
       return null;
     }
-    return User.builder()
-        .id(entity.getId())
-        .nickname(entity.getNickname())
-        .profileImageUrl(entity.getProfileImageUrl())
-        .email(entity.getEmail())
-        .role(UserRole.valueOf(entity.getRole().name()))
-        .status(UserStatus.valueOf(entity.getStatus().name()))
-        .ci(entity.getCi())
-        .realName(entity.getRealName())
-        .phoneNumber(entity.getPhoneNumber())
-        .birthDate(entity.getBirthDate())
-        .isVerified(entity.isVerified())
-        .createdAt(entity.getCreatedAt())
-        .updatedAt(entity.getUpdatedAt())
-        .build();
+    return new User(
+        entity.getId(),
+        entity.getNickname(),
+        entity.getProfileImageUrl(),
+        entity.getEmail(),
+        UserRole.valueOf(entity.getRole().name()),
+        UserStatus.valueOf(entity.getStatus().name()),
+        entity.getCi(),
+        entity.getRealName(),
+        entity.getPhoneNumber(),
+        entity.getBirthDate(),
+        entity.isVerified());
   }
 
   public UserTermsEntity toEntity(UserTerms domain) {
@@ -75,7 +72,7 @@ public class UserPersistenceMapper {
         .user(userEntity)
         .title(domain.getTitle())
         .version(domain.getVersion())
-        .isAgreed(domain.getIsAgreed())
+        .isAgreed(domain.isAgreed())
         .build();
   }
 
@@ -83,15 +80,12 @@ public class UserPersistenceMapper {
     if (entity == null) {
       return null;
     }
-    return UserTerms.builder()
-        .id(entity.getId())
-        .userId(entity.getUser().getId())
-        .title(entity.getTitle())
-        .version(entity.getVersion())
-        .isAgreed(entity.getIsAgreed())
-        .createdAt(entity.getCreatedAt())
-        .updatedAt(entity.getUpdatedAt())
-        .build();
+    return new UserTerms(
+        entity.getId(),
+        entity.getUser().getId(),
+        entity.getTitle(),
+        entity.getVersion(),
+        entity.getIsAgreed());
   }
 
   public UserSocialEntity toEntity(UserSocial domain) {
@@ -120,14 +114,10 @@ public class UserPersistenceMapper {
     if (entity == null) {
       return null;
     }
-    return UserSocial.builder()
-        .id(entity.getId())
-        .userId(entity.getUser().getId())
-        .provider(
-            com.music.sale.domain.user.enums.SocialProvider.valueOf(entity.getProvider().name()))
-        .providerId(entity.getProviderId())
-        .createdAt(entity.getCreatedAt())
-        .updatedAt(entity.getUpdatedAt())
-        .build();
+    return new UserSocial(
+        entity.getId(),
+        entity.getUser().getId(),
+        com.music.sale.domain.user.enums.SocialProvider.valueOf(entity.getProvider().name()),
+        entity.getProviderId());
   }
 }

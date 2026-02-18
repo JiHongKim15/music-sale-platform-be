@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "2.1.0"
     id("com.diffplug.spotless") version "6.25.0"
     id("io.spring.dependency-management") version "1.1.7"
+    kotlin("plugin.spring") version "2.1.0"
 }
 
 group = "com.music.sale"
@@ -73,4 +74,7 @@ spotless {
         trimTrailingWhitespace()
         endWithNewline()
     }
+}
+dependencies {
+    implementation(kotlin("stdlib"))
 }

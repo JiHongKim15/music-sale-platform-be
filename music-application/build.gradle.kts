@@ -1,7 +1,8 @@
 plugins {
     id("org.springframework.boot") version "3.3.1"
     id("io.spring.dependency-management")
-    kotlin("plugin.allopen") version "1.9.25"
+    kotlin("plugin.allopen")
+    kotlin("plugin.spring")
 }
 
 tasks.getByName("bootJar") {
@@ -58,3 +59,6 @@ kotlin {
 }
 
 sourceSets["main"].java.srcDirs("src/main/kotlin", "src/main/java")
+repositories {
+    mavenCentral()
+}

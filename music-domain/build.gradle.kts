@@ -1,7 +1,7 @@
 plugins {
     id("org.springframework.boot") version "3.3.1"
     id("io.spring.dependency-management")
-    kotlin("plugin.allopen") version "1.9.25"
+    kotlin("plugin.allopen")
 }
 
 tasks.getByName("bootJar") {
