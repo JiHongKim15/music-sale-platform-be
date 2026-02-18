@@ -1,19 +1,24 @@
 package com.music.sale.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.music.sale.common.ApiResponse;
 import com.music.sale.infrastructure.security.jwt.JwtAuthenticationFilter;
 import com.music.sale.infrastructure.security.oauth2.OAuth2UserLoader;
 import com.music.sale.infrastructure.security.oauth2.handler.OAuth2LoginFailureHandler;
 import com.music.sale.infrastructure.security.oauth2.handler.OAuth2LoginSuccessHandler;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -48,6 +53,10 @@ public class SecurityConfig {
         // 세션 사용 안 함 (JWT 사용)
         .sessionManagement(
             session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+        // 인증 실패 시 JSON 응답 반환 (로그인 페이지 리다이렉트 방지)
+        .exceptionHandling(
+            exceptions -> exceptions.authenticationEntryPoint(restAuthenticationEntryPoint()))
 
         // 요청 권한 설정
         .authorizeHttpRequests(
@@ -89,5 +98,17 @@ public class SecurityConfig {
     }
 
     return http.build();
+  }
+
+  @Bean
+  public AuthenticationEntryPoint restAuthenticationEntryPoint() {
+    return (request, response, authException) -> {
+      response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+      response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+      response.setCharacterEncoding("UTF-8");
+
+      ObjectMapper objectMapper = new ObjectMapper();
+      objectMapper.writeValue(response.getOutputStream(), ApiResponse.error("인증이 필요합니다."));
+    };
   }
 }
