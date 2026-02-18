@@ -172,195 +172,67 @@ music-infrastructure/
 ### 1. 환경변수 설정
 
 ```bash
-# .env.example을 .env로 복사
-cp .env.example .env
-
-# .env 파일에서 필요한 설정 수정
-# 특히 DB_PASSWORD를 실제 MySQL 비밀번호로 변경
+# .env.example을 .env.local로 복사
+cp .env.example .env.local
 ```
 
-### 2. 데이터베이스 시작
+`.env.local` 파일 수정 (필요한 부분만):
 
 ```bash
+# H2 사용 시 (Docker 불필요) - 기본값
+DB_URL=jdbc:h2:mem:testdb
+DB_DRIVER=org.h2.Driver
+
+# MySQL 사용 시 (Docker 필요)
+DB_URL=jdbc:mysql://localhost:3306/music_sale_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+DB_DRIVER=com.mysql.cj.jdbc.Driver
+DB_USERNAME=music_user
+DB_PASSWORD=music_password
+JPA_DIALECT=org.hibernate.dialect.MySQLDialect
+```
+
+> **참고**: 환경 변수 로드 순서는 `.env.local` → `.env` → 시스템 환경 변수입니다.
+
+### 2. 애플리케이션 실행
+
+```bash
+# H2 사용 시 (Docker 없이 바로 실행)
+./gradlew :music-api:bootRun
+
+# MySQL 사용 시 (Docker 먼저 실행)
 docker-compose up -d mysql
-```
-
-### 3. Redis 시작 (선택사항)
-
-```bash
-docker-compose up -d redis
-```
-
-### 4. 애플리케이션 실행
-
-```bash
-# 환경별 실행 (권장)
-./gradlew local      # 로컬 개발 환경
-./gradlew dev        # 개발 서버 환경
-./gradlew prod       # 운영 서버 환경
-./gradlew testEnv    # 테스트 환경
-
-# 또는 직접 실행
 ./gradlew :music-api:bootRun
 ```
 
-### 5. 애플리케이션 접속
+### 3. 접속 확인
 
-- **URL**: http://localhost:8080
-- **Health Check**: http://localhost:8080/actuator/health
-- **Swagger UI**: http://localhost:8080/swagger-ui/index.html
+| URL | 설명 |
+|-----|------|
+| http://localhost:8080 | API 서버 |
+| http://localhost:8080/swagger-ui/index.html | API 문서 |
+| http://localhost:8080/h2-console | H2 콘솔 (H2 사용 시) |
+| http://localhost:8080/actuator/health | 헬스 체크 |
 
 ## 🔧 개발 환경 설정
 
-### 환경변수 설정
+### 환경별 주요 설정
 
-프로젝트는 환경변수를 통해 모든 설정을 관리합니다. 개발 시작 전에 다음 단계를 따라주세요:
+| 환경 | DB | JPA_DDL_AUTO | 비고 |
+|-----|-----|-------------|------|
+| **local** | H2 / MySQL | `create-drop` | 개발용, 매 실행 시 테이블 재생성 |
+| **dev** | MySQL | `update` | 개발 서버, 스키마 자동 업데이트 |
+| **prod** | MySQL | `validate` | 운영, 스키마 변경 불가 |
 
-#### 1. 환경변수 파일 생성
+### OAuth2 설정 (선택사항)
 
-```bash
-# .env.example을 .env로 복사
-cp .env.example .env
-```
-
-#### 2. 필수 환경변수 설정
-
-`.env` 파일에서 다음 환경변수들을 설정해주세요:
-
-**기본 설정**
+소셜 로그인을 사용하려면 `.env.local`에 추가:
 
 ```bash
-# Spring Profile 설정
-SPRING_PROFILES_ACTIVE=local
-
-# Server 설정
-SERVER_PORT=8080
-INCLUDE_STACKTRACE=never
-```
-
-**데이터베이스 설정**
-
-```bash
-# Database 설정
-DB_HOST=localhost
-DB_PORT=3306
-DB_NAME=music_sale_db
-DB_USERNAME=root
-DB_PASSWORD=password  # 실제 MySQL 비밀번호로 변경
-DB_MAX_POOL_SIZE=5
-DB_MIN_IDLE=2
-DB_CONNECTION_TIMEOUT=30000
-DB_IDLE_TIMEOUT=600000
-DB_MAX_LIFETIME=1800000
-```
-
-**JPA 설정 (환경별)**
-
-```bash
-# 로컬 개발 환경
-JPA_DDL_AUTO=create-drop  # 테이블 재생성
-JPA_SHOW_SQL=true         # SQL 로그 출력
-JPA_FORMAT_SQL=true       # SQL 포맷팅
-JPA_USE_SQL_COMMENTS=true # SQL 주석 출력
-JPA_DEFER_DATASOURCE_INIT=false
-JPA_SQL_INIT_MODE=never   # import.sql 비활성화
-
-# 개발 서버 환경
-JPA_DDL_AUTO=update       # 테이블 구조 업데이트
-JPA_SHOW_SQL=false        # SQL 로그 비활성화
-JPA_FORMAT_SQL=false      # SQL 포맷팅 비활성화
-JPA_USE_SQL_COMMENTS=false # SQL 주석 비활성화
-JPA_DEFER_DATASOURCE_INIT=true
-JPA_SQL_INIT_MODE=always  # import.sql 활성화
-
-# 운영 서버 환경
-JPA_DDL_AUTO=validate     # 테이블 구조 검증만
-JPA_SHOW_SQL=false        # SQL 로그 비활성화
-JPA_FORMAT_SQL=false      # SQL 포맷팅 비활성화
-JPA_USE_SQL_COMMENTS=false # SQL 주석 비활성화
-JPA_DEFER_DATASOURCE_INIT=false
-JPA_SQL_INIT_MODE=never   # import.sql 비활성화
-```
-
-**JWT 설정**
-
-```bash
-# JWT 설정
-JWT_SECRET=your-super-secret-jwt-key-here-make-it-long-and-secure
-JWT_EXPIRATION_MS=86400000  # 24시간
-```
-
-**Redis 설정**
-
-```bash
-# Redis 설정
-REDIS_HOST=localhost
-REDIS_PORT=6379
-REDIS_PASSWORD=           # Redis 비밀번호 (없으면 빈 값)
-REDIS_DATABASE=0
-REDIS_TIMEOUT=2000ms
-REDIS_MAX_ACTIVE=8
-REDIS_MAX_IDLE=8
-REDIS_MIN_IDLE=0
-REDIS_MAX_WAIT=-1ms
-```
-
-**OAuth2 설정 (소셜 로그인)**
-
-OAuth2 로그인 기능을 사용하려면 먼저 각 플랫폼에서 Client ID/Secret을 발급받아야 합니다.
-
-```bash
-# .env.local 파일에 설정 (프로파일: local,oauth2)
 SPRING_PROFILES_ACTIVE=local,oauth2
-
-# Google OAuth2
-# 발급: https://console.cloud.google.com/
-# Redirect URI: http://localhost:8080/login/oauth2/code/google
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-
-# Kakao OAuth2
-# 발급: https://developers.kakao.com/
-# Redirect URI: http://localhost:8080/login/oauth2/code/kakao
-KAKAO_CLIENT_ID=your-kakao-client-id
-KAKAO_CLIENT_SECRET=your-kakao-client-secret
-
-# Naver OAuth2
-# 발급: https://developers.naver.com/
-# Redirect URI: http://localhost:8080/login/oauth2/code/naver
-NAVER_CLIENT_ID=your-naver-client-id
-NAVER_CLIENT_SECRET=your-naver-client-secret
-
-# OAuth2 Frontend Redirect (로그인 성공 후 리다이렉트될 프론트엔드 URL)
-OAUTH2_FRONTEND_REDIRECT_URI=http://localhost:3000/oauth2/redirect
+GOOGLE_CLIENT_ID=your-client-id
+GOOGLE_CLIENT_SECRET=your-client-secret
+# Kakao, Naver도 동일하게 설정
 ```
-
-> **중요**: OAuth2를 사용하려면 `.env.local` 파일에 `SPRING_PROFILES_ACTIVE=local,oauth2`를 설정해야 합니다.
-> 환경변수가 없으면 OAuth2 엔드포인트(`/oauth2/authorization/google` 등)가 생성되지 않습니다.
-
-#### 3. 환경별 설정 가이드
-
-**로컬 개발 환경**
-
-- `SPRING_PROFILES_ACTIVE=local`
-- `JPA_DDL_AUTO=create-drop`
-- `JPA_SHOW_SQL=true`
-- `JPA_SQL_INIT_MODE=never`
-
-**개발 서버 환경**
-
-- `SPRING_PROFILES_ACTIVE=dev`
-- `JPA_DDL_AUTO=update`
-- `JPA_SHOW_SQL=false`
-- `JPA_SQL_INIT_MODE=always`
-
-**운영 서버 환경**
-
-- `SPRING_PROFILES_ACTIVE=prod`
-- `JPA_DDL_AUTO=validate`
-- `JPA_SHOW_SQL=false`
-- `JPA_SQL_INIT_MODE=never`
-- `INCLUDE_STACKTRACE=never`
 
 ### 빌드
 

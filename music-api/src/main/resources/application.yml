@@ -2,6 +2,13 @@ server:
   port: ${SERVER_PORT:8080}
   error:
     include-stacktrace: ${INCLUDE_STACKTRACE:on_param}  # ?trace=true 파라미터로만 스택트레이스 표시
+  tomcat:
+    threads:
+      max: ${SERVER_TOMCAT_MAX_THREADS:200}
+      min-spare: ${SERVER_TOMCAT_MIN_SPARE_THREADS:10}
+    accept-count: ${SERVER_TOMCAT_ACCEPT_COUNT:100}
+    connection-timeout: ${SERVER_TOMCAT_CONNECTION_TIMEOUT:20000}
+    max-connections: ${SERVER_TOMCAT_MAX_CONNECTIONS:8192}
 
 spring:
   profiles:
@@ -24,6 +31,8 @@ spring:
       idle-timeout: ${DB_IDLE_TIMEOUT:600000}
       max-lifetime: ${DB_MAX_LIFETIME:1800000}
       connection-test-query: SELECT 1
+      leak-detection-threshold: ${DB_LEAK_DETECTION_THRESHOLD:0}  # 0=비활성화, 프로덕션: 60000
+      validation-timeout: ${DB_VALIDATION_TIMEOUT:5000}
 
   # JPA 설정 - 환경별로 다른 설정
   jpa:
@@ -35,6 +44,16 @@ spring:
         format_sql: ${JPA_FORMAT_SQL:true}  # local: true, dev/prod: false
         use_sql_comments: ${JPA_USE_SQL_COMMENTS:true}  # local: true, dev/prod: false
         dialect: ${JPA_DIALECT:org.hibernate.dialect.H2Dialect}
+        # 배치 처리 성능 설정
+        jdbc:
+          batch_size: ${JPA_BATCH_SIZE:50}
+          batch_versioned_data: true
+        order_inserts: ${JPA_ORDER_INSERTS:true}
+        order_updates: ${JPA_ORDER_UPDATES:true}
+        # 쿼리 플랜 캐시
+        query:
+          plan_cache_max_size: ${JPA_QUERY_PLAN_CACHE_SIZE:2048}
+          in_clause_parameter_padding: true
     defer-datasource-initialization: ${JPA_DEFER_DATASOURCE_INIT:true}
     sql:
       init:
@@ -54,6 +73,7 @@ spring:
         max-idle: ${REDIS_MAX_IDLE:8}
         min-idle: ${REDIS_MIN_IDLE:0}
         max-wait: ${REDIS_MAX_WAIT:-1ms}
+      shutdown-timeout: ${REDIS_SHUTDOWN_TIMEOUT:100ms}
   session:
     store-type: ${SESSION_STORE_TYPE:none}  # local: none, dev/prod: redis
 
